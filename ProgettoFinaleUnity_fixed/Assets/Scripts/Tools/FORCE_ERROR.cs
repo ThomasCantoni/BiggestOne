@@ -13,6 +13,8 @@ public class FORCE_ERROR : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector3.one;
+
+        transform.position = Vector3.zero;
+
     }
 }
