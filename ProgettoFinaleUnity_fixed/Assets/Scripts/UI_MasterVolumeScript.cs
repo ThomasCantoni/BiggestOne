@@ -10,7 +10,8 @@ public class UI_MasterVolumeScript : MonoBehaviour
     public AudioMixer UI_Mixer;
     public void ChangeVolume(float value)
     {
-        Mixer.SetFloat("Volume", value);
+        value = Mathf.Log10(value) * 20f;
+        Mixer.SetFloat("Volume",value);
         UI_Mixer.SetFloat("UI Volume", value);
         
     }
