@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 using TMPro;
 
 public class FloatToString : MonoBehaviour
@@ -13,10 +13,11 @@ public class FloatToString : MonoBehaviour
        GetComponent<TMP_Text>().text = n.ToString();
         
     }
-    public void VolumeToString(float n)
+    public void VolumeToString(Slider volumeSl)
     {
-        int text =(int) (((80f+n) / -80f) *- 100f);
-        
-        GetComponent<TMP_Text>().text = text.ToString();
+        int  percentage =  Mathf.FloorToInt((volumeSl.value / volumeSl.maxValue) * 100f);
+        //int text =(int) (((80f+volumeSl.value) / -80f) *- 100f);
+
+        GetComponent<TMP_Text>().text = percentage.ToString();
     }
 }

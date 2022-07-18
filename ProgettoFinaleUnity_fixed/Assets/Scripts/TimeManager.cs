@@ -16,7 +16,10 @@ public static class TimeManager
     public delegate void Notifier();
 
     //enemy script will subscribe to this delegate with a 
-    public static Notifier EnemyNotifier;
+    public static Notifier BulletTimeActivatedEvent;
+    public static Notifier BulletTimeDeactivatedEvent;
+    public static Notifier PauseEvent;
+    public static Notifier ResumeEvent;
 
     public static void EnableBulletTime()
     {
@@ -32,6 +35,8 @@ public static class TimeManager
         //EnemyCurrentSpeed = EnemyBulletTimeSpeed;
         IsBulletTimeActive = true;
         //EnemyNotifier.Invoke();
+        if(BulletTimeActivatedEvent != null)
+        BulletTimeActivatedEvent.Invoke();
     }
     public static void DisableBulletTime()
     {
@@ -39,6 +44,9 @@ public static class TimeManager
         Time.timeScale = 1f;
         PlayerCurrentSpeed = 1f;
         IsBulletTimeActive = false;
+        if (BulletTimeDeactivatedEvent != null)
+
+            BulletTimeDeactivatedEvent.Invoke();
 
     }
     public static void EnablePause()
@@ -47,7 +55,7 @@ public static class TimeManager
         Time.timeScale = 0f;
         PlayerCurrentSpeed = 0f;
         IsGamePaused = true;
-
+        PauseEvent();
     }
     public static void DisablePause()
     {
@@ -67,6 +75,6 @@ public static class TimeManager
         }
         Cursor.visible = false;
         IsGamePaused = false;
-
+        ResumeEvent();
     }
 }

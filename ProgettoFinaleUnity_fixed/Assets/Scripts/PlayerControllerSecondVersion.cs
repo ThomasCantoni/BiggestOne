@@ -71,8 +71,8 @@ public class PlayerControllerSecondVersion : MonoBehaviour
     public bool UseLatestData = false;
     public PlayerData PlayerData;
     public bool isGamePaused = false;
-    public AudioSource BulletTimeAudioSource, AmbientAudioSource;
-    public AudioClip Lvl1_Ambient, Lvl2_ambient;
+    public AudioSource BulletTimeAudioSource;
+   
     //public AudioMixerGroup Mixer;
     public AudioMixer DefaultMixer,UI_Mixer;
     public EllenActionPoints EllenAp;
@@ -123,7 +123,7 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         EllenAp = GetComponent<EllenActionPoints>();
         LoadData();
     //    SetPrefs();
-        SelectAmbient();
+       // SelectAmbient();
         CheckKeys();
     }
     public void CheckKeys()
@@ -176,20 +176,7 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         PlayerData.keysTaken.RemoveAt(index);
 
     }
-    private void SelectAmbient()
-    {
-        if (SceneManager.GetActiveScene().buildIndex > 1)
-        {
-            AmbientAudioSource.clip = Lvl2_ambient;
-
-        }
-        else
-        {
-            AmbientAudioSource.clip = Lvl1_Ambient;
-
-        }
-        AmbientAudioSource.Play();
-    }
+    
 
     void LoadData()
     {
@@ -315,9 +302,9 @@ public class PlayerControllerSecondVersion : MonoBehaviour
     
     void HandleDeviceChange(InputDevice device, InputDeviceChange change)
     {
-        Debug.Log("Triggered something");
-        Debug.Log(device);
-        Debug.Log(change);
+       // Debug.Log("Triggered something");
+        //Debug.Log(device);
+       // Debug.Log(change);
         if (device is Gamepad)
         {
             switch (change)
@@ -434,11 +421,12 @@ public class PlayerControllerSecondVersion : MonoBehaviour
             return;
         Vector2 lookValue = Controls.Player.RotateCamera.ReadValue<Vector2>();
 
-        if (lookValue.x <= 0.1f && lookValue.x >= -0.1f && lookValue.y <= 0.1f && lookValue.y >= -0.1f)
+        //needed for proper controller sensitivity
+        if (lookValue.x <= 0.01f && lookValue.x >= -0.01f && lookValue.y <= 0.01f && lookValue.y >= -0.01f)
             return;
 
-        cameraRotationVec2FromMouse.x -= lookValue.y * AimSensitivity * Time.deltaTime;
-        cameraRotationVec2FromMouse.y += lookValue.x * AimSensitivity * Time.deltaTime;
+        cameraRotationVec2FromMouse.x -= lookValue.y * AimSensitivity * Time.unscaledDeltaTime;
+        cameraRotationVec2FromMouse.y += lookValue.x * AimSensitivity * Time.unscaledDeltaTime;
         cameraRotationVec2FromMouse.x = Mathf.Clamp(cameraRotationVec2FromMouse.x, -50f, 70f);
         CameraReference.transform.rotation = Quaternion.Euler(cameraRotationVec2FromMouse.x, cameraRotationVec2FromMouse.y, 0);
         Vector3 camForward = CameraReference.forward;
@@ -477,7 +465,7 @@ public class PlayerControllerSecondVersion : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log(isAGamepadConnected);
+       // Debug.Log(isAGamepadConnected);
 
         if (TimeManager.IsGamePaused)
         {
