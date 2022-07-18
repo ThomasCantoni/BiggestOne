@@ -42,8 +42,6 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         {
             ThirdPersonCamera.m_Lens.FieldOfView = value;
             AimCamera.m_Lens.FieldOfView = value;
-
-
         }
     }
     public float AimSensitivity
@@ -64,17 +62,14 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         {
             return Physics.gravity.y * Time.deltaTime;
         }
-
-
     }
 
     public bool UseLatestData = false;
-    public PlayerData PlayerData;
     public bool isGamePaused = false;
+    public PlayerData PlayerData;
     public AudioSource BulletTimeAudioSource;
-   
-    //public AudioMixerGroup Mixer;
     public AudioMixer DefaultMixer,UI_Mixer;
+   
     public EllenActionPoints EllenAp;
     public CinemachineVirtualCamera AimCamera, ThirdPersonCamera;
     public Camera Camera;
@@ -82,10 +77,8 @@ public class PlayerControllerSecondVersion : MonoBehaviour
     public Animator Anim;
     public GameObject Player;
 
-
-
-    public Transform CameraReference;
     private float aimSensitivity = 5f;
+    public Transform CameraReference;
     public float jumpHeight = 5f;
     public float SpeedInAir = 2.5f;
     public float SpeedWhileAiming = 2f;
@@ -100,20 +93,18 @@ public class PlayerControllerSecondVersion : MonoBehaviour
     Quaternion cameraQuatForMovement;
     public Controls Controls;
     public bool isGrounded;
-    bool jumpPressed = false;
     public bool isAiming = false;
+    bool jumpPressed = false;
 
-
-
+    public float SpeedInAirMultiplier = 1.8f;
     float gravityValue = -9.81f;
     float GroundCheckCooldown = 0.1f;
     float jumpCooldown = 0.1f;
     Vector2 accum = Vector2.zero;
     float speedAirMulti = 1f;
-    public float SpeedInAirMultiplier = 1.8f;
 
     public GroundedCollider GroundedCollider;
-
+    float previousMixerVolume;
     private bool isAGamepadConnected = false;
   
     private void OnEnable()
@@ -285,6 +276,12 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         Controls.Player.Pause.performed += PauseGame;
         //controls.Player.BulletTimeInput.performed += TimeManager.EnableBulletTime;
         Controls.Player.BulletTimeInput.performed += ManageBulletTimePlayerSide;
+
+        TimeManager.BulletTimeActivatedEvent += PlayerEnableBT;
+        TimeManager.BulletTimeDeactivatedEvent += PlayerDisableBT;
+
+        TimeManager.PauseEvent += PlayerPauseEvent;
+        TimeManager.ResumeEvent += PlayerResumeEvent;
         SetPrefs();
     }
 
@@ -319,45 +316,37 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         }
     }
 
-    public void PlayerActivateBT(InputAction.CallbackContext ctxt)
-    {
 
-
-        AimSensitivity = 5f;
-    }
 
     void PauseGame(InputAction.CallbackContext ctxt)
     {
-        if (Anim == null)
-        {
-            Anim = GetComponent<Animator>();
-        }
-
-        if (TimeManager.IsGamePaused == false)
-        {
-            TimeManager.EnablePause();
+        //if (Anim == null)
+        //{
+        //    Anim = GetComponent<Animator>();
+        //}
+        TimeManager.TogglePause();
+    }
+    public void PlayerPauseEvent()
+    {
+            DefaultMixer.GetFloat("Volume",out previousMixerVolume);
+            DefaultMixer.SetFloat("Volume", -80f);
             BulletTimeAudioSource.Pause();
             Debug.Log(Anim);
             Anim.SetFloat(AnimatorSpeedHash, TimeManager.PlayerCurrentSpeed);
-
             PauseCanvas.gameObject.SetActive(true);
-
             EventSystem.current.SetSelectedGameObject(null);
             EventSystem.current.SetSelectedGameObject(PauseCanvasFirstSelected);
-        }
-        else
-        {
-            TimeManager.DisablePause();
+    }
+    public void PlayerResumeEvent()
+    {
+             DefaultMixer.SetFloat("Volume", previousMixerVolume);
             Anim.SetFloat(AnimatorSpeedHash, TimeManager.PlayerCurrentSpeed);
             if (TimeManager.IsBulletTimeActive)
             {
                 BulletTimeAudioSource.UnPause();
             }
             PauseCanvas.gameObject.SetActive(false);
-
-            EventSystem.current.SetSelectedGameObject(null);
-        }
-
+            EventSystem.current.SetSelectedGameObject(null);  
     }
     public void Respwan()
     {
@@ -378,9 +367,6 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         ThirdPersonCamera.Priority = 0;
         AimCamera.Priority = 30;
         Anim.applyRootMotion = false;
-
-
-
     }
     void OnZoomCancel(InputAction.CallbackContext context)
     {
@@ -392,12 +378,7 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         Anim.SetBool("IsAiming", false);
         ThirdPersonCamera.Priority = 30;
         AimCamera.Priority = 0;
-
-
-
         Anim.applyRootMotion = true;
-
-
     }
     void OnCameraRotate(InputAction.CallbackContext context)
     {
@@ -422,9 +403,11 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         Vector2 lookValue = Controls.Player.RotateCamera.ReadValue<Vector2>();
 
         //needed for proper controller sensitivity
-        if (lookValue.x <= 0.01f && lookValue.x >= -0.01f && lookValue.y <= 0.01f && lookValue.y >= -0.01f)
+        float minDeltaValue = 0.01f;
+        //if (lookValue.x <= minDeltaValue && lookValue.x >= -minDeltaValue && lookValue.y <= minDeltaValue && lookValue.y >= -minDeltaValue)
+        //    return;
+        if (lookValue.magnitude <= minDeltaValue)
             return;
-
         cameraRotationVec2FromMouse.x -= lookValue.y * AimSensitivity * Time.unscaledDeltaTime;
         cameraRotationVec2FromMouse.y += lookValue.x * AimSensitivity * Time.unscaledDeltaTime;
         cameraRotationVec2FromMouse.x = Mathf.Clamp(cameraRotationVec2FromMouse.x, -50f, 70f);
@@ -571,20 +554,36 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         }
         TimeManager.EnableBulletTime();
 
-        if (TimeManager.IsBulletTimeActive)
-        {
-            EllenAp.Activate();
-            BulletTimeAudioSource.Play();
-            DefaultMixer.SetFloat("Pitch", 0.3f);
-        }
-        else
-        {
-            EllenAp.Disable();
-            DefaultMixer.SetFloat("Pitch", 1f);
-            BulletTimeAudioSource.Stop();
-        }
+        //if (TimeManager.IsBulletTimeActive)
+        //{
+        //    EllenAp.Activate();
+        //    BulletTimeAudioSource.Play();
+        //    DefaultMixer.SetFloat("Pitch", 0.3f);
+        //}
+        //else
+        //{
+        //    EllenAp.Disable();
+        //    DefaultMixer.SetFloat("Pitch", 1f);
+        //    BulletTimeAudioSource.Stop();
+        //}
 
         Anim.SetFloat(AnimatorSpeedHash, TimeManager.PlayerCurrentSpeed);
+    }
+    public void PlayerEnableBT()
+    {
+        EllenAp.Activate();
+        BulletTimeAudioSource.Play();
+        DefaultMixer.SetFloat("Pitch", 0.3f);
+        Anim.SetFloat(AnimatorSpeedHash, TimeManager.PlayerCurrentSpeed);
+
+    }
+    public void PlayerDisableBT()
+    {
+        EllenAp.Disable();
+        DefaultMixer.SetFloat("Pitch", 1f);
+        BulletTimeAudioSource.Stop();
+        Anim.SetFloat(AnimatorSpeedHash, TimeManager.PlayerCurrentSpeed);
+
     }
     void MoveRelativeToCameraRotation()
     {

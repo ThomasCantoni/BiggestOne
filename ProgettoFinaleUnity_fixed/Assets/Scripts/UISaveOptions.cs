@@ -31,7 +31,7 @@ public class UISaveOptions : MonoBehaviour
         }
         set
         {
-            vol.ChangeVolume(value);
+            vol.ChangeDesiredVolume(value);
         }
     }
     public int Vsync

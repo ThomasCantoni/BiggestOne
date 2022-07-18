@@ -38,6 +38,17 @@ public static class TimeManager
         if(BulletTimeActivatedEvent != null)
         BulletTimeActivatedEvent.Invoke();
     }
+    public static void TogglePause()
+    {
+        if(IsGamePaused)
+        {
+            DisablePause();
+        }
+        else
+        {
+            EnablePause();
+        }
+    }
     public static void DisableBulletTime()
     {
         Debug.Log("BT INACTIVE");
