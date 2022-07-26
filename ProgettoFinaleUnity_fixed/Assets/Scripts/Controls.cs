@@ -25,84 +25,39 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     ""maps"": [
         {
             ""name"": ""Player"",
-            ""id"": ""3c16f3cd-03a5-43e1-881a-c9f931bd8253"",
+            ""id"": ""dfae7185-dfcb-47b6-94a2-a1e787d16cb5"",
             ""actions"": [
-                {
-                    ""name"": ""RotateCamera"",
-                    ""type"": ""Value"",
-                    ""id"": ""4d5e2496-1243-4618-b127-7e61f2e1d219"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
                 {
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
-                    ""id"": ""7b4063d2-7165-4a54-b73b-85fc007a0c6b"",
+                    ""id"": ""0aab8f9b-9885-4140-89f0-565e02c6cc45"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Sprint"",
-                    ""type"": ""Button"",
-                    ""id"": ""25fea663-cd0e-488d-93e4-47a69c78b6f1"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""b7276b3b-f38c-4264-b050-ad1c83efdc2b"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
-                    ""id"": ""fc832243-36c1-46e5-a4a2-aa3fb4181aa0"",
+                    ""id"": ""66069ee4-3b75-43fd-8917-318ad5518d70"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Shot"",
+                    ""name"": ""Shoot"",
                     ""type"": ""Button"",
-                    ""id"": ""1d832ac5-cccd-418b-96e0-68a9fff2bf30"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""4ae07c48-79d3-49dd-8d0c-34522cfeafc8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""EquipWeapon"",
-                    ""type"": ""Button"",
-                    ""id"": ""118b804c-9405-4532-8875-6bcafbbce690"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Zoom"",
-                    ""type"": ""Button"",
-                    ""id"": ""ffed979f-e2a6-4172-a363-ffcc28e2fa49"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""BulletTimeInput"",
-                    ""type"": ""Button"",
-                    ""id"": ""2807ae63-24d8-4e67-8213-14bd70f16eab"",
+                    ""id"": ""44763ba4-9d46-4893-b4cb-6e22ccf766c9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -111,30 +66,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": """",
-                    ""id"": ""8225dc03-af52-4cf0-ae21-e64b51cfd1db"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""RotateCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b785474b-37c8-44bc-b345-17cd5355c358"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": ""StickDeadzone,ScaleVector2(x=10,y=10)"",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""RotateCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""05f17432-9214-4576-b2e6-a92cf033aaa0"",
+                    ""name"": ""WASD"",
+                    ""id"": ""92bf965f-4933-4e0b-ac7e-32c0b179fb12"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -144,211 +77,79 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""Up"",
-                    ""id"": ""ab371160-959b-44db-817d-b5edd99c0b03"",
+                    ""name"": ""up"",
+                    ""id"": ""faa589c2-b3cc-4387-9563-ce23697f6a84"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Down"",
-                    ""id"": ""a7bd8ec7-c9d2-460f-b9c7-7b8905b65665"",
+                    ""name"": ""down"",
+                    ""id"": ""acbcc534-e157-4838-bbe8-d1572ce62f7b"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Left"",
-                    ""id"": ""120a11c9-c98a-4dda-9e06-877c2146e04b"",
+                    ""name"": ""left"",
+                    ""id"": ""2919d72a-0a13-4130-a217-a5bdb97199dd"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Right"",
-                    ""id"": ""65c505c2-2972-410a-8a04-dedb2cc29bfe"",
+                    ""name"": ""right"",
+                    ""id"": ""2bf343f6-98b7-400b-a72e-a0c68ec4d0e4"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""5cd38c48-dcfa-4e5a-9685-ddae53e2a926"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": ""StickDeadzone"",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""961fd405-b546-4e59-8a3b-c7ba178dbd1b"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c8dcb70-268a-4623-8f21-9ac37d7dbb0d"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Sprint"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""686fae25-b5cb-4606-8418-001924bbf16a"",
+                    ""id"": ""2d1cdb68-bc72-4260-ac9d-6f00d1f57ecc"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4275e44f-8abb-4d11-870d-4db0528fdb16"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c4d767b9-9c79-4f76-9d79-3ada59bc6abe"",
+                    ""id"": ""46a3d481-cf74-4dcb-aee3-c80e8393a78c"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""Shot"",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4b9c2c8c-78d2-4385-b3e4-5fcd76482443"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""id"": ""d587db0f-86ab-426d-8e95-5bced05e188a"",
+                    ""path"": ""<Pointer>/delta"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Shot"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ef9948dd-393f-4636-b593-c905063c283c"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""9b73012f-9a25-4e0c-90b9-4250eea99eec"",
-                    ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fe700f24-36dc-4566-b234-875ee8797d53"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""EquipWeapon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3b8b0970-f0c0-48d7-835a-31d460b49c64"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""EquipWeapon"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2e74fff2-6594-4280-938c-ad4cdb196394"",
-                    ""path"": ""<Mouse>/rightButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""Zoom"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b58db39a-c071-4905-bf58-751722666e7d"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Zoom"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""7a6342c5-9cbb-4fa2-a0e8-63ef8289889e"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""BulletTimeInput"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""794aaecc-4a86-4e4b-8252-e00deda6f723"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""BulletTimeInput"",
+                    ""processors"": ""InvertVector2(invertX=false),ScaleVector2(x=0.05,y=0.05)"",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -357,8 +158,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""MouseAndKeyboard"",
-            ""bindingGroup"": ""MouseAndKeyboard"",
+            ""name"": ""KeyboardAndMouse"",
+            ""bindingGroup"": ""KeyboardAndMouse"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
@@ -371,31 +172,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isOR"": false
                 }
             ]
-        },
-        {
-            ""name"": ""Gamepad"",
-            ""bindingGroup"": ""Gamepad"",
-            ""devices"": [
-                {
-                    ""devicePath"": ""<Gamepad>"",
-                    ""isOptional"": false,
-                    ""isOR"": false
-                }
-            ]
         }
     ]
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_RotateCamera = m_Player.FindAction("RotateCamera", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
-        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_EquipWeapon = m_Player.FindAction("EquipWeapon", throwIfNotFound: true);
-        m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
-        m_Player_BulletTimeInput = m_Player.FindAction("BulletTimeInput", throwIfNotFound: true);
+        m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -455,28 +240,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_RotateCamera;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Shot;
-    private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_EquipWeapon;
-    private readonly InputAction m_Player_Zoom;
-    private readonly InputAction m_Player_BulletTimeInput;
+    private readonly InputAction m_Player_Shoot;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @RotateCamera => m_Wrapper.m_Player_RotateCamera;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Shot => m_Wrapper.m_Player_Shot;
-        public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @EquipWeapon => m_Wrapper.m_Player_EquipWeapon;
-        public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
-        public InputAction @BulletTimeInput => m_Wrapper.m_Player_BulletTimeInput;
+        public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -486,96 +261,52 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @RotateCamera.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateCamera;
-                @RotateCamera.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateCamera;
-                @RotateCamera.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotateCamera;
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
-                @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
-                @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Shot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
-                @Shot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
-                @Shot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
-                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @EquipWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipWeapon;
-                @EquipWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipWeapon;
-                @EquipWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipWeapon;
-                @Zoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
-                @Zoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
-                @Zoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
-                @BulletTimeInput.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBulletTimeInput;
-                @BulletTimeInput.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBulletTimeInput;
-                @BulletTimeInput.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnBulletTimeInput;
+                @Shoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @RotateCamera.started += instance.OnRotateCamera;
-                @RotateCamera.performed += instance.OnRotateCamera;
-                @RotateCamera.canceled += instance.OnRotateCamera;
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
-                @Sprint.started += instance.OnSprint;
-                @Sprint.performed += instance.OnSprint;
-                @Sprint.canceled += instance.OnSprint;
+                @Look.started += instance.OnLook;
+                @Look.performed += instance.OnLook;
+                @Look.canceled += instance.OnLook;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Shot.started += instance.OnShot;
-                @Shot.performed += instance.OnShot;
-                @Shot.canceled += instance.OnShot;
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
-                @EquipWeapon.started += instance.OnEquipWeapon;
-                @EquipWeapon.performed += instance.OnEquipWeapon;
-                @EquipWeapon.canceled += instance.OnEquipWeapon;
-                @Zoom.started += instance.OnZoom;
-                @Zoom.performed += instance.OnZoom;
-                @Zoom.canceled += instance.OnZoom;
-                @BulletTimeInput.started += instance.OnBulletTimeInput;
-                @BulletTimeInput.performed += instance.OnBulletTimeInput;
-                @BulletTimeInput.canceled += instance.OnBulletTimeInput;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-    private int m_MouseAndKeyboardSchemeIndex = -1;
-    public InputControlScheme MouseAndKeyboardScheme
+    private int m_KeyboardAndMouseSchemeIndex = -1;
+    public InputControlScheme KeyboardAndMouseScheme
     {
         get
         {
-            if (m_MouseAndKeyboardSchemeIndex == -1) m_MouseAndKeyboardSchemeIndex = asset.FindControlSchemeIndex("MouseAndKeyboard");
-            return asset.controlSchemes[m_MouseAndKeyboardSchemeIndex];
-        }
-    }
-    private int m_GamepadSchemeIndex = -1;
-    public InputControlScheme GamepadScheme
-    {
-        get
-        {
-            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
-            return asset.controlSchemes[m_GamepadSchemeIndex];
+            if (m_KeyboardAndMouseSchemeIndex == -1) m_KeyboardAndMouseSchemeIndex = asset.FindControlSchemeIndex("KeyboardAndMouse");
+            return asset.controlSchemes[m_KeyboardAndMouseSchemeIndex];
         }
     }
     public interface IPlayerActions
     {
-        void OnRotateCamera(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnSprint(InputAction.CallbackContext context);
+        void OnLook(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnShot(InputAction.CallbackContext context);
-        void OnPause(InputAction.CallbackContext context);
-        void OnEquipWeapon(InputAction.CallbackContext context);
-        void OnZoom(InputAction.CallbackContext context);
-        void OnBulletTimeInput(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
