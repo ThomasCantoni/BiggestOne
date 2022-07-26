@@ -103,7 +103,8 @@ public class PlayerControllerSecondVersion : MonoBehaviour
     Vector2 accum = Vector2.zero;
     float speedAirMulti = 1f;
 
-    public GroundedCollider GroundedCollider;
+    //public GroundedCollider GroundedCollider;
+    public GroundedSpherecast GroundedSpherecast;
     float previousMixerVolume;
     private bool isAGamepadConnected = false;
   
@@ -478,18 +479,19 @@ public class PlayerControllerSecondVersion : MonoBehaviour
     }
     void GravityAndJumpUpdate()
     {
-
+        
         if (GroundCheckCooldown > 0f)
         {
             GroundCheckCooldown -= Time.deltaTime;
-            GroundedCollider.Disable();
+            isGrounded = false;
+            GroundedSpherecast.enabled = false;
 
             //isGrounded = false;
         }
         else
         {
-            GroundedCollider.Enable();
-            isGrounded = GroundedCollider.touching;
+            GroundedSpherecast.enabled = true;
+            isGrounded = GroundedSpherecast.Grounded;
             Anim.SetBool("isGrounded", isGrounded);
             GlobalVariables.IsPlayerGrounded = isGrounded;
         }
@@ -497,17 +499,18 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         if (isGrounded)
         {
             playerVel = Vector3.zero;
-            playerVel.y = -2.2f;
+            
+            playerVel.y = -1f - GroundedSpherecast.AngleOfGround * 0.2f;
             jumpCooldown -= Time.deltaTime;
             jumpCooldown = Mathf.Clamp(jumpCooldown, 0f, 1f);
-            GroundedCollider.SwitchToBig();
+            //GroundedCollider.SwitchToBig();
             //Anim.SetBool("isGrounded", true);
             if (!isAiming)
                 Anim.applyRootMotion = true;
         }
         else
         { //i am in the air
-            GroundedCollider.SwitchToSmall();
+            //GroundedCollider.SwitchToSmall();
 
             playerVel.x = MovementVector.x * SpeedInAir * speedAirMulti;
             playerVel.z = MovementVector.z * SpeedInAir * speedAirMulti;
@@ -517,7 +520,7 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         { // i am grounded and i want to jump
             isGrounded = false;
             GlobalVariables.IsPlayerGrounded = isGrounded;
-            GroundedCollider.Disable();
+            //GroundedSpherecast.enabled = false;
             GroundCheckCooldown = 0.2f;
             jumpPressed = false;
             playerVel.y = 0f;
