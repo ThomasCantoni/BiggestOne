@@ -500,7 +500,8 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         {
             playerVel = Vector3.zero;
             
-            playerVel.y = -1f - GroundedSpherecast.AngleOfGround * 0.2f;
+            playerVel.y = -(1f + GroundedSpherecast.AngleOfGround * 0.2f);
+            Debug.Log(playerVel.y + "  " + GroundedSpherecast.AngleOfGround ); ;
             jumpCooldown -= Time.deltaTime;
             jumpCooldown = Mathf.Clamp(jumpCooldown, 0f, 1f);
             //GroundedCollider.SwitchToBig();
@@ -511,7 +512,7 @@ public class PlayerControllerSecondVersion : MonoBehaviour
         else
         { //i am in the air
             //GroundedCollider.SwitchToSmall();
-
+            playerVel.y = -1f;
             playerVel.x = MovementVector.x * SpeedInAir * speedAirMulti;
             playerVel.z = MovementVector.z * SpeedInAir * speedAirMulti;
         }
