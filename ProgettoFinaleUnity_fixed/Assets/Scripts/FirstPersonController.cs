@@ -8,8 +8,7 @@ public class FirstPersonController : MonoBehaviour
    
     public CharacterController Controller;
     public InputCooker InputCooker;
-    public float Speed = 5f;
-    
+    //public float Speed = 5f;
    
     void Update()
     {

@@ -52,11 +52,11 @@ public class InputCooker : MonoBehaviour
     {
         Vector2 val = value.ReadValue<Vector2>();
 
-        CameraTargetPitch += val.y * 1f;
+        CameraTargetPitch += val.y * 1.5f;
         CameraTargetPitch = ClampAngle(CameraTargetPitch, -90, 90);
         VirtualCamera.transform.localRotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
 
-        float rotationVelocity = val.x * 1f;
+        float rotationVelocity = val.x * 1.5f;
         transform.Rotate(Vector3.up * rotationVelocity);
        
 
