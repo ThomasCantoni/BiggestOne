@@ -5102,6 +5102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ToActivate: {fileID: 651986923}
+  InputCooker: {fileID: 0}
+  ShootActivated:
+    m_PersistentCalls:
+      m_Calls: []
+  ToInstantiate: {fileID: 0}
 --- !u!114 &651986925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6155,6 +6160,10 @@ PrefabInstance:
     - target: {fileID: 8762286023885395323, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
       propertyPath: m_Lens.FieldOfView
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8762286024517199034, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
+      propertyPath: CameraDistance
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c489a8547f4d9e4387da15a4ff82c81, type: 3}
