@@ -43,12 +43,17 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
+		public void OnShoot2(InputValue value)
+        {
+			
+        }
 #endif
 
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
 			move = newMoveDirection;
+			Debug.Log(move);
 		} 
 
 		public void LookInput(Vector2 newLookDirection)

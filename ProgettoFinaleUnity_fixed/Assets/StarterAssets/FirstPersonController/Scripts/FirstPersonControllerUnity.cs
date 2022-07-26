@@ -9,13 +9,13 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 	[RequireComponent(typeof(PlayerInput))]
 #endif
-	public class FirstPersonController : MonoBehaviour
+	public class FirstPersonControllerUnity : MonoBehaviour
 	{
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;
 		[Tooltip("Sprint speed of the character in m/s")]
-		public float SprintSpeed = 6.0f;
+		public float SprintSpeed = 8.0f;
 		[Tooltip("Rotation speed of the character")]
 		public float RotationSpeed = 1.0f;
 		[Tooltip("Acceleration and deceleration")]
@@ -108,6 +108,8 @@ namespace StarterAssets
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+		
 		}
 
 		private void Update()
@@ -115,8 +117,12 @@ namespace StarterAssets
 			JumpAndGravity();
 			GroundedCheck();
 			Move();
+			Shoot();
 		}
+		private void Shoot()
+        {
 
+        }
 		private void LateUpdate()
 		{
 			CameraRotation();
@@ -191,7 +197,7 @@ namespace StarterAssets
 			if (_input.move != Vector2.zero)
 			{
 				// move
-				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				inputDirection = transform.rotation * inputDirection;
 			}
 
 			// move the player
