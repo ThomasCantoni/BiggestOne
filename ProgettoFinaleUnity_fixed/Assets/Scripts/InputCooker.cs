@@ -21,6 +21,7 @@ public class InputCooker : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        
         Controls = new Controls();
         Controls.Enable();
         Controls.Player.Movement.performed += OnMove;
