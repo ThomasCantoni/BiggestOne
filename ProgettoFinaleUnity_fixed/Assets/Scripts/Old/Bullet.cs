@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour, IHittable
+public class Bullet : MonoBehaviour, IHittableOld
 {
     public float LifeTime = 4f;
     public float Damage = 25f;

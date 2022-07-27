@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Boss : MonoBehaviour, IHittable
+public class Boss : MonoBehaviour, IHittableOld
 {
     public int Health;
     public float MeleeDamage;

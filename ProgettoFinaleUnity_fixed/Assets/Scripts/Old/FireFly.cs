@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FireFly : MonoBehaviour, IHittable
+public class FireFly : MonoBehaviour, IHittableOld
 {
     public GameObject fireFly;
     public GameObject TriggerToActivate;
