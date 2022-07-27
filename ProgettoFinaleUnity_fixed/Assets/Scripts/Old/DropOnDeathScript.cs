@@ -8,14 +8,14 @@ public class DropOnDeathScript : MonoBehaviour
 {
     [SerializeField]
     public List<GameObject> ObjectsToDrop;
-    public IHittable hittable;
+    public IHittableOld hittable;
     public float Timer = 0f;
     UnityAction onDeath;
 
     private void Start()
     {
         onDeath = Initiate;
-        hittable = GetComponent<IHittable>();
+        hittable = GetComponent<IHittableOld>();
         System.Type t = hittable.GetType();
        
         if(t == typeof(Chomper))

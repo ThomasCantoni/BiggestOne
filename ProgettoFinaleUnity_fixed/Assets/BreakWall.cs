@@ -13,10 +13,12 @@ public class BreakWall : MonoBehaviour
 
     public int CutCascades = 1;
     public float ExplodeForce = 0;
-
+    public Transform ParentOfPieces;
+    Mesh originalMesh;
     // Start is called before the first frame update
     void Start()
     {
+         originalMesh = GetComponent<MeshFilter>().mesh;
 
     }
 
@@ -31,9 +33,9 @@ public class BreakWall : MonoBehaviour
     }
 
 
-    private void DestroyMesh()
+    public void DestroyMesh()
     {
-        var originalMesh = GetComponent<MeshFilter>().mesh;
+        //var originalMesh = GetComponent<MeshFilter>().mesh;
         originalMesh.RecalculateBounds();
         var parts = new List<PartMesh>();
         var subParts = new List<PartMesh>();
@@ -74,6 +76,7 @@ public class BreakWall : MonoBehaviour
         {
             parts[i].MakeGameobject(this);
             parts[i].GameObject.GetComponent<BreakWall>().enabled = false;
+            parts[i].GameObject.transform.parent = ParentOfPieces;
             parts[i].GameObject.GetComponent<Rigidbody>().AddForceAtPosition(parts[i].Bounds.center * ExplodeForce, transform.position);
         }
 

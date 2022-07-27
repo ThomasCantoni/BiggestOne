@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IHittable
 {
-   // public abstract Hittable OnHit(Collider sender);
+   public abstract void OnHit(Collider sender,float damage);
 
 }

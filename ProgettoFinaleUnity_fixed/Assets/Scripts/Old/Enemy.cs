@@ -5,7 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Enemy : MonoBehaviour, IHittable
+public class Enemy : MonoBehaviour, IHittableOld
 {
     public HittableType Type;
     public int Health;

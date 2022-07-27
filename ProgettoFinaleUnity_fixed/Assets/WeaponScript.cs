@@ -13,6 +13,7 @@ public class WeaponScript : MonoBehaviour
     public GameObject ToInstantiate;
     public bool automatic = false;
     private bool shooting;
+    public float Damage=1;
     public float FireRate
     {
         get { return 1f / shootCD; }
@@ -54,7 +55,13 @@ public class WeaponScript : MonoBehaviour
         Vector2 screenCenterPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         Ray ray = cam.ScreenPointToRay(screenCenterPoint);
         if (Physics.Raycast(ray, out info, 10f, 3))
+        {
             Destroy(Instantiate(ToInstantiate, info.point, Quaternion.identity), 2f);
+            if(info.collider.GetComponent<IHittable>() != null )
+            {
+                info.collider.GetComponent<HitEvent>().OnHit(info.collider,this.Damage);
+            }
+        }
     }
     public void OnShoot(InputAction.CallbackContext ctx)
     {
