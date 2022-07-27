@@ -13,11 +13,14 @@ public class InputCooker : MonoBehaviour
     public Camera MainCamera;
     public float Speed = 5f;
     public Vector3 RotatedMoveValue;
+
     
+
     Vector3 moveValue;
     Vector2 inputDirection;
     float CameraTargetPitch;
     public bool IsShooting = false;
+    public bool isJump = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,6 +31,7 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Look.performed += RotateCamera;
         Controls.Player.Shoot.started += OnShootStart;
         Controls.Player.Shoot.canceled += OnShootStop;
+        Controls.Player.Jump.started += OnJump;
         Debug.Log("Controls initialized");
     }
 
@@ -35,8 +39,10 @@ public class InputCooker : MonoBehaviour
     void Update()
     {
         RotatedMoveValue = transform.rotation * moveValue;
-
+        
     }
+
+    
 
     public void OnMove(InputAction.CallbackContext value)
     {
@@ -70,6 +76,11 @@ public class InputCooker : MonoBehaviour
     {
         IsShooting = false;
     }
+    public void OnJump(InputAction.CallbackContext value)
+    {
+        isJump = true;
+    }
+    
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
     {
         if (lfAngle < -360f) lfAngle += 360f;
