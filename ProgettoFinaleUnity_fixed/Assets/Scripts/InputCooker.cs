@@ -8,13 +8,13 @@ public class InputCooker : MonoBehaviour
 {
     public Controls Controls;
     public FirstPersonController FPS_Ctrl;
-    
+
     public CinemachineVirtualCamera VirtualCamera;
     public Camera MainCamera;
     public float Speed = 5f;
+    [Range(1f, 50f)]
+    public float AimSensitivity = 1f;
     public Vector3 RotatedMoveValue;
-
-    
 
     Vector3 moveValue;
     Vector2 inputDirection;
@@ -24,6 +24,7 @@ public class InputCooker : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         Controls = new Controls();
         Controls.Enable();
         Controls.Player.Movement.performed += OnMove;
@@ -38,18 +39,19 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-        RotatedMoveValue = transform.rotation * moveValue;
-        
+        RotatedMoveValue = transform.rotation * moveValue * Speed;
+
     }
+    public void UpdateMovement()
+    {
+        RotatedMoveValue = transform.rotation * moveValue * Speed;
 
-    
-
+    }
     public void OnMove(InputAction.CallbackContext value)
     {
         inputDirection = value.ReadValue<Vector2>();
-        moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y);  
+        moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
     }
-
     public void StopMovement(InputAction.CallbackContext value)
     {
         moveValue = Vector3.zero;
@@ -58,16 +60,13 @@ public class InputCooker : MonoBehaviour
     {
         Vector2 val = value.ReadValue<Vector2>();
 
-        CameraTargetPitch += val.y * 1.5f;
+        CameraTargetPitch += val.y * AimSensitivity;
         CameraTargetPitch = ClampAngle(CameraTargetPitch, -90, 90);
         VirtualCamera.transform.localRotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
 
-        float rotationVelocity = val.x * 1.5f;
+        float rotationVelocity = val.x * AimSensitivity;
         transform.Rotate(Vector3.up * rotationVelocity);
-       
-
     }
-
     public void OnShootStart(InputAction.CallbackContext value)
     {
         IsShooting = true;
@@ -80,7 +79,7 @@ public class InputCooker : MonoBehaviour
     {
         isJump = true;
     }
-    
+
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
     {
         if (lfAngle < -360f) lfAngle += 360f;

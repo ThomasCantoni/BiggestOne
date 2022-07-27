@@ -13,32 +13,22 @@ public class BreakWall : MonoBehaviour
 
     public int CutCascades = 1;
     public float ExplodeForce = 0;
-
+    [Tooltip("The parent that will be assigned to the pieces of the mesh")]
+    public Transform ParentOfPieces;
+    Mesh originalMesh;
     // Start is called before the first frame update
+    List<PartMesh> parts;
+    List<PartMesh> subParts;
+    PartMesh mainPart;
+
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0) && !destroyed)
-        {
-            DestroyMesh();
-            destroyed = true;
-        }
-    }
-
-
-    private void DestroyMesh()
-    {
-        var originalMesh = GetComponent<MeshFilter>().mesh;
+        originalMesh = GetComponent<MeshFilter>().mesh;
         originalMesh.RecalculateBounds();
-        var parts = new List<PartMesh>();
-        var subParts = new List<PartMesh>();
+        parts = new List<PartMesh>();
+        subParts = new List<PartMesh>();
 
-        var mainPart = new PartMesh()
+        mainPart = new PartMesh()
         {
             UV = originalMesh.uv,
             Vertices = originalMesh.vertices,
@@ -46,6 +36,36 @@ public class BreakWall : MonoBehaviour
             Triangles = new int[originalMesh.subMeshCount][],
             Bounds = originalMesh.bounds
         };
+
+    }
+
+
+
+
+    public void DestroyMesh()
+    {
+        if (ParentOfPieces == null)
+        {
+            Debug.LogError(this.gameObject.name + "'s BreakWall Component requires ParentOfPieces for the destroyed objects!");
+            return;
+        }
+        if (originalMesh != this.GetComponent<MeshFilter>().mesh)
+        {
+            Start();
+        }
+        //var originalMesh = GetComponent<MeshFilter>().mesh;
+        //originalMesh.RecalculateBounds();
+        //var parts = new List<PartMesh>();
+        //var subParts = new List<PartMesh>();
+
+        //var mainPart = new PartMesh()
+        //{
+        //    UV = originalMesh.uv,
+        //    Vertices = originalMesh.vertices,
+        //    Normals = originalMesh.normals,
+        //    Triangles = new int[originalMesh.subMeshCount][],
+        //    Bounds = originalMesh.bounds
+        //};
         for (int i = 0; i < originalMesh.subMeshCount; i++)
             mainPart.Triangles[i] = originalMesh.GetTriangles(i);
 
@@ -55,10 +75,10 @@ public class BreakWall : MonoBehaviour
         {
             for (var i = 0; i < parts.Count; i++)
             {
-                var bounds = parts[i].Bounds;
+                Bounds bounds = parts[i].Bounds;
                 bounds.Expand(0.5f);
 
-                var plane = new Plane(UnityEngine.Random.onUnitSphere, new Vector3(UnityEngine.Random.Range(bounds.min.x, bounds.max.x),
+                Plane plane = new Plane(UnityEngine.Random.onUnitSphere, new Vector3(UnityEngine.Random.Range(bounds.min.x, bounds.max.x),
                                                                                    UnityEngine.Random.Range(bounds.min.y, bounds.max.y),
                                                                                    UnityEngine.Random.Range(bounds.min.z, bounds.max.z)));
 
@@ -70,35 +90,37 @@ public class BreakWall : MonoBehaviour
             subParts.Clear();
         }
 
-        for (var i = 0; i < parts.Count; i++)
+        for (int i = 0; i < parts.Count; i++)
         {
             parts[i].MakeGameobject(this);
             parts[i].GameObject.GetComponent<BreakWall>().enabled = false;
+            parts[i].GameObject.transform.parent = ParentOfPieces;
             parts[i].GameObject.GetComponent<Rigidbody>().AddForceAtPosition(parts[i].Bounds.center * ExplodeForce, transform.position);
         }
 
         Destroy(gameObject);
+        Destroy(ParentOfPieces.gameObject, 3f);
     }
 
     private PartMesh GenerateMesh(PartMesh original, Plane plane, bool left)
     {
-        var partMesh = new PartMesh() { };
-        var ray1 = new Ray();
-        var ray2 = new Ray();
+        PartMesh partMesh = new PartMesh() { };
+        Ray ray1 = new Ray();
+        Ray ray2 = new Ray();
 
 
-        for (var i = 0; i < original.Triangles.Length; i++)
+        for (int i = 0; i < original.Triangles.Length; i++)
         {
-            var triangles = original.Triangles[i];
+            int[] triangles = original.Triangles[i];
             edgeSet = false;
 
-            for (var j = 0; j < triangles.Length; j = j + 3)
+            for (int j = 0; j < triangles.Length; j = j + 3)
             {
-                var sideA = plane.GetSide(original.Vertices[triangles[j]]) == left;
-                var sideB = plane.GetSide(original.Vertices[triangles[j + 1]]) == left;
-                var sideC = plane.GetSide(original.Vertices[triangles[j + 2]]) == left;
+                bool sideA = plane.GetSide(original.Vertices[triangles[j]]) == left;
+                bool sideB = plane.GetSide(original.Vertices[triangles[j + 1]]) == left;
+                bool sideC = plane.GetSide(original.Vertices[triangles[j + 2]]) == left;
 
-                var sideCount = (sideA ? 1 : 0) +
+                int sideCount = (sideA ? 1 : 0) +
                                 (sideB ? 1 : 0) +
                                 (sideC ? 1 : 0);
                 if (sideCount == 0)
@@ -271,37 +293,37 @@ public class BreakWall : MonoBehaviour
 
         public GameObject MakeGameobject(BreakWall original)
         {
-            
+
 
             GameObject = new GameObject(original.name);
             GameObject.transform.position = original.transform.position;
             GameObject.transform.rotation = original.transform.rotation;
             GameObject.transform.localScale = original.transform.localScale;
             GameObject.layer = 10;
-            Destroy(GameObject, 3f);
-            
 
-            var mesh = new Mesh();
+
+
+            Mesh mesh = new Mesh();
             mesh.name = original.GetComponent<MeshFilter>().mesh.name;
 
             mesh.vertices = Vertices;
             mesh.normals = Normals;
             mesh.uv = UV;
-            for (var i = 0; i < Triangles.Length; i++)
+            for (int i = 0; i < Triangles.Length; i++)
                 mesh.SetTriangles(Triangles[i], i, true);
             Bounds = mesh.bounds;
 
-            var renderer = GameObject.AddComponent<MeshRenderer>();
+            MeshRenderer renderer = GameObject.AddComponent<MeshRenderer>();
             renderer.materials = original.GetComponent<MeshRenderer>().materials;
 
-            var filter = GameObject.AddComponent<MeshFilter>();
+            MeshFilter filter = GameObject.AddComponent<MeshFilter>();
             filter.mesh = mesh;
 
-            var collider = GameObject.AddComponent<MeshCollider>();
+            MeshCollider collider = GameObject.AddComponent<MeshCollider>();
             collider.convex = true;
 
-            var rigidbody = GameObject.AddComponent<Rigidbody>();
-            var meshDestroy = GameObject.AddComponent<BreakWall>();
+            Rigidbody rigidbody = GameObject.AddComponent<Rigidbody>();
+            BreakWall meshDestroy = GameObject.AddComponent<BreakWall>();
             meshDestroy.CutCascades = original.CutCascades;
             meshDestroy.ExplodeForce = original.ExplodeForce;
 
