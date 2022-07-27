@@ -36,6 +36,10 @@ public class FirstPersonController : MonoBehaviour
         JumpAndGravity();
         Controller.Move(InputCooker.RotatedMoveValue * Time.deltaTime + new Vector3(0,_verticalVelocity,0) * Time.deltaTime);
     }
+    private void Sprint()
+    {
+
+    }
 
     private void GroundedCheck()
     {

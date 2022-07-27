@@ -16,6 +16,9 @@ public class InputCooker : MonoBehaviour
     [Range(1f,50f)]
 
     public float AimSensitivity = 1f;
+
+    public float SprintMultiplier = 1.3f;
+    private float sprintMul; 
     public Vector3 RotatedMoveValue;
 
     Vector3 moveValue;
@@ -23,6 +26,7 @@ public class InputCooker : MonoBehaviour
     float CameraTargetPitch;
     public bool IsShooting = false;
     public bool isJump = false;
+    public bool isSprint = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,28 +39,24 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Shoot.started += OnShootStart;
         Controls.Player.Shoot.canceled += OnShootStop;
         Controls.Player.Jump.started += OnJump;
+        Controls.Player.Sprint.started += OnSprintStart;
+        Controls.Player.Sprint.canceled += OnSprintStop;
         Debug.Log("Controls initialized");
     }
 
     //// Update is called once per frame
     void Update()
     {
-
-        RotatedMoveValue = transform.rotation * moveValue*Speed;
-
-
+        RotatedMoveValue = transform.rotation * moveValue * (Speed *(1 + sprintMul));
     }
     public void UpdateMovement()
     {
         RotatedMoveValue = transform.rotation * moveValue * Speed;
-
     }
     public void OnMove(InputAction.CallbackContext value)
     {
         inputDirection = value.ReadValue<Vector2>();
-
         moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y); 
-
     }
     public void StopMovement(InputAction.CallbackContext value)
     {
@@ -80,6 +80,16 @@ public class InputCooker : MonoBehaviour
     public void OnShootStop(InputAction.CallbackContext value)
     {
         IsShooting = false;
+    }
+    public void OnSprintStart(InputAction.CallbackContext value)
+    {
+        isSprint = true;
+        sprintMul = SprintMultiplier;
+    }
+    public void OnSprintStop(InputAction.CallbackContext value)
+    {
+        isSprint = false;
+        sprintMul = 0;
     }
     public void OnJump(InputAction.CallbackContext value)
     {
