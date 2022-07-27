@@ -6,10 +6,10 @@ using UnityEngine.Events;
 
 public class HitEvent : MonoBehaviour,IHittable
 {
-    public UnityEvent<float> OnHitEvent;
-    public void OnHit(Collider sender,float damage)
+    public UnityEvent<IHittableInformation> OnHitEvent;
+    public void OnHit(IHittableInformation hitInfo)
     {
-        OnHitEvent.Invoke(damage);
+        OnHitEvent.Invoke(hitInfo);
     }
 
     

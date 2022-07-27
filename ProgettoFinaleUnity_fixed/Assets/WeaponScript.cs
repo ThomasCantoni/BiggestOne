@@ -7,13 +7,22 @@ using Cinemachine;
 
 public class WeaponScript : MonoBehaviour
 {
-    public ParticleSystem ToActivate;
-    public InputCooker InputCooker;
-    public UnityEvent ShootActivated;
+    [SerializeField]
+    public IHittableInformation HitInfo;
+    InputCooker InputCooker;
     public GameObject ToInstantiate;
-    public bool automatic = false;
-    private bool shooting;
-    public float Damage=1;
+    public UnityEvent ShootEvent;
+    public bool AutoFire = false;
+    
+    public bool CanShoot
+    {
+        get { return currentShootCD <= 0f; }
+    }
+    public bool HasShotOnce
+    {
+        get { return hasShotOnce; }
+    }
+    
     public float FireRate
     {
         get { return 1f / shootCD; }
@@ -22,50 +31,64 @@ public class WeaponScript : MonoBehaviour
             shootCD = 1f / value;
         }
     }
-    private float shootCD=0, currentShootCD=0;
+    private bool hasShotOnce,shooting;
+    private float shootCD=1f, currentShootCD=0;
     // Start is called before the first frame update
     void Start()
     {
-        FireRate = 13f;
+        FireRate = 1f;
         InputCooker = transform.GetComponentInParent<InputCooker>();
         InputCooker.Controls.Player.Shoot.performed += OnShoot;
-        
+        if(HitInfo.sender == null)
+        {
+            HitInfo.sender = this.gameObject;
+        }
     }
     private void Update()
     {
-        if(automatic && InputCooker.IsShooting)
+        if(!CanShoot)
+        {
+            currentShootCD -= Time.deltaTime;
+            return;
+        }
+        if(AutoFire && InputCooker.IsShooting)
         {
             if(currentShootCD <=0f)
             {
                 ShootRay();
-                currentShootCD = shootCD;
+               
             }
-            else
-            {
-                currentShootCD -= Time.deltaTime;
-            }
+            
         }
-        
+       
 
     }
     public void ShootRay()
     {
+        if(!CanShoot)
+        {
+            return;
+        }
         Camera cam = InputCooker.MainCamera;
         RaycastHit info;
         Vector2 screenCenterPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         Ray ray = cam.ScreenPointToRay(screenCenterPoint);
-        if (Physics.Raycast(ray, out info, 10f, 3))
+        if (Physics.Raycast(ray, out info, 100f, 3))
         {
             Destroy(Instantiate(ToInstantiate, info.point, Quaternion.identity), 2f);
             if(info.collider.GetComponent<IHittable>() != null )
             {
-                info.collider.GetComponent<HitEvent>().OnHit(info.collider,this.Damage);
+                HitInfo.raycastInfo = info;
+                info.collider.GetComponent<HitEvent>().OnHit(HitInfo);
             }
         }
+        currentShootCD = shootCD;
+
     }
     public void OnShoot(InputAction.CallbackContext ctx)
     {
-        ShootActivated.Invoke();
+        ShootEvent.Invoke();
+        hasShotOnce = true;
         shooting = true;
     }
 }
