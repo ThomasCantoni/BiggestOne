@@ -222,9 +222,9 @@ public class InverseKinematicsTest : MonoBehaviour
         if (Physics.SphereCast(ray,0.1f, out RaycastHit hit, 100f, aimColliderLayerMask)) // if the object i hit is an enemy
         {
             HittableType type = HittableType.Other;
-            if (hit.collider.GetComponent<IHittable>() != null)
+            if (hit.collider.GetComponent<IHittableOld>() != null)
             {
-                type = hit.collider.GetComponent<IHittable>().OnHit(GetComponent<Collider>());
+                type = hit.collider.GetComponent<IHittableOld>().OnHit(GetComponent<Collider>());
             }
             Gun.GetComponent<GunScript>().ReceiveShotImpactPos(hit.point, hit.normal, type);
         }

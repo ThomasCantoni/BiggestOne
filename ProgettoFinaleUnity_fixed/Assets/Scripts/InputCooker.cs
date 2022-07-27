@@ -12,7 +12,9 @@ public class InputCooker : MonoBehaviour
     public CinemachineVirtualCamera VirtualCamera;
     public Camera MainCamera;
     public float Speed = 5f;
-    [Range(1f, 50f)]
+
+    [Range(1f,50f)]
+
     public float AimSensitivity = 1f;
     public Vector3 RotatedMoveValue;
 
@@ -39,7 +41,9 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-        RotatedMoveValue = transform.rotation * moveValue * Speed;
+
+        RotatedMoveValue = transform.rotation * moveValue*Speed;
+
 
     }
     public void UpdateMovement()
@@ -50,7 +54,9 @@ public class InputCooker : MonoBehaviour
     public void OnMove(InputAction.CallbackContext value)
     {
         inputDirection = value.ReadValue<Vector2>();
-        moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
+
+        moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y); 
+
     }
     public void StopMovement(InputAction.CallbackContext value)
     {

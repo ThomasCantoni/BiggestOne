@@ -11,7 +11,7 @@ public enum HittableType
     Other
 }
 
-public interface IHittable
+public interface IHittableOld
 {
     
     public abstract HittableType OnHit(Collider sender);
