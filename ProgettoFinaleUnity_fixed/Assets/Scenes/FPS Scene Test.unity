@@ -352,9 +352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915d62f9124e03746b05df85dd8c9534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CutCascades: 5
-  ExplodeForce: 300
-  ParentOfPieces: {fileID: 1371374962}
 --- !u!1 &286877848
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,9 +412,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915d62f9124e03746b05df85dd8c9534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CutCascades: 5
-  ExplodeForce: 300
-  ParentOfPieces: {fileID: 1371374962}
 --- !u!64 &286877851
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -574,7 +568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294444595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.039, y: 1.7279999, z: 0.19}
+  m_LocalPosition: {x: 0.039, y: 2.803, z: 0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -737,9 +731,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 915d62f9124e03746b05df85dd8c9534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CutCascades: 5
-  ExplodeForce: 300
-  ParentOfPieces: {fileID: 1859762179}
 --- !u!65 &656841155
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -831,7 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1188312717}
   - component: {fileID: 1188312720}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -914,7 +905,7 @@ GameObject:
   - component: {fileID: 1431201827}
   - component: {fileID: 1431201826}
   - component: {fileID: 1431201828}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1431201821}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.16, z: 0}
+  m_LocalPosition: {x: 0, y: 2.235, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1688015757}
@@ -1013,6 +1004,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 1431201827}
   InputCooker: {fileID: 1431201828}
+  JumpHeight: 1.2
+  Gravity: -15
+  JumpTimeout: 0.1
+  FallTimeout: 0.15
+  GroundedOffset: 1
+  GroundedRadius: 0.35
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  Grounded: 1
 --- !u!143 &1431201827
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1050,6 +1051,7 @@ MonoBehaviour:
   AimSensitivity: 1
   RotatedMoveValue: {x: 0, y: 0, z: 0}
   IsShooting: 0
+  isJump: 0
 --- !u!1 &1615574366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,7 +1245,7 @@ GameObject:
   - component: {fileID: 1686924371}
   - component: {fileID: 1686924370}
   - component: {fileID: 1686924374}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1368,7 +1370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1688015757}
   - component: {fileID: 1688015758}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1524,9 +1526,9 @@ GameObject:
   - component: {fileID: 1956733675}
   - component: {fileID: 1956733674}
   - component: {fileID: 1956733673}
-  - component: {fileID: 1956733671}
   - component: {fileID: 1956733670}
   - component: {fileID: 1956733672}
+  - component: {fileID: 1956733671}
   m_Layer: 0
   m_Name: Statue
   m_TagString: Untagged
@@ -1550,7 +1552,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1956733671}
-        m_TargetAssemblyTypeName: BreakWall, Assembly-CSharp
+        m_TargetAssemblyTypeName: BreakWall, Scripts
         m_MethodName: DestroyMesh
         m_Mode: 1
         m_Arguments:
@@ -1570,11 +1572,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1956733669}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 915d62f9124e03746b05df85dd8c9534, type: 3}
+  m_Script: {fileID: 11500000, guid: 02bf4f42499b1ea469472295a1afa3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CutCascades: 5
-  ExplodeForce: 30
+  ExplodeForce: 0
   ParentOfPieces: {fileID: 339666852}
 --- !u!64 &1956733672
 MeshCollider:
