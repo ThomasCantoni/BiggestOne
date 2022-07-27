@@ -8,14 +8,16 @@ public class InputCooker : MonoBehaviour
 {
     public Controls Controls;
     public FirstPersonController FPS_Ctrl;
-    
+
     public CinemachineVirtualCamera VirtualCamera;
     public Camera MainCamera;
     public float Speed = 5f;
+
     [Range(1f,50f)]
+
     public float AimSensitivity = 1f;
     public Vector3 RotatedMoveValue;
-    
+
     Vector3 moveValue;
     Vector2 inputDirection;
     float CameraTargetPitch;
@@ -24,7 +26,7 @@ public class InputCooker : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        
+
         Controls = new Controls();
         Controls.Enable();
         Controls.Player.Movement.performed += OnMove;
@@ -39,7 +41,9 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
+
         RotatedMoveValue = transform.rotation * moveValue*Speed;
+
 
     }
     public void UpdateMovement()
@@ -50,7 +54,9 @@ public class InputCooker : MonoBehaviour
     public void OnMove(InputAction.CallbackContext value)
     {
         inputDirection = value.ReadValue<Vector2>();
+
         moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y); 
+
     }
     public void StopMovement(InputAction.CallbackContext value)
     {
@@ -79,7 +85,7 @@ public class InputCooker : MonoBehaviour
     {
         isJump = true;
     }
-    
+
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
     {
         if (lfAngle < -360f) lfAngle += 360f;

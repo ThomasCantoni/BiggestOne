@@ -39,17 +39,23 @@ public class BreakWall : MonoBehaviour
 
     }
 
+
+
     
 
 
     public void DestroyMesh()
     {
+
         if(ParentOfPieces == null)
+
         {
             Debug.LogError(this.gameObject.name + "'s BreakWall Component requires ParentOfPieces for the destroyed objects!");
             return;
         }
+
         if(originalMesh != this.GetComponent<MeshFilter>().mesh)
+
         {
             Start();
         }
@@ -293,15 +299,14 @@ public class BreakWall : MonoBehaviour
 
         public GameObject MakeGameobject(BreakWall original)
         {
-            
+
 
             GameObject = new GameObject(original.name);
             GameObject.transform.position = original.transform.position;
             GameObject.transform.rotation = original.transform.rotation;
             GameObject.transform.localScale = original.transform.localScale;
             GameObject.layer = 10;
-            
-            
+
 
             Mesh mesh = new Mesh();
             mesh.name = original.GetComponent<MeshFilter>().mesh.name;
