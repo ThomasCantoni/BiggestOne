@@ -216,43 +216,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &80460932 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 105547228980099491, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
-  m_PrefabInstance: {fileID: 105547228519519730}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &80460934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 80460932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e119ef3a8123604eab400124aae55a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HitInfo:
-    sender: {fileID: 0}
-    Damage: 0
-  ToInstantiate: {fileID: 1615574366}
-  ShootEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 80460934}
-        m_TargetAssemblyTypeName: WeaponScript, Scripts
-        m_MethodName: ShootRay
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  AutoFire: 0
 --- !u!1 &140067348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,7 +1298,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 105547228980099492, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+    - target: {fileID: 80460934, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
       propertyPath: ToInstantiate
       value: 
       objectReference: {fileID: 1615574366}
@@ -1391,6 +1354,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 105547228980099492, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
