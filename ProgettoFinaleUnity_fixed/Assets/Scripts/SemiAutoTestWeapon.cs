@@ -16,13 +16,14 @@ public class SemiAutoTestWeapon : GenericGun
 
     public override void Update()
     {
-        Debug.Log(hasShotOnce);
-
+        //Debug.Log("HasShotOnce :" +hasShotOnce);
+        //Debug.Log("CanShoot :" + CanShoot);
+        //Debug.Log("Current shot cooldown : " + currentShootCD);
         if (!CanShoot)
         {
             currentShootCD -= Time.deltaTime;
             return;
-        }
+        } 
     }
 
     public override void Shoot()

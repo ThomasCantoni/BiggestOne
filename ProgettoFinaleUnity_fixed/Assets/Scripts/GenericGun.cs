@@ -29,10 +29,10 @@ public  class GenericGun : MonoBehaviour
 
     protected float shootCD
     {
-        get { return 1f / FireRate; }
+        get { return Mathf.Clamp( 1f / FireRate, 0f, 9999f); }
         set
         {
-            FireRate = 1f / value;
+            FireRate = 1f / Mathf.Clamp(value, 0f, 9999f);
         }
     }
     // Start is called before the first frame update
