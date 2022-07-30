@@ -6,6 +6,8 @@ public  class GenericGun : MonoBehaviour
 {
     [SerializeField]
     public IHittableInformation HitInfo;
+
+    public LayerMask Mask;
     //public bool IsAutomatic;
     public float FireRate;
     public int Ammo;
@@ -63,7 +65,7 @@ public  class GenericGun : MonoBehaviour
         Camera cam = InputCooker.MainCamera;
         Ray ray = cam.ScreenPointToRay(screenCenterPoint);
         RaycastHit info;
-        if (Physics.Raycast(ray, out info, 100f, 3))
+        if (Physics.Raycast(ray, out info, 100f, Mask.value))
         {
             if (ToInstantiate != null)
                 Destroy(Instantiate(ToInstantiate, info.point, Quaternion.identity), 2f);
