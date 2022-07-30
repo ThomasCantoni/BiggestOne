@@ -112,14 +112,14 @@ public class InputCooker : MonoBehaviour
     }
     public void ChangeWeapon(float value)
     {
-        Debug.Log("Scrolled?");
+        //Debug.Log("Scrolled?");
         if(value < 0)
         {
-            Debug.Log("Next Weapon");
+            Debug.Log("Next Weapon " + value);
         }
         if(value >0)
         {
-            Debug.Log("Prev Weapon");
+            Debug.Log("Prev Weapon " + value);
 
         }
     }
