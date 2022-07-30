@@ -75,7 +75,9 @@ public class WeaponScript : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(screenCenterPoint);
         if (Physics.Raycast(ray, out info, 100f, 3))
         {
-            Destroy(Instantiate(ToInstantiate, info.point, Quaternion.identity), 2f);
+            if(ToInstantiate != null)
+                Destroy(Instantiate(ToInstantiate, info.point, Quaternion.identity), 2f);
+
             if(info.collider.GetComponent<IHittable>() != null )
             {
                 HitInfo.raycastInfo = info;
