@@ -27,6 +27,8 @@ public class InputCooker : MonoBehaviour
     public bool IsShooting = false;
     public bool isJump = false;
     public bool isSprint = false;
+    public delegate void PlayerShootEvent();
+    public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
     // Start is called before the first frame update
     void Awake()
     {
@@ -76,10 +78,20 @@ public class InputCooker : MonoBehaviour
     public void OnShootStart(InputAction.CallbackContext value)
     {
         IsShooting = true;
+        if(PlayerPressedShoot!=null)
+        {
+            PlayerPressedShoot.Invoke();
+            Debug.Log("Player started shooting");
+        }
     }
     public void OnShootStop(InputAction.CallbackContext value)
     {
         IsShooting = false;
+        if (PlayerReleasedShoot != null)
+        {
+            PlayerReleasedShoot.Invoke();
+            Debug.Log("Player stopped shooting");
+        }
     }
     public void OnSprintStart(InputAction.CallbackContext value)
     {
