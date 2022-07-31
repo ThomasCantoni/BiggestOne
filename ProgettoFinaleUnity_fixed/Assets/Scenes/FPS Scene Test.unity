@@ -553,6 +553,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454529824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1859196048, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+  m_PrefabInstance: {fileID: 1264897023}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31b10d581b456142836926a13a2ecf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &656841152
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +825,7 @@ MonoBehaviour:
   Parent: {fileID: 759192875}
   ExplosionForce: 230
   Radius: 50
+  FadeOutTime: 3
 --- !u!114 &759192877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,6 +892,18 @@ PrefabInstance:
       propertyPath: ToInstantiate
       value: 
       objectReference: {fileID: 1615574366}
+    - target: {fileID: 1956363594, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: List.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956363594, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: List.Array.data[0]
+      value: 
+      objectReference: {fileID: 454529824}
+    - target: {fileID: 1956363594, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: List.Array.data[1]
+      value: 
+      objectReference: {fileID: 454529824}
     - target: {fileID: 105547229806247379, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
       propertyPath: m_RootOrder
       value: 11
