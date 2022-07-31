@@ -71,6 +71,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""WeaponScroll"",
+                    ""type"": ""Value"",
+                    ""id"": ""ad984aba-c60c-4a7e-a778-87ad1aaf5566"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": ""Scale"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -172,6 +181,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b50c7a62-d305-42fd-ba85-5f5f8868b26d"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=0.01)"",
+                    ""groups"": """",
+                    ""action"": ""WeaponScroll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -202,6 +222,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
+        m_Player_WeaponScroll = m_Player.FindAction("WeaponScroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,6 +287,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_Sprint;
+    private readonly InputAction m_Player_WeaponScroll;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -275,6 +297,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Shoot => m_Wrapper.m_Player_Shoot;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
+        public InputAction @WeaponScroll => m_Wrapper.m_Player_WeaponScroll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -299,6 +322,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSprint;
+                @WeaponScroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponScroll;
+                @WeaponScroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponScroll;
+                @WeaponScroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponScroll;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -318,6 +344,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @WeaponScroll.started += instance.OnWeaponScroll;
+                @WeaponScroll.performed += instance.OnWeaponScroll;
+                @WeaponScroll.canceled += instance.OnWeaponScroll;
             }
         }
     }
@@ -338,5 +367,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnWeaponScroll(InputAction.CallbackContext context);
     }
 }

@@ -27,6 +27,10 @@ public class InputCooker : MonoBehaviour
     public bool IsShooting = false;
     public bool isJump = false;
     public bool isSprint = false;
+    public delegate void PlayerShootEvent();
+    public delegate void ChangeWeaponEvent();
+    public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
+    public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,7 +45,9 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Jump.started += OnJump;
         Controls.Player.Sprint.started += OnSprintStart;
         Controls.Player.Sprint.canceled += OnSprintStop;
+        Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         Debug.Log("Controls initialized");
+        
     }
 
     //// Update is called once per frame
@@ -76,10 +82,20 @@ public class InputCooker : MonoBehaviour
     public void OnShootStart(InputAction.CallbackContext value)
     {
         IsShooting = true;
+        if(PlayerPressedShoot!=null)
+        {
+            PlayerPressedShoot.Invoke();
+            Debug.Log("Player started shooting");
+        }
     }
     public void OnShootStop(InputAction.CallbackContext value)
     {
         IsShooting = false;
+        if (PlayerReleasedShoot != null)
+        {
+            PlayerReleasedShoot.Invoke();
+            Debug.Log("Player stopped shooting");
+        }
     }
     public void OnSprintStart(InputAction.CallbackContext value)
     {
@@ -95,6 +111,22 @@ public class InputCooker : MonoBehaviour
     {
         isJump = true;
     }
+    public void ChangeWeapon(float value)
+    {
+        //Debug.Log("Scrolled?");
+        if(value < 0)
+        {
+            Debug.Log("Next Weapon " + value);
+            if(NextWeapon != null)
+            NextWeapon.Invoke();
+        }
+        if(value >0)
+        {
+            Debug.Log("Prev Weapon " + value);
+            PreviousWeapon?.Invoke();
+        }
+    }
+    
 
     private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
     {
@@ -102,4 +134,6 @@ public class InputCooker : MonoBehaviour
         if (lfAngle > 360f) lfAngle -= 360f;
         return Mathf.Clamp(lfAngle, lfMin, lfMax);
     }
+
+
 }

@@ -28,15 +28,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""id"": ""3c16f3cd-03a5-43e1-881a-c9f931bd8253"",
             ""actions"": [
                 {
-                    ""name"": ""Aim"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""4d5e2496-1243-4618-b127-7e61f2e1d219"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""7b4063d2-7165-4a54-b73b-85fc007a0c6b"",
@@ -64,24 +55,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Gun"",
-                    ""type"": ""Button"",
-                    ""id"": ""53d1a5dc-3372-4e5a-8d37-759faf264909"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""GunAway"",
-                    ""type"": ""Button"",
-                    ""id"": ""8af9e429-3b79-45b2-8042-2aa8f7d1d1d6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Shot"",
                     ""type"": ""Button"",
                     ""id"": ""1d832ac5-cccd-418b-96e0-68a9fff2bf30"",
@@ -98,31 +71,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-
                 },
                 {
-                    ""name"": ""EquipWeapon"",
-                    ""type"": ""Button"",
-                    ""id"": ""118b804c-9405-4532-8875-6bcafbbce690"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""WeaponSwitchScroll"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9def74f4-6668-441b-b1e7-8875e4ccf28c"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""8225dc03-af52-4cf0-ae21-e64b51cfd1db"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""2D Vector"",
                     ""id"": ""05f17432-9214-4576-b2e6-a92cf033aaa0"",
@@ -202,28 +162,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bff9e30d-e99c-4cb8-8db8-5145c62aa6a6"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Gun"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c89fe456-2f39-47a3-9484-ce5db54fec2d"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""GunAway"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c4d767b9-9c79-4f76-9d79-3ada59bc6abe"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
@@ -243,16 +181,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fe700f24-36dc-4566-b234-875ee8797d53"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": ""Press"",
-                    ""processors"": """",
+                    ""id"": ""a6e54d89-e54e-4928-80b0-6e93b5ead266"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": ""Scale(factor=0.01)"",
                     ""groups"": """",
-                    ""action"": ""EquipWeapon"",
+                    ""action"": ""WeaponSwitchScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -263,16 +200,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Gun = m_Player.FindAction("Gun", throwIfNotFound: true);
-        m_Player_GunAway = m_Player.FindAction("GunAway", throwIfNotFound: true);
         m_Player_Shot = m_Player.FindAction("Shot", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-
-        m_Player_EquipWeapon = m_Player.FindAction("EquipWeapon", throwIfNotFound: true);
+        m_Player_WeaponSwitchScroll = m_Player.FindAction("WeaponSwitchScroll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,29 +265,22 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_Aim;
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Gun;
-    private readonly InputAction m_Player_GunAway;
     private readonly InputAction m_Player_Shot;
     private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_EquipWeapon;
-
+    private readonly InputAction m_Player_WeaponSwitchScroll;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
         public PlayerActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Aim => m_Wrapper.m_Player_Aim;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Gun => m_Wrapper.m_Player_Gun;
-        public InputAction @GunAway => m_Wrapper.m_Player_GunAway;
         public InputAction @Shot => m_Wrapper.m_Player_Shot;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @EquipWeapon => m_Wrapper.m_Player_EquipWeapon;
+        public InputAction @WeaponSwitchScroll => m_Wrapper.m_Player_WeaponSwitchScroll;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -364,9 +290,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Aim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
-                @Aim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAim;
                 @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
@@ -376,28 +299,19 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Gun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGun;
-                @Gun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGun;
-                @Gun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGun;
-                @GunAway.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGunAway;
-                @GunAway.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGunAway;
-                @GunAway.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGunAway;
                 @Shot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
                 @Shot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
                 @Shot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnShot;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
-                @EquipWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipWeapon;
-                @EquipWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipWeapon;
-                @EquipWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEquipWeapon;
+                @WeaponSwitchScroll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitchScroll;
+                @WeaponSwitchScroll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitchScroll;
+                @WeaponSwitchScroll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnWeaponSwitchScroll;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
@@ -407,35 +321,26 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Gun.started += instance.OnGun;
-                @Gun.performed += instance.OnGun;
-                @Gun.canceled += instance.OnGun;
-                @GunAway.started += instance.OnGunAway;
-                @GunAway.performed += instance.OnGunAway;
-                @GunAway.canceled += instance.OnGunAway;
                 @Shot.started += instance.OnShot;
                 @Shot.performed += instance.OnShot;
                 @Shot.canceled += instance.OnShot;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
-                @EquipWeapon.started += instance.OnEquipWeapon;
-                @EquipWeapon.performed += instance.OnEquipWeapon;
-                @EquipWeapon.canceled += instance.OnEquipWeapon;
+                @WeaponSwitchScroll.started += instance.OnWeaponSwitchScroll;
+                @WeaponSwitchScroll.performed += instance.OnWeaponSwitchScroll;
+                @WeaponSwitchScroll.canceled += instance.OnWeaponSwitchScroll;
             }
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
     public interface IPlayerActions
     {
-        void OnAim(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnGun(InputAction.CallbackContext context);
-        void OnGunAway(InputAction.CallbackContext context);
         void OnShot(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnEquipWeapon(InputAction.CallbackContext context);
+        void OnWeaponSwitchScroll(InputAction.CallbackContext context);
     }
 }
