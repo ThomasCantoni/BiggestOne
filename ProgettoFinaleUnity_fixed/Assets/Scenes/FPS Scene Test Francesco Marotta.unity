@@ -267,7 +267,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.2
+  near clip plane: 0.05
   far clip plane: 500
   field of view: 90
   orthographic: 0
@@ -295,7 +295,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294444595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.018, y: 1.568, z: 2.2757657}
+  m_LocalPosition: {x: 1.018, y: 1.568, z: 2.2487657}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -368,6 +368,36 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1279779870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1279779871}
+  m_Layer: 0
+  m_Name: Stupids
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1279779871
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279779870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1576072961
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,11 +425,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1576072961}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 915d62f9124e03746b05df85dd8c9534, type: 3}
+  m_Script: {fileID: 11500000, guid: 02bf4f42499b1ea469472295a1afa3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CutCascades: 5
+  ExplodeForce: 2
+  ParentOfPieces: {fileID: 1576072966}
 --- !u!65 &1576072963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -483,6 +516,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 80460934, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: AutoFire
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 652468699, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.039000034
+      objectReference: {fileID: 0}
+    - target: {fileID: 652468699, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.56799996
+      objectReference: {fileID: 0}
+    - target: {fileID: 652468699, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.1630001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859196048, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: FireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859196048, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: Mask.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859196048, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
+      propertyPath: ToInstantiate
+      value: 
+      objectReference: {fileID: 1615574366}
     - target: {fileID: 105547228980099492, guid: 6c0b07216b2400041be9403b2efd926b, type: 3}
       propertyPath: ToInstantiate
       value: 
@@ -974,7 +1035,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2742374090662089873, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
   m_PrefabInstance: {fileID: 1724993791}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1925426303
+--- !u!114 &1925426304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -983,6 +1044,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925426298}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 915d62f9124e03746b05df85dd8c9534, type: 3}
+  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1925426305}
+        m_TargetAssemblyTypeName: BreakWall, Scripts
+        m_MethodName: DestroyMesh
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1925426305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925426298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02bf4f42499b1ea469472295a1afa3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CutCascades: 5
+  ExplodeForce: 2
+  ParentOfPieces: {fileID: 1279779871}
