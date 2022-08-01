@@ -9,6 +9,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
     public float FadeOutTime = 3f;
     public void DestroyMesh(IHittableInformation Info)
     {
+
         if(Parent == null)
         {
             Parent = this.gameObject.transform;
