@@ -30,9 +30,13 @@ public class InputCooker : MonoBehaviour
     public delegate void PlayerShootEvent();
     public delegate void ChangeWeaponEvent();
     public delegate void PlayerRotatedCameraEvent();
+    public delegate void PlayerMovementEvent();
+ 
     public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
+    public PlayerMovementEvent PlayerMoved,PlayerStopped;
+    
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
@@ -69,11 +73,13 @@ public class InputCooker : MonoBehaviour
     public void OnMove(InputAction.CallbackContext value)
     {
         inputDirection = value.ReadValue<Vector2>();
-        moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y); 
+        moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
+        PlayerMoved?.Invoke();
     }
     public void StopMovement(InputAction.CallbackContext value)
     {
         moveValue = Vector3.zero;
+        PlayerStopped?.Invoke();
     }
     public void RotateCamera(InputAction.CallbackContext value)
     {

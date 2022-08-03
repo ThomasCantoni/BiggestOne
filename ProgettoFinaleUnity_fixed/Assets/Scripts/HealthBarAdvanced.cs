@@ -11,6 +11,7 @@ public class HealthBarAdvanced : MonoBehaviour
     public Canvas HealthElement;
     private RectTransform ui_toMove;
     private GameObject player;
+    private bool update = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +23,22 @@ public class HealthBarAdvanced : MonoBehaviour
         }
         MR = HealthElement.GetComponent<CanvasRenderer>();
         ui_toMove = HealthElement.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>();
-        player.GetComponent<InputCooker>().PlayerRotatedCamera += CalculatePosition; 
-    }
 
+
+        //each time the player moves the camera i calculate the position
+        InputCooker IC = player.GetComponent<InputCooker>(); 
+        IC.PlayerRotatedCamera += CalculatePosition;
+        IC.PlayerMoved += () => update = true;
+        IC.PlayerStopped += () => update = false;
+    }
+    public void Update()
+    {
+       if(!update)
+        {
+            return;
+        }
+        CalculatePosition();
+    }
     private void CalculatePosition()
     {
        
