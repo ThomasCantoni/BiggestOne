@@ -8,19 +8,27 @@ public class HealthBarAdvanced : MonoBehaviour
     public GameObject UI_ElementToRender;
     public Camera MainCamera;
     CanvasRenderer MR;
-    public Graphic test;
+    public Canvas HealthElement;
+    private RectTransform ui_toMove;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        MR = test.canvasRenderer;
-        //MR.cull = true;
+        player = GameObject.FindGameObjectWithTag("Player");
+        MainCamera = Camera.main;
+        if(HealthElement == null)
+        {
+            HealthElement = GetComponentInChildren<Canvas>();
+        }
+        MR = HealthElement.GetComponent<CanvasRenderer>();
+        ui_toMove = HealthElement.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>();
+        player.GetComponent<InputCooker>().PlayerRotatedCamera += CalculatePosition; 
     }
 
-    private void Update()
+    private void CalculatePosition()
     {
        
-        float angle = AngleVec((MainCamera.transform.position - this.transform.position).normalized, MainCamera.transform.forward);
+        float angle = VectorOps.AngleVec((MainCamera.transform.position - this.transform.position).normalized, MainCamera.transform.forward);
         
         if (angle <= 90f)
         {
@@ -32,12 +40,9 @@ public class HealthBarAdvanced : MonoBehaviour
         //CanvasToRender.SetActive(true);
         pointOnScreen.x = Mathf.Clamp(pointOnScreen.x, -200, MainCamera.pixelWidth +200);
         pointOnScreen.y = Mathf.Clamp(pointOnScreen.y, -200, MainCamera.pixelHeight+200);
-        
-       
-        test.GetComponent<RectTransform>().position =  pointOnScreen;
+
+
+        ui_toMove.GetComponent<RectTransform>().position =  pointOnScreen;
     }
-    private float AngleVec(Vector3 one, Vector3 two)
-    {
-       return (float)(Mathf.Acos(Vector3.Dot(one, two)) * 180f / 3.14f);
-    }
+    
 }

@@ -29,12 +29,15 @@ public class InputCooker : MonoBehaviour
     public bool isSprint = false;
     public delegate void PlayerShootEvent();
     public delegate void ChangeWeaponEvent();
+    public delegate void PlayerRotatedCameraEvent();
     public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
+    public PlayerRotatedCameraEvent PlayerRotatedCamera;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
+
 
     void Awake()
     {
@@ -82,6 +85,8 @@ public class InputCooker : MonoBehaviour
 
         float rotationVelocity = val.x * AimSensitivity;
         transform.Rotate(Vector3.up * rotationVelocity);
+
+        PlayerRotatedCamera?.Invoke();
     }
     public void OnShootStart(InputAction.CallbackContext value)
     {
