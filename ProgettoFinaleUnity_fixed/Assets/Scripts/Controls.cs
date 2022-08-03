@@ -188,7 +188,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": ""Scale(factor=0.01)"",
-                    ""groups"": """",
+                    ""groups"": ""KeyboardAndMouse"",
                     ""action"": ""WeaponScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
