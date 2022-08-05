@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
 
-public class HealthBarAdvanced : MonoBehaviour
+public class HealthBarObject: MonoBehaviour
 {
     public GameObject UI_ElementToRender;
     public GameObject Player;
@@ -14,7 +14,7 @@ public class HealthBarAdvanced : MonoBehaviour
     private CanvasRenderer canvasRenderer;
     private Canvas elementCanvas;
     private RectTransform ui_toMove;
-    private GameObject player;
+    //private GameObject player;
     private bool update = false;
     // Start is called before the first frame update
     
