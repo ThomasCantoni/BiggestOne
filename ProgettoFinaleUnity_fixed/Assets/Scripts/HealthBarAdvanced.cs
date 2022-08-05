@@ -2,61 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class HealthBarAdvanced : MonoBehaviour
 {
     public GameObject UI_ElementToRender;
-    public Camera MainCamera;
-    CanvasRenderer MR;
-    public Canvas HealthElement;
+    public GameObject Player;
+    private CinemachineVirtualCamera virtualCamera;
+    private CinemachineBrain Brain;
+    private Camera Camera;
+    private CanvasRenderer canvasRenderer;
+    private Canvas elementCanvas;
     private RectTransform ui_toMove;
     private GameObject player;
     private bool update = false;
     // Start is called before the first frame update
-    void Start()
+    
+    private void OnEnable()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        MainCamera = Camera.main;
-        if(HealthElement == null)
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Brain = Player.GetComponentInChildren<CinemachineBrain>();
+        virtualCamera = Player.GetComponentInChildren<CinemachineVirtualCamera>();
+        canvasRenderer = elementCanvas.GetComponentInChildren<CanvasRenderer>();
+        if (UI_ElementToRender == null)
         {
-            HealthElement = GetComponentInChildren<Canvas>();
+            Debug.LogError("UI Element not set!");
+            this.enabled = false;
+            return;
         }
-        MR = HealthElement.GetComponent<CanvasRenderer>();
-        ui_toMove = HealthElement.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>();
-
-
-        //each time the player moves the camera i calculate the position
-        InputCooker IC = player.GetComponent<InputCooker>(); 
-        IC.PlayerRotatedCamera += CalculatePosition;
-        IC.PlayerMoved += () => update = true;
-        IC.PlayerStopped += () => update = false;
+        else
+        {
+            elementCanvas = GetComponentInChildren<Canvas>();
+        }
+        ui_toMove = elementCanvas.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>();
+        CalculatePosition();
     }
     public void Update()
     {
-       if(!update)
-        {
-            return;
-        }
         CalculatePosition();
     }
     private void CalculatePosition()
     {
-       
-        float angle = VectorOps.AngleVec((MainCamera.transform.position - this.transform.position).normalized, MainCamera.transform.forward);
-        
-        if (angle <= 90f)
+        float angle = VectorOps.AngleVec((Brain.transform.position - this.transform.position).normalized, Brain.transform.forward);
+        if (angle <= virtualCamera.m_Lens.FieldOfView)
         {
-            MR.cull = true;
+            this.enabled = false;
             return;
         }
-        MR.cull = false;
-        Vector2 pointOnScreen = MainCamera.WorldToScreenPoint(this.transform.position,MainCamera.stereoActiveEye);
+        canvasRenderer.cull = false;
+        Vector2 pointOnScreen = Brain.OutputCamera.WorldToScreenPoint(this.transform.position,Camera.stereoActiveEye);
         //CanvasToRender.SetActive(true);
-        pointOnScreen.x = Mathf.Clamp(pointOnScreen.x, -200, MainCamera.pixelWidth +200);
-        pointOnScreen.y = Mathf.Clamp(pointOnScreen.y, -200, MainCamera.pixelHeight+200);
+        pointOnScreen.x = Mathf.Clamp(pointOnScreen.x, -200, Camera.pixelWidth +200);
+        pointOnScreen.y = Mathf.Clamp(pointOnScreen.y, -200, Camera.pixelHeight+200);
 
 
         ui_toMove.GetComponent<RectTransform>().position =  pointOnScreen;
     }
-    
+    private void OnDisable()
+    {
+        canvasRenderer.cull = true;
+    }
 }
