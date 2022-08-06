@@ -13,7 +13,9 @@ public class WeaponScript : MonoBehaviour
     public GameObject ToInstantiate;
     public UnityEvent ShootEvent;
     public bool AutoFire = false;
+
     
+
     public bool CanShoot
     {
         get { return currentShootCD <= 0f; }
@@ -39,10 +41,15 @@ public class WeaponScript : MonoBehaviour
         FireRate = 1f;
         InputCooker = transform.GetComponentInParent<InputCooker>();
         InputCooker.Controls.Player.Shoot.performed += OnShoot;
-        if(HitInfo.sender == null)
+        InputCooker.PlayerPressedShoot += Shoot;
+        if (HitInfo.sender == null)
         {
             HitInfo.sender = this.gameObject;
         }
+    }
+    
+    public virtual void Shoot()
+    {
     }
     private void Update()
     {
@@ -56,13 +63,11 @@ public class WeaponScript : MonoBehaviour
             if(currentShootCD <=0f)
             {
                 ShootRay();
-               
             }
-            
         }
-       
-
+        
     }
+    
     public void ShootRay()
     {
         if(!CanShoot)

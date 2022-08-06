@@ -8,10 +8,14 @@ public  class GenericGun : MonoBehaviour
     public IHittableInformation HitInfo;
 
     public LayerMask Mask;
-    //public bool IsAutomatic;
+    public bool IsAutomatic;
     public float FireRate;
-    public int Ammo;
-    public int Magazine; 
+    public int maxAmmo = 10;
+    public int currentAmmo;
+    public float reloadTime = 1f;
+    public bool isReloading = false;
+    public Animator anim;
+    public int Magazine;
 
     protected InputCooker InputCooker;
     public GameObject ToInstantiate;
@@ -40,26 +44,50 @@ public  class GenericGun : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        
         InputCooker = transform.GetComponentInParent<InputCooker>();
         InputCooker.PlayerPressedShoot += Shoot;
-       
+        currentAmmo = maxAmmo;
         if (HitInfo.sender == null)
         {
             HitInfo.sender = this.gameObject;
         }
     }
+    private void OnEnable()
+    {
+        isReloading = false;
+        anim.SetBool("Reloading", false);
+    }
+
     public virtual void Shoot()
     {
-
     }
     public virtual void Update()
     {
         
     }
-    
+
+    public IEnumerator Reload()
+    {
+        isReloading = true;
+        anim.SetBool("Reloading", true);
+        yield return new WaitForSeconds(reloadTime - .25f);
+        anim.SetBool("Reloading", false);
+        yield return new WaitForSeconds(.25f);
+        currentAmmo = maxAmmo;
+        isReloading = false;
+    }
+
     public virtual void ShootRay()
     {
+        currentAmmo--;
+        if (isReloading)
+            return;
+
+        if (currentAmmo <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
         if (!CanShoot) return;
         Vector2 screenCenterPoint = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
         Camera cam = InputCooker.MainCamera;
@@ -77,12 +105,4 @@ public  class GenericGun : MonoBehaviour
         }
         currentShootCD = shootCD;
     }
-    /*public void OnShoot(InputAction.CallbackContext ctx)
-    {
-        ShootEvent.Invoke();
-        hasShotOnce = true;
-        shooting = true;
-    }
-     */ 
-
 }

@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class SemiAutoTestWeapon : GenericGun
 {
-
-
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         InputCooker.PlayerReleasedShoot += () => hasShotOnce = false; 
     }
-
-
+    
     public override void Update()
     {
         //Debug.Log("HasShotOnce :" +hasShotOnce);
@@ -23,12 +20,30 @@ public class SemiAutoTestWeapon : GenericGun
         {
             currentShootCD -= Time.deltaTime;
             return;
-        } 
+        }
+       
+        if (IsAutomatic && InputCooker.IsShooting)
+        {
+            if (currentShootCD <= 0f)
+            {
+                ShootRay();
+
+            }
+
+        }
+        if (isReloading)
+            return;
+
+        if (currentAmmo <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
     }
 
     public override void Shoot()
     {
-       if(!hasShotOnce && CanShoot)
+        if (!hasShotOnce && CanShoot)
         {
             Debug.Log("BOOM");
             ShootRay();
