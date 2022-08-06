@@ -32,21 +32,47 @@ public class FirstPersonController : MonoBehaviour
     [Tooltip("The velocity factor when the player is in the air. "+
         "To have the same velocity when grounded, this value needs to be 1/GroundedDrag ")]
     public float AirborneVelocityMul =0.2f;
-    
+    [Range(0,1)]
+    public float FrictionSlope = 1f;
+    public float slopeVectorMul;
+    public float MaximumVelocity = 10f;
     public bool Grounded = true;
     private float _jumpTimeOut;
     private float _fallTimeOut;
-   
+    private float slopeAngle = 0f;
     private float velocityMultiplier=1;
-    
-
+    private Vector3 SlopeVector;
+    private Vector3 additionalVectors;
+    private PhysicMaterial physicsMat;
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
         InputCooker = GetComponent<InputCooker>();
         _jumpTimeOut = JumpTimeout;
         _fallTimeOut = FallTimeout;
+        physicsMat = this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial;
+    }
+    private void SlopeDetector()
+    {
+        Vector3 post = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+        Ray towardsGround = new Ray(post, Vector3.down);
+        RaycastHit info;
+        if(! Physics.Raycast(towardsGround, out info, 0.1f,3))
+        {
+            return;
+        }
+      
+        
+        Vector3 perpendicular = Vector3.Cross(Vector3.down, info.normal);
 
+        
+        Vector3 newForward = Vector3.Cross(perpendicular, -info.normal).normalized;
+
+        // Debug.DrawRay(info.point, newForward, Color.red,2f);
+        //Debug.DrawRay(info.point, perpendicular, Color.blue, 2f);
+        // Debug.Log("normal = "+ info.normal +"   perp: "+ newForward + "  angle ="+VectorOps.AngleVec(Vector3.down, newForward));
+        SlopeVector = -newForward.normalized;
+        slopeAngle = VectorOps.AngleVec(Vector3.down, newForward);
     }
     void Update()
     {
@@ -56,8 +82,30 @@ public class FirstPersonController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        RB.AddForce(InputCooker.RotatedMoveValue *velocityMultiplier, ForceMode.VelocityChange);
-        
+
+        RB.AddForce(InputCooker.RotatedMoveValue *velocityMultiplier, ForceMode.Force);
+        Vector3 horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+        if (horizontalVelocity.sqrMagnitude >= (MaximumVelocity * MaximumVelocity))
+        {
+            horizontalVelocity = horizontalVelocity.normalized * 10;
+            RB.velocity = new Vector3(horizontalVelocity.x, RB.velocity.y, horizontalVelocity.z);
+        }
+
+        if (slopeAngle <= 89f)
+        {
+           
+            physicsMat.dynamicFriction = FrictionSlope;
+            physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
+            RB.AddForce(SlopeVector * slopeVectorMul, ForceMode.Acceleration);
+        }
+        else
+        {
+            physicsMat.dynamicFriction = 0;
+            physicsMat.frictionCombine = PhysicMaterialCombine.Average;
+
+        }
+        additionalVectors = Vector3.zero;
+        Debug.Log(this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial.dynamicFriction);
     }
     private void Sprint()
     {
@@ -67,6 +115,8 @@ public class FirstPersonController : MonoBehaviour
     {
         if (Grounded)
         {
+            SlopeDetector();
+            
             StartGrounded();
         }
         else

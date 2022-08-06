@@ -12,5 +12,9 @@ using UnityEngine;
      {
         return (float)(Mathf.Acos(Vector3.Dot(one, two)) * 180f * 0.3184f);
      }
+    public static Vector3 PerpVector(Vector3 one, Vector3 two)
+    {
+        return Vector3.Cross(one, two);
+    }
 }
 
