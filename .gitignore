@@ -12,6 +12,17 @@
 **/[Uu]ser[Ss]ettings/
 **/[Uu]serSettings/
 */ProgettoFinaleUnity_Fixed/UserSettings/
+*/ProgettoFinaleUnity_Fixed/[Ll]ibrary/
+*/ProgettoFinaleUnity_Fixed/[Tt]emp/
+*/ProgettoFinaleUnity_Fixed/[Oo]bj/
+*/ProgettoFinaleUnity_Fixed/[Bb]uild/
+*/ProgettoFinaleUnity_Fixed/[Bb]uilds/
+*/ProgettoFinaleUnity_Fixed/[Ll]ogs/
+*/ProgettoFinaleUnity_Fixed/[Mm]emoryCaptures/
+*/ProgettoFinaleUnity_Fixed/[Uu]ser[Ss]ettings/
+*/ProgettoFinaleUnity_Fixed/[Uu]serSettings/
+*/ProgettoFinaleUnity_Fixed/[Uu]serSettings/EditorUserSettings.asset
+
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
