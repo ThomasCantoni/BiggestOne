@@ -44,6 +44,8 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 SlopeVector;
     private Vector3 additionalVectors;
     private PhysicMaterial physicsMat;
+    public bool wallRunning;
+
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
