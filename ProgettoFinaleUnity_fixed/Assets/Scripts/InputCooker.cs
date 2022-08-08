@@ -22,7 +22,7 @@ public class InputCooker : MonoBehaviour
     public Vector3 RotatedMoveValue;
 
     Vector3 moveValue;
-    Vector2 inputDirection;
+    public Vector2 inputDirection;
     float CameraTargetPitch;
     public bool IsShooting = false;
     public bool isJump = false;
