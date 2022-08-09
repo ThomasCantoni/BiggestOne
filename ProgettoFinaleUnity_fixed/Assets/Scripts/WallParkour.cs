@@ -38,6 +38,7 @@ public class WallParkour : MonoBehaviour
     }
     private void Update()
     {
+        
         CheckForWall();
         StateMachine();
     }
@@ -58,12 +59,12 @@ public class WallParkour : MonoBehaviour
     }
     private void StateMachine()
     {
-        horizontalInput = ic.inputDirection.x;
-        verticalInput = ic.inputDirection.y;
+        horizontalInput = ic.moveValue.x;
+        verticalInput = ic.moveValue.z;
         upwardsRunning = Input.GetKey(upwardsRunKey);
         downwardsRunning = Input.GetKey(downwardsRunKey);
 
-        if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround())
+        if ((wallLeft || wallRight) && verticalInput > 0 && !fps.Grounded)
         {
             if (!fps.wallRunning)
                 StartWallRun();
