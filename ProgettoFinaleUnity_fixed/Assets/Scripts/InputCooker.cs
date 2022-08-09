@@ -11,9 +11,10 @@ public class InputCooker : MonoBehaviour
 
     public CinemachineVirtualCamera VirtualCamera;
     public Camera MainCamera;
+    public CinemachineBrain VCameraBrain;
     public float Speed = 5f;
 
-    [Range(1f,50f)]
+    [Range(1f,100f)]
 
     public float AimSensitivity = 1f;
 
@@ -21,9 +22,9 @@ public class InputCooker : MonoBehaviour
     private float sprintMul; 
     public Vector3 RotatedMoveValue;
 
-    Vector3 moveValue;
+    public Vector3 moveValue;
     public Vector2 inputDirection;
-    float CameraTargetPitch;
+    public float CameraTargetPitch,PlayerTargetY;
     public bool IsShooting = false;
     public bool isJump = false;
     public bool isSprint = false;
@@ -42,6 +43,13 @@ public class InputCooker : MonoBehaviour
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
 
+    [SerializeField]
+    private Transform _yRotationHelper;
+    private float _yAngularVelocity;
+    
+    public Transform _xRotationHelper;
+    
+    
 
     void Awake()
     {
@@ -57,14 +65,23 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Sprint.started += OnSprintStart;
         Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
+        VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
         Debug.Log("Controls initialized");
-        
+        _yRotationHelper.rotation = VirtualCamera.VirtualCameraGameObject.transform.rotation;
     }
 
     //// Update is called once per frame
     void Update()
     {
         RotatedMoveValue = transform.rotation * moveValue * (Speed *(1 + sprintMul));
+    }
+    private void FixedUpdate()
+    {
+        UpdateCameraBrain();
+    }
+    public void UpdateCameraBrain()
+    {
+        VCameraBrain.ManualUpdate();
     }
     public void UpdateMovement()
     {
@@ -84,13 +101,33 @@ public class InputCooker : MonoBehaviour
     public void RotateCamera(InputAction.CallbackContext value)
     {
         Vector2 val = value.ReadValue<Vector2>();
-
         CameraTargetPitch += val.y * AimSensitivity;
         CameraTargetPitch = ClampAngle(CameraTargetPitch, -90, 90);
-        VirtualCamera.transform.localRotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
+        //_yRotationHelper.Rotate(Vector3.right * val.y);
+        //_yRotationHelper.rotation = Quaternion.Euler(new Vector3(ClampAngle(_yRotationHelper.eulerAngles.x,-180, 180),0, 0));
+        //VirtualCamera.transform.rotation = Quaternion.Euler(
+        //    Mathf.SmoothDampAngle(VirtualCamera.transform.eulerAngles.x, _yRotationHelper.eulerAngles.x, ref _yAngularVelocity, 0f),
+        //    0f,
+        //    0f);
+        //Quaternion targetQuat = VirtualCamera.transform.rotation;
+        //targetQuat = Quaternion.AngleAxis(val.y, Vector3.right);
+        //targetQuat.eulerAngles = new Vector3(ClampAngle(targetQuat.eulerAngles.x, -90,90),0,0);
 
-        float rotationVelocity = val.x * AimSensitivity;
-        transform.Rotate(Vector3.up * rotationVelocity);
+         PlayerTargetY += val.x*AimSensitivity;
+        transform.rotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
+        VirtualCamera.transform.rotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
+
+        // VirtualCamera.transform.localRotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
+        //transform.rotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
+
+
+
+
+        //transform.rotation = Quaternion.Euler(
+        //    0f,
+        //    Mathf.SmoothDampAngle(transform.eulerAngles.y, _xRotationHelper.eulerAngles.y, ref _xAngularVelocity, 0f),
+        //    0f);
+        ////Quaterni
 
         PlayerRotatedCamera?.Invoke();
     }
