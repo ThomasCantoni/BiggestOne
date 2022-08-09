@@ -43,12 +43,7 @@ public class InputCooker : MonoBehaviour
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
 
-    [SerializeField]
-    private Transform _yRotationHelper;
-    private float _yAngularVelocity;
-    
-    public Transform _xRotationHelper;
-    
+    public Quaternion TargetCameraRotation, TargetPlayerRotation;
     
 
     void Awake()
@@ -67,7 +62,7 @@ public class InputCooker : MonoBehaviour
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
         Debug.Log("Controls initialized");
-        _yRotationHelper.rotation = VirtualCamera.VirtualCameraGameObject.transform.rotation;
+       
     }
 
     //// Update is called once per frame
@@ -75,12 +70,11 @@ public class InputCooker : MonoBehaviour
     {
         RotatedMoveValue = transform.rotation * moveValue * (Speed *(1 + sprintMul));
     }
-    private void FixedUpdate()
+    
+    public void UpdateCameras()
     {
-        UpdateCameraBrain();
-    }
-    public void UpdateCameraBrain()
-    {
+        GetComponent<Rigidbody>().MoveRotation(TargetPlayerRotation);
+        VirtualCamera.transform.rotation = TargetCameraRotation;
         VCameraBrain.ManualUpdate();
     }
     public void UpdateMovement()
@@ -114,8 +108,8 @@ public class InputCooker : MonoBehaviour
         //targetQuat.eulerAngles = new Vector3(ClampAngle(targetQuat.eulerAngles.x, -90,90),0,0);
 
          PlayerTargetY += val.x*AimSensitivity;
-        transform.rotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
-        VirtualCamera.transform.rotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
+        TargetPlayerRotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
+        TargetCameraRotation = Quaternion.Euler(CameraTargetPitch, PlayerTargetY, 0.0f);
 
         // VirtualCamera.transform.localRotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
         //transform.rotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
@@ -131,6 +125,7 @@ public class InputCooker : MonoBehaviour
 
         PlayerRotatedCamera?.Invoke();
     }
+   
     public void OnShootStart(InputAction.CallbackContext value)
     {
         IsShooting = true;
