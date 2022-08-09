@@ -94,12 +94,13 @@ public class FirstPersonController : MonoBehaviour
         
         GroundedCheck();
         JumpAndGravity();
-        InputCooker.UpdateCameraBrain();
     }
+    
     private void FixedUpdate()
     {
         
-        RB.AddForce(InputCooker.RotatedMoveValue *velocityMultiplier, ForceMode.Force);
+        RB.AddForce(InputCooker.RotatedMoveValue *velocityMultiplier *Time.fixedDeltaTime, ForceMode.Force);
+        InputCooker.UpdateCameras();
         
         
        
