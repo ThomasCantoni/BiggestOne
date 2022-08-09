@@ -37,13 +37,13 @@ public class InputCooker : MonoBehaviour
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
     public PlayerMovementEvent PlayerMoved,PlayerStopped;
-    
+    public Transform CameraHolder;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
 
-    public Quaternion TargetCameraRotation, TargetPlayerRotation;
+    public Quaternion TargetCameraRotation , TargetPlayerRotation;
     
 
     void Awake()
@@ -61,6 +61,8 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
+        PlayerTargetY = this.transform.eulerAngles.y;
+        CameraTargetPitch = VirtualCamera.transform.eulerAngles.x;
         Debug.Log("Controls initialized");
        
     }
@@ -73,8 +75,8 @@ public class InputCooker : MonoBehaviour
     
     public void UpdateCameras()
     {
-        GetComponent<Rigidbody>().MoveRotation(TargetPlayerRotation);
-        VirtualCamera.transform.rotation = TargetCameraRotation;
+        GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0f, PlayerTargetY, 0f));
+        VirtualCamera.transform.rotation = Quaternion.Euler(CameraTargetPitch, PlayerTargetY, 0.0f);
         VCameraBrain.ManualUpdate();
     }
     public void UpdateMovement()
@@ -108,8 +110,7 @@ public class InputCooker : MonoBehaviour
         //targetQuat.eulerAngles = new Vector3(ClampAngle(targetQuat.eulerAngles.x, -90,90),0,0);
 
          PlayerTargetY += val.x*AimSensitivity;
-        TargetPlayerRotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
-        TargetCameraRotation = Quaternion.Euler(CameraTargetPitch, PlayerTargetY, 0.0f);
+       
 
         // VirtualCamera.transform.localRotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
         //transform.rotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
