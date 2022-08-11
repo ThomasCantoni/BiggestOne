@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class WallParkour : MonoBehaviour
 {
     public LayerMask whatIsWall;
@@ -29,7 +29,13 @@ public class WallParkour : MonoBehaviour
     private FirstPersonController fps;
     private InputCooker ic;
     private Rigidbody rb;
-
+    private Vector3 wallNormal, wallForward;
+    private bool checkWall
+    {
+        get { return checkWallCurrentCooldown <= 0; }
+        
+    }
+    public float checkWallCooldown, checkWallCurrentCooldown;
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -38,8 +44,12 @@ public class WallParkour : MonoBehaviour
     }
     private void Update()
     {
-        
-        CheckForWall();
+        if(!checkWall)
+        { 
+            checkWallCurrentCooldown -= Time.unscaledDeltaTime;
+            return;
+        }
+            CheckForWall();
         StateMachine();
     }
     private void FixedUpdate()
@@ -79,13 +89,20 @@ public class WallParkour : MonoBehaviour
     private void StartWallRun()
     {
         fps.wallRunning = true;
+        ic.PlayerJump += JumpOffWall;
+    }
+    public void JumpOffWall()
+    {
+        
+        rb.AddForce(wallNormal*10f, ForceMode.VelocityChange);
+        StopWallRun();
     }
     private void WallRunningMovement()
     {
         rb.useGravity = false;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
-        Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
+        wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+        wallForward = Vector3.Cross(wallNormal, transform.up);
 
         if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
             wallForward = -wallForward;
@@ -100,12 +117,15 @@ public class WallParkour : MonoBehaviour
         if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
             rb.AddForce(-wallNormal * 100, ForceMode.Force);
 
+        
     }
 
     private void StopWallRun()
     {
+        checkWallCurrentCooldown = checkWallCooldown;
         fps.wallRunning = false;
         rb.useGravity = true;
+        ic.PlayerJump -= JumpOffWall;
     }
 }
 

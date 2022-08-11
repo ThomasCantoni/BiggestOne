@@ -1999,6 +1999,22 @@ PrefabInstance:
       propertyPath: ToInstantiate
       value: 
       objectReference: {fileID: 1615574366}
+    - target: {fileID: 117167277398990738, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: upwardsRunKey
+      value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 117167277398990738, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: wallClimbSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 117167277398990738, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: downwardsRunKey
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 117167277398990738, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: checkWallCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RootOrder
       value: 15
