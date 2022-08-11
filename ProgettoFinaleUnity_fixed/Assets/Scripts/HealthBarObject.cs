@@ -6,60 +6,86 @@ using Cinemachine;
 
 public class HealthBarObject: MonoBehaviour
 {
+    [Tooltip("Pixel amount from the Camera's center out of which the health bar will deactivate")]
+    public Vector2 CenterLimits;
     public GameObject UI_ElementToRender;
-    public GameObject Player;
+
+    private GameObject Player;
     private CinemachineVirtualCamera virtualCamera;
     private CinemachineBrain Brain;
     private Camera Camera;
-    private CanvasRenderer canvasRenderer;
-    private Canvas elementCanvas;
+  
     private RectTransform ui_toMove;
-    //private GameObject player;
-    private bool update = false;
+ 
+    
     // Start is called before the first frame update
     
-    private void OnEnable()
+    private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        Brain = Player.GetComponentInChildren<CinemachineBrain>();
-        virtualCamera = Player.GetComponentInChildren<CinemachineVirtualCamera>();
-        canvasRenderer = elementCanvas.GetComponentInChildren<CanvasRenderer>();
+        Brain = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineBrain>();
+        Camera = Brain.OutputCamera;
+        virtualCamera = GameObject.FindGameObjectWithTag("PlayerVirtualCamera").GetComponent<CinemachineVirtualCamera>();
+         //canvasRenderer = elementCanvas.GetComponentInChildren<CanvasRenderer>();
         if (UI_ElementToRender == null)
         {
             Debug.LogError("UI Element not set!");
             this.enabled = false;
             return;
         }
-        else
-        {
-            elementCanvas = GetComponentInChildren<Canvas>();
-        }
-        ui_toMove = elementCanvas.GetComponent<RectTransform>().GetChild(0).GetComponent<RectTransform>();
-        CalculatePosition();
+        
+        IsOutsideFrustum();
+    }
+    
+    public void Hide()
+    {
+        this.transform.GetChild(0).gameObject.SetActive(false);
+
+    }
+    public void Show()
+    {
+        this.transform.GetChild(0).gameObject.SetActive(true);
+
     }
     public void Update()
     {
-        CalculatePosition();
-    }
-    private void CalculatePosition()
-    {
-        float angle = VectorOps.AngleVec((Brain.transform.position - this.transform.position).normalized, Brain.transform.forward);
-        if (angle <= virtualCamera.m_Lens.FieldOfView)
+        if(IsOutsideFrustum())
         {
-            this.enabled = false;
+            Debug.Log("OutSide");
+            Hide();
             return;
         }
-        canvasRenderer.cull = false;
-        Vector2 pointOnScreen = Brain.OutputCamera.WorldToScreenPoint(this.transform.position,Camera.stereoActiveEye);
-        //CanvasToRender.SetActive(true);
-        pointOnScreen.x = Mathf.Clamp(pointOnScreen.x, -200, Camera.pixelWidth +200);
-        pointOnScreen.y = Mathf.Clamp(pointOnScreen.y, -200, Camera.pixelHeight+200);
+        Debug.Log("Visible to camera");
+        Vector2 pointOnScreen = Camera.WorldToScreenPoint(this.transform.position, Camera.stereoActiveEye);
+        if (PositionOutOfLimits(pointOnScreen))
+        {
+            Debug.Log("Out of limits vector2");
+            Hide();
+            return;
+        }
+        Debug.Log("Visible and within limits");
 
-
-        ui_toMove.GetComponent<RectTransform>().position =  pointOnScreen;
+        UI_ElementToRender.GetComponent<RectTransform>().position = pointOnScreen;
     }
-    private void OnDisable()
+    private bool IsOutsideFrustum()
     {
-        canvasRenderer.cull = true;
+        float angle = VectorOps.AngleVec(virtualCamera.transform.forward,(this.transform.position- virtualCamera.transform.position).normalized );
+        Debug.Log("ANGLE iS " + angle);
+        Debug.DrawLine(virtualCamera.transform.position, this.transform.position);
+        Debug.DrawRay(virtualCamera.transform.position, virtualCamera.transform.forward * 20f, Color.green, 0.5f);
+        return angle > (virtualCamera.m_Lens.FieldOfView * 0.68f) ;
+
     }
+    
+    private bool PositionOutOfLimits(Vector2 pos)
+    {
+
+        return (
+            (pos.x >= Camera.pixelWidth     * 0.5f + CenterLimits.x)   ||
+            (pos.x <  Camera.pixelWidth     * 0.5f - CenterLimits.x)   ||
+            (pos.y >= Camera.pixelHeight    * 0.5f + CenterLimits.y)   ||
+            (pos.y <  Camera.pixelHeight   * 0.5f - CenterLimits.y)
+            );
+    }
+   
 }
