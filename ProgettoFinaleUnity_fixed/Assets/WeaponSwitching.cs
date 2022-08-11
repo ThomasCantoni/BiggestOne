@@ -12,7 +12,7 @@ public class WeaponSwitching : MonoBehaviour
     void Start()
     {
         SelectWeapon();
-        InputCooker = GetComponentInParent<InputCooker>();
+        //InputCooker = GetComponentInParent<InputCooker>();
     }
 
     // Update is called once per frame

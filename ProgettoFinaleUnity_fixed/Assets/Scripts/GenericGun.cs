@@ -44,12 +44,13 @@ public  class GenericGun : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        InputCooker = transform.GetComponentInParent<InputCooker>();
-        InputCooker.PlayerPressedShoot += Shoot;
-        currentAmmo = maxAmmo;
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        InputCooker = player.GetComponentInChildren<InputCooker>();                                                                                                                   
+        InputCooker.PlayerPressedShoot += Shoot;                                                                
+        currentAmmo = maxAmmo;                                                       
         if (HitInfo.sender == null)
         {
-            HitInfo.sender = this.gameObject;
+            HitInfo.sender = this.gameObject;                                                                                               
         }
     }
     private void OnEnable()

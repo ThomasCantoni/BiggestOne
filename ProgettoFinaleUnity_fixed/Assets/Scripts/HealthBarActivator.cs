@@ -11,8 +11,8 @@ public class HealthBarActivator : MonoBehaviour
     void Update()
     {
         bool sphere, ray;
-        sphere = Physics.SphereCast(this.transform.position, Radius, transform.forward, out infoSphere, LayersToHit.value, 25);
-        ray = Physics.Raycast(this.transform.position, transform.forward, out infoRay, LayersToHit.value, 25);
+        sphere = Physics.SphereCast(this.transform.position, Radius, transform.forward, out infoSphere, 25, LayersToHit.value);
+        ray = Physics.Raycast(this.transform.position, transform.forward, out infoRay, 25, LayersToHit.value);
         if (!sphere && !ray)
         {
             return;
