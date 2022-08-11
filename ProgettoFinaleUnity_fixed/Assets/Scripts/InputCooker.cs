@@ -36,7 +36,7 @@ public class InputCooker : MonoBehaviour
     public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
-    public PlayerMovementEvent PlayerMoved,PlayerStopped;
+    public PlayerMovementEvent PlayerMoved,PlayerStopped,PlayerJump;
     public Transform CameraHolder;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
@@ -157,6 +157,7 @@ public class InputCooker : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext value)
     {
+        PlayerJump?.Invoke();
         isJump = true;
     }
     public void ChangeWeapon(float value)
