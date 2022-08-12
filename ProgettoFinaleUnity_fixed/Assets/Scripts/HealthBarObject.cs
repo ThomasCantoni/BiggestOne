@@ -70,9 +70,9 @@ public class HealthBarObject: MonoBehaviour
     private bool IsOutsideFrustum()
     {
         float angle = VectorOps.AngleVec(virtualCamera.transform.forward,(this.transform.position- virtualCamera.transform.position).normalized );
-        Debug.Log("ANGLE iS " + angle);
-        Debug.DrawLine(virtualCamera.transform.position, this.transform.position);
-        Debug.DrawRay(virtualCamera.transform.position, virtualCamera.transform.forward * 20f, Color.green, 0.5f);
+        //Debug.Log("ANGLE iS " + angle);
+        //Debug.DrawLine(virtualCamera.transform.position, this.transform.position);
+        //Debug.DrawRay(virtualCamera.transform.position, virtualCamera.transform.forward * 20f, Color.green, 0.5f);
         return angle > (virtualCamera.m_Lens.FieldOfView * 0.68f) ;
 
     }

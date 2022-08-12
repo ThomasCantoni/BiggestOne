@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public  class GenericGun : MonoBehaviour
+public class GenericGun : MonoBehaviour
 {
     [SerializeField]
     public IHittableInformation HitInfo;
-
     public LayerMask Mask;
     public bool IsAutomatic;
     public float FireRate;
@@ -64,7 +63,6 @@ public  class GenericGun : MonoBehaviour
     }
     public virtual void Update()
     {
-        
     }
 
     public IEnumerator Reload()
