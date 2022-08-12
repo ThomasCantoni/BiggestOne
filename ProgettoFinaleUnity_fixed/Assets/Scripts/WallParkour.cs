@@ -13,23 +13,28 @@ public class WallParkour : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-    public KeyCode upwardsRunKey = KeyCode.Q;
-    public KeyCode downwardsRunKey = KeyCode.E;
+    public bool IsWallRunning = false;
 
     public float wallCheckDistance;
     public float minJumpHeight;
     private RaycastHit leftWallHit;
     private RaycastHit rightWallHit;
+
+    private RaycastHit pushHit;
+
     private bool wallLeft;
     private bool wallRight;
+    private bool towardsWall;
     private bool upwardsRunning;
     private bool downwardsRunning;
 
-    public Transform orientation;
+    public Transform PlayerTransform;
     private FirstPersonController fps;
     private InputCooker ic;
     private Rigidbody rb;
     private Vector3 wallNormal, wallForward;
+    private bool playerIsHoldingSpace;
+    private bool playerPushesAgainstWall;
     private bool checkWall
     {
         get { return checkWallCurrentCooldown <= 0; }
@@ -41,6 +46,8 @@ public class WallParkour : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         fps = GetComponent<FirstPersonController>();
         ic = GetComponent<InputCooker>();
+        ic.PlayerStartedJump += () => playerIsHoldingSpace = true;
+        ic.PlayerStoppedJump += () => playerIsHoldingSpace = false;
     }
     private void Update()
     {
@@ -49,72 +56,96 @@ public class WallParkour : MonoBehaviour
             checkWallCurrentCooldown -= Time.unscaledDeltaTime;
             return;
         }
-            CheckForWall();
+        CheckForWall();
         StateMachine();
     }
     private void FixedUpdate()
     {
-        if (fps.wallRunning)
+        if (IsWallRunning)
             WallRunningMovement();
     }
     private void CheckForWall()
     {
-        wallRight = Physics.Raycast(transform.position, orientation.right, out rightWallHit, wallCheckDistance, whatIsWall);
-        wallLeft = Physics.Raycast(transform.position, -orientation.right, out leftWallHit, wallCheckDistance, whatIsWall);
+            Vector2 direction = ic.RotatedMoveValue.normalized;
+        if(playerIsHoldingSpace && !IsWallRunning)
+        {
+            playerPushesAgainstWall = Physics.Raycast(transform.position, direction, out pushHit, 1f, whatIsWall);
+            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance,whatIsWall);
+            wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
+            wallForward = Vector3.Cross(wallNormal, transform.up);
+            if (VectorOps.AngleVec(PlayerTransform.forward, wallForward) > 90f)
+                wallForward *= -1f;
+        }
+        if(IsWallRunning)
+        {
+            wallRight = Physics.Raycast(transform.position, PlayerTransform.right, out rightWallHit, wallCheckDistance, whatIsWall);
+            wallLeft = Physics.Raycast(transform.position, -PlayerTransform.right, out leftWallHit, wallCheckDistance, whatIsWall);
+            
+
+        }
     }
 
-    private bool AboveGround()
-    {
-        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, whatIsGround);
-    }
     private void StateMachine()
     {
-        horizontalInput = ic.moveValue.x;
-        verticalInput = ic.moveValue.z;
-        upwardsRunning = Input.GetKey(upwardsRunKey);
-        downwardsRunning = Input.GetKey(downwardsRunKey);
+        //horizontalInput = ic.moveValue.x;
+        //verticalInput = ic.moveValue.z;
+        // upwardsRunning = Input.GetKey(upwardsRunKey);
+        // downwardsRunning = Input.GetKey(downwardsRunKey);
 
-        if ((wallLeft || wallRight) && verticalInput > 0 && !fps.Grounded)
+        if (fps.Grounded || !playerIsHoldingSpace)
+            return;
+
+        if (!IsWallRunning && playerPushesAgainstWall)
         {
-            if (!fps.wallRunning)
-                StartWallRun();
+            Debug.Log("STARTED");
+            StartWallRun();
+            return;
         }
-        else
+        else if (IsWallRunning && (!towardsWall ||
+            VectorOps.AngleVec(ic.VirtualCamera.transform.forward, wallNormal) < 0))
         {
-            if (fps.wallRunning)
+            Debug.Log("STOPPED");
                 StopWallRun();
         }
     }
 
     private void StartWallRun()
     {
-        fps.wallRunning = true;
-        ic.PlayerJump += JumpOffWall;
+        IsWallRunning = true;
+        ic.PlayerStoppedJump += JumpOffWall;
     }
     public void JumpOffWall()
     {
-        
-        rb.AddForce(wallNormal*10f, ForceMode.VelocityChange);
+        Debug.Log("JUMPED OFF");
+        rb.AddForce((wallNormal+ic.VirtualCamera.transform.forward*2f)*10f, ForceMode.Impulse);
         StopWallRun();
     }
     private void WallRunningMovement()
     {
         rb.useGravity = false;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
-        wallForward = Vector3.Cross(wallNormal, transform.up);
+       // wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
+        //wallForward = Vector3.Cross(wallNormal, transform.up);
 
-        if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
-            wallForward = -wallForward;
+        //if the player stops looking at the wall...
+        //if ((PlayerTransform.forward - wallForward).magnitude > (PlayerTransform.forward - -wallForward).magnitude)
+        //    wallForward = -wallForward;
+
+        //if player is looking in the opposite direction of the wall forward, then change the force accordingly
+        //if (VectorOps.AngleVec(PlayerTransform.forward, wallForward) > 90f)
+        //    wallForward *= -1f;
+
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
 
-        if (upwardsRunning)
-            rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
-        if (downwardsRunning)
-            rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
+        // rb.AddForce(ic.VirtualCamera.transform.forward*200f,ForceMode.Force);
 
+        //    if (upwardsRunning)
+        //rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
+        //if (downwardsRunning)
+        //rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
 
-        if (!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
+        //push towards wall 
+        if (playerIsHoldingSpace)
             rb.AddForce(-wallNormal * 100, ForceMode.Force);
 
         
@@ -123,9 +154,9 @@ public class WallParkour : MonoBehaviour
     private void StopWallRun()
     {
         checkWallCurrentCooldown = checkWallCooldown;
-        fps.wallRunning = false;
+        IsWallRunning = false;
         rb.useGravity = true;
-        ic.PlayerJump -= JumpOffWall;
+        ic.PlayerStoppedJump -= JumpOffWall;
     }
 }
 
