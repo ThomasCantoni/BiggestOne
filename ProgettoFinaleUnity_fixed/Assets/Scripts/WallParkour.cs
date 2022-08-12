@@ -80,7 +80,8 @@ public class WallParkour : MonoBehaviour
         {
             wallRight = Physics.Raycast(transform.position, PlayerTransform.right, out rightWallHit, wallCheckDistance, whatIsWall);
             wallLeft = Physics.Raycast(transform.position, -PlayerTransform.right, out leftWallHit, wallCheckDistance, whatIsWall);
-            
+            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance,whatIsWall);
+
 
         }
     }
@@ -97,14 +98,13 @@ public class WallParkour : MonoBehaviour
 
         if (!IsWallRunning && playerPushesAgainstWall)
         {
-            Debug.Log("STARTED");
+           
             StartWallRun();
             return;
         }
-        else if (IsWallRunning && (!towardsWall ||
-            VectorOps.AngleVec(ic.VirtualCamera.transform.forward, wallNormal) < 0))
+        else if (IsWallRunning && !towardsWall)
         {
-            Debug.Log("STOPPED");
+           
                 StopWallRun();
         }
     }
@@ -116,7 +116,7 @@ public class WallParkour : MonoBehaviour
     }
     public void JumpOffWall()
     {
-        Debug.Log("JUMPED OFF");
+        
         rb.AddForce((wallNormal+ic.VirtualCamera.transform.forward*2f)*10f, ForceMode.Impulse);
         StopWallRun();
     }

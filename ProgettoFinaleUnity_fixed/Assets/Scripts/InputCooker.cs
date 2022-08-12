@@ -37,7 +37,7 @@ public class InputCooker : MonoBehaviour
     public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
-    public PlayerMovementEvent PlayerMoved,PlayerStopped,PlayerStartedJump, PlayerStoppedJump;
+    public PlayerMovementEvent PlayerMoved,PlayerStopped,PlayerStartedJump, PlayerStoppedJump,PlayerPressedShift;
     public Transform CameraHolder;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
@@ -60,7 +60,7 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Jump.started += OnJump;
         Controls.Player.Jump.canceled += OnJumpCanceled;
         Controls.Player.Sprint.started += OnSprintStart;
-        Controls.Player.Sprint.canceled += OnSprintStop;
+        //Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
         PlayerTargetY = this.transform.eulerAngles.y;
@@ -155,13 +155,15 @@ public class InputCooker : MonoBehaviour
     }
     public void OnSprintStart(InputAction.CallbackContext value)
     {
-        isSprint = true;
-        sprintMul = SprintMultiplier;
+        
+           isSprint = true;
+           PlayerPressedShift?.Invoke();
+        
+        
     }
     public void OnSprintStop(InputAction.CallbackContext value)
     {
-        isSprint = false;
-        sprintMul = 0;
+      
     }
     public void OnJump(InputAction.CallbackContext value)
     {

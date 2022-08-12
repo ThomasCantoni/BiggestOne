@@ -64,6 +64,7 @@ public class FirstPersonController : MonoBehaviour
         _jumpTimeOut = JumpTimeout;
         _fallTimeOut = FallTimeout;
         physicsMat = this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial;
+       
     }
     private void SlopeDetector()
     {
@@ -142,10 +143,6 @@ public class FirstPersonController : MonoBehaviour
        // Debug.Log(this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial.dynamicFriction);
     }
    
-    private void Sprint()
-    {
-
-    }
     private void JumpAndGravity()
     {
         if (Grounded)
