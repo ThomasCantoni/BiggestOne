@@ -78,7 +78,6 @@ public class GenericGun : MonoBehaviour
 
     public virtual void ShootRay()
     {
-        currentAmmo--;
         if (isReloading)
             return;
 
@@ -102,6 +101,7 @@ public class GenericGun : MonoBehaviour
                 info.collider.GetComponent<HitEvent>().OnHit(HitInfo);
             }
         }
+        currentAmmo--;
         currentShootCD = shootCD;
     }
 }
