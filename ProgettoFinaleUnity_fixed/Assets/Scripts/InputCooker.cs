@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using System;
 
 public class InputCooker : MonoBehaviour
 {
@@ -36,7 +37,7 @@ public class InputCooker : MonoBehaviour
     public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
-    public PlayerMovementEvent PlayerMoved,PlayerStopped,PlayerJump;
+    public PlayerMovementEvent PlayerMoved,PlayerStopped,PlayerStartedJump, PlayerStoppedJump;
     public Transform CameraHolder;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
@@ -57,6 +58,7 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Shoot.started += OnShootStart;
         Controls.Player.Shoot.canceled += OnShootStop;
         Controls.Player.Jump.started += OnJump;
+        Controls.Player.Jump.canceled += OnJumpCanceled;
         Controls.Player.Sprint.started += OnSprintStart;
         Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
@@ -65,6 +67,12 @@ public class InputCooker : MonoBehaviour
         CameraTargetPitch = VirtualCamera.transform.eulerAngles.x;
         Debug.Log("Controls initialized");
        
+    }
+
+    private void OnJumpCanceled(InputAction.CallbackContext obj)
+    {
+        PlayerStoppedJump.Invoke();
+        isJump = false;
     }
 
     //// Update is called once per frame
@@ -157,7 +165,7 @@ public class InputCooker : MonoBehaviour
     }
     public void OnJump(InputAction.CallbackContext value)
     {
-        PlayerJump?.Invoke();
+        PlayerStartedJump?.Invoke();
         isJump = true;
     }
     public void ChangeWeapon(float value)
