@@ -112,7 +112,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60439748833489861}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -193,7 +193,7 @@ MonoBehaviour:
   Controller: {fileID: 0}
   InputCooker: {fileID: 0}
   RB: {fileID: 0}
-  JumpHeight: 1.2
+  JumpHeight: 2
   JumpTimeout: 0.1
   FallTimeout: 0.15
   GroundedOffset: 1
@@ -229,7 +229,7 @@ MonoBehaviour:
   VirtualCamera: {fileID: 60439749082204246}
   MainCamera: {fileID: 117167278172925936}
   VCameraBrain: {fileID: 0}
-  Speed: 200
+  Speed: 500
   AimSensitivity: 1
   SprintMultiplier: 1.3
   RotatedMoveValue: {x: 0, y: 0, z: 0}
@@ -280,13 +280,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   wallRunForce: 100
-  wallClimbSpeed: 1
+  wallClimbSpeed: 5
   maxWallRunForce: 100
-  upwardsRunKey: 113
-  downwardsRunKey: 101
-  wallCheckDistance: 0.7
+  IsWallRunning: 0
+  wallCheckDistance: 2
   minJumpHeight: 1
-  orientation: {fileID: 60439748833489913}
+  PlayerTransform: {fileID: 60439748833489913}
+  checkWallCooldown: 0.5
+  checkWallCurrentCooldown: 0
 --- !u!1 &60439749082204244
 GameObject:
   m_ObjectHideFlags: 0
