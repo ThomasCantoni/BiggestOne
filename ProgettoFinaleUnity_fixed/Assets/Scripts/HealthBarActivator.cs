@@ -20,19 +20,19 @@ public class HealthBarActivator : MonoBehaviour
        
 
         HealthBarObject tryGetHBO= infoSphere.collider.GetComponentInChildren<HealthBarObject>();
-        if (tryGetHBO == null)
+        if (tryGetHBO == null )
         {
             if(ray)
             {
                 tryGetHBO = infoRay.collider.GetComponentInChildren<HealthBarObject>();
-                if (tryGetHBO != null)
+                if (tryGetHBO != null && tryGetHBO.CanShow())
                 {
                     tryGetHBO.Show();
                 }
                 
             }
         }
-        else
+        else if (tryGetHBO.CanShow())
         {
             tryGetHBO.Show();
         }

@@ -14,8 +14,8 @@ public class HealthBarObject: MonoBehaviour
     private CinemachineVirtualCamera virtualCamera;
     private CinemachineBrain Brain;
     private Camera Camera;
-  
-    private RectTransform ui_toMove;
+
+    public Vector2 PointOnScreen;
  
     
     // Start is called before the first frame update
@@ -39,33 +39,51 @@ public class HealthBarObject: MonoBehaviour
     
     public void Hide()
     {
+        Debug.Log("HIDDEN");
+
         this.transform.GetChild(0).gameObject.SetActive(false);
 
     }
     public void Show()
     {
+        Debug.Log("Shown");
         this.transform.GetChild(0).gameObject.SetActive(true);
 
     }
-    public void Update()
+    public bool CanShow()
     {
-        if(IsOutsideFrustum())
+        if (IsOutsideFrustum())
         {
             Debug.Log("OutSide");
-            Hide();
-            return;
+            
+            return false;
         }
         Debug.Log("Visible to camera");
-        Vector2 pointOnScreen = Camera.WorldToScreenPoint(this.transform.position, Camera.stereoActiveEye);
-        if (PositionOutOfLimits(pointOnScreen))
+        PointOnScreen = Camera.WorldToScreenPoint(this.transform.position, Camera.stereoActiveEye);
+        if (PositionOutOfLimits(PointOnScreen))
         {
             Debug.Log("Out of limits vector2");
+            
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public void Update()
+    {
+        if(!CanShow())
+        {
             Hide();
             return;
         }
-        Debug.Log("Visible and within limits");
+        
+        
+        UI_ElementToRender.GetComponent<RectTransform>().position = PointOnScreen;
+        
+        
 
-        UI_ElementToRender.GetComponent<RectTransform>().position = pointOnScreen;
     }
     private bool IsOutsideFrustum()
     {
