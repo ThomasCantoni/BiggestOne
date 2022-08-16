@@ -20,11 +20,11 @@ public class InputCooker : MonoBehaviour
     public float AimSensitivity = 1f;
 
     public float SprintMultiplier = 1.3f;
-    private float sprintMul; 
+    private float sprintMul;
     public Vector3 RotatedMoveValue;
 
-    public Vector3 moveValue;
-    public Vector2 inputDirection;
+    public Vector3 AbsoluteDirection, RelativeDirection;
+    public Vector2 AbsoluteDirection2D;
     public float CameraTargetPitch,PlayerTargetY;
     public bool IsShooting = false;
     public bool isJump = false;
@@ -78,7 +78,9 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-        RotatedMoveValue = transform.rotation * moveValue * (Speed *(1 + sprintMul));
+        RelativeDirection = transform.rotation * AbsoluteDirection;
+        
+        RotatedMoveValue = RelativeDirection * (Speed *(1 + sprintMul));
     }
     
     public void UpdateCameras()
@@ -89,17 +91,17 @@ public class InputCooker : MonoBehaviour
     }
     public void UpdateMovement()
     {
-        RotatedMoveValue = transform.rotation * moveValue * Speed;
+        RotatedMoveValue = transform.rotation * AbsoluteDirection * Speed;
     }
     public void OnMove(InputAction.CallbackContext value)
     {
-        inputDirection = value.ReadValue<Vector2>();
-        moveValue = new Vector3(inputDirection.x, 0.0f, inputDirection.y);
+        AbsoluteDirection2D = value.ReadValue<Vector2>();
+        AbsoluteDirection = new Vector3(AbsoluteDirection2D.x, 0.0f, AbsoluteDirection2D.y);
         PlayerMoved?.Invoke();
     }
     public void StopMovement(InputAction.CallbackContext value)
     {
-        moveValue = Vector3.zero;
+        AbsoluteDirection = Vector3.zero;
         PlayerStopped?.Invoke();
     }
     public void RotateCamera(InputAction.CallbackContext value)
