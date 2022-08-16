@@ -32,7 +32,7 @@ public class Dash : MonoBehaviour
         Debug.Log(direction);
         if (CanDash)
         {
-            RB.AddForce(direction * 150 * Time.fixedDeltaTime, DashForceMode);
+            RB.AddForce(direction * DashForce * Time.fixedDeltaTime, DashForceMode);
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
             
         }

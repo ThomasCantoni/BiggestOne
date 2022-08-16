@@ -373,7 +373,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   CheckRadius: 1
-  DistanceFactor: 2
+  DistanceFactor: 1.2
+  DashForce: 300
+  DashForceMode: 2
 --- !u!1 &242583574
 GameObject:
   m_ObjectHideFlags: 0
