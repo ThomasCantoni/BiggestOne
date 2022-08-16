@@ -9,18 +9,18 @@ public class BreakWallProbuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void Test()
     {
         Mesh m = this.GetComponent<MeshFilter>().mesh;
         ProBuilderMesh m2 = ProBuilderMesh.Create();
-        
+
     }
 }

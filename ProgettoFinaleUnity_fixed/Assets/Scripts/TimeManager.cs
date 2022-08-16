@@ -35,12 +35,12 @@ public static class TimeManager
         //EnemyCurrentSpeed = EnemyBulletTimeSpeed;
         IsBulletTimeActive = true;
         //EnemyNotifier.Invoke();
-        if(BulletTimeActivatedEvent != null)
-        BulletTimeActivatedEvent.Invoke();
+        if (BulletTimeActivatedEvent != null)
+            BulletTimeActivatedEvent.Invoke();
     }
     public static void TogglePause()
     {
-        if(IsGamePaused)
+        if (IsGamePaused)
         {
             DisablePause();
         }

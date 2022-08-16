@@ -15,17 +15,17 @@ public class InputCooker : MonoBehaviour
     public CinemachineBrain VCameraBrain;
     public float Speed = 5f;
 
-    [Range(1f,100f)]
+    [Range(1f, 100f)]
 
     public float AimSensitivity = 1f;
 
     public float SprintMultiplier = 1.3f;
-    private float sprintMul; 
+    private float sprintMul;
     public Vector3 RotatedMoveValue;
 
     public Vector3 moveValue;
     public Vector2 inputDirection;
-    public float CameraTargetPitch,PlayerTargetY;
+    public float CameraTargetPitch, PlayerTargetY;
     public bool IsShooting = false;
     public bool isJump = false;
     public bool isSprint = false;
@@ -33,19 +33,19 @@ public class InputCooker : MonoBehaviour
     public delegate void ChangeWeaponEvent();
     public delegate void PlayerRotatedCameraEvent();
     public delegate void PlayerMovementEvent();
- 
-    public PlayerShootEvent PlayerPressedShoot,PlayerReleasedShoot;
+
+    public PlayerShootEvent PlayerPressedShoot, PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
-    public PlayerMovementEvent PlayerMoved,PlayerStopped,PlayerStartedJump, PlayerStoppedJump,PlayerPressedShift;
+    public PlayerMovementEvent PlayerMoved, PlayerStopped, PlayerStartedJump, PlayerStoppedJump, PlayerPressedShift;
     public Transform CameraHolder;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
     public bool cursorInputForLook = true;
 
-    public Quaternion TargetCameraRotation , TargetPlayerRotation;
-    
+    public Quaternion TargetCameraRotation, TargetPlayerRotation;
+
 
     void Awake()
     {
@@ -66,7 +66,7 @@ public class InputCooker : MonoBehaviour
         PlayerTargetY = this.transform.eulerAngles.y;
         CameraTargetPitch = VirtualCamera.transform.eulerAngles.x;
         Debug.Log("Controls initialized");
-       
+
     }
 
     private void OnJumpCanceled(InputAction.CallbackContext obj)
@@ -78,9 +78,9 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-        RotatedMoveValue = transform.rotation * moveValue * (Speed *(1 + sprintMul));
+        RotatedMoveValue = transform.rotation * moveValue * (Speed * (1 + sprintMul));
     }
-    
+
     public void UpdateCameras()
     {
         GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0f, PlayerTargetY, 0f));
@@ -117,8 +117,8 @@ public class InputCooker : MonoBehaviour
         //targetQuat = Quaternion.AngleAxis(val.y, Vector3.right);
         //targetQuat.eulerAngles = new Vector3(ClampAngle(targetQuat.eulerAngles.x, -90,90),0,0);
 
-         PlayerTargetY += val.x*AimSensitivity;
-       
+        PlayerTargetY += val.x * AimSensitivity;
+
 
         // VirtualCamera.transform.localRotation = Quaternion.Euler(CameraTargetPitch, 0.0f, 0.0f);
         //transform.rotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
@@ -134,11 +134,11 @@ public class InputCooker : MonoBehaviour
 
         PlayerRotatedCamera?.Invoke();
     }
-   
+
     public void OnShootStart(InputAction.CallbackContext value)
     {
         IsShooting = true;
-        if(PlayerPressedShoot!=null)
+        if (PlayerPressedShoot != null)
         {
             PlayerPressedShoot.Invoke();
             Debug.Log("Player started shooting");
@@ -155,15 +155,15 @@ public class InputCooker : MonoBehaviour
     }
     public void OnSprintStart(InputAction.CallbackContext value)
     {
-        
-           isSprint = true;
-           PlayerPressedShift?.Invoke();
-        
-        
+
+        isSprint = true;
+        PlayerPressedShift?.Invoke();
+
+
     }
     public void OnSprintStop(InputAction.CallbackContext value)
     {
-      
+
     }
     public void OnJump(InputAction.CallbackContext value)
     {
@@ -173,13 +173,13 @@ public class InputCooker : MonoBehaviour
     public void ChangeWeapon(float value)
     {
         //Debug.Log("Scrolled?");
-        if(value < 0)
+        if (value < 0)
         {
             Debug.Log("Next Weapon " + value);
-            if(NextWeapon != null)
-            NextWeapon.Invoke();
+            if (NextWeapon != null)
+                NextWeapon.Invoke();
         }
-        if(value >0)
+        if (value > 0)
         {
             Debug.Log("Prev Weapon " + value);
             PreviousWeapon?.Invoke();

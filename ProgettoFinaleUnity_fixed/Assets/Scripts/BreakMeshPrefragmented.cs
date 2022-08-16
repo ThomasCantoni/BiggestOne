@@ -10,7 +10,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
     public void DestroyMesh(IHittableInformation Info)
     {
 
-        if(Parent == null)
+        if (Parent == null)
         {
             Parent = this.gameObject.transform;
 
@@ -22,6 +22,6 @@ public class BreakMeshPrefragmented : MonoBehaviour
             rb.AddExplosionForce(ExplosionForce, Info.raycastInfo.point, Radius);
         }
         Destroy(Parent.gameObject, FadeOutTime);
-        
+
     }
 }

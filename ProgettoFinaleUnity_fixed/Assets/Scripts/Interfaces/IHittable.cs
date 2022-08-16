@@ -13,6 +13,6 @@ public class IHittableInformation
 }
 public interface IHittable
 {
-   public abstract void OnHit(IHittableInformation info);
+    public abstract void OnHit(IHittableInformation info);
 
 }

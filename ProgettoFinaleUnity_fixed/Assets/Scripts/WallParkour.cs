@@ -38,7 +38,7 @@ public class WallParkour : MonoBehaviour
     private bool checkWall
     {
         get { return checkWallCurrentCooldown <= 0; }
-        
+
     }
     public float checkWallCooldown, checkWallCurrentCooldown;
     private void Start()
@@ -51,8 +51,8 @@ public class WallParkour : MonoBehaviour
     }
     private void Update()
     {
-        if(!checkWall)
-        { 
+        if (!checkWall)
+        {
             checkWallCurrentCooldown -= Time.unscaledDeltaTime;
             return;
         }
@@ -66,21 +66,21 @@ public class WallParkour : MonoBehaviour
     }
     private void CheckForWall()
     {
-            Vector2 direction = ic.RotatedMoveValue.normalized;
-        if(playerIsHoldingSpace && !IsWallRunning)
+        Vector2 direction = ic.RotatedMoveValue.normalized;
+        if (playerIsHoldingSpace && !IsWallRunning)
         {
             playerPushesAgainstWall = Physics.Raycast(transform.position, direction, out pushHit, 1f, whatIsWall);
-            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance,whatIsWall);
+            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance, whatIsWall);
             wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
             wallForward = Vector3.Cross(wallNormal, transform.up);
             if (VectorOps.AngleVec(PlayerTransform.forward, wallForward) > 90f)
                 wallForward *= -1f;
         }
-        if(IsWallRunning)
+        if (IsWallRunning)
         {
             wallRight = Physics.Raycast(transform.position, PlayerTransform.right, out rightWallHit, wallCheckDistance, whatIsWall);
             wallLeft = Physics.Raycast(transform.position, -PlayerTransform.right, out leftWallHit, wallCheckDistance, whatIsWall);
-            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance,whatIsWall);
+            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance, whatIsWall);
 
 
         }
@@ -98,14 +98,14 @@ public class WallParkour : MonoBehaviour
 
         if (!IsWallRunning && playerPushesAgainstWall)
         {
-           
+
             StartWallRun();
             return;
         }
         else if (IsWallRunning && !towardsWall)
         {
-           
-                StopWallRun();
+
+            StopWallRun();
         }
     }
 
@@ -116,15 +116,15 @@ public class WallParkour : MonoBehaviour
     }
     public void JumpOffWall()
     {
-        
-        rb.AddForce((wallNormal+ic.VirtualCamera.transform.forward*2f)*10f, ForceMode.Impulse);
+
+        rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward * 2f) * 10f, ForceMode.Impulse);
         StopWallRun();
     }
     private void WallRunningMovement()
     {
         rb.useGravity = false;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-       // wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
+        // wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
         //wallForward = Vector3.Cross(wallNormal, transform.up);
 
         //if the player stops looking at the wall...
@@ -148,7 +148,7 @@ public class WallParkour : MonoBehaviour
         if (playerIsHoldingSpace)
             rb.AddForce(-wallNormal * 100, ForceMode.Force);
 
-        
+
     }
 
     private void StopWallRun()

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class HitEvent : MonoBehaviour,IHittable
+public class HitEvent : MonoBehaviour, IHittable
 {
     public UnityEvent<IHittableInformation> OnHitEvent;
     public void OnHit(IHittableInformation hitInfo)
@@ -12,7 +12,7 @@ public class HitEvent : MonoBehaviour,IHittable
         OnHitEvent.Invoke(hitInfo);
     }
 
-    
 
-   
+
+
 }
