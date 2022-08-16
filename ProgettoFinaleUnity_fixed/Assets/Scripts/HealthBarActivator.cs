@@ -27,7 +27,7 @@ public class HealthBarActivator : MonoBehaviour
             if (tryGetHBO != null && tryGetHBO.CanShow())
             {
                 tryGetHBO.Show();
-                Debug.Log(tryGetHBO.gameObject.name);
+                //Debug.Log(tryGetHBO.gameObject.name);
             }
         }
         else if (ray && infoRay.collider != null)

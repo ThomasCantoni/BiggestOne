@@ -62,7 +62,9 @@ public class HealthBarObject : MonoBehaviour
         PointOnScreen = Camera.WorldToScreenPoint(this.transform.position, Camera.stereoActiveEye);
         if (PositionOutOfLimits(PointOnScreen))
         {
-            Debug.Log("Out of limits vector2");
+
+            //Debug.Log("Out of limits vector2");
+            
 
             return false;
         }

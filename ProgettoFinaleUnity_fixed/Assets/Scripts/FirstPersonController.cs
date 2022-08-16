@@ -93,8 +93,12 @@ public class FirstPersonController : MonoBehaviour
         {
             RB.AddForce(Vector3.down * 3, ForceMode.Acceleration);
         }
-        if ((slopeAngle >= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange) && Grounded
-            && InputCooker.moveValue.sqrMagnitude < 1f)
+
+        //i am on a slope that isn't too steep or too flat and grounded
+        //Debug.Log(" Angle: " + slopeAngle + "  IC.Dir: "+InputCooker.inputDirection);
+        if ((slopeAngle>= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange) && Grounded 
+            && InputCooker.AbsoluteDirection.sqrMagnitude <1f)
+
         {
             physicsMat.dynamicFriction = FrictionSlope;
             physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
