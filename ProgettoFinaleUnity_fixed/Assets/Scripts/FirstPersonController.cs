@@ -118,7 +118,7 @@ public class FirstPersonController : MonoBehaviour
         //i am on a slope that isn't too steep or too flat and grounded
         //Debug.Log(" Angle: " + slopeAngle + "  IC.Dir: "+InputCooker.inputDirection);
         if ((slopeAngle>= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange) && Grounded 
-            && InputCooker.moveValue.sqrMagnitude <1f)
+            && InputCooker.AbsoluteDirection.sqrMagnitude <1f)
         {
             
            // Debug.Log("TRUE");
