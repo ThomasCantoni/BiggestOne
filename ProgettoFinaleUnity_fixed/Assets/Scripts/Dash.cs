@@ -7,10 +7,12 @@ public class Dash : MonoBehaviour
 {
     InputCooker IC;
     Rigidbody RB;
+
     public LayerMask CollisionCheck;
     public float CheckRadius=1f,DistanceFactor=2f,DashForce;
     public ForceMode DashForceMode;
     private bool isDashing = false;
+
     Vector3 direction;
     // Start is called before the first frame update
     public bool CanDash
@@ -37,6 +39,7 @@ public class Dash : MonoBehaviour
             
         }
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position + direction * DistanceFactor, CheckRadius);
@@ -54,8 +57,22 @@ public class Dash : MonoBehaviour
             isDashing = false;
         }
 
-       
-    
-    
+
+    private void StartDashing()
+    {
+        isDashing = true;
+        direction = IC.RotatedMoveValue;
+        StartCoroutine(StopDashing());
+    }
+    public IEnumerator StopDashing()
+    {
+        yield return new WaitForSeconds(0.2f);
+        direction = Vector3.zero;
+        isDashing = false;
+    }
+
+
+
+
 
 }

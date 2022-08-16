@@ -41,20 +41,20 @@ public class BreakWall : MonoBehaviour
 
 
 
-    
+
 
 
     public void DestroyMesh()
     {
 
-        if(ParentOfPieces == null)
+        if (ParentOfPieces == null)
 
         {
             Debug.LogError(this.gameObject.name + "'s BreakWall Component requires ParentOfPieces for the destroyed objects!");
             return;
         }
 
-        if(originalMesh != this.GetComponent<MeshFilter>().mesh)
+        if (originalMesh != this.GetComponent<MeshFilter>().mesh)
 
         {
             Start();

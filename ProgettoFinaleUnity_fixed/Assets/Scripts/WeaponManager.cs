@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
         {
             if (CurrentIndex - 1 < 0)
             {
-                CurrentIndex = List.Count-1;
+                CurrentIndex = List.Count - 1;
             }
             else
             {
@@ -42,6 +42,6 @@ public class WeaponManager : MonoBehaviour
         };
     }
 
-        
+
 
 }

@@ -8,9 +8,9 @@ public class SemiAutoTestWeapon : GenericGun
     public override void Start()
     {
         base.Start();
-        InputCooker.PlayerReleasedShoot += () => hasShotOnce = false; 
+        InputCooker.PlayerReleasedShoot += () => hasShotOnce = false;
     }
-    
+
     public override void Update()
     {
         //Debug.Log("HasShotOnce :" +hasShotOnce);
@@ -21,7 +21,7 @@ public class SemiAutoTestWeapon : GenericGun
             currentShootCD -= Time.deltaTime;
             return;
         }
-       
+
         if (IsAutomatic && InputCooker.IsShooting)
         {
             if (currentShootCD <= 0f)
@@ -51,5 +51,5 @@ public class SemiAutoTestWeapon : GenericGun
             currentShootCD = shootCD;
         }
     }
-    
+
 }

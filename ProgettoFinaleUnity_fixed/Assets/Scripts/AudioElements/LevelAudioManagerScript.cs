@@ -11,7 +11,7 @@ public class LevelAudioManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+
         Mixer = Source.outputAudioMixerGroup.audioMixer;
         //TimeManager.BulletTimeActivatedEvent += StopSources;
         //TimeManager.BulletTimeDeactivatedEvent += StartSource;
@@ -23,14 +23,14 @@ public class LevelAudioManagerScript : MonoBehaviour
 
     public void StartSource()
     {
-        if(Source.clip != null)
-        Source.Play();
+        if (Source.clip != null)
+            Source.Play();
     }
     public void StopSources()
     {
         Source.Pause();
-       
+
     }
-    
+
 
 }

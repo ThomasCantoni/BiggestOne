@@ -10,7 +10,7 @@ public class HealthBarActivator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit infoSphere,infoRay;
+        RaycastHit infoSphere, infoRay;
         bool sphere, ray;
         sphere = Physics.SphereCast(this.transform.position, Radius, transform.forward, out infoSphere, 25, LayersToHit.value);
         ray = Physics.Raycast(this.transform.position, transform.forward, out infoRay, 25, LayersToHit.value);
@@ -18,7 +18,7 @@ public class HealthBarActivator : MonoBehaviour
         {
             return;
         }
-       
+
 
         HealthBarObject tryGetHBO;
         if (sphere && infoSphere.collider != null)
@@ -38,7 +38,7 @@ public class HealthBarActivator : MonoBehaviour
                 tryGetHBO.Show();
                 Debug.Log(tryGetHBO.gameObject.name);
             }
-        } 
+        }
     }
-    
+
 }

@@ -14,7 +14,7 @@ public class WeaponScript : MonoBehaviour
     public UnityEvent ShootEvent;
     public bool AutoFire = false;
 
-    
+
 
     public bool CanShoot
     {
@@ -24,7 +24,7 @@ public class WeaponScript : MonoBehaviour
     {
         get { return hasShotOnce; }
     }
-    
+
     public float FireRate
     {
         get { return 1f / shootCD; }
@@ -33,8 +33,8 @@ public class WeaponScript : MonoBehaviour
             shootCD = 1f / value;
         }
     }
-    private bool hasShotOnce,shooting;
-    private float shootCD=1f, currentShootCD=0;
+    private bool hasShotOnce, shooting;
+    private float shootCD = 1f, currentShootCD = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,30 +47,30 @@ public class WeaponScript : MonoBehaviour
             HitInfo.sender = this.gameObject;
         }
     }
-    
+
     public virtual void Shoot()
     {
     }
     private void Update()
     {
-        if(!CanShoot)
+        if (!CanShoot)
         {
             currentShootCD -= Time.deltaTime;
             return;
         }
-        if(AutoFire && InputCooker.IsShooting)
+        if (AutoFire && InputCooker.IsShooting)
         {
-            if(currentShootCD <=0f)
+            if (currentShootCD <= 0f)
             {
                 ShootRay();
             }
         }
-        
+
     }
-    
+
     public void ShootRay()
     {
-        if(!CanShoot)
+        if (!CanShoot)
         {
             return;
         }
@@ -80,10 +80,10 @@ public class WeaponScript : MonoBehaviour
         Ray ray = cam.ScreenPointToRay(screenCenterPoint);
         if (Physics.Raycast(ray, out info, 100f, 3))
         {
-            if(ToInstantiate != null)
+            if (ToInstantiate != null)
                 Destroy(Instantiate(ToInstantiate, info.point, Quaternion.identity), 2f);
 
-            if(info.collider.GetComponent<IHittable>() != null )
+            if (info.collider.GetComponent<IHittable>() != null)
             {
                 HitInfo.raycastInfo = info;
                 info.collider.GetComponent<HitEvent>().OnHit(HitInfo);

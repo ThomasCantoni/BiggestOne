@@ -613,6 +613,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 60439748833489863, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 60439748833489913, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -876,6 +880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2080e7730457df946b3238be3521e58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDashing: 0
 --- !u!1 &1143581930
 GameObject:
   m_ObjectHideFlags: 0

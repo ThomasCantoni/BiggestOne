@@ -19,7 +19,7 @@ public class GenericGun : MonoBehaviour
     protected InputCooker InputCooker;
     public GameObject ToInstantiate;
     //public UnityEvent ShootEvent;
-   
+
     protected bool hasShotOnce, shooting;
     protected float currentShootCD = 0;
 
@@ -34,7 +34,7 @@ public class GenericGun : MonoBehaviour
 
     protected float shootCD
     {
-        get { return Mathf.Clamp( 1f / FireRate, 0f, 9999f); }
+        get { return Mathf.Clamp(1f / FireRate, 0f, 9999f); }
         set
         {
             FireRate = 1f / Mathf.Clamp(value, 0f, 9999f);
@@ -44,12 +44,12 @@ public class GenericGun : MonoBehaviour
     public virtual void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        InputCooker = player.GetComponentInChildren<InputCooker>();                                                                                                                   
-        InputCooker.PlayerPressedShoot += Shoot;                                                                
-        currentAmmo = maxAmmo;                                                       
+        InputCooker = player.GetComponentInChildren<InputCooker>();
+        InputCooker.PlayerPressedShoot += Shoot;
+        currentAmmo = maxAmmo;
         if (HitInfo.sender == null)
         {
-            HitInfo.sender = this.gameObject;                                                                                               
+            HitInfo.sender = this.gameObject;
         }
     }
     private void OnEnable()
