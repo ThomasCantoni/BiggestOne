@@ -80,11 +80,8 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-
         RelativeDirection = transform.rotation * AbsoluteDirection;
-        
         RotatedMoveValue = RelativeDirection * (Speed *(1 + sprintMul));
-
     }
 
     public void UpdateCameras()

@@ -56,23 +56,4 @@ public class Dash : MonoBehaviour
             direction = Vector3.zero;
             isDashing = false;
         }
-
-
-    private void StartDashing()
-    {
-        isDashing = true;
-        direction = IC.RotatedMoveValue;
-        StartCoroutine(StopDashing());
-    }
-    public IEnumerator StopDashing()
-    {
-        yield return new WaitForSeconds(0.2f);
-        direction = Vector3.zero;
-        isDashing = false;
-    }
-
-
-
-
-
 }
