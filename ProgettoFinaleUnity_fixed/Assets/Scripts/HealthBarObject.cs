@@ -39,14 +39,14 @@ public class HealthBarObject: MonoBehaviour
     
     public void Hide()
     {
-        Debug.Log("HIDDEN");
+        //Debug.Log("HIDDEN");
 
         this.transform.GetChild(0).gameObject.SetActive(false);
 
     }
     public void Show()
     {
-        Debug.Log("Shown");
+        //Debug.Log("Shown");
         this.transform.GetChild(0).gameObject.SetActive(true);
 
     }
@@ -54,11 +54,11 @@ public class HealthBarObject: MonoBehaviour
     {
         if (IsOutsideFrustum())
         {
-            Debug.Log("OutSide");
+            //Debug.Log("OutSide");
             
             return false;
         }
-        Debug.Log("Visible to camera");
+        //Debug.Log("Visible to camera");
         PointOnScreen = Camera.WorldToScreenPoint(this.transform.position, Camera.stereoActiveEye);
         if (PositionOutOfLimits(PointOnScreen))
         {
