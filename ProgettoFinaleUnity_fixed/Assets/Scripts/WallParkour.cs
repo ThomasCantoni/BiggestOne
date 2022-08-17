@@ -51,6 +51,7 @@ public class WallParkour : MonoBehaviour
     }
     private void Update()
     {
+        ic.VirtualCamera.m_Lens.Dutch = Mathf.Lerp(ic.VirtualCamera.m_Lens.Dutch, 0f, 0.05f);
         if (!checkWall)
         {
             checkWallCurrentCooldown -= Time.unscaledDeltaTime;
@@ -107,6 +108,14 @@ public class WallParkour : MonoBehaviour
 
             StopWallRun();
         }
+        if (IsWallRunning && wallRight)
+        {
+            ic.VirtualCamera.m_Lens.Dutch = Mathf.Lerp(ic.VirtualCamera.m_Lens.Dutch, 35f, 0.05f);
+        }
+        if (IsWallRunning && wallLeft)
+        {
+            ic.VirtualCamera.m_Lens.Dutch = Mathf.Lerp(ic.VirtualCamera.m_Lens.Dutch, -35f, 0.05f);
+        }
     }
 
     private void StartWallRun()
@@ -116,7 +125,6 @@ public class WallParkour : MonoBehaviour
     }
     public void JumpOffWall()
     {
-
         rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward * 2f) * 10f, ForceMode.Impulse);
         StopWallRun();
     }

@@ -673,6 +673,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -9.486
       objectReference: {fileID: 0}
+    - target: {fileID: 60439749082204246, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_Lens.Dutch
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 117167277398990738, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: wallClimbSpeed
       value: 5
@@ -768,6 +772,10 @@ PrefabInstance:
     - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0.08268756
+      objectReference: {fileID: 0}
+    - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2805948343302922554, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: anim
