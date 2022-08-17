@@ -14,10 +14,11 @@ public class FirstPersonController : MonoBehaviour
     [Tooltip("The height of the jump in meters")]
     public float JumpHeight = 1.2f;
     //public float Gravity = -9.8f;
-    [Tooltip("Time before the Player can jump again")]
-    public float JumpTimeout = 0.2f;
+    [Tooltip("Time before the Player can jump again. Ticks when grounded")]
+    public float JumpCooldown = 0.2f;
+    
     [Tooltip("Time before the groundcheck is executed again. Should never be 0, else the jump won't work")]
-    public float FallTimeout = 0.15f;
+    public float FallTimeOut = 0.15f;
 
     [Header("Grounded and Airborne values")]
     public float GroundedOffset = -0.14f;
@@ -43,7 +44,7 @@ public class FirstPersonController : MonoBehaviour
     public float MaximumVelocity = 10f;
     public bool Grounded = true;
     public bool DoubleJumpPossible = false;
-    private float _jumpTimeOut;
+    private float _jumpCD;
     private float _fallTimeOut;
     private float slopeAngle = 0f;
     private float velocityMultiplier = 1;
@@ -51,14 +52,31 @@ public class FirstPersonController : MonoBehaviour
     private Vector3 additionalVectors;
     private PhysicMaterial physicsMat;
     public bool wallRunning;
-
+    protected SimpleTimer JumpTimer,GroundcheckTimer;
+    Repeater GroundcheckRepeater;
+    public bool CanJump = true, CanGroundCheck=true;
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
         InputCooker = GetComponent<InputCooker>();
-        _jumpTimeOut = JumpTimeout;
-        _fallTimeOut = FallTimeout;
+        _jumpCD = JumpCooldown;
+        _fallTimeOut = FallTimeOut;
         physicsMat = this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial;
+
+
+        GroundcheckRepeater = new Repeater(0.2f, 0.1f);
+        GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
+        GroundcheckRepeater.StartRepeater();
+
+
+        //set the actions of timers 
+        JumpTimer = new SimpleTimer(_jumpCD);
+        JumpTimer.TimerStartEvent    += () => CanJump = false;
+        JumpTimer.TimerCompleteEvent += () => CanJump = true;
+
+        //GroundcheckTimer = new SimpleTimer(_fallTimeOut);
+        //GroundcheckTimer.TimerStartEvent += () => CanGroundCheck = true;
+       // GroundcheckTimer.TimerCompleteEvent += () => CanGroundCheck = true;
     }
     private void SlopeDetector()
     {
@@ -75,8 +93,19 @@ public class FirstPersonController : MonoBehaviour
     }
     void Update()
     {
-        GroundedCheck();
+        if (_fallTimeOut > 0)
+        {
+            Grounded = false;
+            
+        }
+        else
+        {
+            GroundedCheck();
+
+        }
         JumpAndGravity();
+        
+
     }
 
     private void FixedUpdate()
@@ -96,7 +125,8 @@ public class FirstPersonController : MonoBehaviour
 
         //i am on a slope that isn't too steep or too flat and grounded
         //Debug.Log(" Angle: " + slopeAngle + "  IC.Dir: "+InputCooker.inputDirection);
-        if ((slopeAngle>= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange) && Grounded 
+        if ((slopeAngle>= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange) 
+            && Grounded 
             && InputCooker.AbsoluteDirection.sqrMagnitude <1f)
 
         {
@@ -127,30 +157,31 @@ public class FirstPersonController : MonoBehaviour
     }
     private void StartGrounded()
     {
-        if (Grounded)
-        {
-            RB.drag = GroundedDrag;
-        }
+        RB.drag = GroundedDrag;
         velocityMultiplier = GroundedVelocityMul;
-        if (_jumpTimeOut >= 0.0f)
+        
+        //if (_jumpTimeOut >= 0.0f)
+        //{
+        //    _jumpTimeOut -= Time.deltaTime;
+        //}
+        if (InputCooker.isJump && CanJump)
         {
-            _jumpTimeOut -= Time.deltaTime;
-        }
-        if (InputCooker.isJump && _jumpTimeOut <= 0.0f)
-        {
-            _fallTimeOut = FallTimeout;
+            _fallTimeOut = FallTimeOut;
+            //GroundcheckTimer.StartTimer();
             RB.drag = AirbornDrag;
             float jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
             RB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             InputCooker.isJump = false;
             DoubleJumpPossible = true;
+            JumpTimer.StartTimer();
         }
     }
     private void StartAirborne()
     {
-        _jumpTimeOut = JumpTimeout;
+        //_jumpTimeOut = JumpTimeout;
         RB.drag = AirbornDrag;
         velocityMultiplier = AirborneVelocityMul;
+
         if (_fallTimeOut >= 0.0f)
         {
             _fallTimeOut -= Time.deltaTime;
@@ -164,15 +195,12 @@ public class FirstPersonController : MonoBehaviour
         InputCooker.isJump = false;
     }
 
-    private void GroundedCheck()
+    public void GroundedCheck()
     {
-        if (_fallTimeOut > 0)
-        {
-            Grounded = false;
-            return;
-        }
+        
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers);
+        //GroundcheckTimer.StartTimer();
     }
     private void OnDrawGizmosSelected()
     {
@@ -180,4 +208,10 @@ public class FirstPersonController : MonoBehaviour
         else Gizmos.color = Color.green;
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
     }
+    private void OnApplicationQuit()
+    {
+        JumpTimer.StopTimer();
+        GroundcheckRepeater.StopRepeater();
+    }
+    
 }
