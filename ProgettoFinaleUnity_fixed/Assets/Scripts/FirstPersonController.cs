@@ -62,9 +62,13 @@ public class FirstPersonController : MonoBehaviour
         _jumpCD = JumpCooldown;
         _fallTimeOut = FallTimeOut;
         physicsMat = this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial;
-        GroundcheckRepeater = new Repeater(150, 0);
+
+
+        GroundcheckRepeater = new Repeater(0.2f, 0.1f);
         GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
         GroundcheckRepeater.StartRepeater();
+
+
         //set the actions of timers 
         JumpTimer = new SimpleTimer(_jumpCD);
         JumpTimer.TimerStartEvent    += () => CanJump = false;
@@ -89,8 +93,19 @@ public class FirstPersonController : MonoBehaviour
     }
     void Update()
     {
-        GroundedCheck();
+        if (_fallTimeOut > 0)
+        {
+            Grounded = false;
+            
+        }
+        else
+        {
+            GroundedCheck();
+
+        }
         JumpAndGravity();
+        
+
     }
 
     private void FixedUpdate()
@@ -144,6 +159,7 @@ public class FirstPersonController : MonoBehaviour
     {
         RB.drag = GroundedDrag;
         velocityMultiplier = GroundedVelocityMul;
+        
         //if (_jumpTimeOut >= 0.0f)
         //{
         //    _jumpTimeOut -= Time.deltaTime;
@@ -165,6 +181,7 @@ public class FirstPersonController : MonoBehaviour
         //_jumpTimeOut = JumpTimeout;
         RB.drag = AirbornDrag;
         velocityMultiplier = AirborneVelocityMul;
+
         if (_fallTimeOut >= 0.0f)
         {
             _fallTimeOut -= Time.deltaTime;
@@ -180,11 +197,7 @@ public class FirstPersonController : MonoBehaviour
 
     public void GroundedCheck()
     {
-        if (_fallTimeOut >0)
-        {
-            Grounded = false;
-            return;
-        }
+        
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers);
         //GroundcheckTimer.StartTimer();
@@ -195,4 +208,10 @@ public class FirstPersonController : MonoBehaviour
         else Gizmos.color = Color.green;
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
     }
+    private void OnApplicationQuit()
+    {
+        JumpTimer.StopTimer();
+        GroundcheckRepeater.StopRepeater();
+    }
+    
 }

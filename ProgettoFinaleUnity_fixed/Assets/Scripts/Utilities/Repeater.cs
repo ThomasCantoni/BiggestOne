@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
+using System.Timers;
 
 public class Repeater
 {
-    public int InitialDelayMilliseconds;
-    public int FrequencyMilliseconds = 1000;
+    public float InitialDelay;
+    public float Frequency=0;
     public bool IsActive = false;
-    Timer t;
+    private Timer t;
     
     public delegate void RepeaterEvents();
     public event RepeaterEvents RepeaterStartEvent, RepeaterTickEvent, RepeaterStopEvent;
@@ -18,38 +18,40 @@ public class Repeater
     }
     public Repeater(float FrequencySeconds,float initialDelaySeconds)
     {
-        this.FrequencyMilliseconds = (int)FrequencySeconds * 1000;
-        InitialDelayMilliseconds = (int)initialDelaySeconds*1000;
+        this.Frequency = FrequencySeconds ;
+        InitialDelay = initialDelaySeconds;
 
     }
-    public Repeater(int FrequencyMilliseconds,int initialDelayMilliseconds)
-    {
-        this.FrequencyMilliseconds = FrequencyMilliseconds;
-        InitialDelayMilliseconds = initialDelayMilliseconds;
-
-    }
+    
     public void StartRepeater()
     {
-        t = new Timer(tick, null, InitialDelayMilliseconds, FrequencyMilliseconds);
-        Debug.Log("Repeater started");
-        RepeaterStartEvent?.Invoke();
+        Debug.Log(Frequency);
+        t = new Timer(Frequency);
+        t.Elapsed += Tick;
+       
+        t.Start();
+       // Debug.Log("Repeater started");
         IsActive = true;
+        RepeaterStartEvent?.Invoke();
     }
-    private void tick(object data)
+    private void Tick(object sender,ElapsedEventArgs e)
     {
+       Debug.Log("Repeater ticking");
         RepeaterTickEvent?.Invoke();
-        Debug.Log("Repeater ticking");
+        t.Start();
 
     }
-    public void ChangeTime(int InitialDelayMs,int TimeInMilliseconds)
+    public void ChangeTime(int TimeInMilliseconds)
     {
-        t.Change(InitialDelayMs, TimeInMilliseconds);
+        t.Interval = TimeInMilliseconds;
+
     }
-    public void StopRepeater(object data)
+    public void StopRepeater()
     {
        
         RepeaterStopEvent?.Invoke();
         IsActive = false;
+        t.AutoReset = false;
         t.Dispose();
         
     }

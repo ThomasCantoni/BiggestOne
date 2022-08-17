@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-
-using System.Threading;
+using UnityEngine;
+using System.Timers;
 
 public class SimpleTimer
 {
-    public int TimeInMilliseconds=1000;
+    public float  TimeSeconds=1000;
     public bool HasCompleted = false;
     Timer t;
-    TimerCallback tc;
+    
     public delegate void TimerEvents();
     public event TimerEvents TimerCompleteEvent,TimerStartEvent;
     public SimpleTimer()
@@ -17,29 +17,34 @@ public class SimpleTimer
     }
     public SimpleTimer(float seconds)
     {
-        this.TimeInMilliseconds = (int)seconds*1000;
+        this.TimeSeconds = seconds;
     }
-    public SimpleTimer(int TimeInMilliseconds)
-    {
-        this.TimeInMilliseconds = TimeInMilliseconds;
-    }
+    
     public void StartTimer()
     {
-        
-        t = new Timer(StopTimer, null,TimeInMilliseconds, TimeInMilliseconds);
-        
+
+        t = new Timer(TimeSeconds);
+        t.Elapsed += stopTimer;
+        //Debug.Log("Timer started");
         TimerStartEvent?.Invoke();
         HasCompleted = false;
+        t.Start();
     }
     public void ChangeTime(int TimeInMilliseconds)
     {
-        t.Change(TimeInMilliseconds, TimeInMilliseconds);
+        t.Interval = TimeInMilliseconds;
     }
-    private void StopTimer(object data)
+    public void StopTimer()
     {
-        //yield return new WaitForSeconds(Time);
         TimerCompleteEvent?.Invoke();
         HasCompleted = true;
         t.Dispose();
+    }
+    private void stopTimer(object sender,ElapsedEventArgs a)
+    {
+        //yield return new WaitForSeconds(Time);
+        //Debug.Log("Timer Stopped");
+        StopTimer();
+        
     }
 }

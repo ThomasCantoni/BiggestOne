@@ -2151,6 +2151,10 @@ PrefabInstance:
       propertyPath: LayersToHit.m_Bits
       value: 129
       objectReference: {fileID: 0}
+    - target: {fileID: 60439748833489914, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: JumpCooldown
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RootOrder
       value: 15
