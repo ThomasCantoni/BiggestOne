@@ -31,7 +31,7 @@ public class Dash : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Debug.Log(direction);
+        
         if (CanDash)
         {
             RB.AddForce(direction * DashForce * Time.fixedDeltaTime, DashForceMode);
