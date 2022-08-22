@@ -108,7 +108,11 @@ public class WallParkour : MonoBehaviour
         // downwardsRunning = Input.GetKey(downwardsRunKey);
 
         if (fps.Grounded || !playerIsHoldingSpace)
+        {
+            Debug.Log("PLAYER NOT GROUNDED, ABORTING WALL RUN");
+            StopWallRun();
             return;
+        }
 
         if (!IsWallRunning && hitWall)
         {

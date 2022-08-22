@@ -45,7 +45,7 @@ public class SemiAutoTestWeapon : GenericGun
     {
         if (!hasShotOnce && CanShoot)
         {
-            Debug.Log("BOOM");
+           // Debug.Log("BOOM");
             ShootRay();
             hasShotOnce = true;
             currentShootCD = shootCD;

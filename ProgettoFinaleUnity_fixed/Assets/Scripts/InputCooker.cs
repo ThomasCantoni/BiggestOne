@@ -144,7 +144,7 @@ public class InputCooker : MonoBehaviour
         if (PlayerPressedShoot != null)
         {
             PlayerPressedShoot.Invoke();
-            Debug.Log("Player started shooting");
+            //Debug.Log("Player started shooting");
         }
     }
     public void OnShootStop(InputAction.CallbackContext value)
@@ -153,7 +153,7 @@ public class InputCooker : MonoBehaviour
         if (PlayerReleasedShoot != null)
         {
             PlayerReleasedShoot.Invoke();
-            Debug.Log("Player stopped shooting");
+            //Debug.Log("Player stopped shooting");
         }
     }
     public void OnSprintStart(InputAction.CallbackContext value)
