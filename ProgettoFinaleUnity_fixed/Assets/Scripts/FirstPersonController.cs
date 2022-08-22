@@ -66,11 +66,14 @@ public class FirstPersonController : MonoBehaviour
         physicsMat = this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial;
 
 
-        GroundcheckRepeater = new Repeater(0f, 1000f);
+        GroundcheckRepeater = new Repeater();
         GroundcheckRepeater.Frequency = GroundcheckFrequency;
         GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
-        //GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
+        GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
         GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log(Grounded);
+        GroundcheckRepeater.RepeaterPauseEvent += () => Grounded = false;
+        GroundcheckRepeater.RepeaterPauseEvent += () => Debug.Log("PAUSE EVENT " + Grounded);
+
         GroundcheckRepeater.StartRepeater();
 
 
@@ -101,11 +104,11 @@ public class FirstPersonController : MonoBehaviour
         if (_fallTimeOut > 0)
         {
             //Grounded = false;
-            
+            _fallTimeOut -= Time.deltaTime*1000;
         }
         else
         {
-           // GroundedCheck();
+          // GroundedCheck();
 
         }
         JumpAndGravity();
@@ -164,13 +167,15 @@ public class FirstPersonController : MonoBehaviour
     {
         RB.drag = GroundedDrag;
         velocityMultiplier = GroundedVelocityMul;
-        
+
         //if (_jumpTimeOut >= 0.0f)
         //{
         //    _jumpTimeOut -= Time.deltaTime;
         //}
         if (InputCooker.isJump && CanJump)
         {
+            GroundcheckRepeater.StopRepeater(1000);
+            Grounded = false;
             _fallTimeOut = FallTimeOutMilliseconds;
             //GroundcheckTimer.StartTimer();
             RB.drag = AirbornDrag;
@@ -180,7 +185,6 @@ public class FirstPersonController : MonoBehaviour
             DoubleJumpPossible = true;
             JumpTimer.StartTimer();
             Grounded = false;
-            GroundcheckRepeater.PauseRepeater(1500);
         }
     }
     private void StartAirborne()
@@ -191,7 +195,7 @@ public class FirstPersonController : MonoBehaviour
 
         if (_fallTimeOut >= 0.0f)
         {
-            _fallTimeOut -= Time.deltaTime;
+            _fallTimeOut -= Time.deltaTime*1000;
         }
         if (InputCooker.isJump && DoubleJumpPossible)
         {
