@@ -195,6 +195,7 @@ public class FirstPersonController : MonoBehaviour
         }
         if (InputCooker.isJump && DoubleJumpPossible)
         {
+            RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
             float jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
             RB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             DoubleJumpPossible = false;

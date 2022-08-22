@@ -6,7 +6,8 @@ public class WeaponSwitching : MonoBehaviour
 {
     public int selectedWeapon = 0;
     public InputCooker InputCooker;
-
+    public delegate void ReloadDelegate();
+    public event ReloadDelegate ReloadEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +32,10 @@ public class WeaponSwitching : MonoBehaviour
                 weapon.gameObject.SetActive(false);
             i++;
         }
+    }
+    public void LaunchReloadEvent()
+    {
+        ReloadEvent.Invoke();
     }
     void Switch()
     {
