@@ -32,9 +32,10 @@ public class WallParkour : MonoBehaviour
     private FirstPersonController fps;
     private InputCooker ic;
     private Rigidbody rb;
-    private Vector3 wallNormal, wallForward;
+    private Vector3 wallNormal, wallForward, towardsWallVector;
     private bool playerIsHoldingSpace;
-    private bool playerPushesAgainstWall;
+    private bool pushingTowardsWall;
+    private bool hitWall;
     private bool checkWall
     {
         get { return checkWallCurrentCooldown <= 0; }
@@ -70,18 +71,30 @@ public class WallParkour : MonoBehaviour
         Vector2 direction = ic.RotatedMoveValue.normalized;
         if (playerIsHoldingSpace && !IsWallRunning)
         {
-            playerPushesAgainstWall = Physics.Raycast(transform.position, direction, out pushHit, 1f, whatIsWall);
-            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance, whatIsWall);
-            wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
+            pushingTowardsWall = Physics.Raycast(transform.position, direction, out pushHit, 1f, whatIsWall);
+            wallRight = Physics.Raycast(transform.position, PlayerTransform.right, out rightWallHit, wallCheckDistance, whatIsWall);
+            wallLeft = Physics.Raycast(transform.position, -PlayerTransform.right, out leftWallHit, wallCheckDistance, whatIsWall);
+
+            if (pushingTowardsWall)
+                towardsWallVector = -pushHit.normal;
+            if(wallRight)
+                towardsWallVector = -rightWallHit.normal;
+
+            if (wallLeft)
+                towardsWallVector = -leftWallHit.normal;
+
+            hitWall = pushingTowardsWall || wallRight || wallLeft;
+
+            //towardsWall = Physics.Raycast(transform.position, towardsWallVec, wallCheckDistance, whatIsWall);
+
+            wallNormal = -towardsWallVector;
             wallForward = Vector3.Cross(wallNormal, transform.up);
             if (VectorOps.AngleVec(PlayerTransform.forward, wallForward) > 90f)
                 wallForward *= -1f;
         }
         if (IsWallRunning)
         {
-            wallRight = Physics.Raycast(transform.position, PlayerTransform.right, out rightWallHit, wallCheckDistance, whatIsWall);
-            wallLeft = Physics.Raycast(transform.position, -PlayerTransform.right, out leftWallHit, wallCheckDistance, whatIsWall);
-            towardsWall = Physics.Raycast(transform.position, -pushHit.normal, wallCheckDistance, whatIsWall);
+            towardsWall = Physics.Raycast(transform.position,towardsWallVector, wallCheckDistance, whatIsWall);
 
 
         }
@@ -97,7 +110,7 @@ public class WallParkour : MonoBehaviour
         if (fps.Grounded || !playerIsHoldingSpace)
             return;
 
-        if (!IsWallRunning && playerPushesAgainstWall)
+        if (!IsWallRunning && hitWall)
         {
 
             StartWallRun();
