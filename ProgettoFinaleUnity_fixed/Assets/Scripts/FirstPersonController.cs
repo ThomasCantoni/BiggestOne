@@ -57,6 +57,8 @@ public class FirstPersonController : MonoBehaviour
     protected SimpleTimer JumpTimer,GroundcheckTimer;
     Repeater GroundcheckRepeater;
     public bool CanJump = true, CanGroundCheck=true;
+    [HideInInspector]
+    public Vector3 PositionBeforeJump;
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
