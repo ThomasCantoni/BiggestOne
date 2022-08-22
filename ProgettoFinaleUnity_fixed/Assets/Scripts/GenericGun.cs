@@ -12,10 +12,23 @@ public class GenericGun : MonoBehaviour
     public int maxAmmo = 10;
     public int currentAmmo;
     public float reloadTime = 1f;
+    public bool IsReloading
+    {
+        get
+        {
+            return isReloading;
+        }
+        set
+        {
+            isReloading = value;
+            anim.SetBool("Reloading", isReloading);
+
+        }
+    }
     public bool isReloading = false;
     public Animator anim;
     public int Magazine;
-
+    public WeaponSwitching WS;
     protected InputCooker InputCooker;
     public GameObject ToInstantiate;
     //public UnityEvent ShootEvent;
@@ -44,6 +57,7 @@ public class GenericGun : MonoBehaviour
     public virtual void Start()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        WS = gameObject.GetComponentInParent<WeaponSwitching>();
         InputCooker = player.GetComponentInChildren<InputCooker>();
         InputCooker.PlayerPressedShoot += Shoot;
         currentAmmo = maxAmmo;
@@ -51,11 +65,20 @@ public class GenericGun : MonoBehaviour
         {
             HitInfo.sender = this.gameObject;
         }
+        OnEnable();
     }
     private void OnEnable()
     {
-        isReloading = false;
-        anim.SetBool("Reloading", false);
+        if(WS != null)
+            WS.ReloadEvent += EndReload;
+        IsReloading = false;
+        anim.SetFloat("ReloadTime", 1f/reloadTime);
+        
+    }
+    private void OnDisable()
+    {
+        WS.ReloadEvent -= EndReload;
+        
     }
 
     public virtual void Shoot()
@@ -64,11 +87,26 @@ public class GenericGun : MonoBehaviour
     public virtual void Update()
     {
     }
+    public void EndReload()
+    {
+        currentAmmo = maxAmmo;
+        IsReloading = false;
+        
+    }
 
+    public void StartReload()
+    {
+        isReloading = true;
+        
+        anim.SetBool("Reloading", true);
+        
+    }
     public IEnumerator Reload()
     {
         isReloading = true;
+        
         anim.SetBool("Reloading", true);
+       
         yield return new WaitForSeconds(reloadTime - .25f);
         anim.SetBool("Reloading", false);
         yield return new WaitForSeconds(.25f);
@@ -83,7 +121,7 @@ public class GenericGun : MonoBehaviour
 
         if (currentAmmo <= 0)
         {
-            StartCoroutine(Reload());
+            StartReload();
             return;
         }
         if (!CanShoot) return;

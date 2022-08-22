@@ -475,15 +475,16 @@ MonoBehaviour:
     Damage: 0
   Mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   IsAutomatic: 0
   FireRate: 1
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
   isReloading: 0
-  anim: {fileID: 0}
+  anim: {fileID: 7281660439509605719}
   Magazine: 0
+  WS: {fileID: 0}
   ToInstantiate: {fileID: 0}
 --- !u!1 &1257020385326327433
 GameObject:
@@ -739,15 +740,16 @@ MonoBehaviour:
     Damage: 0
   Mask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   IsAutomatic: 0
   FireRate: 1
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
   isReloading: 0
-  anim: {fileID: 0}
+  anim: {fileID: 7281660439509605719}
   Magazine: 0
+  WS: {fileID: 0}
   ToInstantiate: {fileID: 0}
 --- !u!1 &3706085672831965547
 GameObject:
@@ -758,6 +760,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8573327059484529268}
+  - component: {fileID: 1592762245896260304}
+  - component: {fileID: 7281660439509605719}
   m_Layer: 3
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -782,6 +786,39 @@ Transform:
   m_Father: {fileID: 60439749082204245}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1592762245896260304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706085672831965547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2413e715c7a0124db3cf455726d59e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWeapon: 0
+  InputCooker: {fileID: 7578008436064795051}
+--- !u!95 &7281660439509605719
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3706085672831965547}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cae6f24180dc78248bf1d3caf76d82aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4069665014071136430
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,15 +965,16 @@ MonoBehaviour:
     Damage: 0
   Mask:
     serializedVersion: 2
-    m_Bits: 0
-  IsAutomatic: 0
-  FireRate: 1
+    m_Bits: 1
+  IsAutomatic: 1
+  FireRate: 3
   maxAmmo: 10
   currentAmmo: 0
-  reloadTime: 1
+  reloadTime: 5
   isReloading: 0
-  anim: {fileID: 0}
+  anim: {fileID: 7281660439509605719}
   Magazine: 0
+  WS: {fileID: 0}
   ToInstantiate: {fileID: 0}
 --- !u!1001 &2033741994936249550
 PrefabInstance:
@@ -1008,6 +1046,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8436142690075546976, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
   m_PrefabInstance: {fileID: 2033741994936249550}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7578008436064795051 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8436142690075546981, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+  m_PrefabInstance: {fileID: 2033741994936249550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da3f9b06118c7b43b3d1038285cce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7520030755002495698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8387331644420759068, guid: c02ac974dd945854892d208a2f5cebef, type: 3}

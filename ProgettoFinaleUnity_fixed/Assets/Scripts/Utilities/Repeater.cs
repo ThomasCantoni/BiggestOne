@@ -57,6 +57,7 @@ public class Repeater
         catch (Exception exc)
         {
             Debug.LogError(exc.Message);
+            t.Close();
         }
 
     }

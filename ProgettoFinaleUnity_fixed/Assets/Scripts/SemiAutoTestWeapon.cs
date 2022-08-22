@@ -36,7 +36,7 @@ public class SemiAutoTestWeapon : GenericGun
 
         if (currentAmmo <= 0)
         {
-            StartCoroutine(Reload());
+            StartReload();
             return;
         }
     }
