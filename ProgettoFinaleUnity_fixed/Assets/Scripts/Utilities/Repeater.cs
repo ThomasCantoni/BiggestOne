@@ -64,7 +64,7 @@ public class Repeater
     
     public IEnumerator ThisWillBeExecutedOnTheMainThread()
     {
-        Debug.Log("This is executed from the main thread");
+        //Debug.Log("This is executed from the main thread");
         RepeaterTickEvent.Invoke();
         yield return null;
     }
@@ -99,7 +99,7 @@ public class Repeater
         {
             t.Enabled = true;
 
-            StartRepeater();
+           
             tResume.Dispose();
         }
         catch(Exception e)

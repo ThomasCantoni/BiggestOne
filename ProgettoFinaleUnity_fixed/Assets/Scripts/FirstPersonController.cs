@@ -69,7 +69,7 @@ public class FirstPersonController : MonoBehaviour
         GroundcheckRepeater = new Repeater(0f, 1000f);
         GroundcheckRepeater.Frequency = GroundcheckFrequency;
         GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
-        GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
+        //GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
         GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log(Grounded);
         GroundcheckRepeater.StartRepeater();
 
@@ -180,7 +180,7 @@ public class FirstPersonController : MonoBehaviour
             DoubleJumpPossible = true;
             JumpTimer.StartTimer();
             Grounded = false;
-            GroundcheckRepeater.PauseRepeater(150);
+            GroundcheckRepeater.PauseRepeater(1500);
         }
     }
     private void StartAirborne()
