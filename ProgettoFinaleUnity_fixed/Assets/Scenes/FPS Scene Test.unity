@@ -1587,6 +1587,10 @@ PrefabInstance:
       propertyPath: ToInstantiate
       value: 
       objectReference: {fileID: 1003699801}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: CheckRadius
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: GroundcheckFrequency
       value: 10
@@ -1691,6 +1695,8 @@ GameObject:
   - component: {fileID: 1733491076}
   - component: {fileID: 1733491075}
   - component: {fileID: 1733491074}
+  - component: {fileID: 1733491073}
+  - component: {fileID: 1733491078}
   m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
@@ -1698,6 +1704,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1733491073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733491072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1167907860}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!136 &1733491074
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1776,6 +1809,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1733491078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733491072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102481cbd17027c48b9ecad57c8d33e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1789909306
 GameObject:
   m_ObjectHideFlags: 0
@@ -9383,6 +9428,7 @@ MonoBehaviour:
   wallRunning: 0
   CanJump: 1
   CanGroundCheck: 1
+  PositionBeforeJump: {x: 0, y: 0, z: 0}
 --- !u!143 &7578008435571334793
 CharacterController:
   m_ObjectHideFlags: 0
