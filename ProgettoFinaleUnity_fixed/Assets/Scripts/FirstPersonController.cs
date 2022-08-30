@@ -176,7 +176,7 @@ public class FirstPersonController : MonoBehaviour
         //}
         if (InputCooker.isJump && CanJump)
         {
-            GroundcheckRepeater.StopRepeater(1000);
+            GroundcheckRepeater.StopRepeater(200);
             Grounded = false;
             _fallTimeOut = FallTimeOutMilliseconds;
             //GroundcheckTimer.StartTimer();
