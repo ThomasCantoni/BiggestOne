@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.dgreenheck.openfracture": "https://github.com/dgreenheck/OpenFracture.git",
     "com.unity.animation.rigging": "1.2.0",
     "com.unity.cinemachine": "2.6.15",
     "com.unity.collab-proxy": "1.15.12",

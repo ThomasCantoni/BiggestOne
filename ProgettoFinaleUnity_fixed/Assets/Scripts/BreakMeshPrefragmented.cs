@@ -2,26 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BreakMeshPrefragmented : MonoBehaviour
 {
     public Transform Parent;
     public float ExplosionForce, Radius;
     public float FadeOutTime = 3f;
-    public void DestroyMesh(IHittableInformation Info)
+    public bool FragmentsHaveRigidbody = false;
+    private IHittableInformation Info;
+    public void DestroyMesh(IHittableInformation info)
     {
-
+        this.Info = info;
         if (Parent == null)
         {
             Parent = this.gameObject.transform;
 
         }
+        if(FragmentsHaveRigidbody)
+        {
+            RigidBodyFragment();
+        }
+        else
+        {
+            DefaultFragment();
+        }
+
+    }
+
+    private void DefaultFragment()
+    {
         Debug.Log("CRACK!");
         for (int i = 0; i < Parent.childCount; i++)
         {
             Rigidbody rb = Parent.GetChild(i).gameObject.AddComponent<Rigidbody>();
             rb.AddExplosionForce(ExplosionForce, Info.raycastInfo.point, Radius);
         }
-        Destroy(Parent.gameObject, FadeOutTime);
 
+
+        Destroy(Parent.gameObject, FadeOutTime);
     }
+    private void RigidBodyFragment()
+    {
+        Debug.Log("CRACK!");
+        for (int i = 0; i < Parent.childCount; i++)
+        {
+            Rigidbody rb = Parent.GetChild(i).gameObject.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.None;
+            rb.AddExplosionForce(ExplosionForce, Info.raycastInfo.point, Radius);
+        }
+
+
+        Destroy(Parent.gameObject, FadeOutTime);
+    }
+
 }
