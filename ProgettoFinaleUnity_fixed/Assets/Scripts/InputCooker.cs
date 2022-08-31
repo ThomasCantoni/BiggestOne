@@ -67,7 +67,7 @@ public class InputCooker : MonoBehaviour
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
         PlayerTargetY = this.transform.eulerAngles.y;
         CameraTargetPitch = VirtualCamera.transform.eulerAngles.x;
-        Debug.Log("Controls initialized");
+        // Debug.Log("Controls initialized");
 
     }
 
@@ -178,13 +178,13 @@ public class InputCooker : MonoBehaviour
         //Debug.Log("Scrolled?");
         if (value < 0)
         {
-            Debug.Log("Next Weapon " + value);
+            //Debug.Log("Next Weapon " + value);
             if (NextWeapon != null)
                 NextWeapon.Invoke();
         }
         if (value > 0)
         {
-            Debug.Log("Prev Weapon " + value);
+           // Debug.Log("Prev Weapon " + value);
             PreviousWeapon?.Invoke();
         }
     }

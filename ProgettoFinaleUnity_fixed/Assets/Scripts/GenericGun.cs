@@ -32,7 +32,7 @@ public class GenericGun : MonoBehaviour
     protected InputCooker InputCooker;
     public GameObject ToInstantiate;
     //public UnityEvent ShootEvent;
-
+    protected GameObject player;
     protected bool hasShotOnce, shooting;
     protected float currentShootCD = 0;
 
@@ -53,32 +53,54 @@ public class GenericGun : MonoBehaviour
             FireRate = 1f / Mathf.Clamp(value, 0f, 9999f);
         }
     }
-    // Start is called before the first frame update
+    private void OnEnable()
+    {
+        Initialize();
+        IsReloading = false;
+        anim.SetFloat("ReloadTime", 1f/reloadTime);
+        Subscribe(true);
+    }
+    private void OnDisable()
+    {
+        Subscribe(false);
+    }
+   
+    void Initialize()
+    {
+        if(player == null || WS == null || InputCooker == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            WS = gameObject.GetComponentInParent<WeaponSwitching>();
+            InputCooker = player.GetComponentInChildren<InputCooker>();
+
+        }
+    }
     public virtual void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        WS = gameObject.GetComponentInParent<WeaponSwitching>();
-        InputCooker = player.GetComponentInChildren<InputCooker>();
-        InputCooker.PlayerPressedShoot += Shoot;
         currentAmmo = maxAmmo;
         if (HitInfo.sender == null)
         {
             HitInfo.sender = this.gameObject;
         }
-        OnEnable();
+        //OnEnable();
     }
-    private void OnEnable()
+    private void Subscribe(bool subscribe)
     {
-        if(WS != null)
-            WS.ReloadEvent += EndReload;
-        IsReloading = false;
-        anim.SetFloat("ReloadTime", 1f/reloadTime);
-        
-    }
-    private void OnDisable()
-    {
-        WS.ReloadEvent -= EndReload;
-        
+        if(subscribe)
+        {
+            InputCooker.PlayerPressedShoot += Shoot;
+            
+                WS.ReloadEvent += EndReload;
+           // Debug.Log("Subbed " +gameObject.name);
+
+        }
+        else
+        {
+            // Debug.Log("Unsubbed "+gameObject.name);
+            InputCooker.PlayerPressedShoot -= Shoot;
+            
+            WS.ReloadEvent -= EndReload;
+        }
     }
 
     public virtual void Shoot()
@@ -136,11 +158,13 @@ public class GenericGun : MonoBehaviour
             if (info.collider.GetComponent<IHittable>() != null)
             {
                 HitInfo.raycastInfo = info;
+                HitInfo.EnemyHit = info.collider.gameObject;
                 info.collider.GetComponent<HitEvent>().OnHit(HitInfo);
                 foreach(ChainableAttack x in HitInfo.PlayerAttackEffects.Attacks)
                 {
                     x.Apply(HitInfo);
                 }
+                //Debug.Log("Shoot");
             }
         }
         currentAmmo--;

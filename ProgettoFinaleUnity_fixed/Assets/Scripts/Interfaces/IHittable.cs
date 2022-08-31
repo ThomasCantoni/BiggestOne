@@ -8,6 +8,7 @@ public class IHittableInformation
 {
     [Tooltip("The GameObject from which this information comes from. \r If not set it's automatically set to the owner of component.")]
     public GameObject sender;
+    public GameObject EnemyHit;
     public RaycastHit raycastInfo;
     public float Damage;
     public PlayerAttackEffects PlayerAttackEffects;
