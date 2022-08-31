@@ -9,7 +9,7 @@ public class HealthBarObject : MonoBehaviour
     [Tooltip("Pixel amount from the Camera's center out of which the health bar will deactivate")]
     public Vector2 CenterLimits;
     public GameObject UI_ElementToRender;
-
+    
     private GameObject Player;
     private CinemachineVirtualCamera virtualCamera;
     private CinemachineBrain Brain;
@@ -107,5 +107,6 @@ public class HealthBarObject : MonoBehaviour
             (pos.y < Camera.pixelHeight * 0.5f - CenterLimits.y)
             );
     }
+
 
 }
