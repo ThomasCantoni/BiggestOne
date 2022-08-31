@@ -22,14 +22,22 @@ public class SemiAutoTestWeapon : GenericGun
             return;
         }
 
-        if (IsAutomatic && InputCooker.IsShooting)
+        if (IsAutomatic)
         {
-            if (currentShootCD <= 0f)
+            if (InputCooker.IsShooting)
             {
-                ShootRay();
-
+                if (currentShootCD <= 0f)
+                {
+                    ShootRay();
+                }
             }
-
+            else
+            {
+                if (isReloading == false)
+                {
+                    anim.SetTrigger("Shooting");
+                }
+            }
         }
         if (isReloading)
             return;
@@ -43,12 +51,13 @@ public class SemiAutoTestWeapon : GenericGun
 
     public override void Shoot()
     {
-        if (!hasShotOnce && CanShoot)
+        if (!hasShotOnce && CanShoot && !isReloading)
         {
-           // Debug.Log("BOOM");
+            // Debug.Log("BOOM");
             ShootRay();
             hasShotOnce = true;
             currentShootCD = shootCD;
+            anim.SetTrigger("Shooting");
         }
     }
 
