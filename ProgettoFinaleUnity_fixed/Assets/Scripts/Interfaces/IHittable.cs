@@ -10,6 +10,7 @@ public class IHittableInformation
     public GameObject sender;
     public RaycastHit raycastInfo;
     public float Damage;
+    public PlayerAttackEffects PlayerAttackEffects;
 }
 public interface IHittable
 {

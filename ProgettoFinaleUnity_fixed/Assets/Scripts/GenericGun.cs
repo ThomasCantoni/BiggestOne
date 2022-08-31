@@ -137,6 +137,10 @@ public class GenericGun : MonoBehaviour
             {
                 HitInfo.raycastInfo = info;
                 info.collider.GetComponent<HitEvent>().OnHit(HitInfo);
+                foreach(ChainableAttack x in HitInfo.PlayerAttackEffects.Attacks)
+                {
+                    x.Apply(HitInfo);
+                }
             }
         }
         currentAmmo--;
