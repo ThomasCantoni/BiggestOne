@@ -15,28 +15,42 @@ public class Lightning : ChainableAttack
     {
         playerInfo = info;
        Collider[] thingsHit =  Physics.OverlapSphere(info.raycastInfo.point,Radius,LayersToHit);
+       GameObject firstEnemyHit = info.raycastInfo.collider.gameObject;
+       
        List<GameObject> thingsActuallyHittable = new List<GameObject>();
-       foreach(Collider c in thingsHit)
+        int firstEnemyHitIndex = 0;
+       for(int i= 0;i<thingsHit.Length; i++)
         {
+            Collider c = thingsHit[i];
             if (c.gameObject.GetComponent<IHittable>() != null)
+            {
                 thingsActuallyHittable.Add(c.gameObject);
+            }
         }
         thingsActuallyHittable.TrimExcess();
-        if (thingsActuallyHittable.Count == 0)
+        for (int i = 0; i < thingsActuallyHittable.Count; i++)
+        { 
+               if(thingsActuallyHittable[i] == firstEnemyHit)
+                {
+                    firstEnemyHitIndex = i;
+                }
+        }
+        
+        if (thingsActuallyHittable.Count < 2)
             return;
 
-        int index = Random.Range(0, thingsActuallyHittable.Count - 1);
-        GameObject selected1 = thingsActuallyHittable[index];
-        if(index +1 < thingsActuallyHittable.Count)
+        int index = firstEnemyHitIndex;
+        if(index +1 < thingsActuallyHittable.Count-1)
         {
             index++;
         }
-        else
+        else if( index -1 >= 0)
         {
             index--;
         }
+
         GameObject selected2 = thingsActuallyHittable[index];
-        CreateLightning(selected1, selected2);
+        CreateLightning(firstEnemyHit, selected2);
     }
     public void CreateLightning(GameObject one,GameObject two)
     {

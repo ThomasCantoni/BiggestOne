@@ -109,7 +109,7 @@ public class WallParkour : MonoBehaviour
 
         if (fps.Grounded || !playerIsHoldingSpace)
         {
-            Debug.Log("PLAYER NOT GROUNDED, ABORTING WALL RUN");
+            //Debug.Log("PLAYER NOT GROUNDED, ABORTING WALL RUN");
             StopWallRun();
             return;
         }
