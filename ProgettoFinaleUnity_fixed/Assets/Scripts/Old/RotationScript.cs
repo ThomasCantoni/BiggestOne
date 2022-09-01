@@ -10,6 +10,6 @@ public class RotationScript : MonoBehaviour
 
     void Update()
     {
-        this.transform.Rotate(0, 90f * Time.deltaTime, 0);
+        this.transform.Rotate(DegreesPerSecond * Time.deltaTime,0,0);
     }
 }
