@@ -72,7 +72,7 @@ public class FirstPersonController : MonoBehaviour
         GroundcheckRepeater.Frequency = GroundcheckFrequency;
         GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
         GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
-        GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log(Grounded);
+        //GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log(Grounded);
         GroundcheckRepeater.RepeaterPauseEvent += () => Grounded = false;
         GroundcheckRepeater.RepeaterPauseEvent += () => Debug.Log("PAUSE EVENT " + Grounded);
 
@@ -222,10 +222,10 @@ public class FirstPersonController : MonoBehaviour
         else Gizmos.color = Color.green;
         Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
     }
-    private void OnApplicationQuit()
-    {
-        JumpTimer.StopTimer();
-        GroundcheckRepeater.StopRepeater();
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    JumpTimer.StopTimer();
+    //    GroundcheckRepeater.StopRepeater();
+    //}
     
 }

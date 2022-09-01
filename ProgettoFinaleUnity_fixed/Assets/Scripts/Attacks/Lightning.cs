@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Lightning", menuName = "ScriptableObjects/ChainableAttacks")]
+[CreateAssetMenu(fileName = "Lightning", menuName = "ScriptableObjects/Lightning")]
 
 public class Lightning : ChainableAttack
 {

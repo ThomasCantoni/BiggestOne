@@ -5,7 +5,7 @@ using System.Timers;
 
 public class SimpleTimer
 {
-    public float  TimeSeconds=1000;
+    public float  TimeMs=1000;
     public bool HasCompleted = false;
     Timer t;
     
@@ -15,15 +15,15 @@ public class SimpleTimer
     {
 
     }
-    public SimpleTimer(float seconds)
+    public SimpleTimer(float millisecond)
     {
-        this.TimeSeconds = seconds;
+        this.TimeMs = millisecond;
     }
     
     public void StartTimer()
     {
 
-        t = new Timer(TimeSeconds);
+        t = new Timer(TimeMs);
         t.Elapsed += stopTimer;
         //Debug.Log("Timer started");
         TimerStartEvent?.Invoke();
