@@ -37,7 +37,7 @@ public class Repeater
     {
         
         t = new Timer(Tick,null,0,(int)IntervalMilliseconds);
-        
+        IsActive = true;
         //t.Elapsed += new ElapsedEventHandler(Tick);
         //t.AutoReset = true;
         //t.Enabled = true;
@@ -113,7 +113,7 @@ public class Repeater
     {
        
         RepeaterStopEvent?.Invoke();
-        //IsActive = false;
+        IsActive = false;
         //t.AutoReset = false;
         t.Dispose();
         
