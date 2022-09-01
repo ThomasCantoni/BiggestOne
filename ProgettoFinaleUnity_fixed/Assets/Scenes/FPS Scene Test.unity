@@ -4593,7 +4593,7 @@ PrefabInstance:
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: InspectorList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
+      objectReference: {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
     - target: {fileID: 60439749082204245, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 11.5

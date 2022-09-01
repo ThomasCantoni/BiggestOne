@@ -8,7 +8,8 @@ public class HealthBarEnemy : MonoBehaviour
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;
-
+    public delegate void EnemyDeathEvent();
+    public event EnemyDeathEvent OnEnemyDeath;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class HealthBarEnemy : MonoBehaviour
     }
     void EnemyDeath()
     {
+        OnEnemyDeath?.Invoke();
         Destroy(gameObject);
     }
 }
