@@ -4602,12 +4602,40 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2115316006}
+    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: inaccuracyDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2115316006}
+    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Damage
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Multishot
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: InspectorList.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: InspectorList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
+    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: InspectorList.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
     - target: {fileID: 60439749082204245, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -4662,9 +4690,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWrapped
       objectReference: {fileID: 0}
+    - target: {fileID: 117167277520124026, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: JumpCooldown
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795054, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6102,6 +6138,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a714202eb93e3b45befabe13d4a5640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &2115316006 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+  m_PrefabInstance: {fileID: 1687120077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2115840157
 GameObject:
   m_ObjectHideFlags: 0
@@ -7699,9 +7740,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitInfo:
-    sender: {fileID: 0}
-    EnemyHit: {fileID: 0}
+    IsEnemy: 0
+    GameObjectHit: {fileID: 0}
     Damage: 0
+    collisionPoint: {x: 0, y: 0, z: 0}
+    collisionNormal: {x: 0, y: 0, z: 0}
     PlayerAttackEffects: {fileID: 0}
   ToInstantiate: {fileID: 0}
   ShootEvent:
@@ -8169,9 +8212,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitInfo:
-    sender: {fileID: 0}
-    EnemyHit: {fileID: 0}
+    IsEnemy: 0
+    GameObjectHit: {fileID: 0}
     Damage: 0
+    collisionPoint: {x: 0, y: 0, z: 0}
+    collisionNormal: {x: 0, y: 0, z: 0}
     PlayerAttackEffects: {fileID: 0}
   ToInstantiate: {fileID: 0}
   ShootEvent:
@@ -9187,24 +9232,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31b10d581b456142836926a13a2ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitInfo:
-    sender: {fileID: 0}
-    EnemyHit: {fileID: 0}
-    Damage: 0
-    PlayerAttackEffects: {fileID: 0}
   Mask:
     serializedVersion: 2
     m_Bits: 0
   IsAutomatic: 0
   FireRate: 1
+  Multishot: 1
+  Damage: 0
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
-  isReloading: 0
+  cam: {fileID: 0}
   anim: {fileID: 0}
   Magazine: 0
   WS: {fileID: 0}
   ToInstantiate: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerAttackEffects: {fileID: 0}
+  InputCooker: {fileID: 0}
+  shotgun: 0
+  range: 50
+  inaccuracyDistance: 5
 --- !u!33 &2814020978133531634
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10782,24 +10830,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31b10d581b456142836926a13a2ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitInfo:
-    sender: {fileID: 0}
-    EnemyHit: {fileID: 0}
-    Damage: 0
-    PlayerAttackEffects: {fileID: 0}
   Mask:
     serializedVersion: 2
     m_Bits: 0
   IsAutomatic: 0
   FireRate: 1
+  Multishot: 1
+  Damage: 0
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
-  isReloading: 0
+  cam: {fileID: 0}
   anim: {fileID: 0}
   Magazine: 0
   WS: {fileID: 0}
   ToInstantiate: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerAttackEffects: {fileID: 0}
+  InputCooker: {fileID: 0}
+  shotgun: 0
+  range: 50
+  inaccuracyDistance: 5
 --- !u!23 &4554987831539088011
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11096,24 +11147,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31b10d581b456142836926a13a2ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitInfo:
-    sender: {fileID: 0}
-    EnemyHit: {fileID: 0}
-    Damage: 0
-    PlayerAttackEffects: {fileID: 0}
   Mask:
     serializedVersion: 2
     m_Bits: 0
   IsAutomatic: 0
   FireRate: 1
+  Multishot: 1
+  Damage: 0
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
-  isReloading: 0
+  cam: {fileID: 0}
   anim: {fileID: 0}
   Magazine: 0
   WS: {fileID: 0}
   ToInstantiate: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerAttackEffects: {fileID: 0}
+  InputCooker: {fileID: 0}
+  shotgun: 0
+  range: 50
+  inaccuracyDistance: 5
 --- !u!223 &4817291584517112166
 Canvas:
   m_ObjectHideFlags: 0
@@ -12748,9 +12802,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitInfo:
-    sender: {fileID: 0}
-    EnemyHit: {fileID: 0}
+    IsEnemy: 0
+    GameObjectHit: {fileID: 0}
     Damage: 0
+    collisionPoint: {x: 0, y: 0, z: 0}
+    collisionNormal: {x: 0, y: 0, z: 0}
     PlayerAttackEffects: {fileID: 0}
   ToInstantiate: {fileID: 0}
   ShootEvent:

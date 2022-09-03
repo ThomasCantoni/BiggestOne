@@ -34,17 +34,19 @@ public class SimpleTimer
     {
         t.Interval = TimeInMilliseconds;
     }
-    public void StopTimer()
+    public void StopTimer(bool invoke)
     {
-        TimerCompleteEvent?.Invoke();
+        if(invoke)
+            TimerCompleteEvent?.Invoke();
         HasCompleted = true;
         t.Dispose();
     }
+    
     private void stopTimer(object sender,ElapsedEventArgs a)
     {
         //yield return new WaitForSeconds(Time);
         //Debug.Log("Timer Stopped");
-        StopTimer();
+        StopTimer(true);
         
     }
 }

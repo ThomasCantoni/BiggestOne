@@ -9,8 +9,8 @@ public class BreakMeshPrefragmented : MonoBehaviour
     public float ExplosionForce, Radius;
     public float FadeOutTime = 3f;
     public bool FragmentsHaveRigidbody = false;
-    private IHittableInformation Info;
-    public void DestroyMesh(IHittableInformation info)
+    private HitInfo Info;
+    public void DestroyMesh(HitInfo info)
     {
         this.Info = info;
         if (Parent == null)
@@ -35,7 +35,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
         for (int i = 0; i < Parent.childCount; i++)
         {
             Rigidbody rb = Parent.GetChild(i).gameObject.AddComponent<Rigidbody>();
-            rb.AddExplosionForce(ExplosionForce, Info.raycastInfo.point, Radius);
+            rb.AddExplosionForce(ExplosionForce, Info.collisionPoint, Radius);
         }
 
 
@@ -48,7 +48,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
         {
             Rigidbody rb = Parent.GetChild(i).gameObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
-            rb.AddExplosionForce(ExplosionForce, Info.raycastInfo.point, Radius);
+            rb.AddExplosionForce(ExplosionForce, Info.collisionPoint, Radius);
         }
 
 

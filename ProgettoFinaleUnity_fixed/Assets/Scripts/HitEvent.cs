@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public class HitEvent : MonoBehaviour, IHittable
 {
-    public UnityEvent<IHittableInformation> OnHitEvent;
-    public void OnHit(IHittableInformation hitInfo)
+    public UnityEvent<HitInfo> OnHitEvent;
+    public void OnHit(HitInfo hitInfo)
     {
         OnHitEvent.Invoke(hitInfo);
     }
