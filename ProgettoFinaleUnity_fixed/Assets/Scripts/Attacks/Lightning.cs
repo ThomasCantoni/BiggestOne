@@ -10,12 +10,12 @@ public class Lightning : ChainableAttack
     public float Damage;
     public LayerMask LayersToHit;
 
-    private IHittableInformation playerInfo;
-    public override void Apply(IHittableInformation info)
+    private HitInfo playerInfo;
+    public override void Apply(HitInfo info)
     {
         playerInfo = info;
-       Collider[] thingsHit =  Physics.OverlapSphere(info.raycastInfo.point,Radius,LayersToHit);
-       GameObject firstEnemyHit = info.raycastInfo.collider.gameObject;
+       Collider[] thingsHit =  Physics.OverlapSphere(info.collisionPoint,Radius,LayersToHit);
+        GameObject firstEnemyHit = info.GameObjectHit;
        
        List<GameObject> thingsActuallyHittable = new List<GameObject>();
         int firstEnemyHitIndex = 0;
@@ -54,9 +54,9 @@ public class Lightning : ChainableAttack
     }
     public void CreateLightning(GameObject one,GameObject two)
     {
-        IHittableInformation lightningHit = new IHittableInformation();
+        HitInfo lightningHit = new HitInfo();
         lightningHit.Damage = Damage;
-        lightningHit.sender = playerInfo.sender;
+        //lightningHit.sender = playerInfo.sender;
         
         Debug.DrawLine(one.transform.position, two.transform.position,Color.blue,3);
         Debug.Log("Lightning!");

@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlamesEnemyComponent : MonoBehaviour
 {
     public float InitialDamage, BurnDamage, Frequency, DurationMs;
-    public IHittableInformation flamesHit;
+    public HitInfo flamesHit;
     private Repeater Repeater;
     private SimpleTimer Timer;
     private IHittable host;
@@ -16,9 +16,13 @@ public class FlamesEnemyComponent : MonoBehaviour
         Timer = new SimpleTimer(DurationMs);
         Repeater = new Repeater();
         Repeater.Frequency = Frequency;
+        //Timer.TimerCompleteEvent += () => Debug.LogError("FLAME TIMER ENDED");
         Timer.TimerCompleteEvent += () => StopEffect();
+
         Repeater.RepeaterTickEvent += ApplyDamage;
-        Repeater.RepeaterTickEvent += () => Debug.Log("REPEATER TICKING");
+        
+
+        //Repeater.RepeaterTickEvent += () => Debug.Log("FLAMES REPEATER TICKING");
         host = GetComponent<IHittable>();
 
 
@@ -28,7 +32,8 @@ public class FlamesEnemyComponent : MonoBehaviour
         host.OnHit(flamesHit);
         // set burn damage
         flamesHit.Damage = BurnDamage;
-        Timer.TimerStartEvent += () => Debug.Log("TIMER STARTED");
+        //Timer.TimerStartEvent += () => Debug.Log("FLAMES TIMER STARTED");
+        
         Timer.StartTimer();
         Repeater.StartRepeater();
     }
@@ -39,8 +44,11 @@ public class FlamesEnemyComponent : MonoBehaviour
     }
     private void StopEffect()
     {
+        //Timer.StopTimer(false);
         Repeater.StopRepeater();
-        Destroy(this);
+        Debug.Log("FLAMES EFFECT STOPPED");
+        
+        Destroy(this.gameObject);
     }
 
 }

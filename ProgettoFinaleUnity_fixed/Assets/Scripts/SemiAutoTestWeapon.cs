@@ -28,18 +28,18 @@ public class SemiAutoTestWeapon : GenericGun
             {
                 if (currentShootCD <= 0f)
                 {
-                    ShootRay();
+                    Shoot();
                 }
             }
             else
             {
-                if (isReloading == false)
+                if (IsReloading == false)
                 {
                     anim.SetTrigger("Shooting");
                 }
             }
         }
-        if (isReloading)
+        if (IsReloading)
             return;
 
         if (currentAmmo <= 0)
@@ -47,16 +47,17 @@ public class SemiAutoTestWeapon : GenericGun
             StartReload();
             return;
         }
+        shotgun = false;
     }
 
     public override void Shoot()
     {
-        if (!hasShotOnce && CanShoot && !isReloading)
+        if (!hasShotOnce)
         {
             // Debug.Log("BOOM");
-            ShootRay();
+            base.Shoot();
             hasShotOnce = true;
-            currentShootCD = shootCD;
+            
             anim.SetTrigger("Shooting");
         }
     }

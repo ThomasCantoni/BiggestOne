@@ -116,7 +116,7 @@ public class Repeater
         IsActive = false;
         //t.AutoReset = false;
         t.Dispose();
-        
+         
     }
     
 }

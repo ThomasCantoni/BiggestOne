@@ -27,7 +27,7 @@ public class HealthBarEnemy : MonoBehaviour
             HP_Slider.GetComponent<Slider>().value = hp_Value;
         }
     }
-    public void DetuctHealth(IHittableInformation info)
+    public void DetuctHealth(HitInfo info)
     {
         HP_Value -= info.Damage;
         if (hp_Value <= 0)

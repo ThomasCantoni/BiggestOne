@@ -83,10 +83,11 @@ public class FirstPersonController : MonoBehaviour
         JumpTimer = new SimpleTimer(_jumpCD);
         JumpTimer.TimerStartEvent    += () => CanJump = false;
         JumpTimer.TimerCompleteEvent += () => CanJump = true;
+        JumpTimer.TimerCompleteEvent += () => Debug.LogError("JUMP TIMER COMPLETED");
 
         //GroundcheckTimer = new SimpleTimer(_fallTimeOut);
         //GroundcheckTimer.TimerStartEvent += () => CanGroundCheck = true;
-       // GroundcheckTimer.TimerCompleteEvent += () => CanGroundCheck = true;
+        // GroundcheckTimer.TimerCompleteEvent += () => CanGroundCheck = true;
     }
     private void SlopeDetector()
     {

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ChainableAttack : ScriptableObject
 {
-    public abstract void Apply(IHittableInformation info);
+    public abstract void Apply(HitInfo info);
 }

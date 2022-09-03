@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyDeathExplosionComponent : MonoBehaviour
 {
     public float Radius,Damage;
-    public IHittableInformation hit;
+    public HitInfo hit;
     public LayerMask LayersToHit;
     HealthBarEnemy HBE;
     void Start()

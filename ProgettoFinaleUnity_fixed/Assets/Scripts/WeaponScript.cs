@@ -8,7 +8,7 @@ using Cinemachine;
 public class WeaponScript : MonoBehaviour
 {
     [SerializeField]
-    public IHittableInformation HitInfo;
+    public HitInfo HitInfo;
     InputCooker InputCooker;
     public GameObject ToInstantiate;
     public UnityEvent ShootEvent;
@@ -42,10 +42,10 @@ public class WeaponScript : MonoBehaviour
         InputCooker = transform.GetComponentInParent<InputCooker>();
         InputCooker.Controls.Player.Shoot.performed += OnShoot;
         InputCooker.PlayerPressedShoot += Shoot;
-        if (HitInfo.sender == null)
-        {
-            HitInfo.sender = this.gameObject;
-        }
+        //if (HitInfo.sender == null)
+        //{
+        //    HitInfo.sender = this.gameObject;
+        //}
     }
 
     public virtual void Shoot()
@@ -85,7 +85,7 @@ public class WeaponScript : MonoBehaviour
 
             if (info.collider.GetComponent<IHittable>() != null)
             {
-                HitInfo.raycastInfo = info;
+                HitInfo.collisionPoint = info.point;
                 info.collider.GetComponent<HitEvent>().OnHit(HitInfo);
             }
         }

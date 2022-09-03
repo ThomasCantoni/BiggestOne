@@ -143,7 +143,7 @@ public class InputCooker : MonoBehaviour
         IsShooting = true;
         if (PlayerPressedShoot != null)
         {
-            PlayerPressedShoot.Invoke();
+            PlayerPressedShoot?.Invoke();
             //Debug.Log("Player started shooting");
         }
     }
@@ -152,7 +152,7 @@ public class InputCooker : MonoBehaviour
         IsShooting = false;
         if (PlayerReleasedShoot != null)
         {
-            PlayerReleasedShoot.Invoke();
+            PlayerReleasedShoot?.Invoke();
             //Debug.Log("Player stopped shooting");
         }
     }
