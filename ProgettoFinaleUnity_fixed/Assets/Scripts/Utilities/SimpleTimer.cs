@@ -36,10 +36,10 @@ public class SimpleTimer
     }
     public void StopTimer(bool invoke)
     {
+        HasCompleted = true;
         if(invoke)
             TimerCompleteEvent?.Invoke();
-        HasCompleted = true;
-        t.Dispose();
+        t.Close();
     }
     
     private void stopTimer(object sender,ElapsedEventArgs a)

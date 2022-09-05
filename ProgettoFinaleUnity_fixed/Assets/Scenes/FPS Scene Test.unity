@@ -4611,6 +4611,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: IsAutomatic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: inaccuracyDistance
       value: 0.5
       objectReference: {fileID: 0}
@@ -4633,9 +4637,13 @@ PrefabInstance:
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: InspectorList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
+      objectReference: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: InspectorList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
+    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: InspectorList.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
     - target: {fileID: 60439749082204245, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -7740,12 +7748,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitInfo:
-    IsEnemy: 0
+    IsChainableAttack: 0
     GameObjectHit: {fileID: 0}
-    Damage: 0
     collisionPoint: {x: 0, y: 0, z: 0}
     collisionNormal: {x: 0, y: 0, z: 0}
-    PlayerAttackEffects: {fileID: 0}
+    Damage: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:
@@ -8212,12 +8219,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitInfo:
-    IsEnemy: 0
+    IsChainableAttack: 0
     GameObjectHit: {fileID: 0}
-    Damage: 0
     collisionPoint: {x: 0, y: 0, z: 0}
     collisionNormal: {x: 0, y: 0, z: 0}
-    PlayerAttackEffects: {fileID: 0}
+    Damage: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:
@@ -9253,6 +9259,7 @@ MonoBehaviour:
   shotgun: 0
   range: 50
   inaccuracyDistance: 5
+  isReloading: 0
 --- !u!33 &2814020978133531634
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10851,6 +10858,7 @@ MonoBehaviour:
   shotgun: 0
   range: 50
   inaccuracyDistance: 5
+  isReloading: 0
 --- !u!23 &4554987831539088011
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11168,6 +11176,7 @@ MonoBehaviour:
   shotgun: 0
   range: 50
   inaccuracyDistance: 5
+  isReloading: 0
 --- !u!223 &4817291584517112166
 Canvas:
   m_ObjectHideFlags: 0
@@ -12802,12 +12811,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitInfo:
-    IsEnemy: 0
+    IsChainableAttack: 0
     GameObjectHit: {fileID: 0}
-    Damage: 0
     collisionPoint: {x: 0, y: 0, z: 0}
     collisionNormal: {x: 0, y: 0, z: 0}
-    PlayerAttackEffects: {fileID: 0}
+    Damage: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:

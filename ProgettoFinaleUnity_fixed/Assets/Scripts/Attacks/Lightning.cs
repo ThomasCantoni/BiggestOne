@@ -10,12 +10,12 @@ public class Lightning : ChainableAttack
     public float Damage;
     public LayerMask LayersToHit;
 
-    private HitInfo playerInfo;
-    public override void Apply(HitInfo info)
+   
+    public override void Apply(GameObject recepient)
     {
-        playerInfo = info;
-       Collider[] thingsHit =  Physics.OverlapSphere(info.collisionPoint,Radius,LayersToHit);
-        GameObject firstEnemyHit = info.GameObjectHit;
+        
+       Collider[] thingsHit =  Physics.OverlapSphere(recepient.transform.position,Radius,LayersToHit);
+        GameObject firstEnemyHit = recepient;
        
        List<GameObject> thingsActuallyHittable = new List<GameObject>();
         int firstEnemyHitIndex = 0;

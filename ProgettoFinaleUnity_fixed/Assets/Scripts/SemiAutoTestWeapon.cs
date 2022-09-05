@@ -33,33 +33,31 @@ public class SemiAutoTestWeapon : GenericGun
             }
             else
             {
-                if (IsReloading == false)
+                if (IsReloading != false)
                 {
                     anim.SetTrigger("Shooting");
                 }
             }
         }
-        if (IsReloading)
-            return;
+        //if (IsReloading)
+        //    return;
 
-        if (currentAmmo <= 0)
-        {
-            StartReload();
-            return;
-        }
-        shotgun = false;
+        //if (currentAmmo <= 0)
+        //{
+        //    StartReload();
+        //    return;
+        //}
+        //shotgun = false;
     }
 
     public override void Shoot()
     {
-        if (!hasShotOnce)
-        {
-            // Debug.Log("BOOM");
-            base.Shoot();
-            hasShotOnce = true;
+       
+        base.Shoot();
+            Debug.Log("BOOM");
+           
             
-            anim.SetTrigger("Shooting");
-        }
+        
     }
 
 }

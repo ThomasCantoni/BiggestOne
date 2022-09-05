@@ -4,5 +4,12 @@ using UnityEngine;
 
 public abstract class ChainableAttack : ScriptableObject
 {
-    public abstract void Apply(HitInfo info);
+   
+    public List<GameObject> EnemiesHit;
+    public abstract void Apply(GameObject recepient);
+    
+}
+public interface IStackableChainAttack
+{
+    public abstract void Stack(MonoBehaviour toStack);
 }
