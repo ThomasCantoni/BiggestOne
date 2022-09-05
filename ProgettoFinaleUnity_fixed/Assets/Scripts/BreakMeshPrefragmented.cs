@@ -37,8 +37,6 @@ public class BreakMeshPrefragmented : MonoBehaviour
             Rigidbody rb = Parent.GetChild(i).gameObject.AddComponent<Rigidbody>();
             rb.AddExplosionForce(ExplosionForce, Info.collisionPoint, Radius);
         }
-
-
         Destroy(Parent.gameObject, FadeOutTime);
     }
     private void RigidBodyFragment()

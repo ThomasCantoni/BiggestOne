@@ -359,9 +359,9 @@ Transform:
   m_Children:
   - {fileID: 656841158}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &286877848
+--- !u!1 &316101258
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,167 +369,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 286877854}
-  - component: {fileID: 286877853}
-  - component: {fileID: 286877852}
-  - component: {fileID: 286877849}
-  - component: {fileID: 286877851}
-  - component: {fileID: 286877850}
+  - component: {fileID: 316101259}
   m_Layer: 0
-  m_Name: Cube (2)
+  m_Name: ParkourTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &286877849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286877848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 286877850}
-        m_TargetAssemblyTypeName: BreakWall, Scripts
-        m_MethodName: DestroyMesh
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &286877850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286877848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02bf4f42499b1ea469472295a1afa3d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CutCascades: 5
-  ExplodeForce: 20
-  ParentOfPieces: {fileID: 1859762179}
---- !u!64 &286877851
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286877848}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 3bd44296ed599724a8fe0d5600c61de7, type: 3}
---- !u!23 &286877852
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286877848}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: aa21bc8da8405dd4a82fb23c3779d08e, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &286877853
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286877848}
-  m_Mesh: {fileID: 4300002, guid: 3bd44296ed599724a8fe0d5600c61de7, type: 3}
---- !u!4 &286877854
+--- !u!4 &316101259
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286877848}
-  m_LocalRotation: {x: -0, y: 0.042262193, z: -0, w: 0.9991066}
-  m_LocalPosition: {x: 5.78, y: -0.06, z: -22.48}
-  m_LocalScale: {x: 1.7126, y: 1.7126, z: 1.7126}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 4.844, z: 0}
---- !u!1 &339666851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 339666852}
-  m_Layer: 0
-  m_Name: Parent (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &339666852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 339666851}
+  m_GameObject: {fileID: 316101258}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 891678728}
+  - {fileID: 2115840161}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &340054961
 Mesh:
@@ -1242,7 +1104,6 @@ GameObject:
   m_Component:
   - component: {fileID: 476115470}
   - component: {fileID: 476115469}
-  - component: {fileID: 476115468}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1250,25 +1111,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &476115468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 476115467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
 --- !u!114 &476115469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,7 +1138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &586003335
 PrefabInstance:
@@ -1307,7 +1149,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2693,10 +2535,10 @@ Transform:
   m_GameObject: {fileID: 891678724}
   m_LocalRotation: {x: -0, y: 0.77492714, z: -0, w: 0.6320506}
   m_LocalPosition: {x: 38.64, y: 4.35, z: -2.24}
-  m_LocalScale: {x: 26.398054, y: 7.9621096, z: 0.53380823}
+  m_LocalScale: {x: 26.398056, y: 7.9621096, z: 0.5338083}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_Father: {fileID: 316101259}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 101.597, z: 0}
 --- !u!1001 &910048916
 PrefabInstance:
@@ -3314,7 +3156,7 @@ Transform:
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.099999994}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1083509323
 GameObject:
@@ -3460,36 +3302,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1289608056899508456, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
   m_PrefabInstance: {fileID: 1724993791}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1371374961
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1371374962}
-  m_Layer: 0
-  m_Name: Parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1371374962
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371374961}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456313715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3616,9 +3428,8 @@ GameObject:
   - component: {fileID: 1466761186}
   - component: {fileID: 1466761185}
   - component: {fileID: 1466761184}
-  - component: {fileID: 1466761183}
-  - component: {fileID: 1466761182}
   - component: {fileID: 1466761188}
+  - component: {fileID: 1466761182}
   m_Layer: 7
   m_Name: Cylinder (2)
   m_TagString: Untagged
@@ -3635,36 +3446,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466761181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102481cbd17027c48b9ecad57c8d33e6, type: 3}
+  m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1466761183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1466761181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1466761182}
-        m_TargetAssemblyTypeName: HealthBarEnemy, Scripts
-        m_MethodName: DetuctHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  speed: 0
 --- !u!136 &1466761184
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3741,7 +3526,7 @@ Transform:
   m_Children:
   - {fileID: 910048917}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1466761188
 MonoBehaviour:
@@ -3757,7 +3542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  HBE: {fileID: 0}
+  EC: {fileID: 0}
 --- !u!1001 &1472072341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4602,54 +4387,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 2115316006}
-    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Damage
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: IsAutomatic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: inaccuracyDistance
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 2115316006}
-    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Damage
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Multishot
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: InspectorList.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: InspectorList.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
-    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: InspectorList.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
-    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: InspectorList.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
-    - target: {fileID: 60439749082204245, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11.5
-      objectReference: {fileID: 0}
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4697,22 +4434,6 @@ PrefabInstance:
     - target: {fileID: 117167277520124026, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_Name
       value: PlayerWrapped
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167277520124026, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 11.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: JumpCooldown
-      value: 150
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795054, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 10.88
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -4991,9 +4712,8 @@ GameObject:
   - component: {fileID: 1733491076}
   - component: {fileID: 1733491075}
   - component: {fileID: 1733491074}
-  - component: {fileID: 1733491073}
-  - component: {fileID: 1733491078}
   - component: {fileID: 1733491079}
+  - component: {fileID: 1733491073}
   m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
@@ -5010,24 +4730,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1733491072}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
+  m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1733491078}
-        m_TargetAssemblyTypeName: HealthBarEnemy, Scripts
-        m_MethodName: DetuctHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  speed: 0
 --- !u!136 &1733491074
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5104,20 +4810,8 @@ Transform:
   m_Children:
   - {fileID: 604339596}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1733491078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1733491072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102481cbd17027c48b9ecad57c8d33e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1733491079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5132,7 +4826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  HBE: {fileID: 0}
+  EC: {fileID: 0}
 --- !u!1 &1789909306
 GameObject:
   m_ObjectHideFlags: 0
@@ -5227,7 +4921,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1806966250
 GameObject:
@@ -5241,9 +4935,8 @@ GameObject:
   - component: {fileID: 1806966255}
   - component: {fileID: 1806966254}
   - component: {fileID: 1806966253}
-  - component: {fileID: 1806966252}
-  - component: {fileID: 1806966251}
   - component: {fileID: 1806966257}
+  - component: {fileID: 1806966251}
   m_Layer: 7
   m_Name: Cylinder (1)
   m_TagString: Untagged
@@ -5260,36 +4953,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1806966250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102481cbd17027c48b9ecad57c8d33e6, type: 3}
+  m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1806966252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1806966250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnHitEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1806966251}
-        m_TargetAssemblyTypeName: HealthBarEnemy, Scripts
-        m_MethodName: DetuctHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  speed: 0
 --- !u!136 &1806966253
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5366,7 +5033,7 @@ Transform:
   m_Children:
   - {fileID: 1472072342}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1806966257
 MonoBehaviour:
@@ -5382,7 +5049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  HBE: {fileID: 0}
+  EC: {fileID: 0}
 --- !u!114 &1818788929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5573,36 +5240,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1859762178
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1859762179}
-  m_Layer: 0
-  m_Name: Parent (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1859762179
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1859762178}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949664286
 GameObject:
   m_ObjectHideFlags: 0
@@ -5779,7 +5416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CutCascades: 5
   ExplodeForce: 30
-  ParentOfPieces: {fileID: 339666852}
+  ParentOfPieces: {fileID: 0}
 --- !u!64 &1956733672
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5855,7 +5492,7 @@ Transform:
   m_LocalScale: {x: 0.6198899, y: 0.6198899, z: 0.6198899}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 88.596, z: 0}
 --- !u!43 &2019004781
 Mesh:
@@ -6052,7 +5689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22414968, guid: 509531c7e2dd4d841b3e5577ec701691, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 22414968, guid: 509531c7e2dd4d841b3e5577ec701691, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6146,11 +5783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a714202eb93e3b45befabe13d4a5640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2115316006 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-  m_PrefabInstance: {fileID: 1687120077}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2115840157
 GameObject:
   m_ObjectHideFlags: 0
@@ -6241,10 +5873,10 @@ Transform:
   m_GameObject: {fileID: 2115840157}
   m_LocalRotation: {x: -0, y: 0.77492714, z: -0, w: 0.6320506}
   m_LocalPosition: {x: 29.67, y: 4.35, z: -0.39}
-  m_LocalScale: {x: 26.398054, y: 7.9621096, z: 0.53380823}
+  m_LocalScale: {x: 26.398056, y: 7.9621096, z: 0.5338083}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_Father: {fileID: 316101259}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 101.597, z: 0}
 --- !u!1 &2116611554
 GameObject:
@@ -6339,7 +5971,7 @@ RectTransform:
   m_Children:
   - {fileID: 1547039919}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -6704,7 +6336,7 @@ Transform:
   - {fileID: 60439749612105584}
   - {fileID: 7578008435571334795}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &117167277996531551
 GameObject:
@@ -6800,6 +6432,7 @@ GameObject:
   - component: {fileID: 3981925014246536647}
   - component: {fileID: 3510129960109633317}
   - component: {fileID: 195073483932815630}
+  - component: {fileID: 195073483932815631}
   m_Layer: 10
   m_Name: Alien_Broken.058
   m_TagString: Untagged
@@ -6821,6 +6454,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2346655609049340, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &195073483932815631
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195073483932815629}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &336752674400542931
 Transform:
   m_ObjectHideFlags: 0
@@ -6967,6 +6616,7 @@ GameObject:
   - component: {fileID: 6535062283525027310}
   - component: {fileID: 3154102934146822216}
   - component: {fileID: 527072342313174572}
+  - component: {fileID: 527072342313174573}
   m_Layer: 10
   m_Name: Alien_Broken.013
   m_TagString: Untagged
@@ -6988,6 +6638,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6159438677040216377, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &527072342313174573
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527072342313174571}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &573198813550468377
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7057,6 +6723,7 @@ GameObject:
   - component: {fileID: 8295009279193974001}
   - component: {fileID: 3342498277794771886}
   - component: {fileID: 639323066975684523}
+  - component: {fileID: 639323066975684524}
   m_Layer: 10
   m_Name: Alien_Broken.052
   m_TagString: Untagged
@@ -7078,6 +6745,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4096455272791189710, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &639323066975684524
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639323066975684522}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &672546707508812023
 GameObject:
   m_ObjectHideFlags: 0
@@ -7090,6 +6773,7 @@ GameObject:
   - component: {fileID: 4292969476148985924}
   - component: {fileID: 6384122104610452189}
   - component: {fileID: 672546707508812024}
+  - component: {fileID: 672546707508812025}
   m_Layer: 10
   m_Name: Alien_Broken.008
   m_TagString: Untagged
@@ -7111,6 +6795,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4787097774986625524, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &672546707508812025
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672546707508812023}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &702464866479651396
 Transform:
   m_ObjectHideFlags: 0
@@ -7137,6 +6837,7 @@ GameObject:
   - component: {fileID: 4650588566289542959}
   - component: {fileID: 4045787019697982736}
   - component: {fileID: 756403174275561672}
+  - component: {fileID: 756403174275561673}
   m_Layer: 10
   m_Name: Alien_Broken.027
   m_TagString: Untagged
@@ -7158,6 +6859,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8382919247823205946, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &756403174275561673
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 756403174275561671}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &794538069045569250
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7178,6 +6895,7 @@ GameObject:
   - component: {fileID: 609279738555345839}
   - component: {fileID: 2575710599760867896}
   - component: {fileID: 834737628216113271}
+  - component: {fileID: 834737628216113272}
   m_Layer: 10
   m_Name: Alien_Broken.048
   m_TagString: Untagged
@@ -7199,6 +6917,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6933369305495602692, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &834737628216113272
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834737628216113270}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &904300458303839949
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -7219,6 +6953,7 @@ GameObject:
   - component: {fileID: 3331848254990392697}
   - component: {fileID: 5509752399885858121}
   - component: {fileID: 911456222106155861}
+  - component: {fileID: 911456222106155862}
   m_Layer: 10
   m_Name: Alien_Broken.024
   m_TagString: Untagged
@@ -7240,6 +6975,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2087687493128297747, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &911456222106155862
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 911456222106155860}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &934283192432270685
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7293,6 +7044,7 @@ GameObject:
   - component: {fileID: 6224435243877733202}
   - component: {fileID: 3904052749013544578}
   - component: {fileID: 1004388162397849470}
+  - component: {fileID: 1004388162397849471}
   m_Layer: 10
   m_Name: Alien_Broken.035
   m_TagString: Untagged
@@ -7314,6 +7066,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4592590986652922816, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1004388162397849471
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004388162397849469}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &1099372144753535808
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7367,6 +7135,7 @@ GameObject:
   - component: {fileID: 6819278325246676456}
   - component: {fileID: 9092161749537158925}
   - component: {fileID: 1106978467409030715}
+  - component: {fileID: 1106978467409030716}
   m_Layer: 10
   m_Name: Alien_Broken.069
   m_TagString: Untagged
@@ -7388,6 +7157,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6227623571279621598, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1106978467409030716
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106978467409030714}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1111583048976987917
 GameObject:
   m_ObjectHideFlags: 0
@@ -7400,6 +7185,7 @@ GameObject:
   - component: {fileID: 2814020978133531634}
   - component: {fileID: 7822226006162097533}
   - component: {fileID: 1111583048976987918}
+  - component: {fileID: 1111583048976987919}
   m_Layer: 10
   m_Name: Alien_Broken.044
   m_TagString: Untagged
@@ -7421,6 +7207,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6757199334246092852, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1111583048976987919
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111583048976987917}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &1135732079884100570
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7537,6 +7339,7 @@ GameObject:
   - component: {fileID: 1197370336935281286}
   - component: {fileID: 8692722161381809989}
   - component: {fileID: 1202197226243128112}
+  - component: {fileID: 1202197226243128113}
   m_Layer: 10
   m_Name: Alien_Broken.034
   m_TagString: Untagged
@@ -7558,6 +7361,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6058643121033386965, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1202197226243128113
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202197226243128111}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &1207544976480629509
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7804,6 +7623,7 @@ GameObject:
   - component: {fileID: 8638625847074078145}
   - component: {fileID: 3604511105149874483}
   - component: {fileID: 1524577679847990708}
+  - component: {fileID: 1524577679847990709}
   m_Layer: 10
   m_Name: Alien_Broken.014
   m_TagString: Untagged
@@ -7825,6 +7645,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3321837042577622466, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1524577679847990709
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1524577679847990707}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1527902874030918669
 GameObject:
   m_ObjectHideFlags: 0
@@ -7837,6 +7673,7 @@ GameObject:
   - component: {fileID: 1724615550154231726}
   - component: {fileID: 600430006854342182}
   - component: {fileID: 1527902874030918670}
+  - component: {fileID: 1527902874030918671}
   m_Layer: 10
   m_Name: Alien_Broken.060
   m_TagString: Untagged
@@ -7858,6 +7695,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1887320232812203042, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1527902874030918671
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527902874030918669}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &1561634230228650180
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7911,6 +7764,7 @@ GameObject:
   - component: {fileID: 5633381157993524546}
   - component: {fileID: 3493774799515051928}
   - component: {fileID: 1575241690109465318}
+  - component: {fileID: 1575241690109465319}
   m_Layer: 10
   m_Name: Alien_Broken.002
   m_TagString: Untagged
@@ -7932,6 +7786,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3373022351186155199, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1575241690109465319
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575241690109465317}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &1592602070406936402
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7993,6 +7863,7 @@ GameObject:
   - component: {fileID: 6280861364608105965}
   - component: {fileID: 2495835024196585757}
   - component: {fileID: 1604383113140721152}
+  - component: {fileID: 1604383113140721153}
   m_Layer: 10
   m_Name: Alien_Broken.055
   m_TagString: Untagged
@@ -8014,6 +7885,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1176859620423269816, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &1604383113140721153
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604383113140721151}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &1607811218820743951
 Transform:
   m_ObjectHideFlags: 0
@@ -8267,6 +8154,7 @@ GameObject:
   - component: {fileID: 2181773242699859772}
   - component: {fileID: 4999862824252729544}
   - component: {fileID: 2033288952400760207}
+  - component: {fileID: 2033288952400760208}
   m_Layer: 10
   m_Name: Alien_Broken.072
   m_TagString: Untagged
@@ -8288,6 +8176,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6003140842682463380, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2033288952400760208
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033288952400760206}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &2054204887500620234
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8437,6 +8341,7 @@ GameObject:
   - component: {fileID: 5526119742445971362}
   - component: {fileID: 405435775186876777}
   - component: {fileID: 2213111524173079013}
+  - component: {fileID: 2213111524173079014}
   m_Layer: 10
   m_Name: Alien_Broken.009
   m_TagString: Untagged
@@ -8458,6 +8363,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3650623734171560294, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2213111524173079014
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2213111524173079012}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2271999614774040631
 GameObject:
   m_ObjectHideFlags: 0
@@ -8470,6 +8391,7 @@ GameObject:
   - component: {fileID: 6771667931539282274}
   - component: {fileID: 6889970634886001355}
   - component: {fileID: 2271999614774040632}
+  - component: {fileID: 2271999614774040633}
   m_Layer: 10
   m_Name: Alien_Broken.050
   m_TagString: Untagged
@@ -8491,6 +8413,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8424747972979045641, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2271999614774040633
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2271999614774040631}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &2278792377327594549
 Transform:
   m_ObjectHideFlags: 0
@@ -8574,6 +8512,7 @@ GameObject:
   - component: {fileID: 4202194766484290322}
   - component: {fileID: 5237519174536563931}
   - component: {fileID: 2320431336994582706}
+  - component: {fileID: 2320431336994582707}
   m_Layer: 10
   m_Name: Alien_Broken.010
   m_TagString: Untagged
@@ -8595,6 +8534,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6686747874133009547, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2320431336994582707
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2320431336994582705}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2374524831713792651
 GameObject:
   m_ObjectHideFlags: 0
@@ -8607,6 +8562,7 @@ GameObject:
   - component: {fileID: 7910178037686466633}
   - component: {fileID: 3092625410987582553}
   - component: {fileID: 2374524831713792652}
+  - component: {fileID: 2374524831713792653}
   m_Layer: 10
   m_Name: Alien_Broken.007
   m_TagString: Untagged
@@ -8628,6 +8584,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1938020739526933692, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2374524831713792653
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374524831713792651}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!224 &2383577273972207234
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8835,6 +8807,7 @@ GameObject:
   - component: {fileID: 8246258822626124539}
   - component: {fileID: 3283445230061453784}
   - component: {fileID: 2538502474565254607}
+  - component: {fileID: 2538502474565254608}
   m_Layer: 10
   m_Name: Alien_Broken.056
   m_TagString: Untagged
@@ -8856,6 +8829,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2312317126384228495, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2538502474565254608
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2538502474565254606}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &2543213746192317461
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8939,6 +8928,7 @@ GameObject:
   - component: {fileID: 2499354923869015429}
   - component: {fileID: 1709969300177213694}
   - component: {fileID: 2584679163720230926}
+  - component: {fileID: 2584679163720230927}
   m_Layer: 10
   m_Name: Alien_Broken.039
   m_TagString: Untagged
@@ -8960,6 +8950,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -933863504613499726, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2584679163720230927
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2584679163720230925}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &2591379151445863787
 Transform:
   m_ObjectHideFlags: 0
@@ -9280,6 +9286,7 @@ GameObject:
   - component: {fileID: 137796227171242646}
   - component: {fileID: 5580245343023415292}
   - component: {fileID: 2858672215667927053}
+  - component: {fileID: 2858672215667927054}
   m_Layer: 10
   m_Name: Alien_Broken.045
   m_TagString: Untagged
@@ -9301,6 +9308,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8535533292196587513, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2858672215667927054
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2858672215667927052}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2953397275468169083
 GameObject:
   m_ObjectHideFlags: 0
@@ -9313,6 +9336,7 @@ GameObject:
   - component: {fileID: 1595775234918288305}
   - component: {fileID: 8848293757671279600}
   - component: {fileID: 2953397275468169084}
+  - component: {fileID: 2953397275468169085}
   m_Layer: 10
   m_Name: Alien_Broken.011
   m_TagString: Untagged
@@ -9334,6 +9358,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7542485489542563384, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &2953397275468169085
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2953397275468169083}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &2963410838997796369
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9354,6 +9394,7 @@ GameObject:
   - component: {fileID: 387599542297712201}
   - component: {fileID: 7549408513746037541}
   - component: {fileID: 3027698013541274126}
+  - component: {fileID: 3027698013541274127}
   m_Layer: 10
   m_Name: Alien_Broken.001
   m_TagString: Untagged
@@ -9375,6 +9416,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2744681504772059102, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3027698013541274127
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3027698013541274125}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &3078966369045520119
 GameObject:
   m_ObjectHideFlags: 0
@@ -9387,6 +9444,7 @@ GameObject:
   - component: {fileID: 8864411606825665609}
   - component: {fileID: 6071082096506353216}
   - component: {fileID: 3078966369045520120}
+  - component: {fileID: 3078966369045520121}
   m_Layer: 10
   m_Name: Alien_Broken.070
   m_TagString: Untagged
@@ -9408,6 +9466,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4600693989991940176, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3078966369045520121
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078966369045520119}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &3092625410987582553
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9516,6 +9590,7 @@ GameObject:
   - component: {fileID: 1286483319314003677}
   - component: {fileID: 2752266007890860843}
   - component: {fileID: 3216191072281113367}
+  - component: {fileID: 3216191072281113368}
   m_Layer: 10
   m_Name: Alien_Broken.061
   m_TagString: Untagged
@@ -9537,6 +9612,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5547928712192685283, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3216191072281113368
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216191072281113366}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &3232381159484716368
 GameObject:
   m_ObjectHideFlags: 0
@@ -9549,6 +9640,7 @@ GameObject:
   - component: {fileID: 5565196522541459657}
   - component: {fileID: 4952834414706374205}
   - component: {fileID: 3232381159484716369}
+  - component: {fileID: 3232381159484716370}
   m_Layer: 10
   m_Name: Alien_Broken.029
   m_TagString: Untagged
@@ -9570,6 +9662,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 843965541178385197, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3232381159484716370
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232381159484716368}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &3276728054323713399
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9700,6 +9808,18 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3285708099009943190}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 3285708099009943192}
         m_TargetAssemblyTypeName: BreakMeshPrefragmented, Scripts
         m_MethodName: DestroyMesh
@@ -9728,7 +9848,7 @@ MonoBehaviour:
   ExplosionForce: 250
   Radius: 30
   FadeOutTime: 3
-  FragmentsHaveRigidbody: 0
+  FragmentsHaveRigidbody: 1
 --- !u!4 &3293005382174822883
 Transform:
   m_ObjectHideFlags: 0
@@ -9942,6 +10062,7 @@ GameObject:
   - component: {fileID: 1833311134802987186}
   - component: {fileID: 4768885918658121}
   - component: {fileID: 3485665682847857137}
+  - component: {fileID: 3485665682847857138}
   m_Layer: 10
   m_Name: Alien_Broken.064
   m_TagString: Untagged
@@ -9963,6 +10084,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8959111064948376996, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3485665682847857138
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3485665682847857136}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &3493774799515051928
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10057,6 +10194,7 @@ GameObject:
   - component: {fileID: 2124690574685089525}
   - component: {fileID: 4443485388619788263}
   - component: {fileID: 3540341846042549575}
+  - component: {fileID: 3540341846042549576}
   m_Layer: 10
   m_Name: Alien_Broken.038
   m_TagString: Untagged
@@ -10078,6 +10216,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2155024592391569544, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3540341846042549576
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540341846042549574}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &3586374378993567833
 GameObject:
   m_ObjectHideFlags: 0
@@ -10215,6 +10369,7 @@ GameObject:
   - component: {fileID: 4847791252129577152}
   - component: {fileID: 4555033160823763815}
   - component: {fileID: 3799232457141617594}
+  - component: {fileID: 3799232457141617595}
   m_Layer: 10
   m_Name: Alien_Broken.003
   m_TagString: Untagged
@@ -10236,6 +10391,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 813870260041785907, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3799232457141617595
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3799232457141617593}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &3827193148291800489
 Transform:
   m_ObjectHideFlags: 0
@@ -10387,6 +10558,7 @@ GameObject:
   - component: {fileID: 573198813550468377}
   - component: {fileID: 1561634230228650180}
   - component: {fileID: 3948524729514223581}
+  - component: {fileID: 3948524729514223582}
   m_Layer: 10
   m_Name: Alien_Broken.019
   m_TagString: Untagged
@@ -10408,6 +10580,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3219689413725862470, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &3948524729514223582
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3948524729514223580}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &3981925014246536647
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10545,6 +10733,7 @@ GameObject:
   - component: {fileID: 5960855478269983483}
   - component: {fileID: 1207544976480629509}
   - component: {fileID: 4060064480014110398}
+  - component: {fileID: 4060064480014110399}
   m_Layer: 10
   m_Name: Alien_Broken.051
   m_TagString: Untagged
@@ -10566,6 +10755,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6952011810175577531, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &4060064480014110399
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060064480014110397}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &4069665014584260491
 GameObject:
   m_ObjectHideFlags: 0
@@ -10599,6 +10804,7 @@ GameObject:
   - component: {fileID: 5762527807218148364}
   - component: {fileID: 1099372144753535808}
   - component: {fileID: 4071821319525321954}
+  - component: {fileID: 4071821319525321955}
   m_Layer: 10
   m_Name: Alien_Broken.033
   m_TagString: Untagged
@@ -10620,6 +10826,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6017381284855581333, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &4071821319525321955
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4071821319525321953}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &4105209960050416089
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10953,6 +11175,7 @@ GameObject:
   - component: {fileID: 7559204329536097149}
   - component: {fileID: 7099584028730694217}
   - component: {fileID: 4570179224580089818}
+  - component: {fileID: 4570179224580089819}
   m_Layer: 10
   m_Name: Alien_Broken.043
   m_TagString: Untagged
@@ -10974,6 +11197,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5835699160235070209, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &4570179224580089819
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4570179224580089817}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &4587721354951217922
 Transform:
   m_ObjectHideFlags: 0
@@ -11000,6 +11239,7 @@ GameObject:
   - component: {fileID: 1802780931649658976}
   - component: {fileID: 8290728472296556405}
   - component: {fileID: 4608812117693967791}
+  - component: {fileID: 4608812117693967792}
   m_Layer: 10
   m_Name: Alien_Broken.004
   m_TagString: Untagged
@@ -11021,6 +11261,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2427694929022311112, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &4608812117693967792
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4608812117693967790}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &4640467234212209894
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11108,6 +11364,7 @@ GameObject:
   - component: {fileID: 8156991970339726767}
   - component: {fileID: 8281864237220697466}
   - component: {fileID: 4714876336255185100}
+  - component: {fileID: 4714876336255185101}
   m_Layer: 10
   m_Name: Alien_Broken.059
   m_TagString: Untagged
@@ -11129,6 +11386,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3630927575885898871, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &4714876336255185101
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4714876336255185099}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &4751224747658583012
 Transform:
   m_ObjectHideFlags: 0
@@ -11210,6 +11483,7 @@ GameObject:
   - component: {fileID: 5832010572697062509}
   - component: {fileID: 6550337786323432754}
   - component: {fileID: 4820267016693497743}
+  - component: {fileID: 4820267016693497744}
   m_Layer: 10
   m_Name: Alien_Broken.066
   m_TagString: Untagged
@@ -11231,6 +11505,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2743888544830592310, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &4820267016693497744
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4820267016693497742}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &4847791252129577152
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11292,6 +11582,7 @@ GameObject:
   - component: {fileID: 88893685040264702}
   - component: {fileID: 8518319106990270182}
   - component: {fileID: 4987669747064297576}
+  - component: {fileID: 4987669747064297577}
   m_Layer: 10
   m_Name: Alien_Broken.071
   m_TagString: Untagged
@@ -11313,6 +11604,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 621061234791348145, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &4987669747064297577
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4987669747064297575}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &4999862824252729544
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11401,6 +11708,7 @@ GameObject:
   - component: {fileID: 2963410838997796369}
   - component: {fileID: 1330431253512915219}
   - component: {fileID: 5229631438599426432}
+  - component: {fileID: 5229631438599426433}
   m_Layer: 10
   m_Name: Alien_Broken.068
   m_TagString: Untagged
@@ -11422,6 +11730,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2195072792992043458, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &5229631438599426433
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229631438599426431}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &5232958251704766329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11516,6 +11840,7 @@ GameObject:
   - component: {fileID: 3594594330319121028}
   - component: {fileID: 3827675451220813150}
   - component: {fileID: 5238629362406764812}
+  - component: {fileID: 5238629362406764813}
   m_Layer: 10
   m_Name: Alien_Broken
   m_TagString: Untagged
@@ -11537,6 +11862,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8889867893287774856, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &5238629362406764813
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5238629362406764811}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &5248214569805601199
 Transform:
   m_ObjectHideFlags: 0
@@ -11563,6 +11904,7 @@ GameObject:
   - component: {fileID: 5863770687828198368}
   - component: {fileID: 3716200319439884639}
   - component: {fileID: 5248388703385282156}
+  - component: {fileID: 5248388703385282157}
   m_Layer: 10
   m_Name: Alien_Broken.020
   m_TagString: Untagged
@@ -11584,6 +11926,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3265621519821579381, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &5248388703385282157
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248388703385282155}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &5252885680530164681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11637,6 +11995,7 @@ GameObject:
   - component: {fileID: 6184202758677849553}
   - component: {fileID: 8606941103364275493}
   - component: {fileID: 5291656038774151611}
+  - component: {fileID: 5291656038774151612}
   m_Layer: 10
   m_Name: Alien_Broken.040
   m_TagString: Untagged
@@ -11658,6 +12017,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -1596145139909731404, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &5291656038774151612
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5291656038774151610}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &5365851258311286889
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11686,6 +12061,7 @@ GameObject:
   - component: {fileID: 6596985712589500144}
   - component: {fileID: 2443070622045085351}
   - component: {fileID: 5450771894654693529}
+  - component: {fileID: 5450771894654693530}
   m_Layer: 10
   m_Name: Alien_Broken.036
   m_TagString: Untagged
@@ -11707,6 +12083,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2363008567480583008, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &5450771894654693530
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5450771894654693528}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &5467738984463696728
 Transform:
   m_ObjectHideFlags: 0
@@ -12072,6 +12464,7 @@ GameObject:
   - component: {fileID: 7750845473602715753}
   - component: {fileID: 4288596875650834550}
   - component: {fileID: 5961732336189162234}
+  - component: {fileID: 5961732336189162235}
   m_Layer: 10
   m_Name: Alien_Broken.063
   m_TagString: Untagged
@@ -12093,6 +12486,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6654434638892367165, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &5961732336189162235
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5961732336189162233}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &6018106024662454028
 GameObject:
   m_ObjectHideFlags: 0
@@ -12105,6 +12514,7 @@ GameObject:
   - component: {fileID: 794538069045569250}
   - component: {fileID: 3391900598293517991}
   - component: {fileID: 6018106024662454029}
+  - component: {fileID: 6018106024662454030}
   m_Layer: 10
   m_Name: Alien_Broken.041
   m_TagString: Untagged
@@ -12126,6 +12536,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6856578754028442335, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &6018106024662454030
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018106024662454028}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &6071082096506353216
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12245,6 +12671,7 @@ GameObject:
   - component: {fileID: 5581383540177704927}
   - component: {fileID: 2301994495001917250}
   - component: {fileID: 6329660578352282921}
+  - component: {fileID: 6329660578352282922}
   m_Layer: 10
   m_Name: Alien_Broken.032
   m_TagString: Untagged
@@ -12266,6 +12693,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3451914201589717230, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &6329660578352282922
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6329660578352282920}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &6367114020867781172
 Transform:
   m_ObjectHideFlags: 0
@@ -12380,6 +12823,7 @@ GameObject:
   - component: {fileID: 5365851258311286889}
   - component: {fileID: 5232958251704766329}
   - component: {fileID: 6462169333029592765}
+  - component: {fileID: 6462169333029592766}
   m_Layer: 10
   m_Name: Alien_Broken.006
   m_TagString: Untagged
@@ -12401,6 +12845,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4110105202870233380, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &6462169333029592766
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6462169333029592764}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &6535062283525027310
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12498,6 +12958,7 @@ GameObject:
   - component: {fileID: 4671785004506989910}
   - component: {fileID: 6761140164409224756}
   - component: {fileID: 6679357000076415070}
+  - component: {fileID: 6679357000076415071}
   m_Layer: 10
   m_Name: Alien_Broken.065
   m_TagString: Untagged
@@ -12519,6 +12980,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4721203683831701923, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &6679357000076415071
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6679357000076415069}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &6690654073203308728
 Transform:
   m_ObjectHideFlags: 0
@@ -12616,6 +13093,7 @@ GameObject:
   - component: {fileID: 8926487935427943007}
   - component: {fileID: 4057291681012716966}
   - component: {fileID: 6795635129822366832}
+  - component: {fileID: 6795635129822366833}
   m_Layer: 10
   m_Name: Alien_Broken.022
   m_TagString: Untagged
@@ -12637,6 +13115,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5716147807850724058, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &6795635129822366833
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795635129822366831}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &6819278325246676456
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12894,6 +13388,7 @@ GameObject:
   - component: {fileID: 2494521124674806303}
   - component: {fileID: 4105209960050416089}
   - component: {fileID: 7194340649337577033}
+  - component: {fileID: 7194340649337577034}
   m_Layer: 10
   m_Name: Alien_Broken.073
   m_TagString: Untagged
@@ -12915,6 +13410,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -376060442672696908, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7194340649337577034
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7194340649337577032}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &7294191854303335555
 GameObject:
   m_ObjectHideFlags: 0
@@ -12927,6 +13438,7 @@ GameObject:
   - component: {fileID: 1699477421871380405}
   - component: {fileID: 7176973136449855125}
   - component: {fileID: 7294191854303335556}
+  - component: {fileID: 7294191854303335557}
   m_Layer: 10
   m_Name: Alien_Broken.015
   m_TagString: Untagged
@@ -12948,6 +13460,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5961763379384593039, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7294191854303335557
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294191854303335555}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &7297530292192053815
 Transform:
   m_ObjectHideFlags: 0
@@ -12974,6 +13502,7 @@ GameObject:
   - component: {fileID: 2543213746192317461}
   - component: {fileID: 7697501210065195468}
   - component: {fileID: 7323077023741500898}
+  - component: {fileID: 7323077023741500899}
   m_Layer: 10
   m_Name: Alien_Broken.057
   m_TagString: Untagged
@@ -12995,6 +13524,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 5105582367495412417, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7323077023741500899
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323077023741500897}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &7352698402210479977
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13097,6 +13642,7 @@ GameObject:
   - component: {fileID: 4277972669099688211}
   - component: {fileID: 3276728054323713399}
   - component: {fileID: 7477730669209415490}
+  - component: {fileID: 7477730669209415491}
   m_Layer: 10
   m_Name: Alien_Broken.042
   m_TagString: Untagged
@@ -13118,6 +13664,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1539800218491912631, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7477730669209415491
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477730669209415489}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &7508267895816286447
 GameObject:
   m_ObjectHideFlags: 0
@@ -13130,6 +13692,7 @@ GameObject:
   - component: {fileID: 5657264180378414885}
   - component: {fileID: 7352698402210479977}
   - component: {fileID: 7508267895816286448}
+  - component: {fileID: 7508267895816286449}
   m_Layer: 10
   m_Name: Alien_Broken.047
   m_TagString: Untagged
@@ -13151,6 +13714,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2870504109830582080, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7508267895816286449
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508267895816286447}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &7520030753330370024
 GameObject:
   m_ObjectHideFlags: 0
@@ -13318,6 +13897,7 @@ GameObject:
   - component: {fileID: 8613632446208606967}
   - component: {fileID: 7900260869444607814}
   - component: {fileID: 7571820330967324605}
+  - component: {fileID: 7571820330967324606}
   m_Layer: 10
   m_Name: Alien_Broken.012
   m_TagString: Untagged
@@ -13339,6 +13919,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5049817762009518059, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7571820330967324606
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7571820330967324604}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!114 &7578008435571334792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13546,6 +14142,7 @@ GameObject:
   - component: {fileID: 1493793886082402009}
   - component: {fileID: 1135732079884100570}
   - component: {fileID: 7605185482766980128}
+  - component: {fileID: 7605185482766980129}
   m_Layer: 10
   m_Name: Alien_Broken.067
   m_TagString: Untagged
@@ -13567,6 +14164,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5293639219964866475, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7605185482766980129
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7605185482766980127}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &7640447126350028062
 Transform:
   m_ObjectHideFlags: 0
@@ -13607,6 +14220,7 @@ GameObject:
   - component: {fileID: 3987628364095110717}
   - component: {fileID: 3376399570303389280}
   - component: {fileID: 7687821189529742648}
+  - component: {fileID: 7687821189529742649}
   m_Layer: 10
   m_Name: Alien_Broken.016
   m_TagString: Untagged
@@ -13628,6 +14242,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6735323821560437282, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7687821189529742649
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687821189529742647}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &7697501210065195468
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13730,6 +14360,7 @@ GameObject:
   - component: {fileID: 904300458303839949}
   - component: {fileID: 1592602070406936402}
   - component: {fileID: 7847949361645348103}
+  - component: {fileID: 7847949361645348104}
   m_Layer: 10
   m_Name: Alien_Broken.054
   m_TagString: Untagged
@@ -13751,6 +14382,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6301320207497399305, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7847949361645348104
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847949361645348102}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &7848015029435156350
 GameObject:
   m_ObjectHideFlags: 0
@@ -13763,6 +14410,7 @@ GameObject:
   - component: {fileID: 9035600000042666595}
   - component: {fileID: 2141916299784994396}
   - component: {fileID: 7848015029435156351}
+  - component: {fileID: 7848015029435156352}
   m_Layer: 10
   m_Name: Alien_Broken.025
   m_TagString: Untagged
@@ -13784,6 +14432,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 6129850454773637913, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7848015029435156352
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848015029435156350}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &7900260869444607814
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13859,6 +14523,7 @@ GameObject:
   - component: {fileID: 2283327901659826965}
   - component: {fileID: 2701448195163778630}
   - component: {fileID: 7997798027669775952}
+  - component: {fileID: 7997798027669775953}
   m_Layer: 10
   m_Name: Alien_Broken.026
   m_TagString: Untagged
@@ -13880,6 +14545,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5189039240174600567, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &7997798027669775953
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7997798027669775951}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &8064557515450481726
 Transform:
   m_ObjectHideFlags: 0
@@ -13906,6 +14587,7 @@ GameObject:
   - component: {fileID: 5438640791996029104}
   - component: {fileID: 1147093954287303443}
   - component: {fileID: 8083711714932947832}
+  - component: {fileID: 8083711714932947833}
   m_Layer: 10
   m_Name: Alien_Broken.049
   m_TagString: Untagged
@@ -13927,6 +14609,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -4153909314665211816, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8083711714932947833
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8083711714932947831}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &8095236944163253458
 Transform:
   m_ObjectHideFlags: 0
@@ -13953,6 +14651,7 @@ GameObject:
   - component: {fileID: 2054204887500620234}
   - component: {fileID: 1217963205106888947}
   - component: {fileID: 8125716624226306241}
+  - component: {fileID: 8125716624226306242}
   m_Layer: 10
   m_Name: Alien_Broken.005
   m_TagString: Untagged
@@ -13974,6 +14673,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5010541110672746256, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8125716624226306242
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8125716624226306240}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &8156211376668504075
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14098,6 +14813,7 @@ GameObject:
   - component: {fileID: 2568591359996178339}
   - component: {fileID: 6963884410812738592}
   - component: {fileID: 8249311239866948182}
+  - component: {fileID: 8249311239866948183}
   m_Layer: 10
   m_Name: Alien_Broken.037
   m_TagString: Untagged
@@ -14119,6 +14835,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -162371988143270021, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8249311239866948183
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8249311239866948181}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &8281864237220697466
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14229,6 +14961,7 @@ GameObject:
   - component: {fileID: 7476101920496637894}
   - component: {fileID: 5864854259991497695}
   - component: {fileID: 8299955027061989020}
+  - component: {fileID: 8299955027061989021}
   m_Layer: 10
   m_Name: Alien_Broken.062
   m_TagString: Untagged
@@ -14250,6 +14983,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8699422439844145861, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8299955027061989021
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8299955027061989019}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8308930450584228544
 GameObject:
   m_ObjectHideFlags: 0
@@ -14262,6 +15011,7 @@ GameObject:
   - component: {fileID: 438254401107747897}
   - component: {fileID: 8768768065186152281}
   - component: {fileID: 8308930450584228545}
+  - component: {fileID: 8308930450584228546}
   m_Layer: 10
   m_Name: Alien_Broken.018
   m_TagString: Untagged
@@ -14283,6 +15033,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -9194877479883588233, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8308930450584228546
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308930450584228544}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8389829104125835086
 GameObject:
   m_ObjectHideFlags: 0
@@ -14295,6 +15061,7 @@ GameObject:
   - component: {fileID: 6719149608484256278}
   - component: {fileID: 5616857794818850159}
   - component: {fileID: 8389829104125835087}
+  - component: {fileID: 8389829104125835088}
   m_Layer: 10
   m_Name: Alien_Broken.046
   m_TagString: Untagged
@@ -14316,6 +15083,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 914961021508538369, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8389829104125835088
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8389829104125835086}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8394788954041590772
 GameObject:
   m_ObjectHideFlags: 0
@@ -14328,6 +15111,7 @@ GameObject:
   - component: {fileID: 7150825472797183175}
   - component: {fileID: 7458376071646792918}
   - component: {fileID: 8394788954041590773}
+  - component: {fileID: 8394788954041590774}
   m_Layer: 10
   m_Name: Alien_Broken.030
   m_TagString: Untagged
@@ -14349,6 +15133,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4232262715114124143, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8394788954041590774
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394788954041590772}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &8516746491597204578
 Transform:
   m_ObjectHideFlags: 0
@@ -14439,6 +15239,7 @@ GameObject:
   - component: {fileID: 4502373253014913696}
   - component: {fileID: 934283192432270685}
   - component: {fileID: 8568964859496428879}
+  - component: {fileID: 8568964859496428880}
   m_Layer: 10
   m_Name: Alien_Broken.023
   m_TagString: Untagged
@@ -14460,6 +15261,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4853795873587196347, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8568964859496428880
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568964859496428878}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &8573327061039150417
 Transform:
   m_ObjectHideFlags: 0
@@ -14503,6 +15320,7 @@ GameObject:
   - component: {fileID: 7029616216072755516}
   - component: {fileID: 174424464996072361}
   - component: {fileID: 8588477345017717616}
+  - component: {fileID: 8588477345017717617}
   m_Layer: 10
   m_Name: Alien_Broken.031
   m_TagString: Untagged
@@ -14524,6 +15342,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3997574726418699920, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8588477345017717617
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588477345017717615}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!23 &8606941103364275493
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14796,6 +15630,7 @@ GameObject:
   - component: {fileID: 8851791862415512395}
   - component: {fileID: 4554987831539088011}
   - component: {fileID: 8892640454537675126}
+  - component: {fileID: 8892640454537675127}
   m_Layer: 10
   m_Name: Alien_Broken.028
   m_TagString: Untagged
@@ -14817,6 +15652,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 8853750893842850617, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8892640454537675127
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8892640454537675125}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &8899036692349001813
 GameObject:
   m_ObjectHideFlags: 0
@@ -14829,6 +15680,7 @@ GameObject:
   - component: {fileID: 1851071550391815694}
   - component: {fileID: 5252885680530164681}
   - component: {fileID: 8899036692349001814}
+  - component: {fileID: 8899036692349001815}
   m_Layer: 10
   m_Name: Alien_Broken.021
   m_TagString: Untagged
@@ -14850,6 +15702,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4568156544492222068, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &8899036692349001815
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8899036692349001813}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!33 &8926487935427943007
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14975,6 +15843,7 @@ GameObject:
   - component: {fileID: 8865983761633322577}
   - component: {fileID: 8247527297684254989}
   - component: {fileID: 9156057201777334662}
+  - component: {fileID: 9156057201777334663}
   m_Layer: 10
   m_Name: Alien_Broken.053
   m_TagString: Untagged
@@ -14996,6 +15865,22 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2807866877009962077, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &9156057201777334663
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9156057201777334661}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &9164148113319904740
 GameObject:
   m_ObjectHideFlags: 0
@@ -15008,6 +15893,7 @@ GameObject:
   - component: {fileID: 4154577312873001798}
   - component: {fileID: 4640467234212209894}
   - component: {fileID: 9164148113319904741}
+  - component: {fileID: 9164148113319904742}
   m_Layer: 10
   m_Name: Alien_Broken.017
   m_TagString: Untagged
@@ -15029,3 +15915,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1014267661781174480, guid: b01714c918942f843bc402afae30c8bd, type: 3}
+--- !u!54 &9164148113319904742
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9164148113319904740}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 126
+  m_CollisionDetection: 0
