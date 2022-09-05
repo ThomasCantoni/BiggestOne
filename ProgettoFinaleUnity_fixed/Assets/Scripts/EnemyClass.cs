@@ -13,6 +13,10 @@ public abstract class EnemyClass : MonoBehaviour,IHittable
     private float hp_Value = 100f;
     private float maxHp = 100f;
 
+    public MonoBehaviour Mono
+    {
+        get { return this; }
+    }
     public delegate void EnemyDeathEvent();
     public event EnemyDeathEvent OnEnemyDeath;
 
@@ -32,6 +36,8 @@ public abstract class EnemyClass : MonoBehaviour,IHittable
             HP_Slider.GetComponent<Slider>().value = hp_Value;
         }
     }
+
+
     public virtual void DetuctHealth(HitInfo info)
     {
         HP_Value -= info.Damage;

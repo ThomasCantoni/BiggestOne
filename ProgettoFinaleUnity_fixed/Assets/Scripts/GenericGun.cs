@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DamageInstance
 {
@@ -15,8 +16,8 @@ public class DamageInstance
             EnemiesHit = FilterDistinct(hits);
         }
     }
-    private List<GameObject> enemiesHit;
-    public List<GameObject> EnemiesHit
+    private List<EnemyClass> enemiesHit;
+    public List<EnemyClass> EnemiesHit
     {
         get { return enemiesHit; }
         private set
@@ -29,15 +30,16 @@ public class DamageInstance
     {
         SourceGun = sourceGun;
     }
-    public List<GameObject> FilterDistinct(List<HitInfo> toFilter)
+    public List<EnemyClass> FilterDistinct(List<HitInfo> toFilter)
     {
         
-        List<GameObject> toReturn = new List<GameObject>(toFilter.Count);
+        List<EnemyClass> toReturn = new List<EnemyClass>(toFilter.Count);
         foreach(HitInfo collided in toFilter)
         {
-            if(!toReturn.Contains(collided.GameObjectHit))
+            EnemyClass maybe = collided.GameObjectHit.GetComponent<EnemyClass>();
+            if (maybe != null && !toReturn.Contains(maybe))
             {
-                toReturn.Add(collided.GameObjectHit);
+                toReturn.Add(maybe);
             }
         }
         toReturn.TrimExcess();
@@ -48,18 +50,36 @@ public class DamageInstance
         for (int i = 0; i < Hits.Count; i++)
         {
             Hits[i].SourceDamageInstance = this;
-            //ThingsHit[i].Damage = SourceGun.Damage;
-            Hits[i]?.GameObjectHit.GetComponent<IHittable>().OnHit(Hits[i]);
             
-
-        }
-        for (int i = 0; i < EnemiesHit.Count; i++)
-        {
-            foreach (ChainableAttack x in SourceGun.PlayerAttackEffects.Attacks)
+            IHittable hitAnything = Hits[i]?.GameObjectHit.GetComponent<IHittable>();
+            hitAnything.OnHit(Hits[i]);
+            try
             {
-                x.Apply(EnemiesHit[i]);
-            }
 
+
+                EnemyClass hitEnemy = (EnemyClass)hitAnything.Mono;
+                if (SourceGun.PlayerAttackEffects.PerShotAttacks != null)
+                {
+                    foreach (ChainableAttack x in SourceGun.PlayerAttackEffects.PerShotAttacks)
+                    {
+                        x.Apply(hitEnemy);
+                    }
+                }
+            }catch (Exception e)
+            {
+                Debug.Log("AO COJO :" + e.Message);
+                continue;
+            }
+        }
+        if (SourceGun.PlayerAttackEffects.PerEnemyAttacks != null)
+        {
+            for (int i = 0; i < EnemiesHit.Count; i++)
+            {
+                foreach (ChainableAttack x in SourceGun.PlayerAttackEffects.PerEnemyAttacks)
+                {
+                    x.Apply(EnemiesHit[i]);
+                }
+            }
         }
         //for (int i = 0; i < EnemiesHit.Count; i++)
         //{
@@ -267,9 +287,9 @@ public class GenericGun : MonoBehaviour
     {
         Vector3 targetPos = cam.position + cam.forward * range;
         targetPos = new Vector3(
-            targetPos.x + Random.Range(-inaccuracyDistance, inaccuracyDistance),
-            targetPos.y + Random.Range(-inaccuracyDistance, inaccuracyDistance),
-            targetPos.z + Random.Range(-inaccuracyDistance, inaccuracyDistance));
+            targetPos.x + UnityEngine.Random.Range(-inaccuracyDistance, inaccuracyDistance),
+            targetPos.y + UnityEngine.Random.Range(-inaccuracyDistance, inaccuracyDistance),
+            targetPos.z + UnityEngine.Random.Range(-inaccuracyDistance, inaccuracyDistance));
 
         Vector3 direction = targetPos - cam.position;
         return direction.normalized;

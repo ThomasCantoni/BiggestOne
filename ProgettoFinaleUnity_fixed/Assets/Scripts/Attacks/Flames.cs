@@ -9,13 +9,13 @@ public class Flames : ChainableAttack
     
     public float FlamesDamageFrequency;
     public float FlamesInitialDamage,FlamesBurnDamage,FlamesBurnDuration;
-    public override void Apply(GameObject recepient)
+    public override void Apply(EnemyClass recepient)
     {
-        FlamesEnemyComponent fec = recepient.AddComponent<FlamesEnemyComponent>();
+        FlamesEnemyComponent fec = recepient.gameObject.AddComponent<FlamesEnemyComponent>();
         if (fec == null)
             return;
         fec.flamesHitInfo = new HitInfo();
-        fec.flamesHitInfo.GameObjectHit = recepient;
+        fec.flamesHitInfo.GameObjectHit = recepient.gameObject;
         fec.flamesHitInfo.IsChainableAttack = true;
         
         fec.Duration = FlamesBurnDuration;

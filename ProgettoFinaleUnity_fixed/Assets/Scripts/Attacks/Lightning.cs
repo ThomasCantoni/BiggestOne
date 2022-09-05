@@ -11,22 +11,23 @@ public class Lightning : ChainableAttack
     public LayerMask LayersToHit;
 
    
-    public override void Apply(GameObject recepient)
+    public override void Apply(EnemyClass recepient)
     {
         
        Collider[] thingsHit =  Physics.OverlapSphere(recepient.transform.position,Radius,LayersToHit);
-        GameObject firstEnemyHit = recepient;
+       EnemyClass firstEnemyHit = recepient;
        
-       List<GameObject> thingsActuallyHittable = new List<GameObject>();
+       List<EnemyClass> thingsActuallyHittable = new List<EnemyClass>();
         int firstEnemyHitIndex = 0;
        for(int i= 0;i<thingsHit.Length; i++)
-        {
+       {
             Collider c = thingsHit[i];
             if (c.gameObject.GetComponent<IHittable>() != null)
             {
-                thingsActuallyHittable.Add(c.gameObject);
+                thingsActuallyHittable.Add(c.gameObject.GetComponent<EnemyClass>());
             }
-        }
+       }
+
         thingsActuallyHittable.TrimExcess();
         for (int i = 0; i < thingsActuallyHittable.Count; i++)
         { 
@@ -49,10 +50,10 @@ public class Lightning : ChainableAttack
             index--;
         }
 
-        GameObject selected2 = thingsActuallyHittable[index];
+        EnemyClass selected2 = thingsActuallyHittable[index];
         CreateLightning(firstEnemyHit, selected2);
     }
-    public void CreateLightning(GameObject one,GameObject two)
+    public void CreateLightning(EnemyClass one,EnemyClass two)
     {
         HitInfo lightningHit = new HitInfo();
         lightningHit.Damage = Damage;
@@ -62,6 +63,9 @@ public class Lightning : ChainableAttack
         Debug.Log("Lightning!");
         one.GetComponent<IHittable>().OnHit(lightningHit);
         two.GetComponent<IHittable>().OnHit(lightningHit);
+
+
+
 
 
 

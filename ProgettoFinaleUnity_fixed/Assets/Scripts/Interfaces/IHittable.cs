@@ -32,6 +32,10 @@ public class HitInfo
 }
 public interface IHittable
 {
+    public abstract MonoBehaviour Mono
+    {
+        get;
+    }
     public abstract void OnHit(HitInfo info);
 
 }
