@@ -7,11 +7,11 @@ public class EnemyDeathExplosionComponent : MonoBehaviour
     public float Radius,Damage;
     public HitInfo hit;
     public LayerMask LayersToHit;
-    HealthBarEnemy HBE;
+    EnemyClass EC;
     void Start()
     {
-        HBE = GetComponent<HealthBarEnemy>();
-        HBE.OnEnemyDeath += OnEnemyDeath;
+        EC = GetComponent<EnemyClass>();
+        EC.OnEnemyDeath += OnEnemyDeath;
     }
     private void OnEnemyDeath()
     {
@@ -24,7 +24,7 @@ public class EnemyDeathExplosionComponent : MonoBehaviour
             
             x.OnHit(hit);
         }
-        HBE.OnEnemyDeath -= OnEnemyDeath;
+        EC.OnEnemyDeath -= OnEnemyDeath;
         Destroy(this);
     }
 

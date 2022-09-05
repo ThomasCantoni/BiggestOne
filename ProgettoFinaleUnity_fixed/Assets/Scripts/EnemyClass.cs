@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarEnemy : MonoBehaviour
+
+public abstract class EnemyClass : MonoBehaviour,IHittable
 {
+    
+    [SerializeField] public int speed;
+
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;
+
     public delegate void EnemyDeathEvent();
     public event EnemyDeathEvent OnEnemyDeath;
 
-    private void Start()
+    public void Start()
     {
         HP_Slider = GetComponentInChildren<Slider>();
     }
@@ -27,15 +32,22 @@ public class HealthBarEnemy : MonoBehaviour
             HP_Slider.GetComponent<Slider>().value = hp_Value;
         }
     }
-    public void DetuctHealth(HitInfo info)
+    public virtual void DetuctHealth(HitInfo info)
     {
         HP_Value -= info.Damage;
         if (hp_Value <= 0)
             EnemyDeath();
     }
-    void EnemyDeath()
+    public virtual void EnemyDeath()
     {
         OnEnemyDeath?.Invoke();
         Destroy(gameObject);
     }
+
+    public virtual void OnHit(HitInfo info)
+    {
+        DetuctHealth(info);
+    }
 }
+
+

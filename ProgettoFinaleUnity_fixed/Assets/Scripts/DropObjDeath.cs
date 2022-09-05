@@ -5,11 +5,11 @@ using UnityEngine;
 public class DropObjDeath : MonoBehaviour
 {
     public List<GameObject> objToDrops;
-    public HealthBarEnemy HBE;
+    public EnemyClass EC;
     void Start()
     {
-        HBE = GetComponent<HealthBarEnemy>();
-        HBE.OnEnemyDeath += Drop;
+        EC = GetComponent<EnemyClass>();
+        EC.OnEnemyDeath += Drop;
     }
     public void Drop()
     {

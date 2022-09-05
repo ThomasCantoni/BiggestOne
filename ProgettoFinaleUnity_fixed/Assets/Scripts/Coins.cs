@@ -9,4 +9,5 @@ public class Coins : MonoBehaviour
         other.GetComponent<FirstPersonController>();
         Destroy(this.gameObject);
     }
+    
 }
