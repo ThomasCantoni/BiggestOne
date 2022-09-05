@@ -5,26 +5,66 @@ using UnityEngine;
 public class DamageInstance
 {
     public GenericGun SourceGun;
-    public List<HitInfo> ThingsHit;
+    private List<HitInfo> hits;
+    public List<HitInfo> Hits
+    {
+        get { return hits; }
+        set
+        {
+            hits = value;
+            EnemiesHit = FilterDistinct(hits);
+        }
+    }
+    private List<GameObject> enemiesHit;
+    public List<GameObject> EnemiesHit
+    {
+        get { return enemiesHit; }
+        private set
+        {
+            enemiesHit = value;
+        }
+    }
+
     public DamageInstance(GenericGun sourceGun)
     {
         SourceGun = sourceGun;
     }
+    public List<GameObject> FilterDistinct(List<HitInfo> toFilter)
+    {
+        
+        List<GameObject> toReturn = new List<GameObject>(toFilter.Count);
+        foreach(HitInfo collided in toFilter)
+        {
+            if(!toReturn.Contains(collided.GameObjectHit))
+            {
+                toReturn.Add(collided.GameObjectHit);
+            }
+        }
+        toReturn.TrimExcess();
+        return toReturn;
+    }
     public void Deploy()
     {
-        for (int i = 0; i < ThingsHit.Count; i++)
+        for (int i = 0; i < Hits.Count; i++)
         {
-            ThingsHit[i].SourceDamageInstance = this;
-            ThingsHit[i].Damage = SourceGun.Damage;
-            ThingsHit[i]?.GameObjectHit.GetComponent<IHittable>().OnHit(ThingsHit[i]);
-            foreach(ChainableAttack x in SourceGun.PlayerAttackEffects.Attacks)
-            {
-                x.Apply(ThingsHit[i]);
-            }
+            Hits[i].SourceDamageInstance = this;
+            //ThingsHit[i].Damage = SourceGun.Damage;
+            Hits[i]?.GameObjectHit.GetComponent<IHittable>().OnHit(Hits[i]);
             
 
         }
-        
+        for (int i = 0; i < EnemiesHit.Count; i++)
+        {
+            foreach (ChainableAttack x in SourceGun.PlayerAttackEffects.Attacks)
+            {
+                x.Apply(EnemiesHit[i]);
+            }
+
+        }
+        //for (int i = 0; i < EnemiesHit.Count; i++)
+        //{
+
+        //}
     }
 }
 
@@ -56,7 +96,7 @@ public class GenericGun : MonoBehaviour
     public event WeaponHitSomething WeaponHitSomethingEvent;
     public float range = 50f;
     public float inaccuracyDistance = 5f;
-    private bool isReloading = false;
+    public bool isReloading = false;
     public bool IsReloading
     {
         get
@@ -73,7 +113,7 @@ public class GenericGun : MonoBehaviour
 
     public bool CanShoot
     {
-        get { return currentShootCD <= 0f; }
+        get { return currentShootCD <= 0f && !isReloading; }
     }
     public bool HasShotOnce
     {
@@ -141,11 +181,11 @@ public class GenericGun : MonoBehaviour
 
     public virtual void Shoot()
     {
-        if (isReloading) return;
+        //if (isReloading) return;
         if (!CanShoot) return ;
         DamageInstance newDamageInstance = new DamageInstance(this);
         
-        newDamageInstance.ThingsHit = ShootRays();
+        newDamageInstance.Hits = ShootRays();
         
         newDamageInstance.Deploy();
         currentAmmo--;
@@ -153,10 +193,15 @@ public class GenericGun : MonoBehaviour
         if (currentAmmo <= 0)
         {
             StartReload();
-           
+            
         }
+        else
+        {
+            anim.SetTrigger("Shooting");
+        }
+
         //info.EnemyHit.GetComponent<HitEvent>().OnHit(HitInfo);
-        
+
     }
     public virtual void Update()
     {
@@ -192,33 +237,28 @@ public class GenericGun : MonoBehaviour
     {
         RaycastHit info;
         List<HitInfo> thingsHit = new List<HitInfo>(Multishot);
-        
-
-
-            for (int i = 0; i < Multishot; i++)
-            {
-                Ray ray = new Ray(InputCooker.MainCamera.transform.position, GetShootingDirection());
-                //Ray ray2 = .ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
+        for (int i = 0; i < Multishot; i++)
+        {
+            Ray ray = new Ray(InputCooker.MainCamera.transform.position, GetShootingDirection());
+            //Ray ray2 = .ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
                 
-                HitInfo hitInfo = new HitInfo();
-                if (Physics.Raycast(ray, out info, 100f, Mask.value))
+            HitInfo hitInfo = new HitInfo(this);
+            if (Physics.Raycast(ray, out info, 100f, Mask.value))
+            {
+                if (ToInstantiate != null)
+                    Destroy(Instantiate(ToInstantiate, info.point, Quaternion.LookRotation(-info.normal)), 2f);
+
+                if (info.collider.GetComponent<IHittable>() != null)
                 {
-                    if (ToInstantiate != null)
-                        Destroy(Instantiate(ToInstantiate, info.point, Quaternion.LookRotation(-info.normal)), 2f);
+                    hitInfo.collisionPoint = info.point;
+                    hitInfo.GameObjectHit = info.collider.gameObject;
+                    hitInfo.IsChainableAttack = false;
 
-                    if (info.collider.GetComponent<IHittable>() != null)
-                    {
-                        hitInfo.collisionPoint = info.point;
-                        hitInfo.GameObjectHit = info.collider.gameObject;
-
-                        if (info.collider.gameObject.layer == 7)
-                            hitInfo.IsEnemy = true;
-
-                        thingsHit.Add(hitInfo);
-                    }
+                    thingsHit.Add(hitInfo);
                 }
-
             }
+
+        }
         
         return thingsHit;
        

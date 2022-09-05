@@ -2,53 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class FlamesEnemyComponent : MonoBehaviour
 {
-    public float InitialDamage, BurnDamage, Frequency, DurationMs;
-    public HitInfo flamesHit;
+    public float InitialDamage, BurnDamage, Frequency, Duration;
+    public HitInfo flamesHitInfo;
     private Repeater Repeater;
-    private SimpleTimer Timer;
     private IHittable host;
 
     private void Start()
     {
 
-        Timer = new SimpleTimer(DurationMs);
+       
         Repeater = new Repeater();
         Repeater.Frequency = Frequency;
-        //Timer.TimerCompleteEvent += () => Debug.LogError("FLAME TIMER ENDED");
-        Timer.TimerCompleteEvent += () => StopEffect();
+       
 
         Repeater.RepeaterTickEvent += ApplyDamage;
         
 
-        //Repeater.RepeaterTickEvent += () => Debug.Log("FLAMES REPEATER TICKING");
+        
         host = GetComponent<IHittable>();
 
 
         //apply initial damage
-
-        flamesHit.Damage = InitialDamage;
-        host.OnHit(flamesHit);
+        flamesHitInfo.IsChainableAttack = true;
+        flamesHitInfo.Damage = InitialDamage;
+        host.OnHit(flamesHitInfo);
         // set burn damage
-        flamesHit.Damage = BurnDamage;
+        flamesHitInfo.Damage = BurnDamage;
         //Timer.TimerStartEvent += () => Debug.Log("FLAMES TIMER STARTED");
-        
-        Timer.StartTimer();
+
+       
         Repeater.StartRepeater();
+        Destroy(this, Duration);
     }
     private void ApplyDamage()
-    {
-        Debug.Log("Applying Damage");
-        host.OnHit(flamesHit);
+    {       
+            Debug.Log("Applying Damage");
+            host.OnHit(flamesHitInfo); 
     }
-    private void StopEffect()
+    private void OnDestroy()
     {
-        //Timer.StopTimer(false);
+        StopEffect();
+    }
+    public void StopEffect()
+    {
         Repeater.StopRepeater();
         Debug.Log("FLAMES EFFECT STOPPED");
         
-        Destroy(this.gameObject);
     }
-
 }

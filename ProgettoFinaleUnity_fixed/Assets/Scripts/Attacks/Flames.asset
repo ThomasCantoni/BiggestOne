@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b8fd970fc7d624bb4226d25cca4717, type: 3}
   m_Name: Flames
   m_EditorClassIdentifier: 
+  EnemiesHit: []
   FlamesDamageFrequency: 3
   FlamesInitialDamage: 5
   FlamesBurnDamage: 2
-  FlamesBurnDurationMs: 3000
+  FlamesBurnDuration: 5
