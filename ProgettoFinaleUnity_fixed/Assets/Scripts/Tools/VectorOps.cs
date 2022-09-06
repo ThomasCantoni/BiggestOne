@@ -10,6 +10,11 @@ using UnityEngine;
     {
         public static float AngleVec(Vector3 one, Vector3 two)
      {
+        if(one.sqrMagnitude >= 1f || two.sqrMagnitude >= 1f)
+        {
+            one.Normalize();
+            two.Normalize();
+        }
         return (float)(Mathf.Acos(Vector3.Dot(one, two)) * 180f * 0.3184f);
      }
     public static Vector3 PerpVector(Vector3 one, Vector3 two)

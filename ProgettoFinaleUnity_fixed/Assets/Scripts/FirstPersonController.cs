@@ -10,7 +10,15 @@ public class FirstPersonController : MonoBehaviour
     public CharacterController Controller;
     public InputCooker InputCooker;
     public Rigidbody RB;
+    [Header("General Movement Values")]
 
+    [Tooltip("The speed of the Player")]
+    public float Speed = 10f;
+    [Tooltip("The max velocity in Units/Second of the Player")]
+    public float MaximumAllowedVelocity = 10f;
+
+
+    [Header ("Jump Values")]
     [Tooltip("The height of the jump in meters")]
     public float JumpHeight = 1.2f;
     //public float Gravity = -9.8f;
@@ -18,11 +26,11 @@ public class FirstPersonController : MonoBehaviour
     public float JumpCooldown = 0.2f;
 
 
+    [Header("Grounded and Airborne values")]
     public float GroundcheckFrequency = 0.15f;
-    [Tooltip("Time before the groundcheck is executed again after jumping. Should never be 0, else the jump won't work")]
+    [Tooltip("Time before the groundcheck is executed again after jumping. Should never be 0, else the jump will stop immediately.")]
     public float FallTimeOutMilliseconds = 150f;
 
-    [Header("Grounded and Airborne values")]
     public float GroundedOffset = -0.14f;
     public float GroundedRadius = 0.5f;
     public LayerMask GroundLayers;
@@ -31,27 +39,28 @@ public class FirstPersonController : MonoBehaviour
     public float GroundedDrag = 5f;
     [Tooltip("The velocity factor when the Player is grounded")]
     public float GroundedVelocityMul = 1f;
+    [Tooltip("The deceleration factor of the Player when in the air. The lower this is, the higher the air control.")]
     public float AirbornDrag = 0f;
-    [Tooltip("The velocity factor when the player is in the air. " +
-        "To have the same velocity when grounded, this value needs to be 1/GroundedDrag ")]
+
+    [Tooltip("The velocity factor when the Player is in the air.")]
     public float AirborneVelocityMul = 0.2f;
 
     [Header("Slope Values")]
     [Range(0, 1)]
-    public float FrictionSlope = 1f;
+    public float FrictionSlope = 0.2f;
     public float SlopeMinAdjustRange = 45f;
     public float SlopeMaxAdjustRange = 89f;
-    private float slopeVectorRawMul;
-    public float slopeVectorMagnitude;
-    public float MaximumVelocity = 10f;
+    
+    [Header("READ ONLY")]
     public bool Grounded = true;
     public bool DoubleJumpPossible = false;
     private float _jumpCD;
     private float _fallTimeOut;
     private float slopeAngle = 0f;
     private float velocityMultiplier = 1;
-    public Vector3 SlopeVector;
-    private Vector3 additionalVectors;
+    [HideInInspector]
+    public Vector3 SlopeCounterVector;
+    
     private PhysicMaterial physicsMat;
     public bool wallRunning;
     protected SimpleTimer JumpTimer,GroundcheckTimer;
@@ -71,10 +80,10 @@ public class FirstPersonController : MonoBehaviour
         GroundcheckRepeater = new Repeater();
         GroundcheckRepeater.Frequency = GroundcheckFrequency;
         GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
-        GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
+       // GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
         //GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log(Grounded);
         GroundcheckRepeater.RepeaterPauseEvent += () => Grounded = false;
-        GroundcheckRepeater.RepeaterPauseEvent += () => Debug.Log("PAUSE EVENT " + Grounded);
+        //GroundcheckRepeater.RepeaterPauseEvent += () => Debug.Log("PAUSE EVENT " + Grounded);
 
         GroundcheckRepeater.StartRepeater();
 
@@ -96,62 +105,86 @@ public class FirstPersonController : MonoBehaviour
         RaycastHit info;
         if (!Physics.Raycast(towardsGround, out info, 0.1f, 3))
         {
-            SlopeVector = Vector3.zero;
+            SlopeCounterVector = Vector3.zero;
             return;
         }
-        SlopeVector = Vector3.ProjectOnPlane(Vector3.up, info.normal);
-        slopeAngle = VectorOps.AngleVec(Vector3.up, SlopeVector);
+        SlopeCounterVector = Vector3.ProjectOnPlane(Vector3.up, info.normal) * Physics.gravity.magnitude;
+        slopeAngle = VectorOps.AngleVec(Vector3.up, SlopeCounterVector.normalized);
     }
     void Update()
     {
-        if (_fallTimeOut > 0)
-        {
-            //Grounded = false;
-            _fallTimeOut -= Time.deltaTime*1000;
-        }
-        else
-        {
-          // GroundedCheck();
-
-        }
         JumpAndGravity();
-        
-
     }
 
     private void FixedUpdate()
     {
-        RB.AddForce(InputCooker.RotatedMoveValue * velocityMultiplier * Time.fixedDeltaTime, ForceMode.Force);
-        InputCooker.UpdateCameras();
-        Vector3 horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
-        if (horizontalVelocity.sqrMagnitude >= (MaximumVelocity * MaximumVelocity))
+        Debug.Log(RB.velocity + " HORIZONTAL MAGN: "+new Vector3(RB.velocity.x,0,RB.velocity.z).magnitude);
+        float mamt = 0.5f;
+        Debug.DrawRay(transform.position, transform.forward*10f, Color.green, mamt);
+        Debug.DrawRay(transform.position, InputCooker.RelativeDirection.normalized * 10f, Color.blue+Color.red, mamt);
+        Debug.DrawRay(transform.position, RB.velocity, Color.red, mamt);
+
+
+        
+        Vector3 toAdd = (InputCooker.RelativeDirection.normalized * velocityMultiplier* Speed );
+        
+        Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+
+        Vector3 predictive = RigidBody_horizontalVelocity + toAdd*Time.fixedDeltaTime;
+
+        if (predictive.magnitude >= MaximumAllowedVelocity)
         {
-            horizontalVelocity = horizontalVelocity.normalized * 10;
-            RB.velocity = new Vector3((int)horizontalVelocity.x, RB.velocity.y, (int)horizontalVelocity.z);
+            toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
         }
+        
+
+        RB.AddForce(toAdd*Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+        RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+
+        if (RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity)
+        {
+            RigidBody_horizontalVelocity = RigidBody_horizontalVelocity.normalized * MaximumAllowedVelocity;
+            RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
+        }
+
+
+
+
+
+
         if (Grounded)
         {
-            RB.AddForce(Vector3.down * 3, ForceMode.Acceleration);
+            RB.AddForce(new Vector3(0,2f,0)*Time.fixedDeltaTime, ForceMode.VelocityChange);
+            AccountForSlope();
         }
+        
+        Debug.Log(RB.velocity + " HORIZONTAL MAGN: " + new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
+
+        InputCooker.UpdateCameras();
+
+    }
+
+    private void AccountForSlope()
+    {
 
         //i am on a slope that isn't too steep or too flat and grounded
         //Debug.Log(" Angle: " + slopeAngle + "  IC.Dir: "+InputCooker.inputDirection);
-        if ((slopeAngle>= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange) 
-            && Grounded 
-            && InputCooker.AbsoluteDirection.sqrMagnitude <1f)
+        if ((slopeAngle >= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange)
+            && InputCooker.AbsoluteDirection.sqrMagnitude < 1f)
 
         {
-            physicsMat.dynamicFriction = FrictionSlope;
+            //physicsMat.dynamicFriction = FrictionSlope;
             physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
-            RB.AddForce(SlopeVector * slopeVectorMagnitude, ForceMode.Force);
+            RB.AddForce(SlopeCounterVector, ForceMode.Force);
+            
         }
         else
         {
-            SlopeVector = Vector3.zero;
+            SlopeCounterVector = Vector3.zero;
             physicsMat.dynamicFriction = 0;
             physicsMat.frictionCombine = PhysicMaterialCombine.Average;
         }
-        additionalVectors = Vector3.zero;
     }
 
     private void JumpAndGravity()
@@ -212,7 +245,7 @@ public class FirstPersonController : MonoBehaviour
 
     public void GroundedCheck()
     {
-        Debug.Log("Checking if grounded");
+        //Debug.Log("Checking if grounded");
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers);
         //GroundcheckTimer.StartTimer();

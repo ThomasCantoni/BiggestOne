@@ -21,7 +21,7 @@ public class InputCooker : MonoBehaviour
 
     public float SprintMultiplier = 1.3f;
     private float sprintMul;
-    public Vector3 RotatedMoveValue;
+   // public Vector3 RotatedMoveValue;
 
 
     public Vector3 AbsoluteDirection, RelativeDirection;
@@ -80,8 +80,12 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
+        
         RelativeDirection = transform.rotation * AbsoluteDirection;
-        RotatedMoveValue = RelativeDirection * (Speed *(1 + sprintMul));
+       
+        //Debug.Log("ABSOLUTE DIR: "+AbsoluteDirection);
+        //Debug.Log("RELATIVE DIR: " + RelativeDirection +"  MAG "+RelativeDirection.magnitude );
+
     }
 
     public void UpdateCameras()
@@ -92,12 +96,12 @@ public class InputCooker : MonoBehaviour
     }
     public void UpdateMovement()
     {
-        RotatedMoveValue = transform.rotation * AbsoluteDirection * Speed;
+        RelativeDirection = transform.rotation * AbsoluteDirection;
     }
     public void OnMove(InputAction.CallbackContext value)
     {
         AbsoluteDirection2D = value.ReadValue<Vector2>();
-        AbsoluteDirection = new Vector3(AbsoluteDirection2D.x, 0.0f, AbsoluteDirection2D.y);
+        AbsoluteDirection = new Vector3(AbsoluteDirection2D.x, 0.0f, AbsoluteDirection2D.y).normalized;
         PlayerMoved?.Invoke();
     }
     public void StopMovement(InputAction.CallbackContext value)
