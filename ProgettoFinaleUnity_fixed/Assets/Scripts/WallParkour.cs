@@ -142,13 +142,13 @@ public class WallParkour : MonoBehaviour
     }
     public void JumpOffWall()
     {
-        rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward * 2f) * 10f, ForceMode.Impulse);
+        rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward) * 5f, ForceMode.Impulse);
         StopWallRun();
     }
     private void WallRunningMovement()
     {
         rb.useGravity = false;
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        rb.velocity = new Vector3(0, 0, 0);
         // wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
         //wallForward = Vector3.Cross(wallNormal, transform.up);
 
@@ -160,7 +160,7 @@ public class WallParkour : MonoBehaviour
         //if (VectorOps.AngleVec(PlayerTransform.forward, wallForward) > 90f)
         //    wallForward *= -1f;
 
-        rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+        //rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
 
         // rb.AddForce(ic.VirtualCamera.transform.forward*200f,ForceMode.Force);
 
