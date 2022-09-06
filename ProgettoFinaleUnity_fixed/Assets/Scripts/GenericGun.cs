@@ -25,10 +25,20 @@ public class DamageInstance
             enemiesHit = value;
         }
     }
-
+    public List<HitInfo> AddHitInfo(HitInfo newToAdd)
+    {
+        if(hits != null)
+        {
+            hits.Add(newToAdd);
+            EnemiesHit =  FilterDistinct(hits);
+            return hits;
+        }
+        return null;
+    }
     public DamageInstance(GenericGun sourceGun)
     {
         SourceGun = sourceGun;
+        hits = new List<HitInfo>();
     }
     public List<EnemyClass> FilterDistinct(List<HitInfo> toFilter)
     {
@@ -208,24 +218,48 @@ public class GenericGun : MonoBehaviour
         newDamageInstance.Hits = ShootRays();
         
         newDamageInstance.Deploy();
+        DeductAmmo();
+        //info.EnemyHit.GetComponent<HitEvent>().OnHit(HitInfo);
+
+    }
+    public virtual void DeductAmmo()
+    {
         currentAmmo--;
         currentShootCD = shootCD;
         if (currentAmmo <= 0)
         {
             StartReload();
-            
         }
         else
         {
             anim.SetTrigger("Shooting");
         }
-
-        //info.EnemyHit.GetComponent<HitEvent>().OnHit(HitInfo);
-
     }
     public virtual void Update()
     {
-        shotgun = false;
+        if (!CanShoot)
+        {
+            currentShootCD -= Time.deltaTime;
+            return;
+        }
+
+        if (IsAutomatic)
+        {
+            if (InputCooker.IsShooting)
+            {
+                if (currentShootCD <= 0f)
+                {
+                    Shoot();
+                }
+            }
+            else
+            {
+                if (IsReloading != false)
+                {
+                    anim.SetTrigger("Shooting");
+                }
+            }
+        }
     }
     public void EndReload()
     {

@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    public GenericGun Source;
+    public static List<EnemyClass> AlreadyHit = new List<EnemyClass>();
+    public float Speed=1f;
+    Rigidbody RB;
+    private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject,5f);
-
+        EnemyClass tryget = other.gameObject.GetComponent<EnemyClass>();
+        if (tryget == null)
+            return;
+        
+        HitInfo info = new HitInfo(other,this.transform);
+        DamageInstance DI = new DamageInstance(Source);
+        DI.AddHitInfo(info);
+        DI.Deploy();
     }
-    public void Shoot()
+    
+    private void Start()
     {
-        DamageInstance newDamageInstance = new DamageInstance();
+        RB = GetComponent<Rigidbody>();
+    }
 
-        //newDamageInstance.Hits = ShootRays();
-
-        newDamageInstance.Deploy();
-        currentAmmo--;
-        currentShootCD = shootCD;
-        if (currentAmmo <= 0)
-        {
-            StartReload();
-
-        }
-        else
-        {
-            anim.SetTrigger("Shooting");
-        }
+    public void FixedUpdate()
+    {
+        RB.MovePosition(this.transform.position + transform.forward * Speed*Time.fixedDeltaTime);
     }
 
 }

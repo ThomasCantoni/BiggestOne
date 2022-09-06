@@ -24,7 +24,12 @@ public class HitInfo
         //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
         Damage = SourceGun.Damage;
     }
-    
+    public HitInfo(Collider collider,Transform source)
+    {
+        collisionPoint = collider.transform.position;
+        collisionNormal = (collisionPoint - source.position).normalized;
+        GameObjectHit = collider.gameObject;
+    }
     public HitInfo()
     {
 

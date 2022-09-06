@@ -11,20 +11,14 @@ public class FireBallWeapon : GenericGun
     {
     }
 
-    public override void Update()
-    {
-        if (!CanShoot)
-        {
-            Shoot();
-        }
-    }
+   
     public override void Shoot()
     {
-        GameObject fireBall = Instantiate(bullet, spawnBullet.position, bullet.transform.rotation);
-        Rigidbody rig = fireBall.GetComponent<Rigidbody>();
-
-        rig.AddForce(spawnBullet.forward * speed, ForceMode.Impulse);
-        
+        if (!CanShoot) return;
+        GameObject fireBall = Instantiate(bullet, spawnBullet.position, spawnBullet.transform.rotation);
+        BulletScript BS = fireBall.GetComponent<BulletScript>();
+        BS.Source = this;
+        DeductAmmo();
     }
 
 }
