@@ -13,6 +13,7 @@ public class SemiAutoTestWeapon : GenericGun
 
     public override void Update()
     {
+        base.Update();
         ////Debug.Log("HasShotOnce :" +hasShotOnce);
         ////Debug.Log("CanShoot :" + CanShoot);
         ////Debug.Log("Current shot cooldown : " + currentShootCD);

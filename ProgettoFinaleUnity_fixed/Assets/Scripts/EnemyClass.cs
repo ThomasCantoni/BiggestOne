@@ -22,7 +22,7 @@ public abstract class EnemyClass : MonoBehaviour,IHittable
 
     public void Start()
     {
-        HP_Slider = GetComponentInChildren<Slider>();
+        HP_Slider = GetComponentInChildren<Slider>(true);
     }
     public float HP_Value
     {
@@ -33,7 +33,7 @@ public abstract class EnemyClass : MonoBehaviour,IHittable
         set
         {
             hp_Value = Mathf.Clamp(value, -maxHp, maxHp);
-            HP_Slider.GetComponent<Slider>().value = hp_Value;
+            HP_Slider.value = hp_Value;
         }
     }
 

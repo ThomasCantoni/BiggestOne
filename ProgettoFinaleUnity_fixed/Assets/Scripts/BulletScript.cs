@@ -15,9 +15,11 @@ public class BulletScript : MonoBehaviour
             return;
         
         HitInfo info = new HitInfo(other,this.transform);
+        info.Damage = Source.Damage;
         DamageInstance DI = new DamageInstance(Source);
         DI.AddHitInfo(info);
         DI.Deploy();
+        Destroy(this.gameObject);
     }
     
     private void Start()
