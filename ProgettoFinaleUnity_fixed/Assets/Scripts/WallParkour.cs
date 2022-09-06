@@ -68,7 +68,7 @@ public class WallParkour : MonoBehaviour
     }
     private void CheckForWall()
     {
-        Vector2 direction = ic.RotatedMoveValue.normalized;
+        Vector2 direction = ic.RelativeDirection.normalized;
         if (playerIsHoldingSpace && !IsWallRunning)
         {
             pushingTowardsWall = Physics.Raycast(transform.position, direction, out pushHit, 1f, whatIsWall);

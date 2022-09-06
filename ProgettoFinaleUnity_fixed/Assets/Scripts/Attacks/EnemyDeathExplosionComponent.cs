@@ -9,10 +9,12 @@ public class EnemyDeathExplosionComponent : MonoBehaviour
    
     public LayerMask LayersToHit;
     EnemyClass EC;
+    static List<IHittable> thingsHitByExplosions = new List<IHittable>();
     void Start()
     {
         EC = GetComponent<EnemyClass>();
         EC.OnEnemyDeath += OnEnemyDeath;
+     
     }
     private void OnEnemyDeath()
     {
@@ -24,11 +26,22 @@ public class EnemyDeathExplosionComponent : MonoBehaviour
         HitInfo hit = new HitInfo();
         hit.IsChainableAttack = true;
         hit.Damage = Damage;
-        foreach(IHittable x in thingsActuallyHittable)
+        for (int i = 0; i < thingsActuallyHittable.Count; i++)
         {
-            
-            x.OnHit(hit);
+            IHittable x = thingsActuallyHittable[i];
+            if(!thingsHitByExplosions.Contains(x))
+            {
+                thingsHitByExplosions.Add(x);
+                x.OnHit(hit);
+            }
+            else
+            {
+                continue;
+            }
+
         }
+        thingsHitByExplosions.Clear();    
+        
         EC.OnEnemyDeath -= OnEnemyDeath;
         Destroy(this);
     }
