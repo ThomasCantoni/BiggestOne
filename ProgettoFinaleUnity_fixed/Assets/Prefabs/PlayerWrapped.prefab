@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 60439749082204245}
   - component: {fileID: 60439749082204246}
   - component: {fileID: 264381284}
+  - component: {fileID: 525391470}
   m_Layer: 3
   m_Name: VirtualCamera
   m_TagString: PlayerVirtualCamera
@@ -82,7 +83,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60439749082204244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.000000749014, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -143,6 +144,32 @@ MonoBehaviour:
   LayersToHit:
     serializedVersion: 2
     m_Bits: 129
+--- !u!1773428102 &525391470
+ParentConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60439749082204244}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: -6.437149, y: 11.5, z: -16.05564}
+  m_RotationAtRest: {x: 0, y: 156.197, z: 0}
+  m_TranslationOffsets:
+  - {x: 0, y: 0.6199999, z: 0}
+  m_RotationOffsets:
+  - {x: 0, y: -0.00008025468, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 7578008436064795054}
+    weight: 1
 --- !u!1 &117167277520124026
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +230,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117167278172925948}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.000000749014, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -547,6 +574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rocket_launcher_1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -593,11 +624,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
+--- !u!1 &1256521199087285419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
+  m_PrefabInstance: {fileID: 1256521199087383051}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1256521199087773835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
   m_PrefabInstance: {fileID: 1256521199087383051}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1989349436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256521199087285419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81f27823401e6746b4229088c2df1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mask:
+    serializedVersion: 2
+    m_Bits: 129
+  IsAutomatic: 0
+  FireRate: 1
+  Multishot: 1
+  Damage: 50
+  maxAmmo: 1
+  currentAmmo: 1
+  reloadTime: 1
+  cam: {fileID: 0}
+  anim: {fileID: 1534726897}
+  Magazine: 0
+  WS: {fileID: 0}
+  ToInstantiate: {fileID: 0}
+  Player: {fileID: 0}
+  PlayerAttackEffects: {fileID: 0}
+  InputCooker: {fileID: 0}
+  shotgun: 0
+  range: 1000
+  inaccuracyDistance: 0
+  isReloading: 0
+  spawnBullet: {fileID: 366245025038781107}
+  bullet: {fileID: 4342492009047063302, guid: 9eb43ca78c0a21e41ab3bf210c13cf41, type: 3}
+  speed: 5
 --- !u!1001 &2008880051464647380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -771,6 +844,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: Speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: JumpCooldown
       value: 150
       objectReference: {fileID: 0}
@@ -780,11 +857,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: GroundedVelocityMul
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: GroundcheckFrequency
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: MaximumAllowedVelocity
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546981, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: Speed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546981, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: MainCamera
@@ -836,8 +921,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InspectorList:
-  - {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
-  - {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
   - {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
 --- !u!1001 &3569124368178884572
 PrefabInstance:

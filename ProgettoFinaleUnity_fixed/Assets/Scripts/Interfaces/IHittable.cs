@@ -18,6 +18,7 @@ public class HitInfo
     public Vector3 collisionPoint;
     public Vector3 collisionNormal;
     public float Damage;
+    
     public HitInfo(GenericGun SourceGun)
     {
         //SourceDamageInstance = SourceGun;
