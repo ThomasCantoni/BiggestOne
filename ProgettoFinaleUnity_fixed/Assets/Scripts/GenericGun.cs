@@ -228,7 +228,7 @@ public class GenericGun : MonoBehaviour,IDamager
     {
         currentAmmo--;
         currentShootCD = shootCD;
-        //WS.UIM.UpdateAmmo(currentAmmo);
+        WS.UIM.UpdateAmmo(currentAmmo);
         if (currentAmmo <= 0)
         {
             StartReload();
@@ -288,7 +288,7 @@ public class GenericGun : MonoBehaviour,IDamager
         anim.SetBool("Reloading", false);
         yield return new WaitForSeconds(.25f);
         currentAmmo = maxAmmo;
-        //WS.UIM.UpdateAmmo(currentAmmo);
+        WS.UIM.UpdateAmmo(currentAmmo);
         isReloading = false;
     }
     public virtual List<HitInfo> ShootRays()
