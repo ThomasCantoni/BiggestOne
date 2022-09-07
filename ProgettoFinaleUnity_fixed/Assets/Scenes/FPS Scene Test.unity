@@ -4391,6 +4391,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 525391470, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: DamageContainer.Damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Multishot
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: DamageContainer.Damage
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123742852, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: DamageContainer.Damage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4438,6 +4458,10 @@ PrefabInstance:
     - target: {fileID: 117167277520124026, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_Name
       value: PlayerWrapped
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: FrictionSlope
+      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -7575,7 +7599,11 @@ MonoBehaviour:
     GameObjectHit: {fileID: 0}
     collisionPoint: {x: 0, y: 0, z: 0}
     collisionNormal: {x: 0, y: 0, z: 0}
-    Damage: 0
+    DamageStats:
+      Damage: 0
+      CritChance: 0
+      CritMultiplier: 0
+      EffectChance: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:
@@ -8114,7 +8142,11 @@ MonoBehaviour:
     GameObjectHit: {fileID: 0}
     collisionPoint: {x: 0, y: 0, z: 0}
     collisionNormal: {x: 0, y: 0, z: 0}
-    Damage: 0
+    DamageStats:
+      Damage: 0
+      CritChance: 0
+      CritMultiplier: 0
+      EffectChance: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:
@@ -9251,10 +9283,14 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+  DamageContainer:
+    Damage: 0
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   IsAutomatic: 0
   FireRate: 1
   Multishot: 1
-  Damage: 0
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
@@ -11066,10 +11102,14 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+  DamageContainer:
+    Damage: 0
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   IsAutomatic: 0
   FireRate: 1
   Multishot: 1
-  Damage: 0
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
@@ -11435,10 +11475,14 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+  DamageContainer:
+    Damage: 0
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   IsAutomatic: 0
   FireRate: 1
   Multishot: 1
-  Damage: 0
   maxAmmo: 10
   currentAmmo: 0
   reloadTime: 1
@@ -13313,7 +13357,11 @@ MonoBehaviour:
     GameObjectHit: {fileID: 0}
     collisionPoint: {x: 0, y: 0, z: 0}
     collisionNormal: {x: 0, y: 0, z: 0}
-    Damage: 0
+    DamageStats:
+      Damage: 0
+      CritChance: 0
+      CritMultiplier: 0
+      EffectChance: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:

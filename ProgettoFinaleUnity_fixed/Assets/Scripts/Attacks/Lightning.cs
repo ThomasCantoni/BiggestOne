@@ -7,7 +7,7 @@ using UnityEngine;
 public class Lightning : ChainableAttack
 {
     public float Radius = 5f;
-    public float Damage;
+    
     public LayerMask LayersToHit;
 
    
@@ -56,7 +56,7 @@ public class Lightning : ChainableAttack
     public void CreateLightning(EnemyClass one,EnemyClass two)
     {
         HitInfo lightningHit = new HitInfo();
-        lightningHit.Damage = Damage;
+        lightningHit.DamageStats = DamageStats;
         //lightningHit.sender = playerInfo.sender;
         
         Debug.DrawLine(one.transform.position, two.transform.position,Color.blue,3);

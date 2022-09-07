@@ -8,12 +8,12 @@ public class SemiAutoTestWeapon : GenericGun
     public override void Start()
     {
         base.Start();
-        //InputCooker.PlayerReleasedShoot += () => hasShotOnce = false;
+        InputCooker.PlayerReleasedShoot += () => hasShotOnce = false;
     }
 
-    public override void Update()
+    public  void Update2()
     {
-        base.Update();
+       
         ////Debug.Log("HasShotOnce :" +hasShotOnce);
         ////Debug.Log("CanShoot :" + CanShoot);
         ////Debug.Log("Current shot cooldown : " + currentShootCD);
@@ -53,7 +53,7 @@ public class SemiAutoTestWeapon : GenericGun
 
     public override void Shoot()
     {
-       
+       if(!HasShotOnce)
         base.Shoot();
             Debug.Log("BOOM");
            

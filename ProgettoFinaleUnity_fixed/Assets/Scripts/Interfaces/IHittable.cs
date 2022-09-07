@@ -17,13 +17,13 @@ public class HitInfo
     //public PlayerAttackEffects PlayerAttackEffects;
     public Vector3 collisionPoint;
     public Vector3 collisionNormal;
-    public float Damage;
+    public DamageStatContainer DamageStats;
     
-    public HitInfo(GenericGun SourceGun)
+    public HitInfo(IDamager Source)
     {
         //SourceDamageInstance = SourceGun;
         //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
-        Damage = SourceGun.Damage;
+        DamageStats = Source.DamageStats;
     }
     public HitInfo(Collider collider,Transform source)
     {
@@ -34,6 +34,22 @@ public class HitInfo
     public HitInfo()
     {
 
+    }
+}
+[Serializable]
+public struct  DamageStatContainer
+{
+    public float Damage;
+    public float CritChance;
+    public float CritMultiplier;
+    public float EffectChance;
+}
+public interface IDamager
+{
+    public abstract DamageStatContainer DamageStats
+    {
+        get;
+        set;
     }
 }
 public interface IHittable

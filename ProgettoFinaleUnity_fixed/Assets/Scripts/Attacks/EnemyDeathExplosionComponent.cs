@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class EnemyDeathExplosionComponent : MonoBehaviour
+public class EnemyDeathExplosionComponent : ChainableAttackComponent
 {
-    public float Radius,Damage;
-   
+    public float Radius;
+    
+    
     public LayerMask LayersToHit;
     EnemyClass EC;
     static List<IHittable> thingsHitByExplosions = new List<IHittable>();
@@ -25,7 +26,7 @@ public class EnemyDeathExplosionComponent : MonoBehaviour
         
         HitInfo hit = new HitInfo();
         hit.IsChainableAttack = true;
-        hit.Damage = Damage;
+        hit.DamageStats = DamageStats;
         for (int i = 0; i < thingsActuallyHittable.Count; i++)
         {
             IHittable x = thingsActuallyHittable[i];

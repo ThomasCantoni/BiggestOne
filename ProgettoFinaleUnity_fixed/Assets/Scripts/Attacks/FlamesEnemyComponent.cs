@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DisallowMultipleComponent]
-public class FlamesEnemyComponent : MonoBehaviour
+public class FlamesEnemyComponent : ChainableAttackComponent
 {
     public float InitialDamage, BurnDamage, Frequency, Duration;
     public HitInfo flamesHitInfo;
@@ -27,10 +27,11 @@ public class FlamesEnemyComponent : MonoBehaviour
 
         //apply initial damage
         flamesHitInfo.IsChainableAttack = true;
-        flamesHitInfo.Damage = InitialDamage;
+        flamesHitInfo.DamageStats = DamageStats;
+        flamesHitInfo.DamageStats.Damage = InitialDamage;
         host.OnHit(flamesHitInfo);
         // set burn damage
-        flamesHitInfo.Damage = BurnDamage;
+        flamesHitInfo.DamageStats.Damage = BurnDamage;
         //Timer.TimerStartEvent += () => Debug.Log("FLAMES TIMER STARTED");
 
        

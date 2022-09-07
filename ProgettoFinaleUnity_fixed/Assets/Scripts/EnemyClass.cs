@@ -40,7 +40,7 @@ public abstract class EnemyClass : MonoBehaviour,IHittable
 
     public virtual void DetuctHealth(HitInfo info)
     {
-        HP_Value -= info.Damage;
+        HP_Value -= info.DamageStats.Damage;
         if (hp_Value <= 0)
             EnemyDeath();
     }
