@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EnemyExplosiveDeath : ChainableAttack
 {
-    public float Radius, Damage;
+    public float Radius;
     public LayerMask LayersToHit;
     public override void Apply(EnemyClass recepient)
     {
@@ -17,7 +17,7 @@ public class EnemyExplosiveDeath : ChainableAttack
             return;
         EDEC.LayersToHit = LayersToHit;
         EDEC.Radius = Radius;
-        EDEC.Damage = Damage;
+        EDEC.DamageStats = DamageStats;
        
     }
    

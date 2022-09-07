@@ -5,7 +5,8 @@ using System;
 
 public class DamageInstance
 {
-    public GenericGun SourceGun;
+    public IDamager DamageSource;
+    public PlayerAttackEffects PlayerAttackEffects;
     private List<HitInfo> hits;
     public List<HitInfo> Hits
     {
@@ -35,9 +36,9 @@ public class DamageInstance
         }
         return null;
     }
-    public DamageInstance(GenericGun sourceGun)
+    public DamageInstance(IDamager source)
     {
-        SourceGun = sourceGun;
+        DamageSource = source;
         hits = new List<HitInfo>();
     }
     public List<EnemyClass> FilterDistinct(List<HitInfo> toFilter)
@@ -68,9 +69,9 @@ public class DamageInstance
 
 
                 EnemyClass hitEnemy = (EnemyClass)hitAnything.Mono;
-                if (SourceGun.PlayerAttackEffects.PerShotAttacks != null)
+                if (PlayerAttackEffects.PerShotAttacks != null)
                 {
-                    foreach (ChainableAttack x in SourceGun.PlayerAttackEffects.PerShotAttacks)
+                    foreach (ChainableAttack x in PlayerAttackEffects.PerShotAttacks)
                     {
                         x.Apply(hitEnemy);
                     }
@@ -81,32 +82,35 @@ public class DamageInstance
                 continue;
             }
         }
-        if (SourceGun.PlayerAttackEffects.PerEnemyAttacks != null)
+        if (PlayerAttackEffects.PerEnemyAttacks != null)
         {
             for (int i = 0; i < EnemiesHit.Count; i++)
             {
-                foreach (ChainableAttack x in SourceGun.PlayerAttackEffects.PerEnemyAttacks)
+                foreach (ChainableAttack x in PlayerAttackEffects.PerEnemyAttacks)
                 {
                     x.Apply(EnemiesHit[i]);
                 }
             }
         }
-        //for (int i = 0; i < EnemiesHit.Count; i++)
-        //{
 
-        //}
     }
 }
 
-public class GenericGun : MonoBehaviour
+public class GenericGun : MonoBehaviour,IDamager
 {
     //[SerializeField]
     //public HitInfo HitInfo;
     public LayerMask Mask;
+    [SerializeField]
+     DamageStatContainer DamageContainer;
+    public DamageStatContainer DamageStats 
+    { 
+        get { return DamageContainer; }
+        set { DamageContainer = value; }
+    }
     public bool IsAutomatic;
     public float FireRate;
     public int Multishot=1;
-    public float Damage;
     public int maxAmmo = 10;
     public int currentAmmo;
     public float reloadTime = 1f;
@@ -158,6 +162,8 @@ public class GenericGun : MonoBehaviour
             FireRate = 1f / Mathf.Clamp(value, 0f, 9999f);
         }
     }
+
+
     private void OnEnable()
     {
         Initialize();
@@ -184,11 +190,7 @@ public class GenericGun : MonoBehaviour
     public virtual void Start()
     {
         currentAmmo = maxAmmo;
-        //if (HitInfo.sender == null)
-        //{
-        //    HitInfo.sender = this.gameObject;
-        //}
-        //OnEnable();
+        
     }
     protected virtual void Subscribe(bool subscribe)
     {
@@ -214,7 +216,7 @@ public class GenericGun : MonoBehaviour
         //if (isReloading) return;
         if (!CanShoot) return ;
         DamageInstance newDamageInstance = new DamageInstance(this);
-        
+        newDamageInstance.PlayerAttackEffects = this.PlayerAttackEffects;
         newDamageInstance.Hits = ShootRays();
         
         newDamageInstance.Deploy();
@@ -226,6 +228,7 @@ public class GenericGun : MonoBehaviour
     {
         currentAmmo--;
         currentShootCD = shootCD;
+        //WS.UIM.UpdateAmmo(currentAmmo);
         if (currentAmmo <= 0)
         {
             StartReload();
@@ -285,6 +288,7 @@ public class GenericGun : MonoBehaviour
         anim.SetBool("Reloading", false);
         yield return new WaitForSeconds(.25f);
         currentAmmo = maxAmmo;
+        //WS.UIM.UpdateAmmo(currentAmmo);
         isReloading = false;
     }
     public virtual List<HitInfo> ShootRays()

@@ -30,7 +30,8 @@ public class FirstPersonController : MonoBehaviour
     public float GroundcheckFrequency = 0.15f;
     [Tooltip("Time before the groundcheck is executed again after jumping. Should never be 0, else the jump will stop immediately.")]
     public float FallTimeOutMilliseconds = 150f;
-
+    [Tooltip("The amount of gravitational pull the Player should get grounded. Used to manage slopes and cliffdrops")]
+    public float GroundedGravity=5;
     public float GroundedOffset = -0.14f;
     public float GroundedRadius = 0.5f;
     public LayerMask GroundLayers;
@@ -59,7 +60,8 @@ public class FirstPersonController : MonoBehaviour
     private float slopeAngle = 0f;
     private float velocityMultiplier = 1;
     [HideInInspector]
-    public Vector3 SlopeCounterVector;
+    public Vector3 SlopeCounterVector,SlopeCounterVectorNORMALIZED;
+
     
     private PhysicMaterial physicsMat;
     public bool wallRunning;
@@ -98,19 +100,6 @@ public class FirstPersonController : MonoBehaviour
         //GroundcheckTimer.TimerStartEvent += () => CanGroundCheck = true;
         // GroundcheckTimer.TimerCompleteEvent += () => CanGroundCheck = true;
     }
-    private void SlopeDetector()
-    {
-        Vector3 post = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-        Ray towardsGround = new Ray(post, Vector3.down);
-        RaycastHit info;
-        if (!Physics.Raycast(towardsGround, out info, 0.1f, 3))
-        {
-            SlopeCounterVector = Vector3.zero;
-            return;
-        }
-        SlopeCounterVector = Vector3.ProjectOnPlane(Vector3.up, info.normal) * Physics.gravity.magnitude;
-        slopeAngle = VectorOps.AngleVec(Vector3.up, SlopeCounterVector.normalized);
-    }
     void Update()
     {
         JumpAndGravity();
@@ -118,11 +107,11 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Debug.Log(RB.velocity + " HORIZONTAL MAGN: "+new Vector3(RB.velocity.x,0,RB.velocity.z).magnitude);
+       // Debug.Log(RB.velocity + " HORIZONTAL MAGN: "+new Vector3(RB.velocity.x,0,RB.velocity.z).magnitude);
         float mamt = 0.5f;
         Debug.DrawRay(transform.position, transform.forward*10f, Color.green, mamt);
-        Debug.DrawRay(transform.position, InputCooker.RelativeDirection.normalized * 10f, Color.blue+Color.red, mamt);
-        Debug.DrawRay(transform.position, RB.velocity, Color.red, mamt);
+        //Debug.DrawRay(transform.position, InputCooker.RelativeDirection.normalized * 10f, Color.blue+Color.red, mamt);
+        //Debug.DrawRay(transform.position, RB.velocity, Color.red, mamt);
 
 
         
@@ -155,11 +144,18 @@ public class FirstPersonController : MonoBehaviour
 
         if (Grounded)
         {
-            RB.AddForce(new Vector3(0,2f,0)*Time.fixedDeltaTime, ForceMode.VelocityChange);
-            AccountForSlope();
+           
+           
+                //RB.AddForce(Physics.gravity*0.25f, ForceMode.Acceleration);
+                AccountForSlope();
+                //Debug.Log("ti ammazzo "+dirOfGround);
+                Debug.DrawRay(transform.position,  SlopeCounterVector, Color.red, 1f,false);
+
+            
+            //AccountForSlope();
         }
         
-        Debug.Log(RB.velocity + " HORIZONTAL MAGN: " + new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
+        //Debug.Log(RB.velocity + " HORIZONTAL MAGN: " + new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
 
         InputCooker.UpdateCameras();
 
@@ -170,14 +166,20 @@ public class FirstPersonController : MonoBehaviour
 
         //i am on a slope that isn't too steep or too flat and grounded
         //Debug.Log(" Angle: " + slopeAngle + "  IC.Dir: "+InputCooker.inputDirection);
+        Vector3 goDown = Physics.gravity * 0.25f;
+        RB.AddForce(goDown, ForceMode.Acceleration);
+
         if ((slopeAngle >= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange)
             && InputCooker.AbsoluteDirection.sqrMagnitude < 1f)
 
         {
             //physicsMat.dynamicFriction = FrictionSlope;
             physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
-            RB.AddForce(SlopeCounterVector, ForceMode.Force);
-            
+            Vector3 test = Vector3.down * Vector3.Dot(-SlopeCounterVectorNORMALIZED, goDown);
+            RB.AddForce(SlopeCounterVector +SlopeCounterVector.normalized * test.magnitude, ForceMode.Acceleration);
+            Debug.DrawRay(transform.position, SlopeCounterVector + SlopeCounterVector.normalized * Physics.gravity.magnitude, Color.red,1f);
+            Debug.DrawRay(transform.position,  goDown, Color.blue, 1f);
+
         }
         else
         {
@@ -187,6 +189,23 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
+    private void SlopeDetector()
+    {
+        Vector3 post = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+        Ray towardsGround = new Ray(post, Vector3.down);
+        RaycastHit info;
+        if (!Physics.Raycast(towardsGround, out info, 0.1f, 3))
+        {
+            SlopeCounterVector = Vector3.zero;
+            return;
+        }
+        SlopeCounterVectorNORMALIZED = Vector3.ProjectOnPlane(Vector3.up, info.normal).normalized;
+        SlopeCounterVector = SlopeCounterVectorNORMALIZED* Vector3.Dot(-SlopeCounterVectorNORMALIZED, Physics.gravity);
+        
+        Debug.DrawRay(transform.position, SlopeCounterVector, Color.red, 1f);
+
+        slopeAngle = VectorOps.AngleVec(Vector3.up, SlopeCounterVector.normalized);
+    }
     private void JumpAndGravity()
     {
         if (Grounded)

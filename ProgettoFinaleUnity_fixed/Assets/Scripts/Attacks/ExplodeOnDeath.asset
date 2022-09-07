@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04986edc0faa51499e731f4f8b85db0, type: 3}
   m_Name: ExplodeOnDeath
   m_EditorClassIdentifier: 
+  ChainAttackApplicationMode: 0
+  EnemiesHit: []
+  DamageStats:
+    Damage: 30
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   Radius: 5
-  Damage: 40
   LayersToHit:
     serializedVersion: 2
     m_Bits: 128

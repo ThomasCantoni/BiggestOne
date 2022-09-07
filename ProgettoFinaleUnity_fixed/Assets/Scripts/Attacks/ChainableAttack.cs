@@ -11,6 +11,8 @@ public abstract class ChainableAttack : ScriptableObject
     public ChainAttackApplicationType ChainAttackApplicationMode;
     [HideInInspector]
     public List<GameObject> EnemiesHit;
+    [SerializeField]
+    public DamageStatContainer DamageStats;
     public abstract void Apply(EnemyClass recepient);
     
 }
