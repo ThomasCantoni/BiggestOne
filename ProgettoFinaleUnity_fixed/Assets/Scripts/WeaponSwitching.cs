@@ -6,9 +6,12 @@ public class WeaponSwitching : MonoBehaviour
 {
     public int selectedWeapon = 0;
     public InputCooker InputCooker;
-    public delegate void ReloadDelegate();
-    public event ReloadDelegate ReloadEvent;
-
+    public delegate void WeaponEvent();
+    public delegate void GenericGunEvent(GenericGun gun);
+    public event WeaponEvent ReloadEvent;
+    public UIManager UIM;
+    public event GenericGunEvent ReloadDelegateEvent,ChangeWeaponEvent;
+    public GenericGun currentGun;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,19 +26,27 @@ public class WeaponSwitching : MonoBehaviour
     }
     void SelectWeapon()
     {
+
         int i = 0;
         foreach (Transform weapon in transform)
         {
+            
             if (i == selectedWeapon)
+            {
+                currentGun = weapon.GetComponent<GenericGun>();
                 weapon.gameObject.SetActive(true);
+                ChangeWeaponEvent?.Invoke(currentGun);
+            }
             else
                 weapon.gameObject.SetActive(false);
             i++;
         }
+        
     }
     public void LaunchReloadEvent()
     {
-        ReloadEvent.Invoke();
+        ReloadEvent?.Invoke();
+        ReloadDelegateEvent?.Invoke(currentGun);
     }
     void Switch()
     {
