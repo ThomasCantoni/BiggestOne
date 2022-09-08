@@ -58,6 +58,15 @@
                     "processors": "Scale",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Sliding",
+                    "type": "Button",
+                    "id": "1eb7bfe3-ec01-4a96-a06d-3d75c6d9d01b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -168,6 +177,17 @@
                     "processors": "Scale(factor=0.01)",
                     "groups": "KeyboardAndMouse",
                     "action": "WeaponScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea0db675-1200-43d4-9a21-0b7991e27597",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Sliding",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
