@@ -31,6 +31,7 @@ public class InputCooker : MonoBehaviour
     public bool IsShooting = false;
     public bool isJump = false;
     public bool isSprint = false;
+    public bool isSliding = false;
     public delegate void PlayerShootEvent();
     public delegate void ChangeWeaponEvent();
     public delegate void PlayerRotatedCameraEvent();
@@ -39,7 +40,7 @@ public class InputCooker : MonoBehaviour
     public PlayerShootEvent PlayerPressedShoot, PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
-    public PlayerMovementEvent PlayerMoved, PlayerStopped, PlayerStartedJump, PlayerStoppedJump, PlayerPressedShift;
+    public PlayerMovementEvent PlayerMoved, PlayerStopped, PlayerStartedJump, PlayerStoppedJump, PlayerPressedShift, PlayerStartSliding, PlayerStopSliding;
     public Transform CameraHolder;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
@@ -62,6 +63,8 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Jump.started += OnJump;
         Controls.Player.Jump.canceled += OnJumpCanceled;
         Controls.Player.Sprint.started += OnSprintStart;
+        Controls.Player.Sliding.started += OnSlidingStart;
+        Controls.Player.Sliding.canceled += OnSlidingStop;
         //Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
@@ -171,6 +174,22 @@ public class InputCooker : MonoBehaviour
     public void OnSprintStop(InputAction.CallbackContext value)
     {
 
+    }
+    public void OnSlidingStart(InputAction.CallbackContext value)
+    {
+        isSliding = true;
+        if (PlayerStartSliding != null)
+        {
+            PlayerStartSliding?.Invoke();
+        }
+    }
+    public void OnSlidingStop(InputAction.CallbackContext value)
+    {
+        isSliding = false;
+        if (PlayerStopSliding != null)
+        {
+            PlayerStopSliding?.Invoke();
+        }
     }
     public void OnJump(InputAction.CallbackContext value)
     {

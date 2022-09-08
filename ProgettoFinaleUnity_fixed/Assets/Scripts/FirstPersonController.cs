@@ -18,12 +18,16 @@ public class FirstPersonController : MonoBehaviour
     public float MaximumAllowedVelocity = 10f;
 
 
-    [Header ("Jump Values")]
+    [Header("Jump Values")]
     [Tooltip("The height of the jump in meters")]
     public float JumpHeight = 1.2f;
     //public float Gravity = -9.8f;
     [Tooltip("Time before the Player can jump again. Ticks when grounded")]
     public float JumpCooldown = 0.2f;
+    [Tooltip("Time before the Player can slide again.")]
+    public float SlideCooldown = 200f;
+    public float SlideTimeOutMilliseconds = 150f;
+
 
 
     [Header("Grounded and Airborne values")]
@@ -31,7 +35,7 @@ public class FirstPersonController : MonoBehaviour
     [Tooltip("Time before the groundcheck is executed again after jumping. Should never be 0, else the jump will stop immediately.")]
     public float FallTimeOutMilliseconds = 150f;
     [Tooltip("The amount of gravitational pull the Player should get grounded. Used to manage slopes and cliffdrops")]
-    public float GroundedGravity=5;
+    public float GroundedGravity = 5;
     public float GroundedOffset = -0.14f;
     public float GroundedRadius = 0.5f;
     public LayerMask GroundLayers;
@@ -51,7 +55,7 @@ public class FirstPersonController : MonoBehaviour
     public float FrictionSlope = 0.2f;
     public float SlopeMinAdjustRange = 45f;
     public float SlopeMaxAdjustRange = 89f;
-    
+
     [Header("READ ONLY")]
     public bool Grounded = true;
     public bool DoubleJumpPossible = false;
@@ -60,45 +64,55 @@ public class FirstPersonController : MonoBehaviour
     private float slopeAngle = 0f;
     private float velocityMultiplier = 1;
     [HideInInspector]
-    public Vector3 SlopeCounterVector,SlopeCounterVectorNORMALIZED;
+    public Vector3 SlopeCounterVector, SlopeCounterVectorNORMALIZED;
 
-    
+    [Header("Slide")]
+    CapsuleCollider capsColl;
+    float originalHeight;
+    public float reduceHeight;
+    public float slideSpeed = 10f;
+    bool canSlide = true;
+    private float _SlideCD;
+    private float _slideTimeOut;
+
+
     private PhysicMaterial physicsMat;
     public bool wallRunning;
-    protected SimpleTimer JumpTimer,GroundcheckTimer;
+    protected SimpleTimer JumpTimer, GroundcheckTimer, SlideTimer;
     Repeater GroundcheckRepeater;
-    public bool CanJump = true, CanGroundCheck=true;
+    public bool CanJump = true, CanGroundCheck = true;
     [HideInInspector]
     public Vector3 PositionBeforeJump;
     private void Start()
     {
         RB = GetComponent<Rigidbody>();
         InputCooker = GetComponent<InputCooker>();
+        capsColl = GetComponent<CapsuleCollider>();
+        originalHeight = capsColl.height;
         _jumpCD = JumpCooldown;
+        _SlideCD = SlideCooldown;
         _fallTimeOut = FallTimeOutMilliseconds;
+        _slideTimeOut = SlideTimeOutMilliseconds;
         physicsMat = this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial;
-
 
         GroundcheckRepeater = new Repeater();
         GroundcheckRepeater.Frequency = GroundcheckFrequency;
         GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
-       // GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log("TickEvent triggering Hz = " + GroundcheckRepeater.Frequency);
-        //GroundcheckRepeater.RepeaterTickEvent += () => Debug.Log(Grounded);
         GroundcheckRepeater.RepeaterPauseEvent += () => Grounded = false;
-        //GroundcheckRepeater.RepeaterPauseEvent += () => Debug.Log("PAUSE EVENT " + Grounded);
-
         GroundcheckRepeater.StartRepeater();
-
 
         //set the actions of timers 
         JumpTimer = new SimpleTimer(_jumpCD);
-        JumpTimer.TimerStartEvent    += () => CanJump = false;
+        JumpTimer.TimerStartEvent += () => CanJump = false;
         JumpTimer.TimerCompleteEvent += () => CanJump = true;
-        JumpTimer.TimerCompleteEvent += () => Debug.LogError("JUMP TIMER COMPLETED");
 
-        //GroundcheckTimer = new SimpleTimer(_fallTimeOut);
-        //GroundcheckTimer.TimerStartEvent += () => CanGroundCheck = true;
-        // GroundcheckTimer.TimerCompleteEvent += () => CanGroundCheck = true;
+        //set the actions of timers 
+        SlideTimer = new SimpleTimer(_SlideCD);
+        SlideTimer.TimerStartEvent += () => canSlide = false;
+        //SlideTimer.TimerCompleteEvent += GoUp;
+        SlideTimer.TimerCompleteEvent += () => canSlide = true;
+        InputCooker.PlayerStopSliding += SlideTimer.StopTimer;
+        SlideTimer.TimerCompleteEvent += () => Debug.LogError("SLIDE TIMER COMPLETED");
     }
     void Update()
     {
@@ -107,27 +121,16 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-       // Debug.Log(RB.velocity + " HORIZONTAL MAGN: "+new Vector3(RB.velocity.x,0,RB.velocity.z).magnitude);
-        float mamt = 0.5f;
-        Debug.DrawRay(transform.position, transform.forward*10f, Color.green, mamt);
-        //Debug.DrawRay(transform.position, InputCooker.RelativeDirection.normalized * 10f, Color.blue+Color.red, mamt);
-        //Debug.DrawRay(transform.position, RB.velocity, Color.red, mamt);
-
-
-        
-        Vector3 toAdd = (InputCooker.RelativeDirection.normalized * velocityMultiplier* Speed );
-        
+        Vector3 toAdd = (InputCooker.RelativeDirection.normalized * velocityMultiplier * Speed);
         Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
-
-        Vector3 predictive = RigidBody_horizontalVelocity + toAdd*Time.fixedDeltaTime;
+        Vector3 predictive = RigidBody_horizontalVelocity + toAdd * Time.fixedDeltaTime;
 
         if (predictive.magnitude >= MaximumAllowedVelocity)
         {
             toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
         }
-        
 
-        RB.AddForce(toAdd*Time.fixedDeltaTime, ForceMode.VelocityChange);
+        RB.AddForce(toAdd * Time.fixedDeltaTime, ForceMode.VelocityChange);
 
         RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
 
@@ -137,30 +140,24 @@ public class FirstPersonController : MonoBehaviour
             RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
         }
 
-
-
-
-
-
         if (Grounded)
         {
-           
-           
-                //RB.AddForce(Physics.gravity*0.25f, ForceMode.Acceleration);
-                AccountForSlope();
-                //Debug.Log("ti ammazzo "+dirOfGround);
-                Debug.DrawRay(transform.position,  SlopeCounterVector, Color.red, 1f,false);
-
-            
-            //AccountForSlope();
+            AccountForSlope();
         }
-        
-        //Debug.Log(RB.velocity + " HORIZONTAL MAGN: " + new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
-
+        if (canSlide)
+        {
+            GoUp();
+        }
         InputCooker.UpdateCameras();
-
     }
-
+    private void GoUp()
+    {
+        if (_slideTimeOut >= 0.0f)
+        {
+            _slideTimeOut -= Time.deltaTime * 1000;
+        }
+        capsColl.height = originalHeight;
+    }
     private void AccountForSlope()
     {
 
@@ -176,9 +173,9 @@ public class FirstPersonController : MonoBehaviour
             //physicsMat.dynamicFriction = FrictionSlope;
             physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
             Vector3 test = Vector3.down * Vector3.Dot(-SlopeCounterVectorNORMALIZED, goDown);
-            RB.AddForce(SlopeCounterVector +SlopeCounterVector.normalized * test.magnitude, ForceMode.Acceleration);
-            Debug.DrawRay(transform.position, SlopeCounterVector + SlopeCounterVector.normalized * Physics.gravity.magnitude, Color.red,1f);
-            Debug.DrawRay(transform.position,  goDown, Color.blue, 1f);
+            RB.AddForce(SlopeCounterVector + SlopeCounterVector.normalized * test.magnitude, ForceMode.Acceleration);
+            Debug.DrawRay(transform.position, SlopeCounterVector + SlopeCounterVector.normalized * Physics.gravity.magnitude, Color.red, 1f);
+            Debug.DrawRay(transform.position, goDown, Color.blue, 1f);
 
         }
         else
@@ -200,8 +197,8 @@ public class FirstPersonController : MonoBehaviour
             return;
         }
         SlopeCounterVectorNORMALIZED = Vector3.ProjectOnPlane(Vector3.up, info.normal).normalized;
-        SlopeCounterVector = SlopeCounterVectorNORMALIZED* Vector3.Dot(-SlopeCounterVectorNORMALIZED, Physics.gravity);
-        
+        SlopeCounterVector = SlopeCounterVectorNORMALIZED * Vector3.Dot(-SlopeCounterVectorNORMALIZED, Physics.gravity);
+
         Debug.DrawRay(transform.position, SlopeCounterVector, Color.red, 1f);
 
         slopeAngle = VectorOps.AngleVec(Vector3.up, SlopeCounterVector.normalized);
@@ -220,9 +217,11 @@ public class FirstPersonController : MonoBehaviour
     }
     private void StartGrounded()
     {
-        RB.drag = GroundedDrag;
-        velocityMultiplier = GroundedVelocityMul;
-
+        if (canSlide)
+        {
+            RB.drag = GroundedDrag;
+            velocityMultiplier = GroundedVelocityMul;
+        }
         //if (_jumpTimeOut >= 0.0f)
         //{
         //    _jumpTimeOut -= Time.deltaTime;
@@ -241,16 +240,28 @@ public class FirstPersonController : MonoBehaviour
             JumpTimer.StartTimer();
             Grounded = false;
         }
+
+        if (InputCooker.isSliding && canSlide)
+        {
+            InputCooker.isSliding = false;
+            _slideTimeOut = SlideTimeOutMilliseconds;
+            capsColl.height = reduceHeight;
+            RB.drag = AirbornDrag;
+            RB.AddForce(InputCooker.RelativeDirection * slideSpeed, ForceMode.VelocityChange);
+            SlideTimer.StartTimer();
+        }
     }
     private void StartAirborne()
     {
         //_jumpTimeOut = JumpTimeout;
         RB.drag = AirbornDrag;
         velocityMultiplier = AirborneVelocityMul;
+        //canSlide = false;
+        //SlideTimer.StopTimer();
 
         if (_fallTimeOut >= 0.0f)
         {
-            _fallTimeOut -= Time.deltaTime*1000;
+            _fallTimeOut -= Time.deltaTime * 1000;
         }
         if (InputCooker.isJump && DoubleJumpPossible)
         {
@@ -280,5 +291,5 @@ public class FirstPersonController : MonoBehaviour
     //    JumpTimer.StopTimer();
     //    GroundcheckRepeater.StopRepeater();
     //}
-    
+
 }
