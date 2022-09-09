@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class FirstPersonController : MonoBehaviour
 {
     public SlideCharacter SC;
+    public Dash DashScript;
     public InputCooker IC;
     public Rigidbody RB;
     [Header("General Movement Values")]
@@ -38,16 +39,26 @@ public class FirstPersonController : MonoBehaviour
     public float GroundedRadius = 0.5f;
     public LayerMask GroundLayers;
 
-    [Tooltip("The deceleration factor of the Player when he stops moving")]
-    public float GroundedDrag = 5f;
+    [Tooltip("The friction factor of the Player when he stops moving")]
+    public float GroundedStillDrag = 5f;
+    [Tooltip("The friction factor of the Player whhile he is moving")]
+    public float GroundedMovementDrag = 0f;
     [Tooltip("The velocity factor when the Player is grounded")]
     public float GroundedVelocityMul = 1f;
-    [Tooltip("The deceleration factor of the Player when in the air. The lower this is, the higher the air control.")]
-    public float AirbornDrag = 0f;
-
+    [Tooltip("The friction factor of the Player while in the air and no input is given.")]
+    public float AirbornStillDrag = 0f;
+    [Tooltip("The friction factor of the Player while in the air moving. The lower this is, the higher the air control.")]
+    public float AirbornMovementDrag = 1f;
     [Tooltip("The velocity factor when the Player is in the air.")]
     public float AirborneVelocityMul = 0.2f;
-
+    public bool WantsToMove
+    {
+        get { return IC.AbsoluteDirection.magnitude >= 1f; }
+    }
+    public bool IsMoving
+    {
+        get { return RB_velocityXZ.magnitude > 1f; }
+    }
     [Header("Slope Values")]
     [Range(0, 1)]
     public float FrictionSlope = 0.2f;
@@ -70,11 +81,27 @@ public class FirstPersonController : MonoBehaviour
     protected SimpleTimer JumpTimer, GroundcheckTimer;
     Repeater GroundcheckRepeater;
     private bool CanJump = true;
+    public Vector3 RB_velocityXZ 
+    {
+        get
+        {
+            return new Vector3(RB.velocity.x, 0, RB.velocity.z);
+        }
+        set
+        {
+            RB.velocity = new Vector3(value.x, 0, value.z);
+        }
+    }
+    public bool IsDashing
+    {
+        get { return DashScript.IsDashing; }
+    }
     private void Start()
     {
         SC = GetComponent<SlideCharacter>();
         RB = GetComponent<Rigidbody>();
         IC = GetComponent<InputCooker>();
+        DashScript = GetComponent<Dash>();
         _fallTimeOut = FallTimeOutMilliseconds;
         _jumpCD = JumpCooldown;
         physicsMat = this.gameObject.GetComponent<CapsuleCollider>().sharedMaterial;
@@ -98,28 +125,29 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
-        Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed);
+        //clamp before
+        Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed *Time.fixedDeltaTime);
         Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
-        Vector3 predictive = RigidBody_horizontalVelocity + toAdd * Time.fixedDeltaTime;
-
-        if (predictive.magnitude >= MaximumAllowedVelocity)
+        Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
+        if (predictive.magnitude >= MaximumAllowedVelocity && !DashScript.IsDashing)
         {
             toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
         }
+        
         if (!SC.isSliding)
         {
-            RB.AddForce(toAdd * Time.fixedDeltaTime, ForceMode.VelocityChange);
+            RB.AddForce(toAdd , ForceMode.VelocityChange); ;
         }
 
         RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
 
-        if (RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity)
+        //clamp after
+        if (RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity && !DashScript.IsDashing)
         {
             RigidBody_horizontalVelocity = RigidBody_horizontalVelocity.normalized * MaximumAllowedVelocity;
             RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
+           // Debug.Log(new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
         }
-
         if (Grounded)
         {
             AccountForSlope();
@@ -181,14 +209,18 @@ public class FirstPersonController : MonoBehaviour
     }
     private void StartGrounded()
     {
-        if (!SC.isSliding)
+        if (!SC.isSliding && !IsDashing)
         {
-            RB.drag = GroundedDrag;
+            if (WantsToMove)
+                RB.drag = GroundedMovementDrag;
+            else
+                RB.drag = GroundedStillDrag;
             velocityMultiplier = GroundedVelocityMul;
         }
         else
         {
-            RB.drag = AirbornDrag;
+            RB.drag = AirbornStillDrag;
+            if(SC.isSliding)
             velocityMultiplier = 0;
         }
         //if (_jumpTimeOut >= 0.0f)
@@ -201,7 +233,7 @@ public class FirstPersonController : MonoBehaviour
             Grounded = false;
             _fallTimeOut = FallTimeOutMilliseconds;
             //GroundcheckTimer.StartTimer();
-            RB.drag = AirbornDrag;
+            RB.drag = AirbornStillDrag;
             float jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
             RB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             IC.isJump = false;
@@ -215,8 +247,20 @@ public class FirstPersonController : MonoBehaviour
     private void StartAirborne()
     {
         //_jumpTimeOut = JumpTimeout;
-        RB.drag = AirbornDrag;
-        velocityMultiplier = AirborneVelocityMul;
+        if(!IsDashing)
+        {
+            if (WantsToMove)
+            {
+                RB.drag = AirbornMovementDrag;
+
+            }
+            else
+            {
+                RB.drag = AirbornStillDrag;
+
+            }
+            velocityMultiplier = AirborneVelocityMul;
+        }
         //canSlide = false;
         //SlideTimer.StopTimer();
 

@@ -230,7 +230,7 @@ ParentConstraint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 60439749082204244}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Weight: 1
   m_TranslationAtRest: {x: -6.437149, y: 11.5, z: -16.05564}
   m_RotationAtRest: {x: 0, y: 156.197, z: 0}
@@ -309,7 +309,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117167278172925948}
-  m_LocalRotation: {x: 0, y: -0.000000749014, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.000000749014, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -881,6 +881,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 117167277520124005}
     m_Modifications:
     - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: DashForce
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: CheckRadius
       value: 0.6
       objectReference: {fileID: 0}
@@ -942,11 +946,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: Speed
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: JumpCooldown
       value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: FrictionSlope
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: AirbornStillDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: AirbornMovementDrag
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: AirborneVelocityMul
@@ -1029,21 +1045,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoText: {fileID: 1351446101}
   WS: {fileID: 1592762245896260304}
---- !u!114 &1687120080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578008436064795026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e47c909e9f342488ec57c4719efec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChainableAttackList:
-  - {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
-  WeaponBuffsList: []
 --- !u!114 &223219772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1063,6 +1064,22 @@ MonoBehaviour:
   IC: {fileID: 0}
   FPS: {fileID: 0}
   isSliding: 0
+--- !u!114 &1687120080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578008436064795026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e47c909e9f342488ec57c4719efec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChainableAttackList:
+  - {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
+  WeaponBuffsList:
+  - {fileID: 11400000, guid: 27608a38c1f2eb54a942ff4a2fb88430, type: 2}
 --- !u!1001 &3569124368178884572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1164,7 +1181,7 @@ MonoBehaviour:
     EffectChance: 0
   IsAutomatic: 0
   FireRate: 2
-  Multishot: 5
+  Multishot: 6
   maxAmmo: 2
   currentAmmo: 2
   reloadTime: 2
@@ -1271,7 +1288,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   DamageContainer:
-    Damage: 10
+    Damage: 15
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
