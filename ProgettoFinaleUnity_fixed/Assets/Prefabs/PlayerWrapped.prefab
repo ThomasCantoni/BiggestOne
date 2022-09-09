@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1351446099
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351446100}
+  - component: {fileID: 1351446102}
+  - component: {fileID: 1351446101}
+  m_Layer: 3
+  m_Name: Ammo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1351446100
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351446099}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2383577272371382695}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 198, y: 140}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1351446102
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351446099}
+  m_CullTransparentMesh: 1
+--- !u!114 &1351446101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351446099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 68
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 68
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: 'Ammo:'
 --- !u!1 &60439748507004244
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +171,7 @@ Transform:
   - {fileID: 8573327059484529268}
   m_Father: {fileID: 117167277520124005}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -27.563, y: 0, z: 0}
 --- !u!114 &60439749082204246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,7 +241,7 @@ ParentConstraint:
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
-  m_AffectRotationX: 1
+  m_AffectRotationX: 0
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
   m_IsContraintActive: 1
@@ -489,7 +568,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3706085672831965547}
-  m_LocalRotation: {x: -0, y: -0.000000059604638, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.00000006178208, z: -0, w: 1}
   m_LocalPosition: {x: 0.042, y: -0.09200001, z: 0.011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -514,6 +593,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedWeapon: 0
   InputCooker: {fileID: 7578008436064795051}
+  UIM: {fileID: 444145919}
+  currentGun: {fileID: 0}
 --- !u!95 &1534726897
 Animator:
   serializedVersion: 3
@@ -556,8 +637,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4535167240340187824}
-  m_LocalRotation: {x: -0, y: -6.994405e-15, z: -2.6160498e-22, w: 1}
-  m_LocalPosition: {x: 0.00061999675, y: 0.0041700024, z: 0.01467}
+  m_LocalRotation: {x: -0, y: -7.0663033e-15, z: -2.6429413e-22, w: 1}
+  m_LocalPosition: {x: 0.00062, y: 0.0041, z: 0.0168}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1256521199087773835}
@@ -577,6 +658,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
       propertyPath: m_RootOrder
@@ -624,14 +709,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
---- !u!1 &1256521199087285419 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
-  m_PrefabInstance: {fileID: 1256521199087383051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1256521199087773835 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
+  m_PrefabInstance: {fileID: 1256521199087383051}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1256521199087285419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 03097b40df6a7344298a71ef134d8fb3, type: 3}
   m_PrefabInstance: {fileID: 1256521199087383051}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1989349436
@@ -649,10 +734,14 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 129
+  DamageContainer:
+    Damage: 50
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   IsAutomatic: 0
   FireRate: 1
   Multishot: 1
-  Damage: 50
   maxAmmo: 1
   currentAmmo: 1
   reloadTime: 1
@@ -665,7 +754,7 @@ MonoBehaviour:
   PlayerAttackEffects: {fileID: 0}
   InputCooker: {fileID: 0}
   shotgun: 0
-  range: 1000
+  range: 1
   inaccuracyDistance: 0
   isReloading: 0
   spawnBullet: {fileID: 366245025038781107}
@@ -761,10 +850,14 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 129
+  DamageContainer:
+    Damage: 15
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   IsAutomatic: 1
   FireRate: 8
   Multishot: 1
-  Damage: 15
   maxAmmo: 30
   currentAmmo: 30
   reloadTime: 4
@@ -794,6 +887,10 @@ PrefabInstance:
     - target: {fileID: 8387331644420759068, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387331645230037259, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: wallCheckDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546972, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: m_Name
@@ -903,11 +1000,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da3f9b06118c7b43b3d1038285cce6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3586374380559789948 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3313543143431586738, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+  m_PrefabInstance: {fileID: 2033741994936249550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &2383577272371382695 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4408293371913446761, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+  m_PrefabInstance: {fileID: 2033741994936249550}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7520030755002495698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8387331644420759068, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
   m_PrefabInstance: {fileID: 2033741994936249550}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &444145919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3586374380559789948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a7432ecbdccb3479de8f1720251390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 1351446101}
+  WS: {fileID: 1592762245896260304}
 --- !u!114 &1687120080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -920,8 +1041,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e47c909e9f342488ec57c4719efec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InspectorList:
-  - {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
+  ChainableAttackList:
+  - {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
+  WeaponBuffsList: []
+--- !u!114 &223219772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578008436064795026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25cecebf4e68d484e82c5df26954c4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SlideCooldown: 500
+  slideDuration: 500
+  reduceHeight: 1
+  slideSpeed: 20
+  IC: {fileID: 0}
+  FPS: {fileID: 0}
+  isSliding: 0
 --- !u!1001 &3569124368178884572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -991,14 +1132,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ba521b1b6e5e4f4eae2768a5263899f, type: 3}
---- !u!1 &4803650464378877653 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 1ba521b1b6e5e4f4eae2768a5263899f, type: 3}
-  m_PrefabInstance: {fileID: 3569124368178884572}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8426982009920259270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 1ba521b1b6e5e4f4eae2768a5263899f, type: 3}
+  m_PrefabInstance: {fileID: 3569124368178884572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4803650464378877653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 1ba521b1b6e5e4f4eae2768a5263899f, type: 3}
   m_PrefabInstance: {fileID: 3569124368178884572}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &912335887
@@ -1016,10 +1157,14 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 129
+  DamageContainer:
+    Damage: 9
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   IsAutomatic: 0
   FireRate: 2
   Multishot: 5
-  Damage: 8
   maxAmmo: 2
   currentAmmo: 2
   reloadTime: 2
@@ -1100,14 +1245,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c7050d9d9ff67447b55dc1ddc458013, type: 3}
---- !u!1 &7147531861487461304 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 6c7050d9d9ff67447b55dc1ddc458013, type: 3}
-  m_PrefabInstance: {fileID: 7147531861487428888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7147531861487042456 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6c7050d9d9ff67447b55dc1ddc458013, type: 3}
+  m_PrefabInstance: {fileID: 7147531861487428888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7147531861487461304 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 6c7050d9d9ff67447b55dc1ddc458013, type: 3}
   m_PrefabInstance: {fileID: 7147531861487428888}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &894857862
@@ -1125,10 +1270,14 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 129
+  DamageContainer:
+    Damage: 10
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   IsAutomatic: 0
   FireRate: 12
   Multishot: 1
-  Damage: 10
   maxAmmo: 12
   currentAmmo: 12
   reloadTime: 4
