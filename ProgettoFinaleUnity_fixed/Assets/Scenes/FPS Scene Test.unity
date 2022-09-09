@@ -4467,9 +4467,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWrapped
       objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: DashForce
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Speed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: FrictionSlope
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: AirbornStillDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: AirbornMovementDrag
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -14007,8 +14023,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4db7b48108c9c4283017c1d9a3f997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controller: {fileID: 0}
-  InputCooker: {fileID: 0}
+  SC: {fileID: 0}
+  DashScript: {fileID: 0}
+  IC: {fileID: 0}
   RB: {fileID: 0}
   Speed: 10
   MaximumAllowedVelocity: 10
@@ -14022,9 +14039,11 @@ MonoBehaviour:
   GroundLayers:
     serializedVersion: 2
     m_Bits: 1
-  GroundedDrag: 5
+  GroundedStillDrag: 5
+  GroundedMovementDrag: 5
   GroundedVelocityMul: 5
-  AirbornDrag: 0
+  AirbornStillDrag: 0
+  AirbornMovementDrag: 1
   AirborneVelocityMul: 1
   FrictionSlope: 0.2
   SlopeMinAdjustRange: 45
@@ -14033,9 +14052,6 @@ MonoBehaviour:
   DoubleJumpPossible: 0
   SlopeCounterVector: {x: 0, y: 0, z: 0}
   SlopeCounterVectorNORMALIZED: {x: 0, y: 0, z: 0}
-  wallRunning: 0
-  CanJump: 1
-  CanGroundCheck: 1
   PositionBeforeJump: {x: 0, y: 0, z: 0}
 --- !u!143 &7578008435571334793
 CharacterController:
@@ -14106,6 +14122,7 @@ MonoBehaviour:
   IsShooting: 0
   isJump: 0
   isSprint: 0
+  isSliding: 0
   CameraHolder: {fileID: 7520030753330370039}
   cursorLocked: 1
   cursorInputForLook: 1

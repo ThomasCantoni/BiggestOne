@@ -47,7 +47,7 @@ public class SlideCharacter : MonoBehaviour
             slideDir = IC.RelativeDirection;
             this.isSliding = true;
             capsColl.height = reduceHeight;
-            FPS.RB.drag = FPS.AirbornDrag;
+            FPS.RB.drag = FPS.AirbornStillDrag;
             FPS.RB.AddForce(slideDir * slideSpeed, ForceMode.VelocityChange);
             SlidingTimer.StartTimer();
         }

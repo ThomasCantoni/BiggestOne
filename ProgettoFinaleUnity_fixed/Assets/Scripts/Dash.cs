@@ -12,7 +12,10 @@ public class Dash : MonoBehaviour
     public float CheckRadius=1f,DistanceFactor=2f,DashForce;
     public ForceMode DashForceMode;
     private bool isDashing = false;
-
+    public bool IsDashing
+    {
+        get { return isDashing; }
+    }
     Vector3 direction;
     // Start is called before the first frame update
     public bool CanDash
@@ -34,7 +37,8 @@ public class Dash : MonoBehaviour
         
         if (CanDash)
         {
-            RB.AddForce(direction * DashForce * Time.fixedDeltaTime, DashForceMode);
+            RB.drag = 0;
+            RB.AddForce(direction * DashForce , DashForceMode);
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
             
         }
@@ -50,10 +54,11 @@ public class Dash : MonoBehaviour
             direction = IC.RelativeDirection;
             StartCoroutine(StopDashing());
     }
-        public IEnumerator StopDashing()
-        {
-            yield return new WaitForSeconds(0.2f);
-            direction = Vector3.zero;
-            isDashing = false;
-        }
+    public IEnumerator StopDashing()
+    {
+        yield return new WaitForSeconds(0.2f);
+        
+        direction = Vector3.zero;
+        isDashing = false;
+    }
 }
