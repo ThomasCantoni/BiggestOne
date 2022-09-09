@@ -36,17 +36,25 @@ public class SimpleTimer
     }
     public void StopTimer(bool invoke = true)
     {
-        HasCompleted = true;
-        if(invoke)
-            TimerCompleteEvent?.Invoke();
-        t.Close();
+        try
+        {
+            HasCompleted = true;
+            if (invoke)
+                ExampleMainThreadCall();
+            t?.Close();
+        }
+        catch (System.Exception a)
+        {
+            Debug.LogError("ERRORE PORCO" + a.Message);
+        }
+        
     }
     public void StopTimer()
     {
         HasCompleted = true;
-        
-        TimerCompleteEvent?.Invoke();
-        t.Close();
+
+        ExampleMainThreadCall();
+        t?.Close();
     }
 
     private void stopTimer(object sender,ElapsedEventArgs a)
@@ -55,5 +63,16 @@ public class SimpleTimer
         //Debug.Log("Timer Stopped");
         StopTimer(true);
         
+    }
+    public IEnumerator ThisWillBeExecutedOnTheMainThread()
+    {
+        //Debug.Log("This is executed from the main thread");
+        TimerCompleteEvent?.Invoke();
+        yield return null;
+    }
+
+    public void ExampleMainThreadCall()
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(ThisWillBeExecutedOnTheMainThread());
     }
 }
