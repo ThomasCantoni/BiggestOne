@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ChainableAttackComponent : MonoBehaviour, IDamager
 {
-    private DamageStatContainer damageStats;
-    public DamageStatContainer DamageStats 
+    private DamageStats damageStats;
+    public DamageStats DamageStats 
     {
         get { return damageStats;  }
         set { damageStats = value; }

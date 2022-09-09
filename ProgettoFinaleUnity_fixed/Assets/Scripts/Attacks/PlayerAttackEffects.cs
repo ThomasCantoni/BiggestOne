@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class PlayerAttackEffects : MonoBehaviour
 {
-    public List<ChainableAttack> InspectorList;
+    public List<ChainableAttack> ChainableAttackList;
     public LinkedList<ChainableAttack> PerEnemyAttacks;
     public LinkedList<ChainableAttack> PerShotAttacks;
-
+    public List<WeaponBuff> WeaponBuffsList;
+    public LinkedList<WeaponBuff> WeaponBuffs;
     private void Start()
     {
         PerEnemyAttacks = new LinkedList<ChainableAttack>();
-        foreach(ChainableAttack atk in InspectorList)
+        PerShotAttacks = new LinkedList<ChainableAttack>();
+        WeaponBuffs = new LinkedList<WeaponBuff>();
+        //WeaponBuffsList = new List<WeaponBuff>();
+
+
+        foreach (ChainableAttack atk in ChainableAttackList)
         {
             switch (atk.ChainAttackApplicationMode)
             {
@@ -24,6 +30,10 @@ public class PlayerAttackEffects : MonoBehaviour
                 default:
                     break;
             }
+        }
+        foreach(WeaponBuff x in WeaponBuffsList)
+        {
+            WeaponBuffs.AddLast(x);
         }
     }
     public LinkedListNode<ChainableAttack> Add(ChainableAttack atk)

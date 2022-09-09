@@ -17,7 +17,7 @@ public class HitInfo
     //public PlayerAttackEffects PlayerAttackEffects;
     public Vector3 collisionPoint;
     public Vector3 collisionNormal;
-    public DamageStatContainer DamageStats;
+    public DamageStats DamageStats;
     
     public HitInfo(IDamager Source)
     {
@@ -37,16 +37,27 @@ public class HitInfo
     }
 }
 [Serializable]
-public struct  DamageStatContainer
+public struct  DamageStats
 {
     public float Damage;
     public float CritChance;
     public float CritMultiplier;
     public float EffectChance;
+    public static DamageStats operator +(DamageStats current ,DamageStats toAdd)
+    {
+        DamageStats result=current;
+        result.Damage += toAdd.Damage;
+        result.CritChance += toAdd.CritChance;
+        result.CritMultiplier += toAdd.CritMultiplier;
+        result.EffectChance += toAdd.EffectChance;
+            return result;
+    }
+        
+
 }
 public interface IDamager
 {
-    public abstract DamageStatContainer DamageStats
+    public abstract DamageStats DamageStats
     {
         get;
         set;
@@ -60,5 +71,9 @@ public interface IHittable
     }
     public abstract void OnHit(HitInfo info);
 
+}
+public interface IStackableChainAttack
+{
+    public abstract void Stack(MonoBehaviour toStack);
 }
 

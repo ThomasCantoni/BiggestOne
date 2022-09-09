@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ChainAttackApplicationType
 {
-    PerEnemy,PerShot
+    PerEnemy,PerShot,WeaponBuff
 }
 public abstract class ChainableAttack : ScriptableObject
 {
@@ -12,11 +12,8 @@ public abstract class ChainableAttack : ScriptableObject
     [HideInInspector]
     public List<GameObject> EnemiesHit;
     [SerializeField]
-    public DamageStatContainer DamageStats;
+    public DamageStats DamageStats;
     public abstract void Apply(EnemyClass recepient);
     
 }
-public interface IStackableChainAttack
-{
-    public abstract void Stack(MonoBehaviour toStack);
-}
+

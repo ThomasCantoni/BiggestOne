@@ -7,6 +7,7 @@ public class DamageInstance
 {
     public IDamager DamageSource;
     public PlayerAttackEffects PlayerAttackEffects;
+    
     private List<HitInfo> hits;
     public List<HitInfo> Hits
     {
@@ -61,7 +62,13 @@ public class DamageInstance
         for (int i = 0; i < Hits.Count; i++)
         {
             Hits[i].SourceDamageInstance = this;
-            
+            for (LinkedListNode<WeaponBuff> x = PlayerAttackEffects.WeaponBuffs.First; 
+                x != null ;
+                x = x.Next)
+            {
+                x.Value.Apply(ref Hits[i].DamageStats);
+
+            }
             IHittable hitAnything = Hits[i]?.GameObjectHit.GetComponent<IHittable>();
             hitAnything.OnHit(Hits[i]);
             try
@@ -102,8 +109,8 @@ public class GenericGun : MonoBehaviour,IDamager
     //public HitInfo HitInfo;
     public LayerMask Mask;
     [SerializeField]
-     DamageStatContainer DamageContainer;
-    public DamageStatContainer DamageStats 
+     DamageStats DamageContainer;
+    public DamageStats DamageStats 
     { 
         get { return DamageContainer; }
         set { DamageContainer = value; }
