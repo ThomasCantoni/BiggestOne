@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WeaponBuffGeneric
   m_EditorClassIdentifier: 
   StatsToAdd:
-    Damage: 50
+    Damage: 15
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0

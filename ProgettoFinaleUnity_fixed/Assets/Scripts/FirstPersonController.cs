@@ -40,16 +40,19 @@ public class FirstPersonController : MonoBehaviour
     public LayerMask GroundLayers;
 
     [Tooltip("The friction factor of the Player when he stops moving")]
-    public float GroundedStillDrag = 5f;
+    public Vector3 GroundedStillDragVector;
+
     [Tooltip("The friction factor of the Player whhile he is moving")]
-    public float GroundedMovementDrag = 0f;
-    [Tooltip("The velocity factor when the Player is grounded")]
+    public Vector3 GroundedMovementDragVector;
+
+    [Tooltip("The speed multiplier when the Player is grounded")]
     public float GroundedVelocityMul = 1f;
-    [Tooltip("The friction factor of the Player while in the air and no input is given.")]
-    public float AirbornStillDrag = 0f;
-    [Tooltip("The friction factor of the Player while in the air moving. The lower this is, the higher the air control.")]
-    public float AirbornMovementDrag = 1f;
-    [Tooltip("The velocity factor when the Player is in the air.")]
+    //[Tooltip("The friction factor of the Player while in the air and no input is given.")]
+    //public float AirbornStillDrag = 0f;
+    [Tooltip("The friction vector of the Player while in the air moving. The lower this is, the higher the air control.")]
+    public Vector3 AirborneDragVector;
+    //public float AirbornMovementDrag = 1f;
+    [Tooltip("The speed multiplier when the Player is in the air.")]
     public float AirborneVelocityMul = 0.2f;
     public bool WantsToMove
     {
@@ -75,12 +78,12 @@ public class FirstPersonController : MonoBehaviour
     [HideInInspector]
     public Vector3 SlopeCounterVector, SlopeCounterVectorNORMALIZED;
 
-    [HideInInspector]
-    public Vector3 PositionBeforeJump;
     private PhysicMaterial physicsMat;
-    protected SimpleTimer JumpTimer, GroundcheckTimer;
+    protected SimpleTimer JumpTimer, GroundcheckTimer,JumpGraceTimer;
     Repeater GroundcheckRepeater;
-    private bool CanJump = true;
+    private bool jumpCooledDown = true;
+    private bool graceTimer;
+    public Vector3 currentArtificialDrag;
     public Vector3 RB_velocityXZ 
     {
         get
@@ -114,9 +117,13 @@ public class FirstPersonController : MonoBehaviour
 
         //set the actions of timers 
         JumpTimer = new SimpleTimer(_jumpCD);
-        JumpTimer.TimerStartEvent += () => CanJump = false;
-        JumpTimer.TimerCompleteEvent += () => CanJump = true;
-        
+        JumpTimer.TimerStartEvent += () => jumpCooledDown = false;
+        JumpTimer.TimerCompleteEvent += () => jumpCooledDown = true;
+
+        JumpGraceTimer = new SimpleTimer(_fallTimeOut);
+        JumpGraceTimer.TimerStartEvent += () => graceTimer = true;
+        JumpGraceTimer.TimerCompleteEvent += () => graceTimer = false;
+
     }
     void Update()
     {
@@ -136,7 +143,12 @@ public class FirstPersonController : MonoBehaviour
         
         if (!SC.isSliding)
         {
-            RB.AddForce(toAdd , ForceMode.VelocityChange); ;
+            RB.AddForce(toAdd , ForceMode.VelocityChange);
+            RB.velocity = new Vector3(RB.velocity.x * (1 - currentArtificialDrag.x * Time.fixedDeltaTime),
+                    RB.velocity.y * (1 - currentArtificialDrag.y * Time.fixedDeltaTime),
+                    RB.velocity.z * (1 - currentArtificialDrag.z * Time.fixedDeltaTime));
+
+            
         }
 
         RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
@@ -212,34 +224,45 @@ public class FirstPersonController : MonoBehaviour
         if (!SC.isSliding && !IsDashing)
         {
             if (WantsToMove)
-                RB.drag = GroundedMovementDrag;
+            {
+                // RB.drag = GroundedMovementDrag;
+                currentArtificialDrag = GroundedMovementDragVector;
+            }
             else
-                RB.drag = GroundedStillDrag;
+            {
+                currentArtificialDrag = GroundedStillDragVector;
+                
+                //RB.drag = GroundedStillDrag;
+            }
             velocityMultiplier = GroundedVelocityMul;
         }
         else
         {
-            RB.drag = AirbornStillDrag;
             if(SC.isSliding)
-            velocityMultiplier = 0;
+            {
+                velocityMultiplier = 0;
+                currentArtificialDrag = RB.velocity;
+                
+                Debug.Log("SLIDE");
+            }
+            
         }
         //if (_jumpTimeOut >= 0.0f)
         //{
         //    _jumpTimeOut -= Time.deltaTime;
         //}
-        if (IC.isJump && CanJump)
+        if (IC.isJump && jumpCooledDown)
         {
             GroundcheckRepeater.StopRepeater(200);
             Grounded = false;
             _fallTimeOut = FallTimeOutMilliseconds;
             //GroundcheckTimer.StartTimer();
-            RB.drag = AirbornStillDrag;
+            //RB.drag = AirbornStillDrag;
             float jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
             RB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             IC.isJump = false;
             DoubleJumpPossible = true;
             JumpTimer.StartTimer();
-            Grounded = false;
         }
 
         
@@ -251,12 +274,13 @@ public class FirstPersonController : MonoBehaviour
         {
             if (WantsToMove)
             {
-                RB.drag = AirbornMovementDrag;
-
+                RB.drag = 0;
+                currentArtificialDrag = Vector3.zero;
             }
             else
             {
-                RB.drag = AirbornStillDrag;
+                currentArtificialDrag = AirborneDragVector;
+                
 
             }
             velocityMultiplier = AirborneVelocityMul;
@@ -264,10 +288,7 @@ public class FirstPersonController : MonoBehaviour
         //canSlide = false;
         //SlideTimer.StopTimer();
 
-        if (_fallTimeOut >= 0.0f)
-        {
-            _fallTimeOut -= Time.deltaTime * 1000;
-        }
+        
         if (IC.isJump && DoubleJumpPossible)
         {
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
