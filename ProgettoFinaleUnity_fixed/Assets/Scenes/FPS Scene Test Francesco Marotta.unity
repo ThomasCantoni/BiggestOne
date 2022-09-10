@@ -1044,6 +1044,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWrapped
       objectReference: {fileID: 0}
+    - target: {fileID: 7423247748353314289, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423247748353314289, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
 --- !u!43 &750390022

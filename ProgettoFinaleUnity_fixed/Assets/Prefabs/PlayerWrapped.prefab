@@ -309,7 +309,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117167278172925948}
-  m_LocalRotation: {x: -0, y: -0.000000749014, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.000000749014, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -880,6 +880,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 117167277520124005}
     m_Modifications:
+    - target: {fileID: 6680484607788742402, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680484607788742402, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -701
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680484607788742402, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 429
+      objectReference: {fileID: 0}
     - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: DashForce
       value: 2.5
@@ -973,12 +985,36 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: AirborneDragVector.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: AirborneDragVector.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: GroundcheckFrequency
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: MaximumAllowedVelocity
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: GroundedStillDragVector.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: GroundedStillDragVector.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: GroundedMovementDragVector.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: GroundedMovementDragVector.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546981, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: Speed
@@ -1057,6 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cecebf4e68d484e82c5df26954c4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlideInitialTime: 0.15
   SlideCooldown: 500
   slideDuration: 500
   reduceHeight: 1
