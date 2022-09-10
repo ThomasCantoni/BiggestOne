@@ -12,8 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10092d230f770fc4c866e7bd1673ea81, type: 3}
   m_Name: Lightning
   m_EditorClassIdentifier: 
+  ChainAttackApplicationMode: 0
+  EnemiesHit: []
+  DamageStats:
+    Damage: 50
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
   Radius: 5
-  Damage: 25
   LayersToHit:
     serializedVersion: 2
     m_Bits: 128
+  MaxEnemiesHittable: 5
+  DamageScalePerEnemy: 0.6

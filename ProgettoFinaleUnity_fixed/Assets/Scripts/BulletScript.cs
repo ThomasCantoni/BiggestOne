@@ -2,22 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour
+public class BulletScript : MonoBehaviour,IDamager
 {
     public GenericGun Source;
     public static List<EnemyClass> AlreadyHit = new List<EnemyClass>();
     public float Speed=1f;
     Rigidbody RB;
+
+    public DamageStats DamageStats
+    { 
+        get { return Source.DamageStats;    } 
+        set { Source.DamageStats = value;   } 
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        EnemyClass tryget = other.gameObject.GetComponent<EnemyClass>();
+        IHittable tryget = other.gameObject.GetComponent<IHittable>();
         if (tryget != null)
         {
-
-            HitInfo info = new HitInfo(other, this.transform);
-            info.DamageStats = Source.DamageStats;
-
-            DamageInstance DI = new DamageInstance(Source);
+            HitInfo info = new HitInfo(this,tryget);
+            
+            DamageInstance DI = new DamageInstance(this);
             DI.PlayerAttackEffects = Source.PlayerAttackEffects;
             DI.AddHitInfo(info);
             DI.Deploy();

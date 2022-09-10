@@ -22,4 +22,23 @@ public static class FilterArray
         filteredList.TrimExcess();
         return filteredList;
     }
+    public static List<T_toExtract> FilterList<T_toExtract, TTwo>(IList<TTwo> listToFilter) 
+    {
+        //Collider[] thingsHit = Physics.OverlapSphere(this.transform.position, Radius, 3);
+        List<T_toExtract> filteredList = new List<T_toExtract>(listToFilter.Count);
+        for (int i = 0; i < listToFilter.Count; i++)
+        {
+            
+            if (listToFilter[i] != null && listToFilter is T_toExtract)
+            {
+                
+                filteredList.Add((T_toExtract)(object)listToFilter[i]);
+
+            }
+
+
+        }
+        filteredList.TrimExcess();
+        return filteredList;
+    }
 }

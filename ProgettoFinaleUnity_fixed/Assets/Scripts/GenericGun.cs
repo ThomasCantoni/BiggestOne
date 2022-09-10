@@ -15,7 +15,9 @@ public class DamageInstance
         set
         {
             hits = value;
-            EnemiesHit = FilterDistinct(hits);
+            appendList(enemiesHit, FilterDistinct(hits));
+            
+           
         }
     }
     private List<EnemyClass> enemiesHit;
@@ -27,20 +29,44 @@ public class DamageInstance
             enemiesHit = value;
         }
     }
+
+
+
+    public DamageInstance(IDamager source)
+    {
+        DamageSource = source;
+        hits = new List<HitInfo>();
+        enemiesHit = new List<EnemyClass>();
+    }
+    private void appendList(List<EnemyClass> target, List<EnemyClass> toAppend)
+    {
+        foreach(EnemyClass x in toAppend)
+        {
+            if(!target.Contains(x))
+            {
+                target.Add(x);
+            }
+        }
+    }
+    public void AddEnemy(EnemyClass toAdd)
+    {
+        if(!enemiesHit.Contains(toAdd))
+        {
+            enemiesHit.Add(toAdd);
+            
+        }
+       
+    }
     public List<HitInfo> AddHitInfo(HitInfo newToAdd)
     {
         if(hits != null)
         {
             hits.Add(newToAdd);
-            EnemiesHit =  FilterDistinct(hits);
+            if (newToAdd.HasHitEnemy && !EnemiesHit.Contains(newToAdd.EnemyHit))
+                EnemiesHit.Add(newToAdd.EnemyHit);
             return hits;
         }
         return null;
-    }
-    public DamageInstance(IDamager source)
-    {
-        DamageSource = source;
-        hits = new List<HitInfo>();
     }
     public List<EnemyClass> FilterDistinct(List<HitInfo> toFilter)
     {
@@ -59,8 +85,10 @@ public class DamageInstance
     }
     public void Deploy()
     {
+        //apply every HitInfo
         for (int i = 0; i < Hits.Count; i++)
         {
+            //applying the Player's weapon buffs before applying the damage
             Hits[i].SourceDamageInstance = this;
             for (LinkedListNode<WeaponBuff> x = PlayerAttackEffects.WeaponBuffs.First; 
                 x != null ;
@@ -70,11 +98,12 @@ public class DamageInstance
 
             }
             IHittable hitAnything = Hits[i]?.GameObjectHit.GetComponent<IHittable>();
+            // apply the damage to whatever was hit 
             hitAnything.OnHit(Hits[i]);
+            // attempt to cast whatever was hit to enemy
             try
-            {
-
-
+            { 
+                //if succesfull, apply every PerShotEffect for every hit (x times for 1 hit)
                 EnemyClass hitEnemy = (EnemyClass)hitAnything.Mono;
                 if (PlayerAttackEffects.PerShotAttacks != null)
                 {
@@ -85,16 +114,18 @@ public class DamageInstance
                 }
             }catch (Exception e)
             {
-                Debug.Log("AO COJO :" + e.Message);
+                Debug.Log("Cast Failed! => " + e.Message);
                 continue;
             }
         }
+        // then apply every PerEnemyAttack to each enemy (x times for 1 enemy)
         if (PlayerAttackEffects.PerEnemyAttacks != null)
         {
             for (int i = 0; i < EnemiesHit.Count; i++)
             {
                 foreach (ChainableAttack x in PlayerAttackEffects.PerEnemyAttacks)
                 {
+                    if(EnemiesHit[i]!=null)
                     x.Apply(EnemiesHit[i]);
                 }
             }
@@ -123,7 +154,7 @@ public class GenericGun : MonoBehaviour,IDamager
     public float reloadTime = 1f;
     public Transform cam;
     public Animator anim;
-    public int Magazine;
+    
     public WeaponSwitching WS;
     public GameObject ToInstantiate;
     //public UnityEvent ShootEvent;
@@ -133,7 +164,7 @@ public class GenericGun : MonoBehaviour,IDamager
     protected bool hasShotOnce, shooting;
     protected float currentShootCD = 0;
     public bool shotgun = false;
-    public delegate void WeaponHitSomething(HitInfo info);
+    public delegate void WeaponHitSomething(DamageInstance instance);
     public event WeaponHitSomething WeaponHitSomethingEvent;
     public float range = 50f;
     public float inaccuracyDistance = 5f;
