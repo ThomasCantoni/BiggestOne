@@ -7,6 +7,7 @@ public class SlideCharacter : MonoBehaviour
 {
     [Header("Slide")]
     [Tooltip("Time before the Player can slide again.")]
+    public float SlideInitialTime = 0.15f;
     public float SlideCooldown = 200f;
     public float slideDuration;
     public float reduceHeight;
@@ -29,8 +30,8 @@ public class SlideCharacter : MonoBehaviour
         originalHeight = capsColl.height;
         _SlideCD = SlideCooldown;
 
-        IC.PlayerStartSliding += StartSliding;
-        IC.PlayerStopSliding += GoUp;
+        IC.PlayerStartSliding += () => StartCoroutine(StartSliding());
+        IC.PlayerStopSliding += () => StopCoroutine(StartSliding());
 
         //set the actions of timers 
         SlidingTimer = new SimpleTimer(slideDuration);
@@ -39,15 +40,16 @@ public class SlideCharacter : MonoBehaviour
         CDTimer = new SimpleTimer(_SlideCD);
         CDTimer.TimerCompleteEvent += () => canSlide = true;
     }
-    public void StartSliding()
+    public IEnumerator StartSliding()
     {
+        yield return new WaitForSeconds(SlideInitialTime);
         if (canSlide && FPS.RB.velocity.magnitude > 1)
         {
             canSlide = false;
             slideDir = IC.RelativeDirection;
             this.isSliding = true;
             capsColl.height = reduceHeight;
-            FPS.RB.drag = FPS.AirbornStillDrag;
+            FPS.RB.drag = 0;
             FPS.RB.AddForce(slideDir * slideSpeed, ForceMode.VelocityChange);
             SlidingTimer.StartTimer();
         }
@@ -63,4 +65,7 @@ public class SlideCharacter : MonoBehaviour
         }
         
     }
+
+
+
 }
