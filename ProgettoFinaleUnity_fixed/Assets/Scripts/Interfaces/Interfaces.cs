@@ -10,27 +10,41 @@ public class HitInfo
     public DamageInstance SourceDamageInstance;
     public bool HasHitEnemy
     {
-        get { return GameObjectHit.layer == 7; }
+        get { return EnemyHit != null; }
     }
     public bool IsChainableAttack = false;
     public GameObject GameObjectHit;
+    public EnemyClass EnemyHit;
     //public PlayerAttackEffects PlayerAttackEffects;
     public Vector3 collisionPoint;
     public Vector3 collisionNormal;
     public DamageStats DamageStats;
+    public void SetColliderPositions(Vector3 bulletPosition,Collider colliderHit)
+    {
+        collisionPoint = colliderHit.ClosestPoint(bulletPosition);
+        collisionNormal = (bulletPosition - collisionPoint).normalized;
+    }
+    public void SetRaycastPositions(RaycastHit information)
+    {
+        collisionPoint = information.point;
+        collisionNormal = information.normal;
     
+    }
     public HitInfo(IDamager Source)
     {
         //SourceDamageInstance = SourceGun;
         //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
         DamageStats = Source.DamageStats;
     }
-    public HitInfo(Collider collider,Transform source)
+    public HitInfo(IDamager Source,IHittable Target)
     {
-        collisionPoint = collider.transform.position;
-        collisionNormal = (collisionPoint - source.position).normalized;
-        GameObjectHit = collider.gameObject;
+        //SourceDamageInstance = SourceGun;
+        //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
+        DamageStats = Source.DamageStats;
+        GameObjectHit = Target.Mono.gameObject;
+        EnemyHit = GameObjectHit.GetComponent<EnemyClass>();
     }
+   
     public HitInfo()
     {
 
