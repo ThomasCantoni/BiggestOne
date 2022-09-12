@@ -15,6 +15,7 @@ public class FirstPersonController : MonoBehaviour
 
     [Tooltip("The speed of the Player")]
     public float Speed = 10f;
+    public bool ApplyDrag = true;
     [Tooltip("The max velocity in Units/Second of the Player")]
     public float MaximumAllowedVelocity = 10f;
 
@@ -153,7 +154,7 @@ public class FirstPersonController : MonoBehaviour
             toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
         }
         
-        if (!SC.isSliding)
+        if (ApplyDrag)
         {
             RB.AddForce(toAdd , ForceMode.VelocityChange);
             RB.velocity = new Vector3(RB.velocity.x * (1 - currentArtificialDrag.x * Time.fixedDeltaTime),
@@ -253,7 +254,7 @@ public class FirstPersonController : MonoBehaviour
             if(SC.isSliding)
             {
                 velocityMultiplier = 0;
-                currentArtificialDrag = RB.velocity;
+                currentArtificialDrag = Vector3.zero;
                 
                 Debug.Log("SLIDE");
             }
@@ -282,9 +283,8 @@ public class FirstPersonController : MonoBehaviour
     private void StartAirborne()
     {
         //_jumpTimeOut = JumpTimeout;
-        if(!IsDashing)
-        {
-            if (WantsToMove)
+        
+            if (WantsToMove || IsDashing)
             {
                 RB.drag = 0;
                 currentArtificialDrag = Vector3.zero;
@@ -292,11 +292,9 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 currentArtificialDrag = AirborneDragVector;
-                
-
             }
             velocityMultiplier = AirborneVelocityMul;
-        }
+       
         //canSlide = false;
         //SlideTimer.StopTimer();
 
