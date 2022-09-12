@@ -46,10 +46,12 @@ public class SlideCharacter : MonoBehaviour
         if (canSlide && FPS.RB.velocity.magnitude > 1)
         {
             canSlide = false;
+
             slideDir = IC.RelativeDirection;
             this.isSliding = true;
             capsColl.height = reduceHeight;
             FPS.RB.drag = 0;
+            FPS.ApplyDrag = false;
             FPS.RB.AddForce(slideDir * slideSpeed, ForceMode.VelocityChange);
             SlidingTimer.StartTimer();
         }
@@ -58,6 +60,8 @@ public class SlideCharacter : MonoBehaviour
     {
         if (isSliding)
         {
+            FPS.ApplyDrag = true;
+
             SlidingTimer.StopTimer(false);
             this.isSliding = false;
             CDTimer.StartTimer();

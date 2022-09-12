@@ -264,7 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  EC: {fileID: 0}
+  OffSetTransform: {fileID: 0}
 --- !u!136 &40238453
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  EC: {fileID: 0}
+  OffSetTransform: {fileID: 0}
 --- !u!136 &481593653
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4567,7 +4567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  EC: {fileID: 0}
+  OffSetTransform: {fileID: 0}
 --- !u!1001 &1472072341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5099,7 +5099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  EC: {fileID: 0}
+  OffSetTransform: {fileID: 0}
 --- !u!136 &1602344074
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5321,7 +5321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  EC: {fileID: 0}
+  OffSetTransform: {fileID: 0}
 --- !u!136 &1621302602
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5762,13 +5762,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7520030754192758212, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754192758213, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: DashForce
-      value: 2.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: DashMaxCharges
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: canRechargeTimer
@@ -5776,7 +5784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: CurrentDashCharges
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: DashRechargeTimeMs
@@ -5788,7 +5796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: JumpHeight
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: FrictionSlope
@@ -6225,7 +6233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  EC: {fileID: 0}
+  OffSetTransform: {fileID: 0}
 --- !u!1 &1789909306
 GameObject:
   m_ObjectHideFlags: 0
@@ -6448,7 +6456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  EC: {fileID: 0}
+  OffSetTransform: {fileID: 0}
 --- !u!114 &1818788929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13401,6 +13409,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &5260349410164940335
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929077, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5260349412127929082, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
+      propertyPath: m_Name
+      value: DashRecharge
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 93cd566cccb5aa642b8737c678c1fd56, type: 3}
 --- !u!1 &5291656038774151610
 GameObject:
   m_ObjectHideFlags: 0
@@ -15381,6 +15446,7 @@ MonoBehaviour:
   IC: {fileID: 0}
   RB: {fileID: 0}
   Speed: 10
+  ApplyDrag: 1
   MaximumAllowedVelocity: 10
   JumpHeight: 2
   JumpCooldown: 0.15

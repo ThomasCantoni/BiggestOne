@@ -76,7 +76,7 @@ public class InputCooker : MonoBehaviour
 
     private void OnJumpCanceled(InputAction.CallbackContext obj)
     {
-        PlayerStoppedJump.Invoke();
+        PlayerStoppedJump?.Invoke();
         isJump = false;
     }
 

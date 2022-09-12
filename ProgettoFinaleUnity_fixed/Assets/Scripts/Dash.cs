@@ -29,7 +29,14 @@ public class Dash : MonoBehaviour
     {
         get
         {
-            return CurrentDashCharges >0 && updateDash && !Physics.CheckSphere(transform.position + direction * DistanceFactor, CheckRadius, CollisionCheck.value);
+            return CurrentDashCharges >0 && NoWallAhead;
+        }
+    }
+    public bool NoWallAhead
+    {
+        get
+        {
+            return !Physics.CheckSphere(transform.position + direction * DistanceFactor, CheckRadius, CollisionCheck.value);
         }
     }
       
@@ -41,16 +48,18 @@ public class Dash : MonoBehaviour
 
         FPS = GetComponent<FirstPersonController>();
         FPS.PlayerStartedGrounded += () => canRechargeGrounded  = true;
+        FPS.PlayerStartedGrounded += () => CheckRecharge();
         FPS.PlayerStartedAirborne += () => canRechargeGrounded = false;
         dashTimer = new SimpleTimer(DashRechargeTimeMs);
         dashTimer.TimerStartEvent += () => canRechargeTimer = false;
         dashTimer.TimerCompleteEvent += () => canRechargeTimer = true;
-        dashTimer.TimerCompleteEvent += () => ResetDash();
+        dashTimer.TimerCompleteEvent += () => CheckRecharge();
+        // dashTimer.TimerCompleteEvent += () => ResetDash();
 
         //rechargeRepeater = new Repeater(DashRechargeTimeMs);
         //rechargeRepeater.RepeaterTickEvent += () => RechargeDash(1);
     }
-    private void Update()
+    private void CheckRecharge()
     {
         if(canRechargeTimer && canRechargeGrounded)
         {
@@ -59,10 +68,14 @@ public class Dash : MonoBehaviour
     }
     private void FixedUpdate()
     {  
-        if (CanDash)
+        if (updateDash && NoWallAhead)
         {
-            RB.drag = 0;
+            
+            FPS.ApplyDrag = false;
+            
+            RB.useGravity = false;
             RB.AddForce(direction * DashForce , DashForceMode);
+            //RB.AddForce(Vector3.up, ForceMode.VelocityChange);
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
         }
     }
@@ -83,18 +96,22 @@ public class Dash : MonoBehaviour
     }
     private void StartDashing()
     {
-        updateDash = true;
-        direction = IC.RelativeDirection;
-        StartCoroutine(StopDashing());
-        CurrentDashCharges--;
-        if (!dashTimer.IsActive)
-            dashTimer.StartTimer();
+        if (CanDash && !IsDashing)
+        {
+            updateDash = true;
+            direction = IC.RelativeDirection;
+            StartCoroutine(StopDashing());
+            CurrentDashCharges--;
+            if (!dashTimer.IsActive)
+                dashTimer.StartTimer();
+        }
     }
     public IEnumerator StopDashing()
     {
         yield return new WaitForSeconds(DashDurationMs*0.001f);
-        
+        FPS.ApplyDrag = true;
         direction = Vector3.zero;
         updateDash = false;
+        RB.useGravity = true;
     }
 }
