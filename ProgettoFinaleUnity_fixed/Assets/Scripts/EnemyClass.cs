@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public abstract class EnemyClass : MonoBehaviour,IHittable
+public abstract class EnemyClass : MonoBehaviour,IKillable
 {
     
     [SerializeField] public int speed;
@@ -17,9 +17,8 @@ public abstract class EnemyClass : MonoBehaviour,IHittable
     {
         get { return this; }
     }
-    public delegate void EnemyDeathEvent();
-    public event EnemyDeathEvent OnEnemyDeath;
-
+    public event IKillable.OnDeathEvent OnEnemyDeath;
+    
     public void Start()
     {
         HP_Slider = GetComponentInChildren<Slider>(true);
@@ -37,22 +36,24 @@ public abstract class EnemyClass : MonoBehaviour,IHittable
         }
     }
 
+    public IKillable.OnDeathEvent deathEvent { get { return OnEnemyDeath; } set { OnEnemyDeath = value; } }
 
     public virtual void DetuctHealth(HitInfo info)
     {
         HP_Value -= info.DamageStats.Damage;
         if (hp_Value <= 0)
-            EnemyDeath();
-    }
-    public virtual void EnemyDeath()
-    {
-        OnEnemyDeath?.Invoke();
-        Destroy(gameObject);
+            OnDeath();
     }
 
     public virtual void OnHit(HitInfo info)
     {
         DetuctHealth(info);
+    }
+
+    public void OnDeath()
+    {
+        OnEnemyDeath?.Invoke();
+        Destroy(gameObject);
     }
 }
 

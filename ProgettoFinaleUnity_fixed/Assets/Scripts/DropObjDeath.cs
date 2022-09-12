@@ -5,17 +5,32 @@ using UnityEngine;
 public class DropObjDeath : MonoBehaviour
 {
     public List<GameObject> objToDrops;
-    public EnemyClass EC;
+    public IKillable IDA;
+    public Transform OffSetTransform;
     void Start()
     {
-        EC = GetComponent<EnemyClass>();
-        EC.OnEnemyDeath += Drop;
+        Initialize();
+        
+    }
+    void Initialize()
+    {
+        IDA = GetComponent<IKillable>();
+        if (IDA != null)
+        {
+            IDA.deathEvent += Drop;
+
+        }
+        
     }
     public void Drop()
     {
+        if (OffSetTransform == null)
+        {
+            OffSetTransform = this.transform;
+        }
         for (int i = 0; i < objToDrops.Count; i++)
         {
-            Instantiate(objToDrops[i],this.transform.position,Quaternion.Euler(0,0,90));
+            Instantiate(objToDrops[i],OffSetTransform.position,Quaternion.Euler(0,0,90));
         }
         Destroy(this);
     }
