@@ -7,8 +7,24 @@ public class SimpleTimer
 {
     public float  TimeMs=1000;
     public bool HasCompleted = false;
+    public bool IsActive
+    {
+        get 
+        {
+            if (t == null)
+                return false;
+            
+            return t.Enabled; 
+        }
+        set
+        {
+            if(t!= null)
+                t.Enabled = value;
+        }
+    }
+
     Timer t;
-    
+    private Time activationTime, estimatedCompletionTime;
     public delegate void TimerEvents();
     public event TimerEvents TimerCompleteEvent,TimerStartEvent;
     public SimpleTimer()
@@ -22,12 +38,13 @@ public class SimpleTimer
     
     public void StartTimer()
     {
-
+        t?.Dispose();
         t = new Timer(TimeMs);
         t.Elapsed += stopTimer;
         //Debug.Log("Timer started");
         TimerStartEvent?.Invoke();
         HasCompleted = false;
+        
         t.Start();
     }
     public void ChangeTime(int TimeInMilliseconds)

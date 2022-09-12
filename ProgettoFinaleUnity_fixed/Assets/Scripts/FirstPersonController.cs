@@ -54,14 +54,6 @@ public class FirstPersonController : MonoBehaviour
     //public float AirbornMovementDrag = 1f;
     [Tooltip("The speed multiplier when the Player is in the air.")]
     public float AirborneVelocityMul = 0.2f;
-    public bool WantsToMove
-    {
-        get { return IC.AbsoluteDirection.magnitude >= 1f; }
-    }
-    public bool IsMoving
-    {
-        get { return RB_velocityXZ.magnitude > 1f; }
-    }
     [Header("Slope Values")]
     [Range(0, 1)]
     public float FrictionSlope = 0.2f;
@@ -71,12 +63,15 @@ public class FirstPersonController : MonoBehaviour
     [Header("READ ONLY")]
     public bool Grounded = true;
     public bool DoubleJumpPossible = false;
+    private bool wasGroundedBefore = false;
     private float _jumpCD;
     private float _fallTimeOut;
     private float slopeAngle = 0f;
     private float velocityMultiplier = 1;
     [HideInInspector]
     public Vector3 SlopeCounterVector, SlopeCounterVectorNORMALIZED;
+    public delegate void PlayerGroundedEvent();
+    public PlayerGroundedEvent PlayerStartedGrounded, PlayerStartedAirborne;
 
     private PhysicMaterial physicsMat;
     protected SimpleTimer JumpTimer, GroundcheckTimer,JumpGraceTimer;
@@ -84,6 +79,14 @@ public class FirstPersonController : MonoBehaviour
     private bool jumpCooledDown = true;
     private bool graceTimer;
     public Vector3 currentArtificialDrag;
+    public bool WantsToMove
+    {
+        get { return IC.AbsoluteDirection.magnitude >= 1f; }
+    }
+    public bool IsMoving
+    {
+        get { return RB_velocityXZ.magnitude > 1f; }
+    }
     public Vector3 RB_velocityXZ 
     {
         get
@@ -128,6 +131,15 @@ public class FirstPersonController : MonoBehaviour
     void Update()
     {
         JumpAndGravity();
+        if (Grounded && !wasGroundedBefore)
+        {
+            PlayerStartedGrounded?.Invoke();
+        }
+        if (!Grounded && wasGroundedBefore)
+        {
+            PlayerStartedAirborne?.Invoke();
+        }
+        wasGroundedBefore = Grounded;
     }
 
     private void FixedUpdate()
@@ -304,6 +316,7 @@ public class FirstPersonController : MonoBehaviour
         //Debug.Log("Checking if grounded");
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers);
+        
         //GroundcheckTimer.StartTimer();
     }
     //private void OnDrawGizmosSelected()
