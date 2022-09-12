@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,13 @@ public class Coins : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<FirstPersonController>();
-        Destroy(this.gameObject);
+        
+        PlayerInvetory playerInvetory = other.GetComponent<PlayerInvetory>();
+        if (playerInvetory != null)
+        {
+            playerInvetory.CoinCollected();
+            Destroy(this.gameObject);
+        }
     }
     
 }
