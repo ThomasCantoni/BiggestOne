@@ -86,6 +86,12 @@ public interface IHittable
     public abstract void OnHit(HitInfo info);
 
 }
+public interface IKillable : IHittable
+{
+    public abstract void OnDeath();
+    public delegate void OnDeathEvent();
+    public OnDeathEvent deathEvent { get; set; }
+}
 public interface IStackableChainAttack
 {
     public abstract void Stack(MonoBehaviour toStack);
