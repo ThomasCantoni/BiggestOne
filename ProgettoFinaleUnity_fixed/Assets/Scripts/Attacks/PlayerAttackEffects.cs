@@ -19,6 +19,10 @@ public class PlayerAttackEffects : MonoBehaviour
 
         foreach (ChainableAttack atk in ChainableAttackList)
         {
+            if (atk == null)
+            {
+                continue;
+            }
             switch (atk.ChainAttackApplicationMode)
             {
                 case ChainAttackApplicationType.PerEnemy:
@@ -38,19 +42,41 @@ public class PlayerAttackEffects : MonoBehaviour
     }
     public LinkedListNode<ChainableAttack> Add(ChainableAttack atk)
     {
+        if (atk == null)
+        {
+            return null;
+        }
         LinkedListNode<ChainableAttack> newNode = new LinkedListNode<ChainableAttack>(atk);
         if (atk.ChainAttackApplicationMode == ChainAttackApplicationType.PerEnemy)
             PerEnemyAttacks.AddLast(newNode);
         else
             PerShotAttacks.AddLast(newNode);
+        ChainableAttackList.Add(atk);
         return newNode;
     }
-    public LinkedListNode<ChainableAttack> Remove(ChainableAttack atk)
+    public void Remove(ChainableAttack atk)
     {
-        LinkedListNode<ChainableAttack> toRemove = PerEnemyAttacks.Find(atk);
-        
-        PerEnemyAttacks.Remove(toRemove);
-        PerShotAttacks.Remove(toRemove);
-        return toRemove;
+        //LinkedListNode<ChainableAttack> toRemove = PerEnemyAttacks.Find(atk);
+
+        //PerEnemyAttacks.Remove(toRemove);
+        //PerShotAttacks.Remove(toRemove);
+        GetCorrectList(atk).Remove(atk);
+        ChainableAttackList.Remove(atk);
+    }
+    public LinkedList<ChainableAttack> GetCorrectList(ChainableAttack atk)
+    {
+        if (atk == null)
+        {
+            return null;
+        }
+        switch (atk.ChainAttackApplicationMode)
+        {
+            case ChainAttackApplicationType.PerEnemy:
+                return PerEnemyAttacks;
+            case ChainAttackApplicationType.PerShot:
+                return PerShotAttacks;
+            default:
+                return null;
+        }
     }
 }
