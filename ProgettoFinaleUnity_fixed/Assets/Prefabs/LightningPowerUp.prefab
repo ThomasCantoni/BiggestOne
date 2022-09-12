@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9000634909508400366}
   - component: {fileID: 6356028247503573561}
   m_Layer: 6
-  m_Name: FlamePowerUp
+  m_Name: LightningPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5b762f42d3498c64eb3e6b8c8284a09d, type: 2}
+  - {fileID: 2100000, guid: aa63c8e6cdd7f8941ad24e6847b96439, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4621aa1a6a1eb46aef69f39c079578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toApply: {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
+  toApply: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
   GetRandom: 0
   duration: 5
