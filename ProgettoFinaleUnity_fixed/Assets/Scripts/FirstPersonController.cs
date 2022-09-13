@@ -38,6 +38,7 @@ public class FirstPersonController : MonoBehaviour
     public float GroundedGravity = 5;
     public float GroundedOffset = -0.14f;
     public float GroundedRadius = 0.5f;
+    public float GravityMul = 2f;
     public LayerMask GroundLayers;
 
     [Tooltip("The friction factor of the Player when he stops moving")]
@@ -102,7 +103,16 @@ public class FirstPersonController : MonoBehaviour
     public bool IsDashing
     {
         get { return DashScript.IsDashing; }
+
     }
+    public Vector3 PlayerGravity
+    {
+        get
+        {
+            return Physics.gravity * GravityMul;
+        }
+    }
+    public bool IsOnSlope = false;
     private void Start()
     {
         SC = GetComponent<SlideCharacter>();
@@ -176,6 +186,13 @@ public class FirstPersonController : MonoBehaviour
         if (Grounded)
         {
             AccountForSlope();
+            //if(IsOnSlope)
+            //{
+            //    if(RB.velocity.y > 0)
+            //    {
+            //        RB.AddForce(Vector3.down)
+            //    }
+            //}
         }
         
         IC.UpdateCameras();
@@ -186,8 +203,8 @@ public class FirstPersonController : MonoBehaviour
 
         //i am on a slope that isn't too steep or too flat and grounded
         //Debug.Log(" Angle: " + slopeAngle + "  IC.Dir: "+InputCooker.inputDirection);
-        Vector3 goDown = Physics.gravity * 0.25f;
-        RB.AddForce(goDown, ForceMode.Acceleration);
+        //Vector3 goDown = Physics.gravity * 0.25f;
+        RB.AddForce(PlayerGravity, ForceMode.Acceleration);
 
         if ((slopeAngle >= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange)
             && IC.AbsoluteDirection.sqrMagnitude < 1f)
@@ -195,7 +212,7 @@ public class FirstPersonController : MonoBehaviour
         {
             //physicsMat.dynamicFriction = FrictionSlope;
             //physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
-            Vector3 test = Vector3.down * Vector3.Dot(-SlopeCounterVectorNORMALIZED, goDown);
+            Vector3 test = Vector3.down * Vector3.Dot(-SlopeCounterVectorNORMALIZED, PlayerGravity);
             RB.AddForce(SlopeCounterVector + SlopeCounterVector.normalized * test.magnitude, ForceMode.Acceleration);
         }
         else
@@ -219,6 +236,13 @@ public class FirstPersonController : MonoBehaviour
         SlopeCounterVectorNORMALIZED = Vector3.ProjectOnPlane(Vector3.up, info.normal).normalized;
         SlopeCounterVector = SlopeCounterVectorNORMALIZED * Vector3.Dot(-SlopeCounterVectorNORMALIZED, Physics.gravity);
         slopeAngle = VectorOps.AngleVec(Vector3.up, SlopeCounterVector.normalized);
+        //Debug.Log(slopeAngle);
+
+
+        IsOnSlope = slopeAngle < 90f;
+        
+        
+
     }
     private void JumpAndGravity()
     {
