@@ -35,14 +35,21 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
             HP_Slider.value = hp_Value;
         }
     }
+    public bool IsDead
+    {
+        get { return HP_Value <= 0; }
+    }
 
     public IKillable.OnDeathEvent deathEvent { get { return OnEnemyDeath; } set { OnEnemyDeath = value; } }
 
     public virtual void DetuctHealth(HitInfo info)
     {
-        HP_Value -= info.DamageStats.Damage;
-        if (hp_Value <= 0)
-            OnDeath();
+        if (!IsDead)
+        {
+            HP_Value -= info.DamageStats.Damage;
+            if (IsDead)
+                OnDeath();
+        }
     }
 
     public virtual void OnHit(HitInfo info)
