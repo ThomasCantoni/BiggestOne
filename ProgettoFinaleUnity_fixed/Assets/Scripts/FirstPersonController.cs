@@ -17,6 +17,7 @@ public class FirstPersonController : MonoBehaviour
     public float Speed = 10f;
     [Tooltip("The max velocity in Units/Second of the Player")]
     public float MaximumAllowedVelocity = 10f;
+    public bool ClampSpeed=true;
 
 
     [Header("Jump Values")]
@@ -139,6 +140,7 @@ public class FirstPersonController : MonoBehaviour
         JumpGraceTimer.TimerStartEvent += () => graceTimer = true;
         JumpGraceTimer.TimerCompleteEvent += () => graceTimer = false;
 
+        PlayerStartedGrounded += () => DoubleJumpPossible = true;
     }
     void Update()
     {
@@ -156,34 +158,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //clamp before
-        Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed *Time.fixedDeltaTime);
-        Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
-        Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
-        if (predictive.magnitude >= MaximumAllowedVelocity && !DashScript.IsDashing)
-        {
-            toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
-        }
-        
-        if (ApplyDrag)
-        {
-            RB.AddForce(toAdd , ForceMode.VelocityChange);
-            RB.velocity = new Vector3(RB.velocity.x * (1 - currentArtificialDrag.x * Time.fixedDeltaTime),
-                    RB.velocity.y * (1 - currentArtificialDrag.y * Time.fixedDeltaTime),
-                    RB.velocity.z * (1 - currentArtificialDrag.z * Time.fixedDeltaTime));
-
-            
-        }
-
-        RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
-
-        //clamp after
-        if (RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity && !DashScript.IsDashing)
-        {
-            RigidBody_horizontalVelocity = RigidBody_horizontalVelocity.normalized * MaximumAllowedVelocity;
-            RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
-           // Debug.Log(new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
-        }
+       ApplyForce();
+       
         if (Grounded)
         {
             AccountForSlope();
@@ -195,10 +171,42 @@ public class FirstPersonController : MonoBehaviour
             //    }
             //}
         }
-        
+
         IC.UpdateCameras();
     }
-    
+
+    private void ApplyForce()
+    {
+        //clamp before
+        Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed * Time.fixedDeltaTime);
+        Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+        Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
+        if (ClampSpeed && predictive.magnitude >= MaximumAllowedVelocity )
+        {
+            toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
+        }
+
+        if (ApplyDrag)
+        {
+            RB.AddForce(toAdd, ForceMode.VelocityChange);
+            RB.velocity = new Vector3(RB.velocity.x * (1 - currentArtificialDrag.x * Time.fixedDeltaTime),
+                    RB.velocity.y * (1 - currentArtificialDrag.y * Time.fixedDeltaTime),
+                    RB.velocity.z * (1 - currentArtificialDrag.z * Time.fixedDeltaTime));
+
+
+        }
+
+        RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+
+        //clamp after
+        if (ClampSpeed && RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity )
+        {
+            RigidBody_horizontalVelocity = RigidBody_horizontalVelocity.normalized * MaximumAllowedVelocity;
+            RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
+            // Debug.Log(new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
+        }
+    }
+
     private void AccountForSlope()
     {
 
@@ -299,7 +307,7 @@ public class FirstPersonController : MonoBehaviour
             float jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
             RB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             IC.isJump = false;
-            DoubleJumpPossible = true;
+           
             JumpTimer.StartTimer();
         }
 

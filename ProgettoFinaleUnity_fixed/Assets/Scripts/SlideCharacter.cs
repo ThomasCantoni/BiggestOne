@@ -42,26 +42,33 @@ public class SlideCharacter : MonoBehaviour
     }
     public IEnumerator StartSliding()
     {
+            slideDir = IC.RelativeDirection;
         yield return new WaitForSeconds(SlideInitialTime);
         if (canSlide && FPS.RB.velocity.magnitude > 1)
         {
             canSlide = false;
-
-            slideDir = IC.RelativeDirection;
             this.isSliding = true;
             capsColl.height = reduceHeight;
-            FPS.RB.drag = 0;
+            FPS.RB.velocity = Vector3.zero;
             FPS.ApplyDrag = false;
-            FPS.RB.AddForce(slideDir * slideSpeed, ForceMode.VelocityChange);
+            FPS.ClampSpeed = false;
             SlidingTimer.StartTimer();
         }
+    }
+    public void FixedUpdate()
+    {
+        if (!isSliding)
+            return;
+        FPS.RB.velocity = slideDir * slideSpeed;
+
+
     }
     private void GoUp()
     {
         if (isSliding)
         {
             FPS.ApplyDrag = true;
-
+            FPS.ClampSpeed = true;
             SlidingTimer.StopTimer(false);
             this.isSliding = false;
             CDTimer.StartTimer();

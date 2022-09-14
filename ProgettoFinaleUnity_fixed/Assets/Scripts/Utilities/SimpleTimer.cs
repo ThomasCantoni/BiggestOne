@@ -63,6 +63,7 @@ public class SimpleTimer
         catch (System.Exception a)
         {
             Debug.LogError("ERRORE PORCO" + a.Message);
+            t.Close();
         }
         
     }

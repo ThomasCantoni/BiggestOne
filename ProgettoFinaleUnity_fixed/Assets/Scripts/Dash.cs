@@ -99,6 +99,7 @@ public class Dash : MonoBehaviour
         if (CanDash && !IsDashing)
         {
             updateDash = true;
+            FPS.ClampSpeed = false;
             direction = IC.RelativeDirection;
             StartCoroutine(StopDashing());
             CurrentDashCharges--;
@@ -110,6 +111,7 @@ public class Dash : MonoBehaviour
     {
         yield return new WaitForSeconds(DashDurationMs*0.001f);
         FPS.ApplyDrag = true;
+        FPS.ClampSpeed = true;
         direction = Vector3.zero;
         updateDash = false;
         RB.useGravity = true;
