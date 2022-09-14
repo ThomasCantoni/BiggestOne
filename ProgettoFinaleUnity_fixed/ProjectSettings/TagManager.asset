@@ -9,6 +9,7 @@ TagManager:
   - Game Saved
   - PlayerVirtualCamera
   - Enemy
+  - Shotgun
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Breakable
   - TriggersForEnemy
   - Ground
-  - 
+  - GroundNavMesh
   - 
   - 
   - 

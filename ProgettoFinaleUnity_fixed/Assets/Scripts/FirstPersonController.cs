@@ -17,6 +17,7 @@ public class FirstPersonController : MonoBehaviour
     public float Speed = 10f;
     [Tooltip("The max velocity in Units/Second of the Player")]
     public float MaximumAllowedVelocity = 10f;
+    public bool ClampSpeed = true;
 
 
     [Header("Jump Values")]
@@ -25,7 +26,7 @@ public class FirstPersonController : MonoBehaviour
     //public float Gravity = -9.8f;
     [Tooltip("Time before the Player can jump again. Ticks when grounded")]
     public float JumpCooldown = 0.2f;
-    
+
 
 
 
@@ -35,7 +36,7 @@ public class FirstPersonController : MonoBehaviour
     public float FallTimeOutMilliseconds = 150f;
     [Tooltip("The amount of gravitational pull the Player should get grounded. Used to manage slopes and cliffdrops")]
     public float GravityMul = 2f;
-    
+
     public float GroundedOffset = -0.14f;
     public float GroundedRadius = 0.5f;
     public LayerMask GroundLayers;
@@ -77,10 +78,10 @@ public class FirstPersonController : MonoBehaviour
     public PlayerGroundedEvent PlayerStartedGrounded, PlayerStartedAirborne;
     private bool graceTimer;
     private PhysicMaterial physicsMat;
-    protected SimpleTimer JumpTimer, GroundcheckTimer,JumpGraceTimer;
+    protected SimpleTimer JumpTimer, GroundcheckTimer, JumpGraceTimer;
     Repeater GroundcheckRepeater;
     private bool jumpCooledDown = true;
-    
+
     public Vector3 currentArtificialDrag;
     public bool WantsToMove
     {
@@ -90,7 +91,7 @@ public class FirstPersonController : MonoBehaviour
     {
         get { return RB_velocityXZ.magnitude > 1f; }
     }
-    public Vector3 RB_velocityXZ 
+    public Vector3 RB_velocityXZ
     {
         get
         {
@@ -139,6 +140,7 @@ public class FirstPersonController : MonoBehaviour
         JumpGraceTimer.TimerStartEvent += () => graceTimer = true;
         JumpGraceTimer.TimerCompleteEvent += () => graceTimer = false;
 
+        PlayerStartedGrounded += () => DoubleJumpPossible = true;
     }
     void Update()
     {
@@ -156,34 +158,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //clamp before
-        Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed *Time.fixedDeltaTime);
-        Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
-        Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
-        if (predictive.magnitude >= MaximumAllowedVelocity && !DashScript.IsDashing)
-        {
-            toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
-        }
-        
-        if (ApplyDrag)
-        {
-            RB.AddForce(toAdd , ForceMode.VelocityChange);
-            RB.velocity = new Vector3(RB.velocity.x * (1 - currentArtificialDrag.x * Time.fixedDeltaTime),
-                    RB.velocity.y * (1 - currentArtificialDrag.y * Time.fixedDeltaTime),
-                    RB.velocity.z * (1 - currentArtificialDrag.z * Time.fixedDeltaTime));
+        ApplyForce();
 
-            
-        }
-
-        RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
-
-        //clamp after
-        if (RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity && !DashScript.IsDashing)
-        {
-            RigidBody_horizontalVelocity = RigidBody_horizontalVelocity.normalized * MaximumAllowedVelocity;
-            RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
-           // Debug.Log(new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
-        }
         if (Grounded)
         {
             AccountForSlope();
@@ -195,10 +171,42 @@ public class FirstPersonController : MonoBehaviour
             //    }
             //}
         }
-        
+
         IC.UpdateCameras();
     }
-    
+
+    private void ApplyForce()
+    {
+        //clamp before
+        Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed * Time.fixedDeltaTime);
+        Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+        Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
+        if (ClampSpeed && predictive.magnitude >= MaximumAllowedVelocity * Time.fixedDeltaTime)
+        {
+            toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
+        }
+
+        if (ApplyDrag)
+        {
+            RB.AddForce(toAdd, ForceMode.VelocityChange);
+            RB.velocity = new Vector3(RB.velocity.x * (1 - currentArtificialDrag.x * Time.fixedDeltaTime),
+                    RB.velocity.y * (1 - currentArtificialDrag.y * Time.fixedDeltaTime),
+                    RB.velocity.z * (1 - currentArtificialDrag.z * Time.fixedDeltaTime));
+
+
+        }
+
+        RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+
+        //clamp after
+        if (ClampSpeed && RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity)
+        {
+            RigidBody_horizontalVelocity = RigidBody_horizontalVelocity.normalized * MaximumAllowedVelocity;
+            RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
+        }
+        //Debug.Log(new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
+    }
+
     private void AccountForSlope()
     {
 
@@ -207,17 +215,18 @@ public class FirstPersonController : MonoBehaviour
         //Vector3 goDown = Physics.gravity * 0.25f;
         RB.AddForce(PlayerGravity, ForceMode.Acceleration);
 
-        if ((slopeAngle >= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange)
-            && IC.AbsoluteDirection.sqrMagnitude < 1f)
-
+        if (slopeAngle >= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange)
         {
             //physicsMat.dynamicFriction = FrictionSlope;
             //physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
+
             Vector3 test = Vector3.down * Vector3.Dot(-SlopeCounterVectorNORMALIZED, PlayerGravity);
             RB.AddForce(SlopeCounterVector + SlopeCounterVector.normalized * test.magnitude, ForceMode.Acceleration);
         }
         else
         {
+
+
             SlopeCounterVector = Vector3.zero;
             //physicsMat.dynamicFriction = 0;
             //physicsMat.frictionCombine = PhysicMaterialCombine.Average;
@@ -241,8 +250,8 @@ public class FirstPersonController : MonoBehaviour
 
 
         IsOnSlope = slopeAngle < 90f;
-        
-        
+
+
 
     }
     private void JumpAndGravity()
@@ -269,21 +278,21 @@ public class FirstPersonController : MonoBehaviour
             else
             {
                 currentArtificialDrag = GroundedStillDragVector;
-                
+
                 //RB.drag = GroundedStillDrag;
             }
             velocityMultiplier = GroundedVelocityMul;
         }
         else
         {
-            if(SC.isSliding)
+            if (SC.isSliding)
             {
                 velocityMultiplier = 0;
                 currentArtificialDrag = Vector3.zero;
-                
+
                 Debug.Log("SLIDE");
             }
-            
+
         }
         //if (_jumpTimeOut >= 0.0f)
         //{
@@ -299,31 +308,31 @@ public class FirstPersonController : MonoBehaviour
             float jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
             RB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
             IC.isJump = false;
-            DoubleJumpPossible = true;
+
             JumpTimer.StartTimer();
         }
 
-        
+
     }
     private void StartAirborne()
     {
         //_jumpTimeOut = JumpTimeout;
-        
-            if (WantsToMove || IsDashing)
-            {
-                RB.drag = 0;
-                currentArtificialDrag = Vector3.zero;
-            }
-            else
-            {
-                currentArtificialDrag = AirborneDragVector;
-            }
-            velocityMultiplier = AirborneVelocityMul;
-       
+
+        if (WantsToMove || IsDashing)
+        {
+            RB.drag = 0;
+            currentArtificialDrag = Vector3.zero;
+        }
+        else
+        {
+            currentArtificialDrag = AirborneDragVector;
+        }
+        velocityMultiplier = AirborneVelocityMul;
+
         //canSlide = false;
         //SlideTimer.StopTimer();
 
-        
+
         if (IC.isJump && DoubleJumpPossible)
         {
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
@@ -339,7 +348,7 @@ public class FirstPersonController : MonoBehaviour
         //Debug.Log("Checking if grounded");
         Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
         Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers);
-        
+
         //GroundcheckTimer.StartTimer();
     }
     //private void OnDrawGizmosSelected()
