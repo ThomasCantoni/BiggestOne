@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
-public class BreakMeshPrefragmented : MonoBehaviour,IKillable
+public class BreakMeshPrefragmented : MonoBehaviour
 {
     public Transform Parent;
     public float ExplosionForce, Radius;
     public float FadeOutTime = 3f;
     public bool FragmentsHaveRigidbody = false;
     private HitInfo Info;
-
+    public UnityEvent OnMeshDestroy;
     public MonoBehaviour Mono => throw new System.NotImplementedException();
 
-    public IKillable.OnDeathEvent OnMeshDestroy ;
-    public IKillable.OnDeathEvent deathEvent { get { return OnMeshDestroy; }set { OnMeshDestroy = value; } }
+    //public IKillable.OnDeathEvent OnMeshDestroy ;
+    //public IKillable.OnDeathEvent deathEvent { get { return OnMeshDestroy; }set { OnMeshDestroy = value; } }
     public delegate void BreakMeshEvent();
     public event BreakMeshEvent OnBreakMesh;
     public void DestroyMesh(HitInfo info)
@@ -55,12 +56,9 @@ public class BreakMeshPrefragmented : MonoBehaviour,IKillable
 
     public void OnDeath()
     {
-        OnBreakMesh?.Invoke();
+        OnMeshDestroy?.Invoke();
         Destroy(Parent.gameObject, FadeOutTime);
     }
 
-    public void OnHit(HitInfo info)
-    {
-        throw new System.NotImplementedException();
-    }
+    
 }
