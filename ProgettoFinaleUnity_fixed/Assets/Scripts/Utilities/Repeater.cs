@@ -52,9 +52,9 @@ public class Repeater
         {
             ExampleMainThreadCall();
         }
-        catch (Exception exc)
+        catch (Exception)
         {
-            Debug.LogError(exc.Message);
+            //Debug.LogError(exc.Message);
             t.Dispose();
         }
 

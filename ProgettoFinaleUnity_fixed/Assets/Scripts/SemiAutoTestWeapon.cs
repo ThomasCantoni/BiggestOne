@@ -55,7 +55,7 @@ public class SemiAutoTestWeapon : GenericGun
     {
        if(!HasShotOnce)
         base.Shoot();
-            Debug.Log("BOOM");
+            //Debug.Log("BOOM");
            
             
         
