@@ -16,7 +16,7 @@ Shader "Blockout/Blockout_Shader_Base"
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque" "Pipeline" = "UniversalRenderPipeline" "Queue" = "Geometry + 0" }
+		Tags{ "RenderType" = "Opaque" "Pipeline" = "UniversalRenderPipeline" "Queue" = "Geometry" }
 		Cull Back
 		CGPROGRAM
 		#pragma target 3.0

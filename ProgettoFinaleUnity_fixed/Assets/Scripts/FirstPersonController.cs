@@ -17,7 +17,9 @@ public class FirstPersonController : MonoBehaviour
     public float Speed = 10f;
     [Tooltip("The max velocity in Units/Second of the Player")]
     public float MaximumAllowedVelocity = 10f;
+
     public bool ClampSpeed = true;
+
 
 
     [Header("Jump Values")]
@@ -158,7 +160,9 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         ApplyForce();
+
 
         if (Grounded)
         {
@@ -178,7 +182,9 @@ public class FirstPersonController : MonoBehaviour
     private void ApplyForce()
     {
         //clamp before
+
         Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed * Time.fixedDeltaTime);
+
         Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
         Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
         if (ClampSpeed && predictive.magnitude >= MaximumAllowedVelocity * Time.fixedDeltaTime)
@@ -199,12 +205,16 @@ public class FirstPersonController : MonoBehaviour
         RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
 
         //clamp after
+
         if (ClampSpeed && RigidBody_horizontalVelocity.magnitude >= MaximumAllowedVelocity)
+
         {
             RigidBody_horizontalVelocity = RigidBody_horizontalVelocity.normalized * MaximumAllowedVelocity;
             RB.velocity = new Vector3(RigidBody_horizontalVelocity.x, RB.velocity.y, RigidBody_horizontalVelocity.z);
         }
+
         //Debug.Log(new Vector3(RB.velocity.x, 0, RB.velocity.z).magnitude);
+
     }
 
     private void AccountForSlope()
