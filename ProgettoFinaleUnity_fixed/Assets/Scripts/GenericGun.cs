@@ -258,23 +258,22 @@ public class GenericGun : MonoBehaviour,IDamager
         newDamageInstance.Hits = ShootRays();
         
         newDamageInstance.Deploy();
+        anim.SetTrigger("Shooting");
+
         DeductAmmo();
         //info.EnemyHit.GetComponent<HitEvent>().OnHit(HitInfo);
 
     }
     public virtual void DeductAmmo()
     {
-        currentAmmo--;
-        currentShootCD = shootCD;
-        WS.UIM.UpdateAmmo(currentAmmo);
+            currentAmmo--;
+            currentShootCD = shootCD;
+            WS.UIM.UpdateAmmo(currentAmmo);
+        
         if (currentAmmo <= 0)
-        {
             StartReload();
-        }
-        else
-        {
-            anim.SetTrigger("Shooting");
-        }
+        
+        
     }
     public virtual void Update()
     {
