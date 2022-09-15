@@ -11,11 +11,11 @@ public class Dash : MonoBehaviour
     public LayerMask CollisionCheck;
     public LayerMask BreakableCheck;
     public float CheckRadius=1f,DistanceFactor=2f,DashForce;
-    public ForceMode DashForceMode;
+    //public ForceMode DashForceMode;
     public int DashDurationMs = 200;
     public int DashRechargeTimeMs = 1000;
     private SimpleTimer dashTimer;
-    private Repeater rechargeRepeater;
+    
     public int DashMaxCharges = 1;
     public int CurrentDashCharges = 1;
     private bool updateDash = false;
@@ -75,15 +75,21 @@ public class Dash : MonoBehaviour
             FPS.ApplyDrag = false;
             
             RB.useGravity = false;
-            RB.AddForce(direction * DashForce , DashForceMode);
+            RB.velocity = direction * DashForce;
             //RB.AddForce(Vector3.up, ForceMode.VelocityChange);
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
             Collider[] thingsHit = Physics.OverlapSphere(transform.position + direction * DistanceFactor, CheckRadius, BreakableCheck.value);
             foreach (Collider x in thingsHit)
             {
                 IHittable toBreak = x.gameObject.GetComponent<IHittable>();
-                HitInfo hitInfo = new HitInfo();
-                toBreak.OnHit(hitInfo);
+                if(toBreak != null)
+                {
+                    HitInfo hitInfo = new HitInfo();
+                    hitInfo.collisionPoint = this.transform.position;
+                    
+                    toBreak.OnHit(hitInfo);
+
+                }
             }
         }
 
