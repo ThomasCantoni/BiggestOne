@@ -183,7 +183,7 @@ public class FirstPersonController : MonoBehaviour
     {
         //clamp before
 
-        Vector3 toAdd = (IC.RelativeDirection.normalized * velocityMultiplier * Speed * Time.fixedDeltaTime);
+        Vector3 toAdd = Speed * Time.fixedDeltaTime * velocityMultiplier * IC.RelativeDirection.normalized;
 
         Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
         Vector3 predictive = RigidBody_horizontalVelocity + toAdd;

@@ -44,11 +44,10 @@ public class SlideCharacter : MonoBehaviour
     {
             slideDir = IC.RelativeDirection;
         yield return new WaitForSeconds(SlideInitialTime);
-        if (canSlide && FPS.RB.velocity.magnitude > 1)
+        if (canSlide && FPS.RB.velocity.magnitude > 1 && FPS.Grounded)
         {
             canSlide = false;
             this.isSliding = true;
-            capsColl.height = reduceHeight;
             FPS.RB.velocity = Vector3.zero;
             FPS.ApplyDrag = false;
             FPS.ClampSpeed = false;
@@ -58,10 +57,14 @@ public class SlideCharacter : MonoBehaviour
     public void FixedUpdate()
     {
         if (!isSliding)
-            return;
-        FPS.RB.velocity = slideDir * slideSpeed;
-
-
+        {
+            capsColl.height = Mathf.Lerp(capsColl.height, originalHeight, 0.2f);
+        }
+        else
+        {
+            capsColl.height = Mathf.Lerp(capsColl.height, reduceHeight, 0.2f);
+            FPS.RB.velocity = slideDir * slideSpeed;
+        }
     }
     private void GoUp()
     {
@@ -72,7 +75,6 @@ public class SlideCharacter : MonoBehaviour
             SlidingTimer.StopTimer(false);
             this.isSliding = false;
             CDTimer.StartTimer();
-            capsColl.height = originalHeight;
         }
         
     }
