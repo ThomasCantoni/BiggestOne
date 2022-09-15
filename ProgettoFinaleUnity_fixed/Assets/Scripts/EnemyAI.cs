@@ -7,11 +7,8 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
-    //public Animator anim;
-    //public GameObject Pipe;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public float health;
 
     //Patroling
     public Vector3 walkPoint;
@@ -56,7 +53,6 @@ public class EnemyAI : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
 
-        //anim.SetBool("Run", false);
         agent.speed = 1.5f;
     }
     private void SearchWalkPoint()
@@ -70,7 +66,6 @@ public class EnemyAI : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
 
-        //anim.SetBool("Run", false);
         agent.speed = 1.5f;
     }
 
@@ -78,16 +73,12 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(player.position);
         agent.speed = 2.2f;
-        //anim.SetBool("Attack", false);
-        //anim.SetBool("Run", true);
     }
 
 
     private void AttackPlayer()
     {
         agent.SetDestination(player.position);
-        //anim.SetBool("Attack", true);
-        //anim.SetBool("Run", false);
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
@@ -98,32 +89,10 @@ public class EnemyAI : MonoBehaviour
     {
         alreadyAttacked = false;
     }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0) DestroyEnemy();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        //if (collision.collider.CompareTag("Pipe"))
-        //{
-        //    TakeDamage(120);
-        //    BoxCollider[] myColliders = this.GetComponents<BoxCollider>();
-        //    foreach (BoxCollider bc in myColliders) bc.enabled = false;
-        //    this.GetComponent<CharacterController>().enabled = false;
-        //}
-
-    }
     private void DestroyEnemy()
     {
-        //anim.SetLayerWeight(1, 0);
-        //anim.SetTrigger("DamageTaken");
         agent.isStopped = true;
         Destroy(this.gameObject, 4f);
-        //agent.Stop();
     }
 
     private void OnDrawGizmosSelected()
