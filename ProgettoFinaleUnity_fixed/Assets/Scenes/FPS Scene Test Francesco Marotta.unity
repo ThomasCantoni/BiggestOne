@@ -742,6 +742,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: slideSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: slideDuration
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 264381284, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: LayersToHit.m_Bits
       value: 129
@@ -810,6 +818,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: DashMaxCharges
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: CurrentDashCharges
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795024, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 1
@@ -828,11 +844,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: GroundLayers.m_Bits
-      value: 1
+      value: 4097
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: MaximumAllowedVelocity
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -4030,6 +4046,9 @@ MonoBehaviour:
   Radius: 2
   FadeOutTime: 3
   FragmentsHaveRigidbody: 1
+  OnMeshDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2078397854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4236,7 +4255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 372625442, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: m_WalkableMask
-      value: 4294967295
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6960461264727538697, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: m_RootOrder
