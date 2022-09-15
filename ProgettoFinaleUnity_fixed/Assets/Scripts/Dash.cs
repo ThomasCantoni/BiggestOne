@@ -100,7 +100,10 @@ public class Dash : MonoBehaviour
         {
             updateDash = true;
             FPS.ClampSpeed = false;
-            direction = IC.RelativeDirection;
+            if (IC.RelativeDirection != Vector3.zero)
+                direction = IC.RelativeDirection;
+            else
+                direction = this.transform.forward;
             StartCoroutine(StopDashing());
             CurrentDashCharges--;
             if (!dashTimer.IsActive)
