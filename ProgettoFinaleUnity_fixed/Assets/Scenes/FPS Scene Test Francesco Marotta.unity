@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 308993507}
   - component: {fileID: 308993506}
   - component: {fileID: 308993505}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -634,7 +634,7 @@ GameObject:
   - component: {fileID: 700171645}
   - component: {fileID: 700171644}
   - component: {fileID: 700171643}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -744,7 +744,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: slideSpeed
-      value: 15
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: slideDuration
@@ -753,6 +753,26 @@ PrefabInstance:
     - target: {fileID: 264381284, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: LayersToHit.m_Bits
       value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Mask.m_Bits
+      value: 1153
+      objectReference: {fileID: 0}
+    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Mask.m_Bits
+      value: 1153
+      objectReference: {fileID: 0}
+    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: WeaponBuffsList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989349436, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Mask.m_Bits
+      value: 1153
+      objectReference: {fileID: 0}
+    - target: {fileID: 2123742852, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: Mask.m_Bits
+      value: 1153
       objectReference: {fileID: 0}
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RootOrder
@@ -823,8 +843,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: DistanceFactor
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: CurrentDashCharges
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: BreakableCheck.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: CollisionCheck.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795024, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RenderingLayerMask
@@ -1387,7 +1419,7 @@ GameObject:
   - component: {fileID: 904516197}
   - component: {fileID: 904516196}
   - component: {fileID: 904516195}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1662,6 +1694,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1092591124 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+  m_PrefabInstance: {fileID: 8587207312043916769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7f6cdb6e61e3744aa81acb5bcacad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1279779870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,7 +1758,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 0, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7167
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -1739,7 +1782,7 @@ GameObject:
   - component: {fileID: 1432877646}
   - component: {fileID: 1432877645}
   - component: {fileID: 1432877644}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2027,7 +2070,7 @@ GameObject:
   - component: {fileID: 1524727068}
   - component: {fileID: 1524727067}
   - component: {fileID: 1524727066}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2587,7 +2630,7 @@ GameObject:
   - component: {fileID: 1691698556}
   - component: {fileID: 1691698555}
   - component: {fileID: 1691698554}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3098,7 +3141,7 @@ GameObject:
   - component: {fileID: 1770390673}
   - component: {fileID: 1770390672}
   - component: {fileID: 1770390671}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3382,7 +3425,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1909181059}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3596,7 +3639,7 @@ GameObject:
   - component: {fileID: 2013558454}
   - component: {fileID: 2013558453}
   - component: {fileID: 2013558452}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3884,7 +3927,7 @@ GameObject:
   - component: {fileID: 2035133311}
   - component: {fileID: 2035133310}
   - component: {fileID: 2035133309}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3998,7 +4041,9 @@ GameObject:
   - component: {fileID: 2078397854}
   - component: {fileID: 2078397853}
   - component: {fileID: 2078397856}
-  m_Layer: 0
+  - component: {fileID: 2078397857}
+  - component: {fileID: 2078397858}
+  m_Layer: 10
   m_Name: Box_350x200x250_PrefabFragments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4100,6 +4145,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2078397858}
+        m_TargetAssemblyTypeName: UnityEngine.AI.NavMeshObstacle, UnityEngine
+        m_MethodName: set_carving
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2078397857}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &2078397855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4128,6 +4197,35 @@ MonoBehaviour:
   objToDrops:
   - {fileID: 2207063292204861695, guid: adcee3787ab17cc429d41661c7c52243, type: 3}
   OffSetTransform: {fileID: 1909181059}
+--- !u!65 &2078397857
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078397851}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4872339, y: 2.5007026, z: 2.0028448}
+  m_Center: {x: 0, y: 0, z: 0.9989877}
+--- !u!208 &2078397858
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078397851}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.743617, y: 1.2503512, z: 1.0014225}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0.9989877}
+  m_TimeToStationary: 0.5
 --- !u!1 &2102156470
 GameObject:
   m_ObjectHideFlags: 0
@@ -4141,7 +4239,7 @@ GameObject:
   - component: {fileID: 2102156475}
   - component: {fileID: 2102156474}
   - component: {fileID: 2102156473}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Fragment9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4326,12 +4424,64 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1279779870}
     - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: followRange
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: walkPointRange
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: whatIsGround.m_Bits
       value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055320, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1092591124}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onHit
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemyAI, Scripts
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: onHit.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8587207312358018251, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: m_AnchorMax.x

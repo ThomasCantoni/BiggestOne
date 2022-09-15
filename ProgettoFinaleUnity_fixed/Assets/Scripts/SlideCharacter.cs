@@ -48,7 +48,7 @@ public class SlideCharacter : MonoBehaviour
         {
             canSlide = false;
             this.isSliding = true;
-            FPS.RB.velocity = Vector3.zero;
+            FPS.RB.velocity = new Vector3(0,FPS.RB.velocity.y,0);
             FPS.ApplyDrag = false;
             FPS.ClampSpeed = false;
             SlidingTimer.StartTimer();
@@ -63,7 +63,7 @@ public class SlideCharacter : MonoBehaviour
         else
         {
             capsColl.height = Mathf.Lerp(capsColl.height, reduceHeight, 0.2f);
-            FPS.RB.velocity = slideDir * slideSpeed;
+            FPS.RB.velocity = new Vector3(slideDir.x * slideSpeed,FPS.RB.velocity.y, slideDir.z * slideSpeed);
         }
     }
     private void GoUp()
@@ -78,7 +78,5 @@ public class SlideCharacter : MonoBehaviour
         }
         
     }
-
-
 
 }

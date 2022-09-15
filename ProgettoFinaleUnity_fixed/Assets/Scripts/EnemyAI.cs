@@ -9,6 +9,7 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    public bool alerted = false; 
 
     //Patroling
     public Vector3 walkPoint;
@@ -21,8 +22,8 @@ public class EnemyAI : MonoBehaviour
     public GameObject projectile;
 
     //States
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float sightRange, attackRange, followRange;
+    public bool playerInSightRange, playerInAttackRange, playerFollowRange;
 
     private void Awake()
     {
@@ -34,9 +35,14 @@ public class EnemyAI : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        if (alerted)
+        {
+            playerFollowRange = Physics.CheckSphere(transform.position, followRange, whatIsPlayer);
+            alerted = playerFollowRange;
+        }
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (!playerInSightRange && !playerInAttackRange && !playerFollowRange) Patroling();
+        if ((playerInSightRange && !playerInAttackRange) || playerFollowRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
@@ -94,12 +100,18 @@ public class EnemyAI : MonoBehaviour
         agent.isStopped = true;
         Destroy(this.gameObject, 4f);
     }
-
+    public void onHit(HitInfo info)
+    {
+        alerted = true;
+        ChasePlayer();
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, followRange);
     }
 }

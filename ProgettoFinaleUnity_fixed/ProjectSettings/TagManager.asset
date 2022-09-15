@@ -24,7 +24,7 @@ TagManager:
   - Breakable
   - TriggersForEnemy
   - Ground
-  - GroundNavMesh
+  - BreakableFragment
   - 
   - 
   - 

@@ -9,6 +9,7 @@ public class Dash : MonoBehaviour
     Rigidbody RB;
     FirstPersonController FPS;
     public LayerMask CollisionCheck;
+    public LayerMask BreakableCheck;
     public float CheckRadius=1f,DistanceFactor=2f,DashForce;
     public ForceMode DashForceMode;
     public int DashDurationMs = 200;
@@ -77,7 +78,15 @@ public class Dash : MonoBehaviour
             RB.AddForce(direction * DashForce , DashForceMode);
             //RB.AddForce(Vector3.up, ForceMode.VelocityChange);
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+            Collider[] thingsHit = Physics.OverlapSphere(transform.position + direction * DistanceFactor, CheckRadius, BreakableCheck.value);
+            foreach (Collider x in thingsHit)
+            {
+                IHittable toBreak = x.gameObject.GetComponent<IHittable>();
+                HitInfo hitInfo = new HitInfo();
+                toBreak.OnHit(hitInfo);
+            }
         }
+
     }
 
     private void OnDrawGizmos()

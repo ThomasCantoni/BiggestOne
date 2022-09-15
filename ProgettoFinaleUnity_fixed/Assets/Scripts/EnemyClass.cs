@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 
@@ -41,7 +42,8 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     }
 
     public IKillable.OnDeathEvent deathEvent { get { return OnEnemyDeath; } set { OnEnemyDeath = value; } }
-
+    public UnityEvent <HitInfo>onHit;
+    public UnityEvent onDeath;
     public virtual void DetuctHealth(HitInfo info)
     {
         if (!IsDead)
@@ -55,11 +57,13 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public virtual void OnHit(HitInfo info)
     {
         DetuctHealth(info);
+        onHit?.Invoke(info);
     }
 
     public void OnDeath()
     {
         OnEnemyDeath?.Invoke();
+        onDeath?.Invoke();
         Destroy(gameObject);
     }
 }
