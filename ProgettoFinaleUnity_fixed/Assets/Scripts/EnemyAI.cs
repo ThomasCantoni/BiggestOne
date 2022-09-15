@@ -7,11 +7,9 @@ using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {
     public NavMeshAgent agent;
-    //public Animator anim;
-    //public GameObject Pipe;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public float health;
+    public bool alerted = false; 
 
     //Patroling
     public Vector3 walkPoint;
@@ -24,8 +22,8 @@ public class EnemyAI : MonoBehaviour
     public GameObject projectile;
 
     //States
-    public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    public float sightRange, attackRange, followRange;
+    public bool playerInSightRange, playerInAttackRange, playerFollowRange;
 
     private void Awake()
     {
@@ -37,9 +35,14 @@ public class EnemyAI : MonoBehaviour
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        if (alerted)
+        {
+            playerFollowRange = Physics.CheckSphere(transform.position, followRange, whatIsPlayer);
+            alerted = playerFollowRange;
+        }
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (!playerInSightRange && !playerInAttackRange && !playerFollowRange) Patroling();
+        if ((playerInSightRange && !playerInAttackRange) || playerFollowRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
@@ -56,7 +59,6 @@ public class EnemyAI : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
 
-        //anim.SetBool("Run", false);
         agent.speed = 1.5f;
     }
     private void SearchWalkPoint()
@@ -70,7 +72,6 @@ public class EnemyAI : MonoBehaviour
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
             walkPointSet = true;
 
-        //anim.SetBool("Run", false);
         agent.speed = 1.5f;
     }
 
@@ -78,16 +79,12 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(player.position);
         agent.speed = 2.2f;
-        //anim.SetBool("Attack", false);
-        //anim.SetBool("Run", true);
     }
 
 
     private void AttackPlayer()
     {
         agent.SetDestination(player.position);
-        //anim.SetBool("Attack", true);
-        //anim.SetBool("Run", false);
         if (!alreadyAttacked)
         {
             alreadyAttacked = true;
@@ -98,39 +95,23 @@ public class EnemyAI : MonoBehaviour
     {
         alreadyAttacked = false;
     }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0) DestroyEnemy();
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        //if (collision.collider.CompareTag("Pipe"))
-        //{
-        //    TakeDamage(120);
-        //    BoxCollider[] myColliders = this.GetComponents<BoxCollider>();
-        //    foreach (BoxCollider bc in myColliders) bc.enabled = false;
-        //    this.GetComponent<CharacterController>().enabled = false;
-        //}
-
-    }
     private void DestroyEnemy()
     {
-        //anim.SetLayerWeight(1, 0);
-        //anim.SetTrigger("DamageTaken");
         agent.isStopped = true;
         Destroy(this.gameObject, 4f);
-        //agent.Stop();
     }
-
+    public void onHit(HitInfo info)
+    {
+        alerted = true;
+        ChasePlayer();
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, followRange);
     }
 }
