@@ -6,6 +6,7 @@ public class WallParkour : MonoBehaviour
 {
     public LayerMask whatIsWall;
     public LayerMask whatIsGround;
+    public float JumpOffForce;
     public float wallRunForce;
     public float wallClimbSpeed;
     public float maxWallRunForce;
@@ -95,8 +96,6 @@ public class WallParkour : MonoBehaviour
         if (IsWallRunning)
         {
             towardsWall = Physics.Raycast(transform.position,towardsWallVector, wallCheckDistance, whatIsWall);
-
-
         }
     }
 
@@ -140,9 +139,17 @@ public class WallParkour : MonoBehaviour
         IsWallRunning = true;
         ic.PlayerStoppedJump += JumpOffWall;
     }
+    private void jumpOffwall()
+    {
+        fps.ApplyDrag = true; Debug.Log("WOOSH");
+    }
     public void JumpOffWall()
     {
-        rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward) * 5f, ForceMode.Impulse);
+        fps.ApplyDrag = false;
+        fps.PlayerStartedGrounded += jumpOffwall;
+        fps.PlayerStartedGrounded += () => fps.PlayerStartedGrounded -= jumpOffwall;
+
+        rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward) * JumpOffForce, ForceMode.VelocityChange);
         StopWallRun();
     }
     private void WallRunningMovement()
