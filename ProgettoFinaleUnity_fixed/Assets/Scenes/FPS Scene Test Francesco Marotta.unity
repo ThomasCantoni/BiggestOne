@@ -876,7 +876,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: GroundLayers.m_Bits
-      value: 4097
+      value: 5121
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: MaximumAllowedVelocity
@@ -1699,12 +1699,44 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
   m_PrefabInstance: {fileID: 8587207312043916769}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1152398353}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b7f6cdb6e61e3744aa81acb5bcacad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1152398353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8587207312226055321, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+  m_PrefabInstance: {fileID: 8587207312043916769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1152398360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152398353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1092591124}
+        m_TargetAssemblyTypeName: EnemyAI, Scripts
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1279779870
 GameObject:
   m_ObjectHideFlags: 0
@@ -4348,6 +4380,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 372625442, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: m_Speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 372625442, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: m_Radius
       value: 0.5
       objectReference: {fileID: 0}
@@ -4424,8 +4460,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1279779870}
     - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: attackRange
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: followRange
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: layer.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: PLAYER.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: damage.Damage
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: walkPointRange
@@ -4434,6 +4486,10 @@ PrefabInstance:
     - target: {fileID: 8587207312226055265, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: whatIsGround.m_Bits
       value: 4096
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587207312226055320, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8587207312226055320, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: m_IsTrigger
@@ -4445,7 +4501,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: onHit.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8587207312226055324, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
       propertyPath: onDeath.m_PersistentCalls.m_Calls.Array.size

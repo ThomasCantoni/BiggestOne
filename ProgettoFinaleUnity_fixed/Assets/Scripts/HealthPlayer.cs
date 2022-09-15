@@ -22,7 +22,7 @@ public class HealthPlayer : MonoBehaviour, IHittable
             HP_Slider.value = hp_Value;
         }
     }
-    public MonoBehaviour Mono => throw new System.NotImplementedException();
+    public MonoBehaviour Mono { get { return this; } }
 
     public void OnHit(HitInfo info)
     {
