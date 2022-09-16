@@ -14,7 +14,8 @@ public class Dash : MonoBehaviour
     //public ForceMode DashForceMode;
     public int DashDurationMs = 200;
     public int DashRechargeTimeMs = 1000;
-    private SimpleTimer dashTimer;
+    [SerializeField]
+    private SimpleTimer DashRechargeTimer;
     
     public int DashMaxCharges = 1;
     public int CurrentDashCharges = 1;
@@ -51,10 +52,10 @@ public class Dash : MonoBehaviour
         FPS.PlayerStartedGrounded += () => canRechargeGrounded  = true;
         FPS.PlayerStartedGrounded += () => CheckRecharge();
         FPS.PlayerStartedAirborne += () => canRechargeGrounded = false;
-        dashTimer = new SimpleTimer(DashRechargeTimeMs);
-        dashTimer.TimerStartEvent += () => canRechargeTimer = false;
-        dashTimer.TimerCompleteEvent += () => canRechargeTimer = true;
-        dashTimer.TimerCompleteEvent += () => CheckRecharge();
+        DashRechargeTimer = new SimpleTimer(DashRechargeTimeMs);
+        DashRechargeTimer.TimerStartEvent += () => canRechargeTimer = false;
+        DashRechargeTimer.TimerCompleteEvent += () => canRechargeTimer = true;
+        DashRechargeTimer.TimerCompleteEvent += () => CheckRecharge();
         // dashTimer.TimerCompleteEvent += () => ResetDash();
 
         //rechargeRepeater = new Repeater(DashRechargeTimeMs);
@@ -101,7 +102,7 @@ public class Dash : MonoBehaviour
     }
     public void ResetDash()
     {
-        dashTimer.StopTimer(false);
+        DashRechargeTimer.StopTimer(false);
         CurrentDashCharges =  DashMaxCharges;
     }
     public void RechargeDash(int chargesToRecharge)
@@ -121,8 +122,8 @@ public class Dash : MonoBehaviour
                 direction = this.transform.forward;
             StartCoroutine(StopDashing());
             CurrentDashCharges--;
-            if (!dashTimer.IsActive)
-                dashTimer.StartTimer();
+            if (!DashRechargeTimer.IsActive)
+                DashRechargeTimer.StartTimer();
         }
     }
     public IEnumerator StopDashing()

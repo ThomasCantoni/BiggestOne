@@ -37,6 +37,7 @@ public class WallParkour : MonoBehaviour
     private bool playerIsHoldingSpace;
     private bool pushingTowardsWall;
     private bool hitWall;
+    private SimpleTimer gainDragTimer;
     private bool checkWall
     {
         get { return checkWallCurrentCooldown <= 0; }
@@ -139,16 +140,14 @@ public class WallParkour : MonoBehaviour
         IsWallRunning = true;
         ic.PlayerStoppedJump += JumpOffWall;
     }
-    private void jumpOffwall()
-    {
-        fps.ApplyDrag = true; Debug.Log("WOOSH");
-    }
+    
     public void JumpOffWall()
     {
         fps.ApplyDrag = false;
-        fps.PlayerStartedGrounded += jumpOffwall;
-        fps.PlayerStartedGrounded += () => fps.PlayerStartedGrounded -= jumpOffwall;
-
+        gainDragTimer = new SimpleTimer(1000);
+        gainDragTimer.TimerCompleteEvent += () => fps.ApplyDrag = true;
+        gainDragTimer.StartTimer();
+        fps.PlayerStartedGrounded += gainDragTimer.StopTimer;
         rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward) * JumpOffForce, ForceMode.VelocityChange);
         StopWallRun();
     }
