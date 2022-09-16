@@ -1,12 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using System.Timers;
+using System;
 
+
+[Serializable]
 public class SimpleTimer
 {
     public float  TimeMs=1000;
     public bool HasCompleted = false;
+
+    public float Progress
+    {
+        get { return estimatedCompletionTime / (Time.time*1000); }
+    }
+    public float RemainingTimeMs
+    {
+        get { return estimatedCompletionTime - (Time.time * 1000); }
+    }
     public bool IsActive
     {
         get 
@@ -24,9 +37,13 @@ public class SimpleTimer
     }
 
     Timer t;
-    private Time activationTime, estimatedCompletionTime;
+    private float activationTime, estimatedCompletionTime;
+    
+
     public delegate void TimerEvents();
     public event TimerEvents TimerCompleteEvent,TimerStartEvent;
+
+
     public SimpleTimer()
     {
 
@@ -35,10 +52,19 @@ public class SimpleTimer
     {
         this.TimeMs = millisecond;
     }
-    
+
+    [ButtonDrawer("UpdateTimer",ButtonWidth = 150)]
+    public bool UpdateTimer;
+    public void updateTimer()
+    {
+        // Debug.Log(System.Reflection.MethodBase.GetCurrentMethod().Name);
+        StartTimer();
+    }
     public void StartTimer()
     {
         t?.Dispose();
+        activationTime = Time.time*1000;
+        estimatedCompletionTime = activationTime + TimeMs;
         t = new Timer(TimeMs);
         t.Elapsed += stopTimer;
         //Debug.Log("Timer started");
