@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public abstract class EnemyClass : MonoBehaviour,IKillable
 {
     
-    [SerializeField] public int speed;
-
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;

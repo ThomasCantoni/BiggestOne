@@ -39,7 +39,7 @@ public class BulletScript : MonoBehaviour,IDamager
 
     public void FixedUpdate()
     {
-        RB.MovePosition(this.transform.position + transform.forward * Speed*Time.fixedDeltaTime);
+        RB.MovePosition(this.transform.position + transform.forward * Speed * Time.fixedDeltaTime);
         
     }
 
