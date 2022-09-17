@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 
-public class EnemyAI : MonoBehaviour,IKillable,IDamager
+public class EnemyMeleeAI : EnemyClass, IDamager
 {
     public NavMeshAgent agent;
     public Transform player;
@@ -17,10 +17,6 @@ public class EnemyAI : MonoBehaviour,IKillable,IDamager
     //States
     public float attackRange;
     public bool playerInAttackRange;
-
-    public IKillable.OnDeathEvent deathEvent { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-    public MonoBehaviour Mono => throw new System.NotImplementedException();
 
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
@@ -43,7 +39,7 @@ public class EnemyAI : MonoBehaviour,IKillable,IDamager
         if (!alreadyAttacked)
         {
             float distanceFromPlayer = Vector3.Distance(this.transform.position, player.position);
-            if (distanceFromPlayer <= 2f)
+            if (distanceFromPlayer <= attackRange)
             {
                 HitInfo infoDamage = new HitInfo(this, player.GetComponent<HealthPlayer>());
                 player.GetComponent<HealthPlayer>().OnHit(infoDamage);
@@ -65,14 +61,5 @@ public class EnemyAI : MonoBehaviour,IKillable,IDamager
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
-
-    public void OnDeath()
-    {
-    }
-
-    public void OnHit(HitInfo info)
-    {
-        
     }
 }

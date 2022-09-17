@@ -9,7 +9,9 @@ using UnityEngine.AI;
 public abstract class EnemyClass : MonoBehaviour,IKillable
 {
     
+
     NavMeshAgent Enemy;
+
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;

@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletScript : MonoBehaviour,IDamager
+public class BulletEnemy : EnemyClass, IDamager
 {
-    public GenericGun Source;
     public static List<EnemyClass> AlreadyHit = new List<EnemyClass>();
-    public float Speed=1f;
+    public float Speed = 1f;
+    public DamageStats damage;
     Rigidbody RB;
 
     public DamageStats DamageStats
-    { 
-        get { return Source.DamageStats;    } 
-        set { Source.DamageStats = value;   } 
+    {
+        get { return damage; }
+        set { damage = value; }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,18 +20,14 @@ public class BulletScript : MonoBehaviour,IDamager
         IHittable tryget = other.gameObject.GetComponent<IHittable>();
         if (tryget != null)
         {
-            HitInfo info = new HitInfo(this,tryget);
-            
-            DamageInstance DI = new DamageInstance(this);
-            DI.PlayerAttackEffects = Source.PlayerAttackEffects;
-            DI.AddHitInfo(info);
-            DI.Deploy();
+            HitInfo info = new HitInfo(this, tryget);
+            other.GetComponent<HealthPlayer>().OnHit(info);
         }
 
         Destroy(this.gameObject);
     }
-    
-    private void Start()
+
+    private void Awake()
     {
         RB = GetComponent<Rigidbody>();
         Destroy(this.gameObject, 10f);
@@ -40,7 +36,7 @@ public class BulletScript : MonoBehaviour,IDamager
     public void FixedUpdate()
     {
         RB.MovePosition(this.transform.position + transform.forward * Speed * Time.fixedDeltaTime);
-        
+
     }
 
 }
