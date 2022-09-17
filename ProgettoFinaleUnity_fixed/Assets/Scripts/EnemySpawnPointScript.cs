@@ -62,6 +62,7 @@ public class EnemySpawnPointScript : MonoBehaviour
         else
         {
             Debug.Log("Out of enemies to spawn! Stopping repeater!");
+            Destroy(this.gameObject);
             SpawnRepeater.StopRepeater();
         }
     }
