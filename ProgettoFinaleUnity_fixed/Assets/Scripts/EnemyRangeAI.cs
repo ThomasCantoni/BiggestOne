@@ -7,8 +7,10 @@ public class EnemyRangeAI : EnemyClass, IDamager
 {
     public NavMeshAgent agent;
     public Transform player;
+    public Transform offSet;
     public GameObject ToInstantiate;
     public LayerMask layer;
+    public LayerMask layerBullet;
     public DamageStats damage;
     public float distanceFromPlayer;
     public float walkPointRange;
@@ -24,6 +26,16 @@ public class EnemyRangeAI : EnemyClass, IDamager
     public bool RunFromPlayerRange;
     private bool walkPointSet;
 
+    public bool PlayerIsVisible { get {
+            RaycastHit hit;
+            Vector3 dir = (player.position - offSet.position).normalized;
+            Ray enemyPosition = new Ray(offSet.position, dir);
+            if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
+            {
+                return hit.transform.gameObject.layer == 3;
+            }
+            return false;
+        } }
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
     private void Awake()
@@ -36,53 +48,56 @@ public class EnemyRangeAI : EnemyClass, IDamager
         //Check for sight and attack range
         AttackPlayer();
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, runFromPlayerRange, layer);
+        RunFromPlayerRange = Physics.CheckSphere(transform.position, runFromPlayerRange, layer);
     }
 
     private void AttackPlayer()
     {
         distanceFromPlayer = Vector3.Distance(this.transform.position, player.position);
-        //if (!walkPointSet) SearchWalkPoint();
-
-        //if (walkPointSet)
-        //    agent.SetDestination(walkPoint);
-
-        if (distanceFromPlayer <= attackRange)
+        Vector3 dir = (player.position - offSet.position).normalized;
+        //Ray enemyPosition = new Ray(offSet.position, dir);
+        //RaycastHit info;
+        if (distanceFromPlayer <= attackRange && distanceFromPlayer > runFromPlayerRange && PlayerIsVisible)
         {
-            Debug.DrawLine(transform.position, player.position, Color.red, 1f);
-            if (!alreadyAttacked)
+            playerInAttackRange = true;
+            if (playerInAttackRange)
             {
-                
-                alreadyAttacked = true;
-                HitInfo infoDamage = new HitInfo(this, player.GetComponent<HealthPlayer>());
-                Vector3 dir = (player.position - this.transform.position).normalized;
-                Ray enemyPosition = new Ray(transform.position, dir);
-                RaycastHit info;
-                Debug.DrawRay(transform.position, dir, Color.red, 5f);
-                if (!Physics.Raycast(enemyPosition, out info, attackRange, 1))
+                Debug.DrawLine(offSet.position, player.position, Color.red, 1f);
+                agent.isStopped = true;
+                if (!alreadyAttacked)
                 {
-                    if (!Physics.SphereCast(enemyPosition, 0.5f, out info, attackRange, 1))
-                    {
-                        Instantiate(ToInstantiate, this.transform.position, Quaternion.LookRotation(dir, Vector3.up));
-                    }
+                    alreadyAttacked = true;
+                    Instantiate(ToInstantiate, offSet.position, Quaternion.LookRotation(dir, Vector3.up));
+                    Invoke(nameof(ResetAttack), timeBetweenAttacks);
                 }
-                Invoke(nameof(ResetAttack), timeBetweenAttacks);
             }
-            agent.isStopped = true;
         }
-        else
+        else if (distanceFromPlayer >= attackRange && !PlayerIsVisible)
         {
             agent.SetDestination(player.position);
+            playerInAttackRange = false;
+            agent.isStopped = false;
+            agent.speed = 2f;
         }
-        if (distanceFromPlayer <= runFromPlayerRange)
+
+        if (distanceFromPlayer <= runFromPlayerRange && RunFromPlayerRange && PlayerIsVisible)
         {
             SearchWalkPoint();
+            playerInAttackRange = false;
         }
     }
     private void SearchWalkPoint()
     {
         agent.isStopped = false;
-        walkPoint = new Vector3(player.forward.x  ,player.forward.y , player.forward.z );
+        walkPoint = this.transform.position + (this.transform.position - player.position).normalized;
+        NavMeshHit meshHit;
+        if (NavMesh.SamplePosition(walkPoint, out meshHit, runFromPlayerRange, 1))
+        {
+            walkPoint = meshHit.position;
+        }
+        agent.speed = 4f;
+        agent.SetDestination(walkPoint);
+        Debug.DrawLine(this.transform.position, walkPoint, Color.green, 3f);
         if (Physics.Raycast(walkPoint, -transform.up, runFromPlayerRange, 1))
             walkPointSet = true;
     }
