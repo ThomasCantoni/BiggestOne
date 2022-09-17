@@ -42,13 +42,13 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 0.2
+  m_Speed: 2
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 400
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -390,8 +390,9 @@ GameObject:
   - component: {fileID: 8587207312226055323}
   - component: {fileID: 8587207312226055320}
   - component: {fileID: 8587207312226055324}
-  - component: {fileID: 8587207312226055327}
   - component: {fileID: 8587207312226055265}
+  - component: {fileID: 6422543081545843345}
+  - component: {fileID: 1411703564}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -489,8 +490,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
---- !u!114 &8587207312226055327
+--- !u!114 &8587207312226055265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587207312226055321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b7f6cdb6e61e3744aa81acb5bcacad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 372625442}
+  player: {fileID: 8436142690075546976, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+  layer:
+    serializedVersion: 2
+    m_Bits: 8
+  damage:
+    Damage: 3
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
+  timeBetweenAttacks: 2
+  attackRange: 1.2
+  playerInAttackRange: 0
+--- !u!114 &6422543081545843345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587207312226055321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8587207312226055265}
+        m_TargetAssemblyTypeName: EnemyAI, Scripts
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1411703564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,35 +557,6 @@ MonoBehaviour:
   objToDrops:
   - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
   OffSetTransform: {fileID: 0}
---- !u!114 &8587207312226055265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8587207312226055321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b7f6cdb6e61e3744aa81acb5bcacad7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 372625442}
-  player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8192
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 8
-  health: 0
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 7
-  timeBetweenAttacks: 2
-  projectile: {fileID: 0}
-  sightRange: 7
-  attackRange: 1.2
-  playerInSightRange: 0
-  playerInAttackRange: 0
 --- !u!1 &8587207312239170903
 GameObject:
   m_ObjectHideFlags: 0
