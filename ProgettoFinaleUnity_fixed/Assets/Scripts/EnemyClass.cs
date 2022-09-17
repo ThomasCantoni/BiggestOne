@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 
 public abstract class EnemyClass : MonoBehaviour,IKillable
 {
     
-    [SerializeField] public int speed;
-
+    NavMeshAgent Enemy;
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;
@@ -23,6 +23,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public void Start()
     {
         HP_Slider = GetComponentInChildren<Slider>(true);
+        Enemy = GetComponentInParent<NavMeshAgent>();
     }
     public float HP_Value
     {
@@ -60,7 +61,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public void OnDeath()
     {
         OnEnemyDeath?.Invoke();
-        Destroy(gameObject);
+        Destroy(Enemy.gameObject);
     }
 }
 
