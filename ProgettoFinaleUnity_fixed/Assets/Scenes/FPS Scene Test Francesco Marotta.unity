@@ -814,38 +814,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: slideSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: slideDuration
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 264381284, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: LayersToHit.m_Bits
-      value: 129
-      objectReference: {fileID: 0}
-    - target: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Mask.m_Bits
-      value: 1153
-      objectReference: {fileID: 0}
-    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Mask.m_Bits
-      value: 1153
-      objectReference: {fileID: 0}
-    - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: WeaponBuffsList.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1989349436, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Mask.m_Bits
-      value: 1153
-      objectReference: {fileID: 0}
-    - target: {fileID: 2123742852, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Mask.m_Bits
-      value: 1153
-      objectReference: {fileID: 0}
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -894,14 +862,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWrapped
       objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925936, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 14303
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925938, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 8193
-      objectReference: {fileID: 0}
     - target: {fileID: 7423247748353314289, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -909,54 +869,6 @@ PrefabInstance:
     - target: {fileID: 7423247748353314289, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: DashForce
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: DashMaxCharges
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: DistanceFactor
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: CurrentDashCharges
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: BreakableCheck.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: CollisionCheck.m_Bits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795024, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_RenderingLayerMask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: Speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: GravityMul
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: JumpHeight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: GroundLayers.m_Bits
-      value: 5121
-      objectReference: {fileID: 0}
-    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: MaximumAllowedVelocity
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -1770,26 +1682,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1269320389 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7927355010851875655, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
-  m_PrefabInstance: {fileID: 66803421}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1269320390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1269320389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 556a2af85b882c443a78a1681f03e719, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objToDrops:
-  - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
-  OffSetTransform: {fileID: 0}
 --- !u!1 &1279779870
 GameObject:
   m_ObjectHideFlags: 0

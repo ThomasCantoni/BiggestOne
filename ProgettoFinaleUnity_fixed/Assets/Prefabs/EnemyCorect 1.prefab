@@ -392,6 +392,7 @@ GameObject:
   - component: {fileID: 8587207312226055324}
   - component: {fileID: 8587207312226055265}
   - component: {fileID: 6422543081545843345}
+  - component: {fileID: 1411703564}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -489,7 +490,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &8587207312226055265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -542,6 +542,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1411703564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8587207312226055321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556a2af85b882c443a78a1681f03e719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objToDrops:
+  - {fileID: 4162279466972004429, guid: 7a8544840f7dac3409638e52539a8049, type: 3}
+  OffSetTransform: {fileID: 0}
 --- !u!1 &8587207312239170903
 GameObject:
   m_ObjectHideFlags: 0
