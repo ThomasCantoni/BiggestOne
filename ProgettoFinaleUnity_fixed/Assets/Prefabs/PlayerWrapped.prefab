@@ -347,7 +347,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 6111
+    m_Bits: 14303
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -388,7 +388,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 8193
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 0
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 1153
   DamageContainer:
     Damage: 50
     CritChance: 0
@@ -848,7 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 1153
   DamageContainer:
     Damage: 15
     CritChance: 0
@@ -892,11 +892,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: DashForce
-      value: 2.5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: CheckRadius
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: DashMaxCharges
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: DistanceFactor
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: CurrentDashCharges
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8387331644413128132, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: BreakableCheck.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 8387331644420759068, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -956,7 +972,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: Speed
-      value: 30
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: GravityMul
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: JumpHeight
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: JumpCooldown
@@ -979,6 +1003,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 5121
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: GroundedVelocityMul
       value: 3
       objectReference: {fileID: 0}
@@ -996,7 +1024,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: MaximumAllowedVelocity
-      value: 15
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: GroundedStillDragVector.x
@@ -1122,27 +1150,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SlideInitialTime: 0.15
   SlideCooldown: 500
-  slideDuration: 500
+  slideDuration: 1000
   reduceHeight: 1
-  slideSpeed: 20
+  slideSpeed: 8
   IC: {fileID: 0}
   FPS: {fileID: 0}
   isSliding: 0
---- !u!114 &1687120080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7578008436064795026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e47c909e9f342488ec57c4719efec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChainableAttackList: []
-  WeaponBuffsList:
-  - {fileID: 11400000, guid: 27608a38c1f2eb54a942ff4a2fb88430, type: 2}
 --- !u!114 &700996448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1183,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1687120080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7578008436064795026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e47c909e9f342488ec57c4719efec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChainableAttackList: []
+  WeaponBuffsList: []
 --- !u!1001 &3569124368178884572
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1263,7 +1290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 1153
   DamageContainer:
     Damage: 9
     CritChance: 0
@@ -1375,7 +1402,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 1153
   DamageContainer:
     Damage: 15
     CritChance: 0
