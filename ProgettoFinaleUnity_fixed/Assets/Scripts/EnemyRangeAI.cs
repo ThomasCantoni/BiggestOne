@@ -24,8 +24,6 @@ public class EnemyRangeAI : EnemyClass, IDamager
     public float runFromPlayerRange;
     public bool playerInAttackRange;
     public bool RunFromPlayerRange;
-    private bool walkPointSet;
-
     public bool PlayerIsVisible { get {
             RaycastHit hit;
             Vector3 dir = (player.position - offSet.position).normalized;
@@ -62,7 +60,6 @@ public class EnemyRangeAI : EnemyClass, IDamager
             playerInAttackRange = true;
             if (playerInAttackRange)
             {
-                Debug.DrawLine(offSet.position, player.position, Color.red, 1f);
                 agent.isStopped = true;
                 if (!alreadyAttacked)
                 {
@@ -86,21 +83,65 @@ public class EnemyRangeAI : EnemyClass, IDamager
             playerInAttackRange = false;
         }
     }
+    public NavMeshPath TryGo(Vector3 dir,float multi,bool local = false)
+    {
+        if (local)
+        {
+            Quaternion rot = Quaternion.LookRotation((player.transform.position - this.transform.position).normalized);
+            dir = rot * dir;
+        }
+        Vector3 tryPos = this.transform.position + dir * multi;
+        
+        NavMeshPath path = new NavMeshPath();
+        NavMesh.CalculatePath(this.transform.position, tryPos, 1, path);
+        if (path.status == NavMeshPathStatus.PathComplete)
+        {
+            Debug.DrawRay(this.transform.position, dir, Color.white, 2f);
+            return path;
+        }
+        return null;
+        
+    }
     private void SearchWalkPoint()
     {
         agent.isStopped = false;
-        walkPoint = this.transform.position + (this.transform.position - player.position).normalized;
-        NavMeshHit meshHit;
-        if (NavMesh.SamplePosition(walkPoint, out meshHit, runFromPlayerRange, 1))
+        NavMeshPath newPath;
+        Vector3[] directions = { Vector3.back, Vector3.left, Vector3.right, Vector3.forward };
+        bool local = true;
+        int j = 0;
+        for (int i = 0; i < directions.Length * 2f; i++)
         {
-            walkPoint = meshHit.position;
+
+            newPath = TryGo(directions[j], 5f,local);
+            if (newPath != null)
+            {
+                agent.SetPath(newPath);
+                walkPoint = agent.destination;
+                break;
+            }
+            else if(i == 3)
+            {
+                local = false;
+                j = 0;
+                continue;
+            }
+            j++;
         }
         agent.speed = 4f;
-        agent.SetDestination(walkPoint);
-        Debug.DrawLine(this.transform.position, walkPoint, Color.green, 3f);
-        if (Physics.Raycast(walkPoint, -transform.up, runFromPlayerRange, 1))
-            walkPointSet = true;
+        //agent.SetDestination(walkPoint);
+        //Vector3 fsmPosition = this.transform.position;
+        //Vector3 fwd = transform.TransformDirection(Vector3.forward); // this
+
+        //if (NavMeshAnalytics.IsNearCorner(fsmPosition, 3))
+        //{
+        //    agent.SetDestination(walkPoint);
+        //    Debug.DrawRay(transform.position, fwd * 10, Color.red);
+        //}
+        Debug.DrawLine(this.transform.position, agent.destination, Color.green, 3f);
     }
+
+
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
