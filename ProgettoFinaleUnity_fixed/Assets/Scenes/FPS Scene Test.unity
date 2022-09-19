@@ -561,7 +561,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &40238452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,13 +668,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 79647437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91fc9178a0b0c3d4bb8b6d91b16d9893, type: 3}
+  m_Script: {fileID: 11500000, guid: 722adf1ce4818e1469a08052b2b9d789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   triggerOptions:
-    triggerType: 0
-    minimumCollisionForce: 1
-    filterCollisionsByTag: 1
+    triggerType: 2
+    minimumCollisionForce: 0
+    filterCollisionsByTag: 0
     triggerAllowedTags: []
     triggerKey: 0
   fractureOptions:
@@ -683,7 +682,7 @@ MonoBehaviour:
     xAxis: 1
     yAxis: 1
     zAxis: 1
-    detectFloatingFragments: 1
+    detectFloatingFragments: 0
     asynchronous: 0
     insideMaterial: {fileID: 0}
     textureScale: {x: 1, y: 1}
@@ -692,6 +691,7 @@ MonoBehaviour:
     enableRefracturing: 0
     maxRefractureCount: 1
     invokeCallbacks: 0
+  DestroyTime: 3
   callbackOptions:
     onCompleted:
       m_PersistentCalls:
@@ -713,7 +713,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 79647438}
-        m_TargetAssemblyTypeName: Fracture, RuntimeAssembly
+        m_TargetAssemblyTypeName: Fracture2, RuntimeAssemblyCustom
         m_MethodName: ComputeFracture
         m_Mode: 1
         m_Arguments:
@@ -2917,7 +2917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &481593652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8038,7 +8037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!136 &1466761184
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8793,7 +8791,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &1602344073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9046,7 +9043,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!114 &1621302601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10455,7 +10451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!136 &1733491074
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10937,7 +10932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
 --- !u!136 &1806966253
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21470,6 +21464,10 @@ PrefabInstance:
     - target: {fileID: 8333969264935610662, guid: 95b2ca8104872d646805b0d04b2477c5, type: 3}
       propertyPath: m_Name
       value: EnemySpawnPoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8333969264935610662, guid: 95b2ca8104872d646805b0d04b2477c5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b2ca8104872d646805b0d04b2477c5, type: 3}
