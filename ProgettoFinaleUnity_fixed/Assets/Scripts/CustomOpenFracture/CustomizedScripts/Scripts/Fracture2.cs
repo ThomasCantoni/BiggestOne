@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(Rigidbody))]
@@ -176,6 +177,17 @@ public class Fracture2 : MonoBehaviour
         }
             Destroy(fragmentRoot, DestroyTime);
         
+
+    }
+    public virtual void ComputeFractureForce(FractureInfo FI)
+    {
+        ComputeFracture();
+        for (int i = 0; i < fragmentRoot.transform.childCount; i++)
+        {
+            Rigidbody rb = fragmentRoot.transform.GetChild(i).gameObject.GetComponent<Rigidbody>();
+            rb.constraints = RigidbodyConstraints.None;
+            rb.AddExplosionForce(100f, FI.collisionPoint, 5f);
+        }
     }
     
     /// <summary>

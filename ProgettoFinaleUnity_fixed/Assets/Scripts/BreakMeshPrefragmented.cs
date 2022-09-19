@@ -41,7 +41,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
         for (int i = 0; i < Parent.childCount; i++)
         {
             Rigidbody rb = Parent.GetChild(i).gameObject.AddComponent<Rigidbody>();
-            rb.AddExplosionForce(ExplosionForce, Info.collisionPoint, Radius);
+            rb.AddExplosionForce(ExplosionForce, Info.FractureInfo.collisionPoint, Radius);
         }
     }
     private void RigidBodyFragment()
@@ -50,7 +50,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
         {
             Rigidbody rb = Parent.GetChild(i).gameObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
-            rb.AddExplosionForce(ExplosionForce, Info.collisionPoint, Radius);
+            rb.AddExplosionForce(ExplosionForce, Info.FractureInfo.collisionPoint, Radius);
         }
     }
 

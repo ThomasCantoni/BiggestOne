@@ -682,9 +682,9 @@ MonoBehaviour:
     xAxis: 1
     yAxis: 1
     zAxis: 1
-    detectFloatingFragments: 0
+    detectFloatingFragments: 1
     asynchronous: 0
-    insideMaterial: {fileID: 0}
+    insideMaterial: {fileID: -3661639628750336703, guid: 7e0223e1d3e1733499accfa5ebffb67e, type: 3}
     textureScale: {x: 1, y: 1}
     textureOffset: {x: 0, y: 0}
   refractureOptions:
@@ -706,16 +706,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 79647437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a4df0afe0a665a47a5495136801952a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnHitEvent:
+  OnHitEventWithFracture:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 79647438}
         m_TargetAssemblyTypeName: Fracture2, RuntimeAssemblyCustom
-        m_MethodName: ComputeFracture
-        m_Mode: 1
+        m_MethodName: ComputeFractureForce
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13871,13 +13871,15 @@ MonoBehaviour:
     IsChainableAttack: 0
     GameObjectHit: {fileID: 0}
     EnemyHit: {fileID: 0}
-    collisionPoint: {x: 0, y: 0, z: 0}
-    collisionNormal: {x: 0, y: 0, z: 0}
     DamageStats:
       Damage: 0
       CritChance: 0
       CritMultiplier: 0
       EffectChance: 0
+    FractureInfo:
+      collisionPoint: {x: 0, y: 0, z: 0}
+      collisionNormal: {x: 0, y: 0, z: 0}
+      Radius: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:
@@ -14415,13 +14417,15 @@ MonoBehaviour:
     IsChainableAttack: 0
     GameObjectHit: {fileID: 0}
     EnemyHit: {fileID: 0}
-    collisionPoint: {x: 0, y: 0, z: 0}
-    collisionNormal: {x: 0, y: 0, z: 0}
     DamageStats:
       Damage: 0
       CritChance: 0
       CritMultiplier: 0
       EffectChance: 0
+    FractureInfo:
+      collisionPoint: {x: 0, y: 0, z: 0}
+      collisionNormal: {x: 0, y: 0, z: 0}
+      Radius: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:
@@ -19648,13 +19652,15 @@ MonoBehaviour:
     IsChainableAttack: 0
     GameObjectHit: {fileID: 0}
     EnemyHit: {fileID: 0}
-    collisionPoint: {x: 0, y: 0, z: 0}
-    collisionNormal: {x: 0, y: 0, z: 0}
     DamageStats:
       Damage: 0
       CritChance: 0
       CritMultiplier: 0
       EffectChance: 0
+    FractureInfo:
+      collisionPoint: {x: 0, y: 0, z: 0}
+      collisionNormal: {x: 0, y: 0, z: 0}
+      Radius: 0
   ToInstantiate: {fileID: 0}
   ShootEvent:
     m_PersistentCalls:
