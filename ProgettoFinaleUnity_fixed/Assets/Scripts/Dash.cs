@@ -86,7 +86,7 @@ public class Dash : MonoBehaviour
                 if(toBreak != null)
                 {
                     HitInfo hitInfo = new HitInfo();
-                    hitInfo.collisionPoint = this.transform.position;
+                    hitInfo.FractureInfo.collisionPoint = this.transform.position;
                     
                     toBreak.OnHit(hitInfo);
 

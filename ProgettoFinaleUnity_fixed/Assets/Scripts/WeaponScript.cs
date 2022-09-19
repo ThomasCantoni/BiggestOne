@@ -85,7 +85,7 @@ public class WeaponScript : MonoBehaviour
 
             if (info.collider.GetComponent<IHittable>() != null)
             {
-                HitInfo.collisionPoint = info.point;
+                HitInfo.FractureInfo.collisionPoint = info.point;
                 info.collider.GetComponent<HitEvent>().OnHit(HitInfo);
             }
         }

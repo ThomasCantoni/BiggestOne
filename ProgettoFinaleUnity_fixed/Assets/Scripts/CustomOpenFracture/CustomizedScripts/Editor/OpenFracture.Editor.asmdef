@@ -1,0 +1,18 @@
+{
+    "name": "OpenFractureCustom.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3ac90cc1f65fa124a8392f0c377da85e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
