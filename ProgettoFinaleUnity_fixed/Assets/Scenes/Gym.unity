@@ -1435,7 +1435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292040134}
   m_LocalRotation: {x: 1.11022296e-17, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 35, y: 0, z: 46.5}
+  m_LocalPosition: {x: -40, y: 0, z: 18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1447,7 +1447,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-39490
+  m_Name: pb_Mesh22108
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1969,7 +1969,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-39094
+  m_Name: pb_Mesh22200
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2133,7 +2133,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-29038
+  m_Name: pb_Mesh22128
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2297,7 +2297,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-29332
+  m_Name: pb_Mesh22218
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2461,7 +2461,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-58258
+  m_Name: pb_Mesh22186
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2625,7 +2625,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-38886
+  m_Name: pb_Mesh22252
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4520,7 +4520,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-28018
+  m_Name: pb_Mesh22144
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4684,7 +4684,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-38668
+  m_Name: pb_Mesh22302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5189,7 +5189,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-28792
+  m_Name: pb_Mesh22288
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5697,11 +5697,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: slideSpeed
-      value: 75
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: SlideCooldown
-      value: 750
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 223219772, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: slideDuration
@@ -5768,20 +5768,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754192758213, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: JumpOffForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754192758213, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: minJumpHeight
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754192758213, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: wallClimbSpeed
-      value: 60
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: DashForce
-      value: 4
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: DashMaxCharges
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: DistanceFactor
-      value: 3
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: CurrentDashCharges
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: DashRechargeTimeMs
@@ -5790,6 +5802,18 @@ PrefabInstance:
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: Speed
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: GravityMul
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: JumpHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: MaximumAllowedVelocity
@@ -5803,7 +5827,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-28328
+  m_Name: pb_Mesh22172
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7419,7 +7443,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-39312
+  m_Name: pb_Mesh22234
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
