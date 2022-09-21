@@ -43,6 +43,7 @@ public class WallParkour : MonoBehaviour
         get { return checkWallCurrentCooldown <= 0; }
 
     }
+    private bool isJumpingOffWall = false;
     public float checkWallCooldown, checkWallCurrentCooldown;
     private void Start()
     {
@@ -51,6 +52,15 @@ public class WallParkour : MonoBehaviour
         ic = GetComponent<InputCooker>();
         ic.PlayerStartedJump += () => playerIsHoldingSpace = true;
         ic.PlayerStoppedJump += () => playerIsHoldingSpace = false;
+
+        gainDragTimer = new SimpleTimer(1000);
+        gainDragTimer.TimerStartEvent += () => isJumpingOffWall = true;
+        gainDragTimer.TimerStartEvent += () => fps.ApplyDrag = false;
+        gainDragTimer.TimerCompleteEvent += () => fps.ApplyDrag = true;
+        gainDragTimer.TimerCompleteEvent += () => isJumpingOffWall = false;
+
+
+        fps.PlayerStartedGrounded += gainDragTimer.StopTimer;
     }
     private void Update()
     {
@@ -60,6 +70,7 @@ public class WallParkour : MonoBehaviour
             checkWallCurrentCooldown -= Time.unscaledDeltaTime;
             return;
         }
+        
         CheckForWall();
         StateMachine();
     }
@@ -67,6 +78,14 @@ public class WallParkour : MonoBehaviour
     {
         if (IsWallRunning)
             WallRunningMovement();
+        if(isJumpingOffWall)
+        {
+            Vector3 trimmedForward = ic.VirtualCamera.transform.forward;
+            trimmedForward.y = 0;
+            rb.AddForce(trimmedForward * JumpOffForce, ForceMode.Acceleration);
+        }
+
+        
     }
     private void CheckForWall()
     {
@@ -106,13 +125,13 @@ public class WallParkour : MonoBehaviour
         //verticalInput = ic.moveValue.z;
         // upwardsRunning = Input.GetKey(upwardsRunKey);
         // downwardsRunning = Input.GetKey(downwardsRunKey);
-
-        if (fps.Grounded || !playerIsHoldingSpace)
+        if (fps.SoftGrounded || !playerIsHoldingSpace)
         {
             //Debug.Log("PLAYER NOT GROUNDED, ABORTING WALL RUN");
             StopWallRun();
             return;
         }
+
 
         if (!IsWallRunning && hitWall)
         {
@@ -143,12 +162,11 @@ public class WallParkour : MonoBehaviour
     
     public void JumpOffWall()
     {
-        fps.ApplyDrag = false;
-        gainDragTimer = new SimpleTimer(1000);
-        gainDragTimer.TimerCompleteEvent += () => fps.ApplyDrag = true;
+        
         gainDragTimer.StartTimer();
-        fps.PlayerStartedGrounded += gainDragTimer.StopTimer;
-        rb.AddForce((wallNormal + ic.VirtualCamera.transform.forward) * JumpOffForce, ForceMode.VelocityChange);
+
+
+
         StopWallRun();
     }
     private void WallRunningMovement()

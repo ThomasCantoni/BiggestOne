@@ -44,7 +44,7 @@ public class SlideCharacter : MonoBehaviour
     {
             slideDir = IC.RelativeDirection;
         yield return new WaitForSeconds(SlideInitialTime);
-        if (canSlide && FPS.RB.velocity.magnitude > 1 && FPS.Grounded)
+        if (canSlide && FPS.RB.velocity.magnitude > 1 && FPS.SoftGrounded)
         {
             canSlide = false;
             this.isSliding = true;
