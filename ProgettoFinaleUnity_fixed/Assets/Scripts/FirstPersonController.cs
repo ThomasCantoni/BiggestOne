@@ -38,9 +38,13 @@ public class FirstPersonController : MonoBehaviour
     public float FallTimeOutMilliseconds = 150f;
     [Tooltip("The amount of gravitational pull the Player should get grounded. Used to manage slopes and cliffdrops")]
     public float GravityMul = 2f;
+    [Tooltip("Soft Grounded is a condition in which the player is touching the ground but is still being pulled down by gravity. Used for going down slopes")]
+    public float SoftGroundedOffset = -0.14f;
+    public float SoftGroundedRadius = 0.5f;
+    [Tooltip("Hard Grounded is a condition in which the player is touching the ground and is not being pulled down by gravity.")]
+    public float HardGroundedOffset = -0.14f;
+    public float HardGroundedRadius = 0.15f;
 
-    public float GroundedOffset = -0.14f;
-    public float GroundedRadius = 0.5f;
     public LayerMask GroundLayers;
 
 
@@ -67,7 +71,8 @@ public class FirstPersonController : MonoBehaviour
     public float SlopeMaxAdjustRange = 89f;
 
     [Header("READ ONLY")]
-    public bool Grounded = true;
+    public bool SoftGrounded = true;
+    public bool HardGrounded = false;
     public bool DoubleJumpPossible = false;
     private bool wasGroundedBefore = false;
     private float _jumpCD;
@@ -78,12 +83,13 @@ public class FirstPersonController : MonoBehaviour
     public Vector3 SlopeCounterVector, SlopeCounterVectorNORMALIZED;
     public delegate void PlayerGroundedEvent();
     public PlayerGroundedEvent PlayerStartedGrounded, PlayerStartedAirborne;
-    private bool graceTimer;
+    
     private PhysicMaterial physicsMat;
     protected SimpleTimer JumpTimer, GroundcheckTimer, JumpGraceTimer;
     Repeater GroundcheckRepeater;
     private bool jumpCooledDown = true;
-
+    private float currentGroundY;
+    
     public Vector3 currentArtificialDrag;
     public bool WantsToMove
     {
@@ -130,7 +136,7 @@ public class FirstPersonController : MonoBehaviour
         GroundcheckRepeater = new Repeater();
         GroundcheckRepeater.Frequency = GroundcheckFrequency;
         GroundcheckRepeater.RepeaterTickEvent += GroundedCheck;
-        GroundcheckRepeater.RepeaterPauseEvent += () => Grounded = false;
+        GroundcheckRepeater.RepeaterPauseEvent += () => SoftGrounded = false;
         GroundcheckRepeater.StartRepeater();
 
         //set the actions of timers 
@@ -138,24 +144,24 @@ public class FirstPersonController : MonoBehaviour
         JumpTimer.TimerStartEvent += () => jumpCooledDown = false;
         JumpTimer.TimerCompleteEvent += () => jumpCooledDown = true;
 
-        JumpGraceTimer = new SimpleTimer(_fallTimeOut);
-        JumpGraceTimer.TimerStartEvent += () => graceTimer = true;
-        JumpGraceTimer.TimerCompleteEvent += () => graceTimer = false;
+        //JumpGraceTimer = new SimpleTimer(_fallTimeOut);
+        //JumpGraceTimer.TimerStartEvent += () => graceTimer = true;
+        //JumpGraceTimer.TimerCompleteEvent += () => graceTimer = false;
 
         PlayerStartedGrounded += () => DoubleJumpPossible = true;
     }
     void Update()
     {
         JumpAndGravity();
-        if (Grounded && !wasGroundedBefore)
+        if (SoftGrounded && !wasGroundedBefore)
         {
             PlayerStartedGrounded?.Invoke();
         }
-        if (!Grounded && wasGroundedBefore)
+        if (!SoftGrounded && wasGroundedBefore)
         {
             PlayerStartedAirborne?.Invoke();
         }
-        wasGroundedBefore = Grounded;
+        wasGroundedBefore = SoftGrounded;
     }
 
     private void FixedUpdate()
@@ -164,9 +170,28 @@ public class FirstPersonController : MonoBehaviour
         ApplyForce();
 
 
-        if (Grounded)
+        //if(!FullStopGrounded || !Grounded)
+        //{
+        //    RB.constraints &= ~RigidbodyConstraints.FreezePositionY;
+        //    Debug.Log("RESUMING FALL " + RB.constraints);
+        //    //RB.constraints = RigidbodyConstraints.None;
+        //    RB.AddForce(PlayerGravity, ForceMode.Acceleration);   
+        //}
+        if (SoftGrounded)
         {
+            if (HardGrounded)
+            {
+                RB.AddForce (new Vector3(0, Physics.gravity.y*-1,0),ForceMode.Acceleration);
+                //RB.velocity = new Vector3(RB.velocity.x,0, RB.velocity.z);
+                Debug.Log("STOPPING FALL " + RB.constraints);
+            }
+            else
+            {
+                RB.AddForce(PlayerGravity,ForceMode.Acceleration);
+
+            }
             AccountForSlope();
+           
             //if(IsOnSlope)
             //{
             //    if(RB.velocity.y > 0)
@@ -184,7 +209,7 @@ public class FirstPersonController : MonoBehaviour
         //clamp before
 
         Vector3 toAdd = Speed * Time.fixedDeltaTime * velocityMultiplier * IC.RelativeDirection.normalized;
-
+        Debug.Log(toAdd);
         Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
         Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
         if (ClampSpeed && predictive.magnitude >= MaximumAllowedVelocity * Time.fixedDeltaTime)
@@ -192,9 +217,10 @@ public class FirstPersonController : MonoBehaviour
             toAdd = Vector3.ClampMagnitude(toAdd, MaximumAllowedVelocity);
         }
 
+            RB.AddForce(toAdd, ForceMode.VelocityChange);
         if (ApplyDrag)
         {
-            RB.AddForce(toAdd, ForceMode.VelocityChange);
+            
             RB.velocity = new Vector3(RB.velocity.x * (1 - currentArtificialDrag.x * Time.fixedDeltaTime),
                     RB.velocity.y * (1 - currentArtificialDrag.y * Time.fixedDeltaTime),
                     RB.velocity.z * (1 - currentArtificialDrag.z * Time.fixedDeltaTime));
@@ -223,15 +249,15 @@ public class FirstPersonController : MonoBehaviour
         //i am on a slope that isn't too steep or too flat and grounded
         //Debug.Log(" Angle: " + slopeAngle + "  IC.Dir: "+InputCooker.inputDirection);
         //Vector3 goDown = Physics.gravity * 0.25f;
-        RB.AddForce(PlayerGravity, ForceMode.Acceleration);
 
         if (slopeAngle >= SlopeMinAdjustRange && slopeAngle <= SlopeMaxAdjustRange)
         {
             //physicsMat.dynamicFriction = FrictionSlope;
             //physicsMat.frictionCombine = PhysicMaterialCombine.Maximum;
-
-            Vector3 test = Vector3.down * Vector3.Dot(-SlopeCounterVectorNORMALIZED, PlayerGravity);
-            RB.AddForce(SlopeCounterVector + SlopeCounterVector.normalized * test.magnitude, ForceMode.Acceleration);
+            int mult = HardGrounded ? 0 : 1;
+            Vector3 test = Vector3.down * Vector3.Dot(-SlopeCounterVectorNORMALIZED, PlayerGravity*mult);
+          
+            RB.AddForce(SlopeCounterVector*mult+ (SlopeCounterVector.normalized * test.magnitude), ForceMode.Acceleration);
         }
         else
         {
@@ -245,7 +271,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void SlopeDetector()
     {
-        Vector3 post = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+        Vector3 post = new Vector3(transform.position.x, transform.position.y - SoftGroundedOffset, transform.position.z);
         Ray towardsGround = new Ray(post, Vector3.down);
         RaycastHit info;
         if (!Physics.Raycast(towardsGround, out info, 0.1f, 3))
@@ -266,7 +292,7 @@ public class FirstPersonController : MonoBehaviour
     }
     private void JumpAndGravity()
     {
-        if (Grounded)
+        if (SoftGrounded)
         {
             SlopeDetector();
             StartGrounded();
@@ -304,6 +330,13 @@ public class FirstPersonController : MonoBehaviour
             }
 
         }
+        
+        //Debug.Log(FullStopGrounded);
+        //if (FullStopGrounded && RB.velocity.y < 0f)
+        //{
+        //    Debug.Log("STOPPING FALL " + RB.velocity.y);
+        //    RB.velocity = new Vector3(RB.velocity.x, RB.velocity.y * (-1), RB.velocity.z);
+        //}
         //if (_jumpTimeOut >= 0.0f)
         //{
         //    _jumpTimeOut -= Time.deltaTime;
@@ -311,7 +344,10 @@ public class FirstPersonController : MonoBehaviour
         if (IC.isJump && jumpCooledDown)
         {
             GroundcheckRepeater.StopRepeater(200);
-            Grounded = false;
+            SoftGrounded = false;
+            HardGrounded = false;
+            
+
             _fallTimeOut = FallTimeOutMilliseconds;
             //GroundcheckTimer.StartTimer();
             //RB.drag = AirbornStillDrag;
@@ -356,17 +392,28 @@ public class FirstPersonController : MonoBehaviour
     public void GroundedCheck()
     {
         //Debug.Log("Checking if grounded");
-        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
-        Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers);
+        Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - SoftGroundedOffset, transform.position.z);
+        Vector3 spherePosition2 = new Vector3(transform.position.x, transform.position.y - HardGroundedOffset, transform.position.z);
 
+        SoftGrounded = Physics.CheckSphere(spherePosition, SoftGroundedRadius, GroundLayers);
+        HardGrounded = Physics.CheckSphere(spherePosition2, 
+            HardGroundedRadius,
+            GroundLayers);
+        if(HardGrounded)
+            currentGroundY = transform.position.y;
         //GroundcheckTimer.StartTimer();
     }
-    //private void OnDrawGizmosSelected()
-    //{
-    //    if (Grounded) Gizmos.color = Color.red;
-    //    else Gizmos.color = Color.green;
-    //    Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        if (SoftGrounded) Gizmos.color = Color.red;
+        else Gizmos.color = Color.green;
+        Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - SoftGroundedOffset, transform.position.z), SoftGroundedRadius);
+        if (HardGrounded)Gizmos.color = Color.red+Color.blue;
+        else Gizmos.color = Color.green;
+        Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - HardGroundedOffset, transform.position.z), HardGroundedRadius);
+
+
+    }
     //private void OnApplicationQuit()
     //{
     //    JumpTimer.StopTimer();
