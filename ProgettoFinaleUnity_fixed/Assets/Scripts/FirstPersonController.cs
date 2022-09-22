@@ -89,7 +89,7 @@ public class FirstPersonController : MonoBehaviour
     Repeater GroundcheckRepeater;
     private bool jumpCooledDown = true;
     private float currentGroundY;
-    
+    private float SoftG_originalOffset, HardG_originalOffset;
     public Vector3 currentArtificialDrag;
     public bool WantsToMove
     {
@@ -149,6 +149,20 @@ public class FirstPersonController : MonoBehaviour
         //JumpGraceTimer.TimerCompleteEvent += () => graceTimer = false;
 
         PlayerStartedGrounded += () => DoubleJumpPossible = true;
+
+        SC.StartedDashing += () =>
+        {
+            SoftG_originalOffset = SoftGroundedOffset;
+            HardG_originalOffset = HardGroundedOffset;
+            SoftGroundedOffset = SC.reduceHeight * 0.5f;
+            HardGroundedOffset = SC.reduceHeight * 0.5f;
+
+        };
+        SC.StoppedDashing += () =>
+        {
+            SoftGroundedOffset = SoftG_originalOffset;
+            HardGroundedOffset = HardG_originalOffset;
+        };
     }
     void Update()
     {

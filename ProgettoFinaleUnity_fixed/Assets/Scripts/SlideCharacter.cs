@@ -22,6 +22,8 @@ public class SlideCharacter : MonoBehaviour
     public FirstPersonController FPS;
     public bool isSliding = false;
     Vector3 slideDir;
+    public delegate void DashingEvents();
+    public event DashingEvents StartedDashing, StoppedDashing;
     private void Start()
     {
         capsColl = GetComponent<CapsuleCollider>();
@@ -42,10 +44,11 @@ public class SlideCharacter : MonoBehaviour
     }
     public IEnumerator StartSliding()
     {
-            slideDir = IC.RelativeDirection;
+        slideDir = IC.RelativeDirection;
         yield return new WaitForSeconds(SlideInitialTime);
         if (canSlide && FPS.RB.velocity.magnitude > 1 && FPS.SoftGrounded)
         {
+            StartedDashing?.Invoke();
             canSlide = false;
             this.isSliding = true;
             FPS.RB.velocity = new Vector3(0,FPS.RB.velocity.y,0);
@@ -74,6 +77,7 @@ public class SlideCharacter : MonoBehaviour
             FPS.ClampSpeed = true;
             SlidingTimer.StopTimer(false);
             this.isSliding = false;
+            StoppedDashing?.Invoke();
             CDTimer.StartTimer();
         }
         
