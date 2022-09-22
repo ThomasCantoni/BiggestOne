@@ -10,6 +10,7 @@ TagManager:
   - PlayerVirtualCamera
   - Enemy
   - Shotgun
+  - Event
   layers:
   - Default
   - TransparentFX

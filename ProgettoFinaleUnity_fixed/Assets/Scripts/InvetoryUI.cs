@@ -5,11 +5,11 @@ using TMPro;
 
 public class InvetoryUI : MonoBehaviour
 {
-    private TextMeshProUGUI coinText;
+    public TextMeshProUGUI coinText;
+
     // Start is called before the first frame update
     void Start()
     {
-        coinText = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame

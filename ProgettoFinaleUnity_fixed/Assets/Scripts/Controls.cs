@@ -89,6 +89,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""OpenShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""f4ebf6f1-9b06-4167-ac29-2f804fc5e360"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Sliding"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c484ec0-fec0-4308-82d2-dddd978b0e64"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""OpenShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -244,6 +264,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_WeaponScroll = m_Player.FindAction("WeaponScroll", throwIfNotFound: true);
         m_Player_Sliding = m_Player.FindAction("Sliding", throwIfNotFound: true);
+        m_Player_OpenShop = m_Player.FindAction("OpenShop", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -310,6 +331,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_WeaponScroll;
     private readonly InputAction m_Player_Sliding;
+    private readonly InputAction m_Player_OpenShop;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -321,6 +343,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @WeaponScroll => m_Wrapper.m_Player_WeaponScroll;
         public InputAction @Sliding => m_Wrapper.m_Player_Sliding;
+        public InputAction @OpenShop => m_Wrapper.m_Player_OpenShop;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -351,6 +374,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Sliding.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSliding;
                 @Sliding.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSliding;
                 @Sliding.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSliding;
+                @OpenShop.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenShop;
+                @OpenShop.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenShop;
+                @OpenShop.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnOpenShop;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -376,6 +402,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Sliding.started += instance.OnSliding;
                 @Sliding.performed += instance.OnSliding;
                 @Sliding.canceled += instance.OnSliding;
+                @OpenShop.started += instance.OnOpenShop;
+                @OpenShop.performed += instance.OnOpenShop;
+                @OpenShop.canceled += instance.OnOpenShop;
             }
         }
     }
@@ -398,5 +427,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnWeaponScroll(InputAction.CallbackContext context);
         void OnSliding(InputAction.CallbackContext context);
+        void OnOpenShop(InputAction.CallbackContext context);
     }
 }

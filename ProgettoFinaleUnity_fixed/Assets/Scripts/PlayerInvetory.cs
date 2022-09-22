@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerInvetory : MonoBehaviour
 {
-    public int NumberOfCoins { get; private set; }
+    public int NumberOfCoins { get; set; }
     public UnityEvent<PlayerInvetory> OnCoinCollected;
     public void CoinCollected()
     {

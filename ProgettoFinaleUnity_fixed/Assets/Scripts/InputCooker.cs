@@ -29,6 +29,7 @@ public class InputCooker : MonoBehaviour
     public float CameraTargetPitch,PlayerTargetY;
 
     public bool IsShooting = false;
+    public bool IsShopOpen = false;
     public bool isJump = false;
     public bool isSprint = false;
     public bool isSliding = false;
@@ -36,11 +37,15 @@ public class InputCooker : MonoBehaviour
     public delegate void ChangeWeaponEvent();
     public delegate void PlayerRotatedCameraEvent();
     public delegate void PlayerMovementEvent();
+    public delegate void PlayerInteractEvent();
 
     public PlayerShootEvent PlayerPressedShoot, PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
-    public PlayerMovementEvent PlayerMoved, PlayerStopped, PlayerStartedJump, PlayerStoppedJump, PlayerPressedShift, PlayerStartSliding, PlayerStopSliding;
+    public PlayerMovementEvent PlayerMoved, PlayerStopped, PlayerStartedJump, 
+            PlayerStoppedJump, PlayerPressedShift,
+            PlayerStartSliding, PlayerStopSliding;
+    public PlayerInteractEvent playerInteract,playerStopInteract;
     public Transform CameraHolder;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
@@ -65,6 +70,8 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Sprint.started += OnSprintStart;
         Controls.Player.Sliding.started += OnSlidingStart;
         Controls.Player.Sliding.canceled += OnSlidingStop;
+        Controls.Player.OpenShop.started += OnOpenShop;
+        Controls.Player.OpenShop.canceled += OnCloseShop;
         //Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
@@ -190,6 +197,16 @@ public class InputCooker : MonoBehaviour
         {
             PlayerStopSliding?.Invoke();
         }
+    }
+    public void OnOpenShop(InputAction.CallbackContext value)
+    {
+        IsShopOpen = true;
+        playerInteract?.Invoke();
+    }
+    public void OnCloseShop(InputAction.CallbackContext value)
+    {
+        IsShopOpen = false;
+        playerStopInteract?.Invoke();
     }
     public void OnJump(InputAction.CallbackContext value)
     {
