@@ -6852,9 +6852,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1151346536}
-  - component: {fileID: 1151346535}
-  - component: {fileID: 1151346534}
   - component: {fileID: 1151346537}
+  - component: {fileID: 1151346534}
   m_Layer: 0
   m_Name: MusicTest
   m_TagString: Untagged
@@ -6892,24 +6891,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &1151346535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1151346533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9468c5f457ace64f8d4df6d642b107f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadEvent: 1
-  UnloadEvent: 0
-  Banks:
-  - Master
-  CollisionTag: 
-  PreloadSamples: 0
 --- !u!4 &1151346536
 Transform:
   m_ObjectHideFlags: 0

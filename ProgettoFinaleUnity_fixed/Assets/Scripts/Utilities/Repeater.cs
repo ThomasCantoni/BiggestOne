@@ -22,8 +22,11 @@ public class Repeater
     private Timer t;
     private Timer tResume;
     public delegate void RepeaterEvents();
-    public event RepeaterEvents RepeaterStartEvent, RepeaterTickEvent, RepeaterStopEvent, RepeaterPauseEvent,RepeaterResumeEvent;
+    public delegate void RepeaterProgressEvent(float progress);
 
+    public event RepeaterEvents RepeaterStartEvent, RepeaterTickEvent, RepeaterStopEvent, RepeaterPauseEvent,RepeaterResumeEvent;
+    public event RepeaterProgressEvent RepeaterProgress;
+    private float activationTime;
     public Repeater() 
     {
 
@@ -36,7 +39,7 @@ public class Repeater
     
     public void StartRepeater()
     {
-        
+        activationTime = Time.realtimeSinceStartup;
         t = new Timer(Tick,null,0,(int)IntervalMilliseconds);
         IsActive = true;
         //t.Elapsed += new ElapsedEventHandler(Tick);
@@ -65,7 +68,11 @@ public class Repeater
     {
         //Debug.Log("This is executed from the main thread");
         if(IsActive)
-            RepeaterTickEvent.Invoke();
+        {
+            RepeaterTickEvent?.Invoke();
+            RepeaterProgress?.Invoke(activationTime);
+        }
+        
         yield return null;
     }
 
