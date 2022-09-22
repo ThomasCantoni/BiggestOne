@@ -8,6 +8,8 @@ public class LevelAudioManagerScript : MonoBehaviour
     public AudioClip LevelMusic;
     public AudioSource Source;
     AudioMixer Mixer;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class LevelAudioManagerScript : MonoBehaviour
         TimeManager.PauseEvent += StopSources;
         TimeManager.ResumeEvent += StartSource;
         Source.clip = LevelMusic;
+        
         StartSource();
     }
 
