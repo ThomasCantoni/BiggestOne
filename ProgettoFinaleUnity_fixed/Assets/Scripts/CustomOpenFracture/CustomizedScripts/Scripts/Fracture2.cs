@@ -179,16 +179,16 @@ public class Fracture2 : MonoBehaviour
         
 
     }
-    public virtual void ComputeFractureForce(FractureInfo FI)
-    {
-        ComputeFracture();
-        for (int i = 0; i < fragmentRoot.transform.childCount; i++)
-        {
-            Rigidbody rb = fragmentRoot.transform.GetChild(i).gameObject.GetComponent<Rigidbody>();
-            rb.constraints = RigidbodyConstraints.None;
-            rb.AddExplosionForce(100f, FI.collisionPoint, 5f);
-        }
-    }
+    //public virtual void ComputeFractureForce(FractureInfo FI)
+    //{
+    //    ComputeFracture();
+    //    for (int i = 0; i < fragmentRoot.transform.childCount; i++)
+    //    {
+    //        Rigidbody rb = fragmentRoot.transform.GetChild(i).gameObject.GetComponent<Rigidbody>();
+    //        rb.constraints = RigidbodyConstraints.None;
+    //        rb.AddExplosionForce(100f, FI.collisionPoint, 5f);
+    //    }
+    //}
     
     /// <summary>
     /// Creates a template object which each fragment will derive from
