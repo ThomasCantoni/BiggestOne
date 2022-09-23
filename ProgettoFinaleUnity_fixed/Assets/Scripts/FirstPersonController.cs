@@ -197,7 +197,6 @@ public class FirstPersonController : MonoBehaviour
             {
                 RB.AddForce (new Vector3(0, Physics.gravity.y*-1,0),ForceMode.Acceleration);
                 //RB.velocity = new Vector3(RB.velocity.x,0, RB.velocity.z);
-                Debug.Log("STOPPING FALL " + RB.constraints);
             }
             else
             {
@@ -223,7 +222,6 @@ public class FirstPersonController : MonoBehaviour
         //clamp before
 
         Vector3 toAdd = Speed * Time.fixedDeltaTime * velocityMultiplier * IC.RelativeDirection.normalized;
-        Debug.Log(toAdd);
         Vector3 RigidBody_horizontalVelocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
         Vector3 predictive = RigidBody_horizontalVelocity + toAdd;
         if (ClampSpeed && predictive.magnitude >= MaximumAllowedVelocity * Time.fixedDeltaTime)
