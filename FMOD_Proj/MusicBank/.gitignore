@@ -1,0 +1,4 @@
+#ignore the cache, unsaved and user folder
+*/.cache/
+*/.unsaved/
+*/.user/
