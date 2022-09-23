@@ -43,6 +43,10 @@ public class WeaponSwitching : MonoBehaviour
         }
         
     }
+
+
+
+    //animation event!
     public void LaunchReloadEvent()
     {
         ReloadEvent?.Invoke();
