@@ -6882,7 +6882,7 @@ MonoBehaviour:
       Data4: 1325312081
     Path: event:/Traccia2
   Event: 
-  PlayEvent: 1
+  PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -20686,6 +20686,7 @@ MonoBehaviour:
   CameraTargetPitch: 0
   PlayerTargetY: 0
   IsShooting: 0
+  IsShopOpen: 0
   isJump: 0
   isSprint: 0
   isSliding: 0

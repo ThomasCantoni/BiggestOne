@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8155486263287893525
+--- !u!114 &-6171278247040053329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,44 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
+  m_Name: bank:/Music.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Audio/Banks/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637994539064719034
+  Path: ../FMOD_Proj/AudioProject/Build/Desktop/Music.bank
+  Name: Music
+  StudioPath: 
+  lastModified: 637995220902127922
   FileSizes:
-  - Name: 
-    Value: 758
+  - Name: Desktop
+    Value: 3674816
   Exists: 1
---- !u!114 &-7191988428362644456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Traccia2
-  m_EditorClassIdentifier: 
-  Path: event:/Traccia2
-  Guid:
-    Data1: 687115768
-    Data2: 1097500928
-    Data3: 259278480
-    Data4: 1325312081
-  Banks:
-  - {fileID: -478861320808687943}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 145103
---- !u!114 &-478861320808687943
+--- !u!114 &-3765115056023319802
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,12 +30,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Name: bank:/Desktop/Master.bank
   m_EditorClassIdentifier: 
-  Path: Assets/Audio/Banks/Master.bank
-  Name: Master
+  Path: Assets/Audio/Banks/Desktop/Master.bank
+  Name: Desktop/Master
   StudioPath: bank:/Master
-  lastModified: 637994539064689116
+  lastModified: 637995230030666670
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-644163347786445369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX/SFX
+  lastModified: 637995230031135413
   FileSizes: []
   Exists: 1
 --- !u!114 &11400000
@@ -78,14 +69,113 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -8155486263287893525}
-  - {fileID: -478861320808687943}
-  EditorEvents:
-  - {fileID: -7191988428362644456}
+  - {fileID: 759117044784439292}
+  - {fileID: 375865047082460353}
+  - {fileID: -6171278247040053329}
+  - {fileID: 5870259662162807941}
+  EditorEvents: []
   EditorParameters: []
   MasterBanks:
-  - {fileID: -478861320808687943}
+  - {fileID: 375865047082460353}
   StringsBanks:
-  - {fileID: -8155486263287893525}
-  cacheTime: 637994539064719034
+  - {fileID: 759117044784439292}
+  cacheTime: 637995220902187755
   cacheVersion: 131592
+--- !u!114 &375865047082460353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD_Proj/AudioProject/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637995220870883037
+  FileSizes:
+  - Name: Desktop
+    Value: 1358
+  Exists: 1
+--- !u!114 &759117044784439292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD_Proj/AudioProject/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637995220870903019
+  FileSizes:
+  - Name: Desktop
+    Value: 984
+  Exists: 1
+--- !u!114 &2271327070549999062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Desktop/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Music.bank
+  Name: Desktop/Music
+  StudioPath: 
+  lastModified: 637995230031105480
+  FileSizes: []
+  Exists: 1
+--- !u!114 &5870259662162807941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD_Proj/AudioProject/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX/SFX
+  lastModified: 637995220902187755
+  FileSizes:
+  - Name: Desktop
+    Value: 494
+  Exists: 1
+--- !u!114 &7594213795629473273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637995230030686609
+  FileSizes:
+  - Name: 
+    Value: 984
+  Exists: 1

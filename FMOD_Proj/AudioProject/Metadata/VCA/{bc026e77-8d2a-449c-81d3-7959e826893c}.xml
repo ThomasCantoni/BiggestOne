@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="MixerVCA" id="{bc026e77-8d2a-449c-81d3-7959e826893c}">
 		<property name="name">
-			<value>Music</value>
+			<value>Audio</value>
 		</property>
 		<relationship name="mixer">
 			<destination>{f0adadea-6bb5-41a7-8bfb-89936892b289}</destination>
