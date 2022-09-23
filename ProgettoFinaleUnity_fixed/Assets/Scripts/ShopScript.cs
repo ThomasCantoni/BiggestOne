@@ -4,11 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using TMPro;
+
 
 public class ShopScript : MonoBehaviour
 {
     public InputCooker IC;
+    public TextMeshProUGUI PressE;
     public PlayerInvetory PI;
+    public LayerMask mask;
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
@@ -33,9 +37,33 @@ public class ShopScript : MonoBehaviour
             {
                 onInteract = result.gameObject.GetComponent<Interactable>().onInteract;
                 Debug.Log("Hit " + result.gameObject.name);
+                PressE.enabled = true;
                 onInteract?.Invoke();
             }
         }
     }
-    
+    private void Update()
+    {
+        m_PointerEventData = new PointerEventData(m_EventSystem);
+        m_PointerEventData.position = Input.mousePosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        m_Raycaster.Raycast(m_PointerEventData, results);
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(IC.CameraHolder.position, IC.CameraHolder.forward, 10.3f,mask);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit hit = hits[i];
+            if (hit.point != null)
+            {
+                PressE.gameObject.SetActive(false);
+            }
+        }
+        foreach (RaycastResult result in results)
+        {
+            if (result.distance < 10)
+            {
+                PressE.gameObject.SetActive(true);
+            }
+        }
+    }
 }
