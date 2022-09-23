@@ -1,43 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using TMPro;
 
-public class Interactable : MonoBehaviour
+public class ShopBox : MonoBehaviour,IInteractable
 {
-    public UnityEvent onInteract;
+    public InputCooker IC;
+    public PlayerInvetory PI;
     public ChainableAttack chainableAttack;
     public PlayerAttackEffects attackEffects;
-    public InvetoryUI playerInvetory;
+    public InvetoryUI InvetoryUI;
     public PlayerInvetory playerInvetor;
-    public GameObject IDs;
     public float duration = 5f;
-    public int[,] shopItems = new int[4, 4];
-    
-    void Start()
-    {
-        playerInvetory.UpdateCoinText(playerInvetor);
+    public int cost;
+    public UnityEvent onInteract;
+    public UnityEvent InteractUnityEvent { get { return onInteract; } set => throw new System.NotImplementedException(); }
 
-        shopItems[1, 1] = 1;
-        shopItems[1, 2] = 2;
-        shopItems[1, 3] = 3;
-
-        shopItems[2, 1] = 1;
-        shopItems[2, 2] = 2;
-        shopItems[2, 3] = 3;
-
-    }
     public void ChainableAtt()
     {
         if (attackEffects.ChainableAttackList.Contains(chainableAttack))
         {
             return;
         }
-        if (playerInvetor.NumberOfCoins >= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID])
+        if (playerInvetor.NumberOfCoins >= cost)
         {
-            playerInvetor.NumberOfCoins -= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID];
-            playerInvetory.UpdateCoinText(playerInvetor);
+            playerInvetor.NumberOfCoins -= cost;
+            InvetoryUI.UpdateCoinText(playerInvetor);
             attackEffects.Add(chainableAttack);
             StartCoroutine(removePowerUps(attackEffects));
         }
@@ -47,5 +38,11 @@ public class Interactable : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
         PAE.Remove(chainableAttack);
+    }
+
+    public void OnInteract()
+    {
+        ChainableAtt();
+        onInteract?.Invoke();
     }
 }

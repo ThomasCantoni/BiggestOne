@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 
@@ -20,6 +21,11 @@ public interface IHittable
     }
     public abstract void OnHit(HitInfo info);
 
+}
+public interface IInteractable
+{
+    public UnityEvent InteractUnityEvent { get; set; }
+    public abstract void OnInteract();
 }
 public interface IKillable : IHittable
 {
