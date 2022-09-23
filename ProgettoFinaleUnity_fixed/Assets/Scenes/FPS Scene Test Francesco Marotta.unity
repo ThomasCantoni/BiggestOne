@@ -263,7 +263,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 22872112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a016dfd92f33f124da29329ccff757a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onInteract:
@@ -281,6 +281,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  chainableAttack: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
+  attackEffects: {fileID: 1386938303}
+  playerInvetory: {fileID: 1374050009}
+  playerInvetor: {fileID: 1386938304}
+  IDs: {fileID: 655221688}
+  duration: 5
 --- !u!114 &22872115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -957,7 +963,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 602362945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a016dfd92f33f124da29329ccff757a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onInteract:
@@ -975,6 +981,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  chainableAttack: {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
+  attackEffects: {fileID: 1386938303}
+  playerInvetory: {fileID: 1374050009}
+  playerInvetor: {fileID: 1386938304}
+  IDs: {fileID: 111071283}
+  duration: 5
 --- !u!114 &602362948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1875,7 +1887,6 @@ GameObject:
   - component: {fileID: 889838088}
   - component: {fileID: 889838087}
   - component: {fileID: 889838089}
-  - component: {fileID: 889838090}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -1947,9 +1958,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889838085}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a016dfd92f33f124da29329ccff757a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onInteract:
@@ -1967,29 +1978,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &889838090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889838085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb5b2a1116f477147a2e613edbe2ceb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IC: {fileID: 1055543335}
-  PI: {fileID: 1386938304}
   chainableAttack: {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
   attackEffects: {fileID: 1386938303}
-  InvetoryUI: {fileID: 1374050009}
+  playerInvetory: {fileID: 1374050009}
   playerInvetor: {fileID: 1386938304}
+  IDs: {fileID: 1668685893}
   duration: 5
-  cost: 0
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!43 &892631065
 Mesh:
   m_ObjectHideFlags: 0
@@ -2676,12 +2670,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1293388959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a016dfd92f33f124da29329ccff757a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  chainableAttack: {fileID: 0}
+  attackEffects: {fileID: 0}
+  playerInvetory: {fileID: 1374050009}
+  playerInvetor: {fileID: 1386938304}
+  IDs: {fileID: 1293388959}
+  duration: 5
 --- !u!4 &1293388961
 Transform:
   m_ObjectHideFlags: 0
@@ -4521,7 +4521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333969264935610662, guid: 95b2ca8104872d646805b0d04b2477c5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b2ca8104872d646805b0d04b2477c5, type: 3}
@@ -5283,6 +5283,7 @@ GameObject:
   - component: {fileID: 2021609219}
   - component: {fileID: 2021609218}
   - component: {fileID: 2021609217}
+  - component: {fileID: 2021609220}
   m_Layer: 0
   m_Name: ShopCanvas
   m_TagString: Untagged
@@ -5373,6 +5374,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &2021609220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021609215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ffd878a33a7ff44beeba3d81b77c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IC: {fileID: 1055543335}
+  PI: {fileID: 1386938304}
 --- !u!43 &2024912395
 Mesh:
   m_ObjectHideFlags: 0
