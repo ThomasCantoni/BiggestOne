@@ -75,7 +75,7 @@ public class Dash : MonoBehaviour
             
             FPS.ApplyDrag = false;
             
-            RB.useGravity = false;
+            //RB.useGravity = false;
             RB.velocity = direction * DashForce;
             //RB.AddForce(Vector3.up, ForceMode.VelocityChange);
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);

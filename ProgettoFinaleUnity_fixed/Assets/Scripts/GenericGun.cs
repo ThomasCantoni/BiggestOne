@@ -39,6 +39,11 @@ public class GenericGun : MonoBehaviour,IDamager
     public float range = 50f;
     public float inaccuracyDistance = 5f;
     public bool isReloading = false;
+    public bool canReload = false;
+    public bool CanStartReload
+    {
+        get { return canReload && currentAmmo < maxAmmo && !IsReloading; }
+    }
     public bool IsReloading
     {
         get
@@ -55,7 +60,7 @@ public class GenericGun : MonoBehaviour,IDamager
 
     public bool CanShoot
     {
-        get { return currentShootCD <= 0f && !isReloading; }
+        get { return currentShootCD <= 0f && !isReloading && currentAmmo >0; }
     }
     public bool HasShotOnce
     {
@@ -79,6 +84,7 @@ public class GenericGun : MonoBehaviour,IDamager
         anim.SetFloat("ReloadTime", 1f/reloadTime);
         Subscribe(true);
         cam = Camera.main.transform;
+        canReload = true;
     }
     private void OnDisable()
     {
@@ -105,8 +111,10 @@ public class GenericGun : MonoBehaviour,IDamager
         if(subscribe)
         {
             InputCooker.PlayerPressedShoot += Shoot;
-            
-                WS.ReloadEvent += EndReload;
+            InputCooker.PlayerPressedReload += StartReload;
+            //InputCooker.PlayerStoppedReload += StartReload;
+
+            WS.ReloadEvent += EndReload;
            // Debug.Log("Subbed " +gameObject.name);
 
         }
@@ -114,7 +122,8 @@ public class GenericGun : MonoBehaviour,IDamager
         {
             // Debug.Log("Unsubbed "+gameObject.name);
             InputCooker.PlayerPressedShoot -= Shoot;
-            
+            InputCooker.PlayerPressedReload -= StartReload;
+
             WS.ReloadEvent -= EndReload;
         }
     }
@@ -122,28 +131,38 @@ public class GenericGun : MonoBehaviour,IDamager
     public virtual void Shoot()
     {
         //if (isReloading) return;
-        if (!CanShoot) return ;
-        DamageInstance newDamageInstance = new DamageInstance(this);
-        newDamageInstance.PlayerAttackEffects = this.PlayerAttackEffects;
-        newDamageInstance.Hits = ShootRays();
+        if (CanShoot)
+        {
+            DamageInstance newDamageInstance = new DamageInstance(this);
+            newDamageInstance.PlayerAttackEffects = this.PlayerAttackEffects;
+            newDamageInstance.Hits = ShootRays();
         
-        newDamageInstance.Deploy();
-        anim.SetTrigger("Shooting");
+            newDamageInstance.Deploy();
+            anim.SetTrigger("Shooting");
 
-        DeductAmmo();
+            DeductAmmo();
+
+        }
+        if(currentAmmo == 0)
+        {
+            StartReload();
+        }
         //info.EnemyHit.GetComponent<HitEvent>().OnHit(HitInfo);
 
     }
     public virtual void DeductAmmo()
     {
-            currentAmmo--;
-            currentShootCD = shootCD;
-            WS.UIM.UpdateAmmo(currentAmmo);
-        
-        if (currentAmmo <= 0)
-            StartReload();
-        
-        
+        currentAmmo--;
+        currentShootCD = shootCD;
+        WS.UIM.UpdateAmmo(currentAmmo);
+
+        //if (currentAmmo == 0)
+        //{
+        //    StartReload();
+        //}
+       
+
+
     }
     public virtual void Update()
     {
@@ -180,9 +199,13 @@ public class GenericGun : MonoBehaviour,IDamager
 
     public void StartReload()
     {
-        isReloading = true;
+        if(!IsReloading)
+        {
+            isReloading = true;
         
-        anim.SetBool("Reloading", true);
+            anim.SetBool("Reloading", true);
+
+        }
         
     }
     public IEnumerator Reload()
