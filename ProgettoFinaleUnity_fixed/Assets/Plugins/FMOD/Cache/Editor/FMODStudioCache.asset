@@ -1,5 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8986440558607605289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637995317336908375
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-7666711879342283104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637995317336966633
+  FileSizes:
+  - Name: 
+    Value: 928
+  Exists: 1
 --- !u!114 &-7600581829636432503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18,6 +56,51 @@ MonoBehaviour:
   lastModified: 637994539064689116
   FileSizes: []
   Exists: 1
+--- !u!114 &-6699407163680241224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 637995317337317582
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-6437927110416790343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Track_1
+  m_EditorClassIdentifier: 
+  Path: event:/Track_1
+  Guid:
+    Data1: -147258431
+    Data2: 1259934656
+    Data3: -929178697
+    Data4: 548435133
+  Banks:
+  - {fileID: -6699407163680241224}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 126153
 --- !u!114 &-6396626653501323697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,6 +300,33 @@ MonoBehaviour:
   - Name: 
     Value: 928
   Exists: 1
+--- !u!114 &-182478044582618365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Traccia2
+  m_EditorClassIdentifier: 
+  Path: event:/Traccia2
+  Guid:
+    Data1: 687115768
+    Data2: 1097500928
+    Data3: 259278480
+    Data4: 1325312081
+  Banks:
+  - {fileID: -6699407163680241224}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 145103
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,18 +340,18 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -344535173674000319}
-  - {fileID: 1161159768488628827}
-  - {fileID: -2369612326100896447}
+  - {fileID: -7666711879342283104}
+  - {fileID: -8986440558607605289}
+  - {fileID: -6699407163680241224}
   EditorEvents:
-  - {fileID: -2741758414591247435}
-  - {fileID: 6282694578554997207}
+  - {fileID: -6437927110416790343}
+  - {fileID: -182478044582618365}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 1161159768488628827}
+  - {fileID: -8986440558607605289}
   StringsBanks:
-  - {fileID: -344535173674000319}
-  cacheTime: 637995316260330371
+  - {fileID: -7666711879342283104}
+  cacheTime: 637995317337317582
   cacheVersion: 131592
 --- !u!114 &1161159768488628827
 MonoBehaviour:
