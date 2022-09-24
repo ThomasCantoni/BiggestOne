@@ -287,6 +287,9 @@ MonoBehaviour:
   playerInvetor: {fileID: 1386938304}
   IDs: {fileID: 655221688}
   duration: 5
+  List: []
+  currentGun: {fileID: 0}
+  CurrentIndex: 0
 --- !u!114 &22872115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: 2
   PriceTxt: {fileID: 1829471932}
-  shopMNG: {fileID: 1293388959}
+  shopMNG: {fileID: 602362945}
 --- !u!114 &134792148 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7594858224849847644, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -987,6 +990,9 @@ MonoBehaviour:
   playerInvetor: {fileID: 1386938304}
   IDs: {fileID: 111071283}
   duration: 5
+  List: []
+  currentGun: {fileID: 0}
+  CurrentIndex: 0
 --- !u!114 &602362948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,7 +1269,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: 3
   PriceTxt: {fileID: 1714324140}
-  shopMNG: {fileID: 1293388959}
+  shopMNG: {fileID: 22872112}
+--- !u!114 &679777305 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1989349436, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+  m_PrefabInstance: {fileID: 727581815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81f27823401e6746b4229088c2df1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &700171640
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,6 +1494,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -273
       objectReference: {fileID: 0}
+    - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: CurrentIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: List.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: List.Array.data[0]
+      value: 
+      objectReference: {fileID: 679777305}
+    - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: List.Array.data[1]
+      value: 
+      objectReference: {fileID: 679777305}
+    - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: List.Array.data[2]
+      value: 
+      objectReference: {fileID: 679777305}
+    - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: List.Array.data[3]
+      value: 
+      objectReference: {fileID: 679777305}
     - target: {fileID: 3821086276096844859, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1980,7 +2025,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 889838089}
         m_TargetAssemblyTypeName: Interactable, Scripts
-        m_MethodName: ChainableAtt
+        m_MethodName: WeaponDrop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1996,6 +2041,9 @@ MonoBehaviour:
   playerInvetor: {fileID: 1386938304}
   IDs: {fileID: 1668685893}
   duration: 5
+  List: []
+  currentGun: {fileID: 2022519541}
+  CurrentIndex: 0
 --- !u!43 &892631065
 Mesh:
   m_ObjectHideFlags: 0
@@ -2666,58 +2714,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1293388959
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1293388961}
-  - component: {fileID: 1293388960}
-  m_Layer: 0
-  m_Name: GameObject (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1293388960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293388959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  chainableAttack: {fileID: 0}
-  attackEffects: {fileID: 0}
-  playerInvetory: {fileID: 1374050009}
-  playerInvetor: {fileID: 1386938304}
-  IDs: {fileID: 1293388959}
-  duration: 5
---- !u!4 &1293388961
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293388959}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1370148452 stripped
 GameObject:
@@ -3821,7 +3817,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemID: 1
   PriceTxt: {fileID: 1455145305}
-  shopMNG: {fileID: 1293388959}
+  shopMNG: {fileID: 889838085}
 --- !u!1 &1691698551
 GameObject:
   m_ObjectHideFlags: 0
@@ -5415,6 +5411,17 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
+--- !u!114 &2022519541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 894857862, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+  m_PrefabInstance: {fileID: 727581815}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c31b10d581b456142836926a13a2ecf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &2024912395
 Mesh:
   m_ObjectHideFlags: 0

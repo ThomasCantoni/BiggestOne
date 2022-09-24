@@ -12,6 +12,8 @@ public class WeaponSwitching : MonoBehaviour
     public UIManager UIM;
     public event GenericGunEvent ReloadDelegateEvent,ChangeWeaponEvent;
     public GenericGun currentGun;
+    public List<GenericGun> List = new List<GenericGun>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +28,9 @@ public class WeaponSwitching : MonoBehaviour
     }
     void SelectWeapon()
     {
-
         int i = 0;
         foreach (Transform weapon in transform)
         {
-            
             if (i == selectedWeapon)
             {
                 currentGun = weapon.GetComponent<GenericGun>();
@@ -41,10 +41,7 @@ public class WeaponSwitching : MonoBehaviour
                 weapon.gameObject.SetActive(false);
             i++;
         }
-        
     }
-
-
 
     //animation event!
     public void LaunchReloadEvent()
@@ -54,11 +51,12 @@ public class WeaponSwitching : MonoBehaviour
     }
     void Switch()
     {
+
         int prevWeapon = selectedWeapon;
 
         if (InputCooker.Controls.Player.WeaponScroll.ReadValue<float>() > 0f)
         {
-            if (selectedWeapon >= transform.childCount - 1)
+            if (selectedWeapon >= List.Count - 1)
                 selectedWeapon = 0;
             else
                 selectedWeapon++;
@@ -67,7 +65,7 @@ public class WeaponSwitching : MonoBehaviour
         if (InputCooker.Controls.Player.WeaponScroll.ReadValue<float>() < 0f)
         {
             if (selectedWeapon <= 0)
-                selectedWeapon = transform.childCount - 1;
+                selectedWeapon = List.Count - 1;
             else
                 selectedWeapon--;
         };
