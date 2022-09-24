@@ -42,6 +42,7 @@ public class HitInfo
         //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
         DamageStats = Source.DamageStats;
         GameObjectHit = Target.Mono.gameObject;
+        //EnemyHit = new List<EnemyClass>();
         EnemyHit = GameObjectHit.GetComponent<EnemyClass>();
     }
 
@@ -57,6 +58,7 @@ public struct DamageStats
     public float CritChance;
     public float CritMultiplier;
     public float EffectChance;
+    
     public static DamageStats operator +(DamageStats current, DamageStats toAdd)
     {
         DamageStats result = current;
@@ -64,6 +66,17 @@ public struct DamageStats
         result.CritChance += toAdd.CritChance;
         result.CritMultiplier += toAdd.CritMultiplier;
         result.EffectChance += toAdd.EffectChance;
+        
+        return result;
+    }
+    public static DamageStats operator -(DamageStats current, DamageStats toAdd)
+    {
+        DamageStats result = current;
+        result.Damage -= toAdd.Damage;
+        result.CritChance -= toAdd.CritChance;
+        result.CritMultiplier -= toAdd.CritMultiplier;
+        result.EffectChance -= toAdd.EffectChance;
+
         return result;
     }
 
