@@ -81,6 +81,8 @@ crashlytics-build.properties
                     
 # Ignore the Cache folder since it is updated locally.
 */ProgettoFinaleUnity_Fixed/[Aa]ssets/Plugins/FMOD/Cache/*
+*/ProgettoFinaleUnity_Fixed/[Aa]ssets/Plugins/FMOD/Cache/Editor/*
+*/ProgettoFinaleUnity_Fixed/[Aa]ssets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
                     
 # Ignore bank files in the StreamingAssets folder.
 */ProgettoFinaleUnity_Fixed/[Aa]ssets/StreamingAssets/**/*.bank
