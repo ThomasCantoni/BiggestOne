@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Parent: {fileID: 0}
-  ExplosionForce: 500
+  ExplosionForce: 150
   Radius: 2
   FadeOutTime: 3
   FragmentsHaveRigidbody: 1
@@ -9943,6 +9943,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: WeaponType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 912335887, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: Mask.m_Bits
       value: 1153
       objectReference: {fileID: 0}
@@ -9952,19 +9956,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: WeaponBuffsList.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: WeaponBuffsList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 27608a38c1f2eb54a942ff4a2fb88430, type: 2}
+      objectReference: {fileID: 11400000, guid: 1b1a5cc653333db4998465df60d331a4, type: 2}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: WeaponBuffsList.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 27608a38c1f2eb54a942ff4a2fb88430, type: 2}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: ChainableAttackList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1687120080, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: ChainableAttackList.Array.data[0]
@@ -15873,6 +15877,7 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+  WeaponType: 0
   DamageContainer:
     Damage: 0
     CritChance: 0
@@ -17656,6 +17661,7 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+  WeaponType: 0
   DamageContainer:
     Damage: 0
     CritChance: 0
@@ -18030,6 +18036,7 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+  WeaponType: 0
   DamageContainer:
     Damage: 0
     CritChance: 0
