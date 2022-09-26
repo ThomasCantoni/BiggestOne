@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAttackEffects : MonoBehaviour
 {
+    public FirstPersonController FPS;
     public List<ChainableAttack> ChainableAttackList;
     public LinkedList<ChainableAttack> PerEnemyAttacks;
     public LinkedList<ChainableAttack> PerShotAttacks;
@@ -11,6 +12,7 @@ public class PlayerAttackEffects : MonoBehaviour
     public LinkedList<WeaponBuff> WeaponBuffs;
     private void Start()
     {
+        this.FPS = GetComponent<FirstPersonController>();
         PerEnemyAttacks = new LinkedList<ChainableAttack>();
         PerShotAttacks = new LinkedList<ChainableAttack>();
         WeaponBuffs = new LinkedList<WeaponBuff>();
@@ -38,6 +40,9 @@ public class PlayerAttackEffects : MonoBehaviour
         foreach(WeaponBuff x in WeaponBuffsList)
         {
             WeaponBuffs.AddLast(x);
+            FPS.WS.GunEquippedEvent += (genericGun) => x.OnGunStart(genericGun);
+            FPS.WS.GunUnequippedEvent += (genericGun) => x.OnGunStop(genericGun);
+
         }
     }
     public LinkedListNode<ChainableAttack> Add(ChainableAttack atk)
@@ -78,5 +83,9 @@ public class PlayerAttackEffects : MonoBehaviour
             default:
                 return null;
         }
+    }
+    public void OnGunEquipped(GenericGun equipped)
+    {
+
     }
 }

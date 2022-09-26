@@ -10,7 +10,8 @@ public class WeaponSwitching : MonoBehaviour
     public delegate void GenericGunEvent(GenericGun gun);
     public event WeaponEvent ReloadEvent;
     public UIManager UIM;
-    public event GenericGunEvent ReloadDelegateEvent,ChangeWeaponEvent;
+    public event GenericGunEvent ReloadDelegateEvent, ChangeWeaponEvent;
+    public GenericGunEvent GunEquippedEvent,GunUnequippedEvent;
     public GenericGun currentGun;
     public List<GenericGun> List = new List<GenericGun>();
 

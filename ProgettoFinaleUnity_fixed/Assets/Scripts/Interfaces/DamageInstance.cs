@@ -6,15 +6,21 @@ public class DamageInstance
 {
     public IDamager DamageSource;
     public PlayerAttackEffects PlayerAttackEffects;
-
+    
     private List<HitInfo> hits;
+
+    
     public List<HitInfo> Hits
     {
         get { return hits; }
         set
         {
-            hits = value;
-            appendList(enemiesHit, FilterDistinct(hits));
+            if(value != null && value.Count >0)
+            {
+                hits = value;
+                appendList(enemiesHit, FilterDistinct(hits));
+
+            }
 
 
         }
@@ -61,8 +67,10 @@ public class DamageInstance
         if (hits != null)
         {
             hits.Add(newToAdd);
-            if (newToAdd.HasHitEnemy && !EnemiesHit.Contains(newToAdd.EnemyHit))
-                EnemiesHit.Add(newToAdd.EnemyHit);
+            
+                if (newToAdd.HasHitEnemy && !EnemiesHit.Contains(newToAdd.EnemyHit))
+                    EnemiesHit.Add(newToAdd.EnemyHit);
+            
             return hits;
         }
         return null;
@@ -87,15 +95,17 @@ public class DamageInstance
         //apply every HitInfo
         for (int i = 0; i < Hits.Count; i++)
         {
+            if (Hits[i] == null)
+                continue;
             //applying the Player's weapon buffs before applying the damage
             Hits[i].SourceDamageInstance = this;
-            for (LinkedListNode<WeaponBuff> x = PlayerAttackEffects.WeaponBuffs.First;
-                x != null;
-                x = x.Next)
-            {
-                x.Value.Apply(ref Hits[i].DamageStats);
+            //for (LinkedListNode<WeaponBuff> x = PlayerAttackEffects.WeaponBuffs.First;
+            //    x != null;
+            //    x = x.Next)
+            //{
+            //    x.Value.Apply(ref Hits[i].DamageStats);
 
-            }
+            //}
             IHittable hitAnything = Hits[i]?.GameObjectHit.GetComponent<IHittable>();
             // apply the damage to whatever was hit 
             hitAnything.OnHit(Hits[i]);
