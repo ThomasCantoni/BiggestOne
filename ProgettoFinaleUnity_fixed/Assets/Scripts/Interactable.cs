@@ -11,10 +11,15 @@ public class Interactable : MonoBehaviour
     public PlayerAttackEffects attackEffects;
     public InvetoryUI playerInvetory;
     public PlayerInvetory playerInvetor;
+    public WeaponSwitching WS;
     public GameObject IDs;
     public float duration = 5f;
     public int[,] shopItems = new int[4, 4];
-    
+    public GenericGun currentGun;
+    public int CurrentIndex;
+    public delegate void GenericGunEvent(GenericGun gun);
+    public event GenericGunEvent ReloadDelegateEvent, ChangeWeaponEvent;
+
     void Start()
     {
         playerInvetory.UpdateCoinText(playerInvetor);
@@ -23,9 +28,11 @@ public class Interactable : MonoBehaviour
         shopItems[1, 2] = 2;
         shopItems[1, 3] = 3;
 
-        shopItems[2, 1] = 1;
-        shopItems[2, 2] = 2;
-        shopItems[2, 3] = 3;
+        shopItems[2, 1] = 0;
+        shopItems[2, 2] = 0;
+        shopItems[2, 3] = 0;
+
+        
 
     }
     public void ChainableAtt()
@@ -39,11 +46,25 @@ public class Interactable : MonoBehaviour
             playerInvetor.NumberOfCoins -= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID];
             playerInvetory.UpdateCoinText(playerInvetor);
             attackEffects.Add(chainableAttack);
-            StartCoroutine(removePowerUps(attackEffects));
+            StartCoroutine(RemovePowerUps(attackEffects));
         }
 
     }
-    public IEnumerator removePowerUps(PlayerAttackEffects PAE)
+    public void WeaponDrop()
+    {
+        if (playerInvetor.NumberOfCoins >= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID])
+        {
+            playerInvetor.NumberOfCoins -= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID];
+            playerInvetory.UpdateCoinText(playerInvetor);
+
+            if (WS.List.Count >= WS.selectedWeapon)
+            {
+                WS.List.Add(currentGun);
+            }
+            
+        }
+    }
+    public IEnumerator RemovePowerUps(PlayerAttackEffects PAE)
     {
         yield return new WaitForSeconds(duration);
         PAE.Remove(chainableAttack);

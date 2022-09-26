@@ -28,7 +28,6 @@ public class GenericGun : MonoBehaviour,IDamager
     public float reloadTime = 1f;
     public Transform cam;
     public Animator anim;
-    
     public WeaponSwitching WS;
     public GameObject ToInstantiate;
     //public UnityEvent ShootEvent;
@@ -157,12 +156,13 @@ public class GenericGun : MonoBehaviour,IDamager
             BeforeShoot?.Invoke(this);
             DamageInstance newDamageInstance = new DamageInstance(this);
             newDamageInstance.PlayerAttackEffects = this.PlayerAttackEffects;
+
             OnWeaponShooting?.Invoke(this,newDamageInstance);
             newDamageInstance.Hits = ShootHitscan();
+
             newDamageInstance.Deploy();
             AfterShoot?.Invoke(this);
             anim.SetTrigger("Shooting");
-
             DeductAmmo();
 
         }

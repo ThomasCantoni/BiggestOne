@@ -30,7 +30,7 @@ public class BulletScript : MonoBehaviour,IDamager
 
         Destroy(this.gameObject);
     }
-    
+
     private void Start()
     {
         RB = GetComponent<Rigidbody>();

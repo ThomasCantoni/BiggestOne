@@ -8,7 +8,6 @@ public class BulletEnemy : EnemyClass, IDamager
     public float Speed = 1f;
     public DamageStats damage;
     Rigidbody RB;
-
     public DamageStats DamageStats
     {
         get { return damage; }
@@ -26,7 +25,6 @@ public class BulletEnemy : EnemyClass, IDamager
 
         Destroy(this.gameObject);
     }
-
     private void Awake()
     {
         RB = GetComponent<Rigidbody>();
