@@ -16,7 +16,6 @@ public class Interactable : MonoBehaviour
     public float duration = 5f;
     public int[,] shopItems = new int[4, 4];
     public GenericGun currentGun;
-    public int CurrentIndex;
     public delegate void GenericGunEvent(GenericGun gun);
     public event GenericGunEvent ReloadDelegateEvent, ChangeWeaponEvent;
 
@@ -52,6 +51,10 @@ public class Interactable : MonoBehaviour
     }
     public void WeaponDrop()
     {
+        if (WS.List.Contains(currentGun))
+        {
+            return;
+        }
         if (playerInvetor.NumberOfCoins >= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID])
         {
             playerInvetor.NumberOfCoins -= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID];

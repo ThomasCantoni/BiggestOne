@@ -54,7 +54,6 @@ public class WeaponSwitching : MonoBehaviour
     {
 
         int prevWeapon = selectedWeapon;
-
         if (InputCooker.Controls.Player.WeaponScroll.ReadValue<float>() > 0f)
         {
             if (selectedWeapon >= List.Count - 1)
