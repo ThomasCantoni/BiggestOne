@@ -81,8 +81,8 @@ public class GenericGun : MonoBehaviour,IDamager
 
 
     public delegate void WeaponHitSomething(DamageInstance instance);
-    public delegate void HitInfoCreatedEvent(HitInfo justCreated);
-    public delegate void HitscanBulletEvent(HitscanBullet justCreated);
+    public delegate void BulletCreatedEvent(HitInfo justCreated);
+    public delegate void BulletEvent(GenericBullet justCreated);
     public delegate void ProjectileBulletCreated();
     public delegate void WeaponBeforeAndAfterShootEvent(GenericGun gunOwner);
     public delegate void WeaponShootEvent(GenericGun gunOwner, DamageInstance aboutToDeploy);
@@ -90,8 +90,8 @@ public class GenericGun : MonoBehaviour,IDamager
     public event WeaponHitSomething WeaponHitSomethingEvent;
     public event WeaponBeforeAndAfterShootEvent BeforeShoot, AfterShoot;
     public event WeaponShootEvent OnWeaponShooting;
-    public HitInfoCreatedEvent HitInfoCreated;
-    public HitscanBulletEvent HitscanBulletCreated,HitscanBulletPopulated;
+    public BulletCreatedEvent HitInfoCreated;
+    public BulletEvent BulletCreated,BulletHitListPopulated;
 
     private void OnEnable()
     {
@@ -158,7 +158,7 @@ public class GenericGun : MonoBehaviour,IDamager
             newDamageInstance.PlayerAttackEffects = this.PlayerAttackEffects;
 
             OnWeaponShooting?.Invoke(this,newDamageInstance);
-            newDamageInstance.Hits = ShootHitscan();
+            newDamageInstance.Hits = ShootBullets();
 
             newDamageInstance.Deploy();
             AfterShoot?.Invoke(this);
@@ -276,7 +276,7 @@ public class GenericGun : MonoBehaviour,IDamager
        
     }
     
-    public virtual List<HitInfo> ShootHitscan()
+    public virtual List<HitInfo> ShootBullets()
     {
         List<HitInfo> thingsHit = new List<HitInfo>(Multishot); 
         //technically speaking the list is always bigger than "Multishot" whenever the gun has penetrations, but who cares
@@ -284,27 +284,16 @@ public class GenericGun : MonoBehaviour,IDamager
         List<HitscanBullet> hitscanBullets = new List<HitscanBullet>(Multishot);
         for (int i = 0; i < Multishot; i++)
         {
-
             HitscanBullet newHitscanBullet = new HitscanBullet(this);
-            HitscanBulletCreated?.Invoke(newHitscanBullet);
-            if (!newHitscanBullet.ShootRay())
+            BulletCreated?.Invoke(newHitscanBullet);
+            newHitscanBullet.Deploy();
+            
+            if (!newHitscanBullet.HasHitSomething)
                 return null; 
             //RaycastHit[] raycastInformation = Physics.RaycastAll(InputCooker.MainCamera.transform.position, GetShootingDirection(), 100f, Mask.value);
             foreach (HitInfo hit in newHitscanBullet.Hits)
             {
                 thingsHit.Add(hit);
-                //IHittable thingHit = hit.collider.GetComponent<IHittable>();
-                //if (thingsHit != null)
-                //{
-                    
-                //    HitInfo hitInfo = new HitInfo(this);
-                //    hitInfo.SetRaycastPositions(hit);
-                //    hitInfo.GameObjectHit = hit.collider.gameObject;
-                //    hitInfo.IsChainableAttack = false;
-
-                //    thingsHit.Add(hitInfo);
-                //    HitInfoCreated(hitInfo);
-                //}
 
             }
 

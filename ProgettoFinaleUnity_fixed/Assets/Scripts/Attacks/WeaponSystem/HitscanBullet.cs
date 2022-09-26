@@ -2,30 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HitscanBullet
+public class HitscanBullet : GenericBullet
 {
-    
-    public GenericGun Owner;
-    //public List<EnemyClass> EnemiesHit;
-    public List<HitInfo> Hits;
-    public int maxPenetrations;
-    
-    public HitscanBullet(GenericGun owner)
+    public override bool HasHitSomething
     {
-        Owner = owner;
-        
+        get { return Hits.Count > 0; } 
+       
+    }
+    public HitscanBullet(GenericGun owner) : base(owner)
+    {
+        Hits = new List<HitInfo>();
+
     }
 
-    public bool ShootRay()
+    public override void Deploy()
     {
-
+       
         RaycastHit[] thingsHit = Physics.RaycastAll(Owner.InputCooker.MainCamera.transform.position, 
             Owner.GetShootingDirection(), 
             100f, 
             Owner.Mask.value);
 
         if (thingsHit == null || thingsHit.Length == 0)
-            return false;
+            return;
 
 
         //sort by distance closest to furthest
@@ -65,8 +64,8 @@ public class HitscanBullet
         }
 
         Hits = hitinfoList;
-        Owner.HitscanBulletPopulated?.Invoke(this);
-        return true;
+        Owner.BulletHitListPopulated?.Invoke(this);
+        
     }
     
 

@@ -139,6 +139,26 @@ MonoBehaviour:
   lastModified: 637995232601134151
   FileSizes: []
   Exists: 1
+--- !u!114 &-5756971038478743264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637995317336966633
+  FileSizes:
+  - Name: 
+    Value: 928
+  Exists: 1
 --- !u!114 &-3765115056023319802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +197,33 @@ MonoBehaviour:
   - Name: Desktop
     Value: 934
   Exists: 1
+--- !u!114 &-3363610659195184966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Track_1
+  m_EditorClassIdentifier: 
+  Path: event:/Track_1
+  Guid:
+    Data1: -147258431
+    Data2: 1259934656
+    Data3: -929178697
+    Data4: 548435133
+  Banks:
+  - {fileID: 7806273012003256293}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 126153
 --- !u!114 &-3158190920736759258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +327,33 @@ MonoBehaviour:
   lastModified: 637995230031135413
   FileSizes: []
   Exists: 1
+--- !u!114 &-567445499075330423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Traccia2
+  m_EditorClassIdentifier: 
+  Path: event:/Traccia2
+  Guid:
+    Data1: 687115768
+    Data2: 1097500928
+    Data3: 259278480
+    Data4: 1325312081
+  Banks:
+  - {fileID: 7806273012003256293}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 145103
 --- !u!114 &-344535173674000319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,17 +414,17 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7666711879342283104}
-  - {fileID: -8986440558607605289}
-  - {fileID: -6699407163680241224}
+  - {fileID: -5756971038478743264}
+  - {fileID: 2049762329610063386}
+  - {fileID: 7806273012003256293}
   EditorEvents:
-  - {fileID: -6437927110416790343}
-  - {fileID: -182478044582618365}
+  - {fileID: -3363610659195184966}
+  - {fileID: -567445499075330423}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -8986440558607605289}
+  - {fileID: 2049762329610063386}
   StringsBanks:
-  - {fileID: -7666711879342283104}
+  - {fileID: -5756971038478743264}
   cacheTime: 637995317337317582
   cacheVersion: 131592
 --- !u!114 &1161159768488628827
@@ -369,6 +443,24 @@ MonoBehaviour:
   Name: Master
   StudioPath: bank:/Master
   lastModified: 637995316259876471
+  FileSizes: []
+  Exists: 1
+--- !u!114 &2049762329610063386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637995317336908375
   FileSizes: []
   Exists: 1
 --- !u!114 &2271327070549999062
@@ -498,4 +590,22 @@ MonoBehaviour:
   FileSizes:
   - Name: 
     Value: 984
+  Exists: 1
+--- !u!114 &7806273012003256293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Music.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Banks/Desktop/Music.bank
+  Name: Music
+  StudioPath: bank:/Music
+  lastModified: 637995317337317582
+  FileSizes: []
   Exists: 1
