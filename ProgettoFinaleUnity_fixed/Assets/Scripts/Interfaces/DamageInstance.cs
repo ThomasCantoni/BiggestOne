@@ -5,6 +5,7 @@ using System;
 public class DamageInstance
 {
     public IDamager DamageSource;
+    public List<GenericBullet> BulletsHit;
     public PlayerAttackEffects PlayerAttackEffects;
     
     private List<HitInfo> hits;

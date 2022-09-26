@@ -11,22 +11,22 @@ public class WB_Penetration : WeaponBuff
     
     public override void OnGunStart(GenericGun justEquipped)
     {
-        justEquipped.HitscanBulletCreated += ApplyPenetration;
-        justEquipped.HitscanBulletPopulated += ApplyDamage;
+        justEquipped.BulletCreated += ApplyPenetration;
+        justEquipped.BulletHitListPopulated += ApplyDamage;
     }
     public override void OnGunStop(GenericGun justUnequipped)
     {
-        justUnequipped.HitscanBulletCreated -= ApplyPenetration;
-        justUnequipped.HitscanBulletPopulated -= ApplyDamage;
+        justUnequipped.BulletCreated -= ApplyPenetration;
+        justUnequipped.BulletHitListPopulated -= ApplyDamage;
     }
     
-    public void ApplyPenetration(HitscanBullet created)
+    public void ApplyPenetration(GenericBullet created)
     {
         created.maxPenetrations += maxPenetrations;
         
     }
    
-    public void ApplyDamage(HitscanBullet populated)
+    public void ApplyDamage(GenericBullet populated)
     {
         for (int i = 0; i < populated.Hits.Count; i++)
         {

@@ -30,11 +30,11 @@ public class WeaponSwitching : MonoBehaviour
     void SelectWeapon()
     {
         int i = 0;
-        foreach (Transform weapon in transform)
+        foreach (GenericGun weapon in List)
         {
             if (i == selectedWeapon)
             {
-                currentGun = weapon.GetComponent<GenericGun>();
+                currentGun = weapon;
                 weapon.gameObject.SetActive(true);
                 ChangeWeaponEvent?.Invoke(currentGun);
             }
