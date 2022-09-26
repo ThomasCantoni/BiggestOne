@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WB_Penetration", menuName = "ScriptableObjects/WB_Penetration")]
+[CreateAssetMenu(fileName = "WB_Penetration", menuName = "ScriptableObjects/WeaponBuffs/WB_Penetration")]
 
 public class WB_Penetration : WeaponBuff
 {

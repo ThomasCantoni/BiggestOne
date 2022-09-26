@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+public enum WeaponType
+{
+    Rifle,Shotgun,Launcher
+}
 public class GenericGun : MonoBehaviour,IDamager
 {
     //[SerializeField]
     //public HitInfo HitInfo;
     public LayerMask Mask;
+    public WeaponType WeaponType;
     [SerializeField]
     public DamageStats DamageContainer;
     public DamageStats DamageStats 
@@ -81,11 +85,11 @@ public class GenericGun : MonoBehaviour,IDamager
     public delegate void HitInfoCreatedEvent(HitInfo justCreated);
     public delegate void HitscanBulletEvent(HitscanBullet justCreated);
     public delegate void ProjectileBulletCreated();
-    public delegate void WeaponBeforeShootEvent(GenericGun gunOwner);
+    public delegate void WeaponBeforeAndAfterShootEvent(GenericGun gunOwner);
     public delegate void WeaponShootEvent(GenericGun gunOwner, DamageInstance aboutToDeploy);
 
     public event WeaponHitSomething WeaponHitSomethingEvent;
-    public WeaponBeforeShootEvent BeforeShoot;
+    public event WeaponBeforeAndAfterShootEvent BeforeShoot, AfterShoot;
     public event WeaponShootEvent OnWeaponShooting;
     public HitInfoCreatedEvent HitInfoCreated;
     public HitscanBulletEvent HitscanBulletCreated,HitscanBulletPopulated;
@@ -150,12 +154,13 @@ public class GenericGun : MonoBehaviour,IDamager
        
         if (CanShoot)
         {
-            
+            BeforeShoot?.Invoke(this);
             DamageInstance newDamageInstance = new DamageInstance(this);
             newDamageInstance.PlayerAttackEffects = this.PlayerAttackEffects;
             OnWeaponShooting?.Invoke(this,newDamageInstance);
             newDamageInstance.Hits = ShootHitscan();
             newDamageInstance.Deploy();
+            AfterShoot?.Invoke(this);
             anim.SetTrigger("Shooting");
 
             DeductAmmo();
