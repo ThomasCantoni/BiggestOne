@@ -11,6 +11,7 @@ public class FirstPersonController : MonoBehaviour
     public Dash DashScript;
     public InputCooker IC;
     public Rigidbody RB;
+    public WeaponSwitching WS;
     [Header("General Movement Values")]
 
     [Tooltip("The speed of the Player")]

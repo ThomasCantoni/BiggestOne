@@ -10,7 +10,8 @@ public class WeaponSwitching : MonoBehaviour
     public delegate void GenericGunEvent(GenericGun gun);
     public event WeaponEvent ReloadEvent;
     public UIManager UIM;
-    public event GenericGunEvent ReloadDelegateEvent,ChangeWeaponEvent;
+    public event GenericGunEvent ReloadDelegateEvent, ChangeWeaponEvent;
+    public GenericGunEvent GunEquippedEvent,GunUnequippedEvent;
     public GenericGun currentGun;
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,10 @@ public class WeaponSwitching : MonoBehaviour
         }
         
     }
+
+
+
+    //animation event!
     public void LaunchReloadEvent()
     {
         ReloadEvent?.Invoke();

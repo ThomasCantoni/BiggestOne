@@ -33,11 +33,14 @@ public class InputCooker : MonoBehaviour
     public bool isJump = false;
     public bool isSprint = false;
     public bool isSliding = false;
+    public bool isReloading = false;
     public delegate void PlayerShootEvent();
     public delegate void ChangeWeaponEvent();
     public delegate void PlayerRotatedCameraEvent();
     public delegate void PlayerMovementEvent();
     public delegate void PlayerInteractEvent();
+    public delegate void PlayerReloadEvent();
+
 
     public PlayerShootEvent PlayerPressedShoot, PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
@@ -47,6 +50,7 @@ public class InputCooker : MonoBehaviour
             PlayerStartSliding, PlayerStopSliding;
     public PlayerInteractEvent playerInteract,playerStopInteract;
     public Transform CameraHolder;
+    public PlayerReloadEvent PlayerPressedReload,PlayerStoppedReload;
     // Start is called before the first frame update
     [Header("Mouse Cursor Settings")]
     public bool cursorLocked = true;
@@ -72,6 +76,9 @@ public class InputCooker : MonoBehaviour
         Controls.Player.Sliding.canceled += OnSlidingStop;
         Controls.Player.OpenShop.started += OnOpenShop;
         Controls.Player.OpenShop.canceled += OnCloseShop;
+        Controls.Player.Reload.started += OnReloadStart;
+        Controls.Player.Reload.canceled += OnReloadStop;
+
         //Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
@@ -97,7 +104,17 @@ public class InputCooker : MonoBehaviour
         //Debug.Log("RELATIVE DIR: " + RelativeDirection +"  MAG "+RelativeDirection.magnitude );
 
     }
+    public void OnReloadStart(InputAction.CallbackContext obj)
+    {
+        isReloading = true;
+        PlayerPressedReload?.Invoke();
+    }
+    public void OnReloadStop(InputAction.CallbackContext obj)
+    {
+        isReloading = false;
+        PlayerStoppedReload?.Invoke();
 
+    }
     public void UpdateCameras()
     {
         GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0f, PlayerTargetY, 0f));
