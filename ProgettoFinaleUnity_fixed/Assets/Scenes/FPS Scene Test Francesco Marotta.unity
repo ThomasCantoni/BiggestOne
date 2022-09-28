@@ -815,6 +815,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1153
   WeaponType: 0
+  FractureInformation:
+    collisionPoint: {x: 0, y: 0, z: 0}
+    collisionNormal: {x: 0, y: 0, z: 0}
+    Radius: 0
+    Force: 0
+    FractureType: 0
   DamageContainer:
     Damage: 0
     CritChance: 0
@@ -833,6 +839,7 @@ MonoBehaviour:
   ToInstantiate: {fileID: 0}
   Player: {fileID: 0}
   PlayerAttackEffects: {fileID: 0}
+  FPS: {fileID: 0}
   InputCooker: {fileID: 0}
   shotgun: 0
   range: 1
@@ -1763,7 +1770,7 @@ PrefabInstance:
     - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: List.Array.data[0]
       value: 
-      objectReference: {fileID: 399678220}
+      objectReference: {fileID: 2071789328}
     - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: List.Array.data[1]
       value: 
@@ -7005,6 +7012,7 @@ MonoBehaviour:
   OnMeshDestroy:
     m_PersistentCalls:
       m_Calls: []
+  FractureType: 0
 --- !u!114 &2078397854
 MonoBehaviour:
   m_ObjectHideFlags: 0

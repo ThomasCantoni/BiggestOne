@@ -21,7 +21,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     {
         get { return this; }
     }
-    public event IKillable.OnDeathEvent OnEnemyDeath;
+    public IKillable.OnDeathEvent OnEnemyDeath;
     public virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -71,7 +71,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
         OnEnemyDeath?.Invoke();
         Destroy(Enemy.gameObject);
     }
-    public void OnDeath(HitInfo info)
+    public virtual void OnDeath(HitInfo info)
     {
         if(info.SourceDamageInstance != null)
         {
