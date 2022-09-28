@@ -25,6 +25,7 @@ public class PlayerAttackEffects : MonoBehaviour
             {
                 continue;
             }
+            atk.FPS = this.FPS;
             switch (atk.ChainAttackApplicationMode)
             {
                 case ChainAttackApplicationType.PerEnemy:

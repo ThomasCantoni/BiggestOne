@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class HitEventFracture : MonoBehaviour, IHittable
 {
-    
+    public FractureType FractureType;
     public UnityEvent<FractureInfo> OnHitEventWithFracture;
 
     public MonoBehaviour Mono
@@ -16,7 +16,8 @@ public class HitEventFracture : MonoBehaviour, IHittable
 
     public void OnHit(HitInfo hitInfo)
     {
-        OnHitEventWithFracture.Invoke(hitInfo.FractureInfo);
+        if(FractureType == hitInfo.FractureInfo.FractureType)
+            OnHitEventWithFracture.Invoke(hitInfo.FractureInfo);
     }
 
 

@@ -6,11 +6,12 @@ using UnityEngine.Events;
 
 public class BreakMeshPrefragmented : MonoBehaviour
 {
+    
     public Transform Parent;
     public float ExplosionForce, Radius;
     public float FadeOutTime = 3f;
     public bool FragmentsHaveRigidbody = false;
-    private HitInfo Info;
+    private FractureInfo Info;
     public UnityEvent OnMeshDestroy;
     public MonoBehaviour Mono => throw new System.NotImplementedException();
 
@@ -18,8 +19,13 @@ public class BreakMeshPrefragmented : MonoBehaviour
     //public IKillable.OnDeathEvent deathEvent { get { return OnMeshDestroy; }set { OnMeshDestroy = value; } }
     public delegate void BreakMeshEvent();
     public event BreakMeshEvent OnBreakMesh;
-    public void DestroyMesh(HitInfo info)
+    public FractureType FractureType;
+    public void DestroyMesh(FractureInfo info)
     {
+        if(info.FractureType != this.FractureType)
+        {
+            return;
+        }
         this.Info = info;
         if (Parent == null)
         {
@@ -41,7 +47,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
         for (int i = 0; i < Parent.childCount; i++)
         {
             Rigidbody rb = Parent.GetChild(i).gameObject.AddComponent<Rigidbody>();
-            rb.AddExplosionForce(ExplosionForce, Info.FractureInfo.collisionPoint, Radius);
+            rb.AddExplosionForce(ExplosionForce, Info.collisionPoint, Radius);
         }
     }
     private void RigidBodyFragment()
@@ -50,7 +56,7 @@ public class BreakMeshPrefragmented : MonoBehaviour
         {
             Rigidbody rb = Parent.GetChild(i).gameObject.GetComponent<Rigidbody>();
             rb.constraints = RigidbodyConstraints.None;
-            rb.AddExplosionForce(ExplosionForce, Info.FractureInfo.collisionPoint, Radius);
+            rb.AddExplosionForce(ExplosionForce, Info.collisionPoint, Radius);
         }
     }
 

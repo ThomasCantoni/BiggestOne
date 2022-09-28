@@ -10,4 +10,9 @@ public class ChainableAttackComponent : MonoBehaviour, IDamager
         get { return damageStats;  }
         set { damageStats = value; }
     }
+
+    public MonoBehaviour Mono
+    {
+        get { return this; }
+    }
 }

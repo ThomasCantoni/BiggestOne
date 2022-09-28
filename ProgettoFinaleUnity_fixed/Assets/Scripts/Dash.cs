@@ -72,23 +72,36 @@ public class Dash : MonoBehaviour
     {  
         if (updateDash && NoWallAhead)
         {
-            
             FPS.ApplyDrag = false;
             
             //RB.useGravity = false;
             RB.velocity = direction * DashForce;
             //RB.AddForce(Vector3.up, ForceMode.VelocityChange);
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+            
             Collider[] thingsHit = Physics.OverlapSphere(transform.position + direction * DistanceFactor, CheckRadius, BreakableCheck.value);
             foreach (Collider x in thingsHit)
             {
-                IHittable toBreak = x.gameObject.GetComponent<IHittable>();
-                if(toBreak != null)
+                HitEventFracture checkIfFracture = x.GetComponent<HitEventFracture>();
+                if(checkIfFracture != null )
                 {
-                    HitInfo hitInfo = new HitInfo();
-                    hitInfo.FractureInfo.collisionPoint = this.transform.position;
-                    
-                    toBreak.OnHit(hitInfo);
+                    if(checkIfFracture.FractureType == FractureType.Shot_and_dash)
+                    {// if the wall has the same fractureMask, then keep going
+
+                        
+                            HitInfo hitInfo = new HitInfo();
+                            hitInfo.FractureInfo.collisionPoint = this.transform.position;
+                            hitInfo.FractureInfo.FractureType = FractureType.Shot_and_dash;
+                            checkIfFracture.OnHit(hitInfo);
+
+                        
+                    }
+                    else // else stop dashing (fixes clipping into the object)
+                    {
+                        StopDashingImmediately();
+                        Debug.Log("STOP DASHING");
+                        
+                    }
 
                 }
             }
@@ -129,6 +142,14 @@ public class Dash : MonoBehaviour
     public IEnumerator StopDashing()
     {
         yield return new WaitForSeconds(DashDurationMs*0.001f);
+        FPS.ApplyDrag = true;
+        FPS.ClampSpeed = true;
+        direction = Vector3.zero;
+        updateDash = false;
+        RB.useGravity = true;
+    }
+    public void StopDashingImmediately()
+    {
         FPS.ApplyDrag = true;
         FPS.ClampSpeed = true;
         direction = Vector3.zero;

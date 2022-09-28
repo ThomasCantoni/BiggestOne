@@ -9,10 +9,10 @@ public class GenericBullet
     public List<HitInfo> Hits;
     public int maxPenetrations;
     public virtual bool HasHitSomething { get; }
+    public FractureInfo FractureInformation;
     public  GenericBullet(GenericGun owner)
     {
         Owner = owner;
-
     }
     public virtual void Deploy()
     {

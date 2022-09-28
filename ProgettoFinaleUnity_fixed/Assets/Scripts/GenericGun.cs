@@ -12,12 +12,17 @@ public class GenericGun : MonoBehaviour,IDamager
     //public HitInfo HitInfo;
     public LayerMask Mask;
     public WeaponType WeaponType;
+    public FractureInfo FractureInformation;
     [SerializeField]
     public DamageStats DamageContainer;
     public DamageStats DamageStats 
     { 
         get { return DamageContainer; }
         set { DamageContainer = value; }
+    }
+    public MonoBehaviour Mono
+    {
+        get { return this; }
     }
     public bool IsAutomatic;
     public float FireRate;
@@ -33,6 +38,7 @@ public class GenericGun : MonoBehaviour,IDamager
     //public UnityEvent ShootEvent;
     public GameObject Player;
     public PlayerAttackEffects PlayerAttackEffects;
+    public FirstPersonController FPS;
     public InputCooker InputCooker;
     protected bool hasShotOnce, shooting;
     protected float currentShootCD = 0;
@@ -81,12 +87,14 @@ public class GenericGun : MonoBehaviour,IDamager
 
 
     public delegate void WeaponHitSomething(DamageInstance instance);
+    public delegate void WeaponKilledSomethingEvent(GenericGun weapon,IHittable victim);
+
     public delegate void BulletCreatedEvent(HitInfo justCreated);
     public delegate void BulletEvent(GenericBullet justCreated);
     public delegate void ProjectileBulletCreated();
     public delegate void WeaponBeforeAndAfterShootEvent(GenericGun gunOwner);
     public delegate void WeaponShootEvent(GenericGun gunOwner, DamageInstance aboutToDeploy);
-
+    public WeaponKilledSomethingEvent WeaponKilledSomething;
     public event WeaponHitSomething WeaponHitSomethingEvent;
     public event WeaponBeforeAndAfterShootEvent BeforeShoot, AfterShoot;
     public event WeaponShootEvent OnWeaponShooting;
@@ -102,6 +110,7 @@ public class GenericGun : MonoBehaviour,IDamager
         cam = Camera.main.transform;
         canReload = true;
         WS.GunEquippedEvent?.Invoke(this);
+        
     }
     private void OnDisable()
     {
@@ -115,6 +124,7 @@ public class GenericGun : MonoBehaviour,IDamager
         if(Player == null || WS == null || InputCooker == null || PlayerAttackEffects == null)
         {
             Player = GameObject.FindGameObjectWithTag("Player");
+            FPS = Player.GetComponent<FirstPersonController>();
             WS = gameObject.GetComponentInParent<WeaponSwitching>();
             InputCooker = Player.GetComponentInChildren<InputCooker>();
             PlayerAttackEffects = Player.GetComponent<PlayerAttackEffects>();
@@ -134,8 +144,10 @@ public class GenericGun : MonoBehaviour,IDamager
             //InputCooker.PlayerStoppedReload += StartReload;
 
             WS.ReloadEvent += EndReload;
-           // Debug.Log("Subbed " +gameObject.name);
+            // Debug.Log("Subbed " +gameObject.name);
 
+            WeaponKilledSomething += NotifyPlayerOfKill;
+           
         }
         else
         {
@@ -144,7 +156,13 @@ public class GenericGun : MonoBehaviour,IDamager
             InputCooker.PlayerPressedReload -= StartReload;
 
             WS.ReloadEvent -= EndReload;
+            WeaponKilledSomething -= NotifyPlayerOfKill;
+
         }
+    }
+    public virtual void NotifyPlayerOfKill(GenericGun gun, IHittable victim )
+    {
+            FPS.PlayerKilledSomething?.Invoke(gun.FPS, victim); ;
     }
 
     public virtual void Shoot()
@@ -244,38 +262,40 @@ public class GenericGun : MonoBehaviour,IDamager
         WS.UIM.UpdateAmmo(currentAmmo);
         isReloading = false;
     }
-    
-    public virtual List<HitInfo> ShootRays()
-    {
-        RaycastHit info;
-        List<HitInfo> thingsHit = new List<HitInfo>(Multishot);
-        for (int i = 0; i < Multishot; i++)
-        {
-            Ray ray = new Ray(InputCooker.MainCamera.transform.position, GetShootingDirection());
-            //Ray ray2 = .ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
-                
-            HitInfo hitInfo = new HitInfo(this);
-            if (Physics.Raycast(ray, out info, 100f, Mask.value))
-            {
-                if (ToInstantiate != null)
-                    Destroy(Instantiate(ToInstantiate, info.point, Quaternion.LookRotation(-info.normal)), 2f);
 
-                if (info.collider.GetComponent<IHittable>() != null)
-                {
-                    hitInfo.FractureInfo.collisionPoint = info.point;
-                    hitInfo.GameObjectHit = info.collider.gameObject;
-                    hitInfo.IsChainableAttack = false;
+    #region OldShootSystem
+    //public virtual List<HitInfo> ShootRays()
+    //{
+    //    RaycastHit info;
+    //    List<HitInfo> thingsHit = new List<HitInfo>(Multishot);
+    //    for (int i = 0; i < Multishot; i++)
+    //    {
+    //        Ray ray = new Ray(InputCooker.MainCamera.transform.position, GetShootingDirection());
+    //        //Ray ray2 = .ScreenPointToRay(new Vector2(Screen.width * 0.5f, Screen.height * 0.5f));
 
-                    thingsHit.Add(hitInfo);
-                }
-            }
+    //        HitInfo hitInfo = new HitInfo(this);
+    //        if (Physics.Raycast(ray, out info, 100f, Mask.value))
+    //        {
+    //            if (ToInstantiate != null)
+    //                Destroy(Instantiate(ToInstantiate, info.point, Quaternion.LookRotation(-info.normal)), 2f);
 
-        }
-        
-        return thingsHit;
-       
-    }
-    
+    //            if (info.collider.GetComponent<IHittable>() != null)
+    //            {
+    //                hitInfo.FractureInfo.collisionPoint = info.point;
+    //                hitInfo.GameObjectHit = info.collider.gameObject;
+    //                //hitInfo.IsChainableAttack = false;
+
+    //                thingsHit.Add(hitInfo);
+    //            }
+    //        }
+
+    //    }
+
+    //    return thingsHit;
+
+    //} 
+    #endregion
+
     public virtual List<HitInfo> ShootBullets()
     {
         List<HitInfo> thingsHit = new List<HitInfo>(Multishot); 

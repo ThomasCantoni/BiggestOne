@@ -12,6 +12,7 @@ public class FirstPersonController : MonoBehaviour
     public InputCooker IC;
     public Rigidbody RB;
     public WeaponSwitching WS;
+    public GameObject GrenadePrefab;
     [Header("General Movement Values")]
 
     [Tooltip("The speed of the Player")]
@@ -83,8 +84,9 @@ public class FirstPersonController : MonoBehaviour
     [HideInInspector]
     public Vector3 SlopeCounterVector, SlopeCounterVectorNORMALIZED;
     public delegate void PlayerGroundedEvent();
+    public delegate void PlayerKilledSomethingEvent(FirstPersonController player, IHittable victim);
     public PlayerGroundedEvent PlayerStartedGrounded, PlayerStartedAirborne;
-    
+    public PlayerKilledSomethingEvent PlayerKilledSomething;
     private PhysicMaterial physicsMat;
     protected SimpleTimer JumpTimer, GroundcheckTimer, JumpGraceTimer;
     Repeater GroundcheckRepeater;
@@ -151,7 +153,7 @@ public class FirstPersonController : MonoBehaviour
 
         PlayerStartedGrounded += () => DoubleJumpPossible = true;
 
-        SC.StartedDashing += () =>
+        SC.StartedSLiding += () =>
         {
             SoftG_originalOffset = SoftGroundedOffset;
             HardG_originalOffset = HardGroundedOffset;
@@ -159,11 +161,18 @@ public class FirstPersonController : MonoBehaviour
             HardGroundedOffset = SC.reduceHeight * 0.5f;
 
         };
-        SC.StoppedDashing += () =>
+        SC.StoppedSliding += () =>
         {
             SoftGroundedOffset = SoftG_originalOffset;
             HardGroundedOffset = HardG_originalOffset;
         };
+
+        PlayerKilledSomething += (gun,victim) => Debug.Log("HOMICIDE!");
+    }
+    public void ThrowGrenade()
+    {
+        GameObject grenade = Instantiate(GrenadePrefab, this.transform.position, this.transform.rotation);
+        grenade.GetComponent<Rigidbody>().AddRelativeForce((Vector3.forward * 3f + Vector3.up)*4f,ForceMode.VelocityChange);
     }
     void Update()
     {
@@ -339,7 +348,7 @@ public class FirstPersonController : MonoBehaviour
                 velocityMultiplier = 0;
                 currentArtificialDrag = Vector3.zero;
 
-                Debug.Log("SLIDE");
+                //Debug.Log("SLIDE");
             }
 
         }
@@ -373,6 +382,7 @@ public class FirstPersonController : MonoBehaviour
 
 
     }
+    //public void PlayerKill
     private void StartAirborne()
     {
         //_jumpTimeOut = JumpTimeout;

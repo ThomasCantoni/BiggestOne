@@ -25,11 +25,15 @@ public class FlamesEnemyComponent : ChainableAttackComponent
         host = GetComponent<IHittable>();
 
 
+        DamageInstance dmgInstance = new DamageInstance(this);
+
+        flamesHitInfo = new HitInfo(this, host);
         //apply initial damage
-        flamesHitInfo.IsChainableAttack = true;
         flamesHitInfo.DamageStats = DamageStats;
         flamesHitInfo.DamageStats.Damage = InitialDamage;
-        host.OnHit(flamesHitInfo);
+        dmgInstance.AddHitInfo(flamesHitInfo);
+        dmgInstance.Deploy();
+        //host.OnHit(flamesHitInfo);
         // set burn damage
         flamesHitInfo.DamageStats.Damage = BurnDamage;
         //Timer.TimerStartEvent += () => Debug.Log("FLAMES TIMER STARTED");
@@ -41,7 +45,12 @@ public class FlamesEnemyComponent : ChainableAttackComponent
     private void ApplyDamage()
     {       
             Debug.Log("Applying Damage");
-            host.OnHit(flamesHitInfo); 
+        DamageInstance dmgInstance = new DamageInstance(this);
+        flamesHitInfo.DamageStats.Damage = BurnDamage;
+
+        dmgInstance.AddHitInfo(flamesHitInfo);
+        dmgInstance.Deploy();
+        host.OnHit(flamesHitInfo); 
     }
     private void OnDestroy()
     {

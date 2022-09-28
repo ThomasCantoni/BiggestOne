@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(Rigidbody))]
@@ -12,8 +11,10 @@ public class Fracture2 : MonoBehaviour
     public FractureOptions fractureOptions;
     public RefractureOptions refractureOptions;
     public float DestroyTime = 3f;
+   
     public CallbackOptions callbackOptions;
-
+    public List<GameObject> fragmentList;
+    public float Health;
     /// <summary>
     /// The number of times this fragment has been re-fractured.
     /// </summary>
@@ -98,7 +99,21 @@ public class Fracture2 : MonoBehaviour
         }
     }
 
-    
+    public void ComputeFracture(FractureInfo info)
+    {
+        
+            ComputeFracture();
+            if (fragmentList == null)
+                return;
+            foreach (GameObject x in fragmentList)
+            {
+                Rigidbody tryget = x.GetComponent<Rigidbody>();
+                {
+                    tryget.AddExplosionForce(info.Force, info.collisionPoint, info.Radius);
+                }
+            }
+        
+    }
 
     /// <summary>
     /// Compute the fracture and create the fragments
@@ -125,7 +140,7 @@ public class Fracture2 : MonoBehaviour
         }
             
         var fragmentTemplate = CreateFragmentTemplate();
-        var fragmentList = new List<GameObject>();
+        //var fragmentList = new List<GameObject>();
         if (fractureOptions.asynchronous)
         {
             StartCoroutine(Fragmenter.FractureAsync(
@@ -174,6 +189,7 @@ public class Fracture2 : MonoBehaviour
                     callbackOptions.onCompleted.Invoke();
                 }
             }
+            
         }
             Destroy(fragmentRoot, DestroyTime);
         

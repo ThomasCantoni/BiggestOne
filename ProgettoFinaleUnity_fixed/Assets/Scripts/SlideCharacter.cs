@@ -12,6 +12,11 @@ public class SlideCharacter : MonoBehaviour
     public float slideDuration;
     public float reduceHeight;
     public float slideSpeed = 10f;
+    public float DistanceFactor;
+    public float CheckRadius;
+    public LayerMask CollisionCheck;
+    public LayerMask BreakableCheck;
+
     bool canSlide = true;
     float originalHeight;
     private float _SlideCD;
@@ -22,8 +27,15 @@ public class SlideCharacter : MonoBehaviour
     public FirstPersonController FPS;
     public bool isSliding = false;
     Vector3 slideDir;
-    public delegate void DashingEvents();
-    public event DashingEvents StartedDashing, StoppedDashing;
+    public delegate void SlideEvents();
+    public event SlideEvents StartedSLiding, StoppedSliding;
+    public bool NoWallAhead
+    {
+        get
+        {
+            return !Physics.CheckSphere(transform.position + slideDir * DistanceFactor, CheckRadius, CollisionCheck.value);
+        }
+    }
     private void Start()
     {
         capsColl = GetComponent<CapsuleCollider>();
@@ -48,7 +60,7 @@ public class SlideCharacter : MonoBehaviour
         yield return new WaitForSeconds(SlideInitialTime);
         if (canSlide && FPS.RB.velocity.magnitude > 1 && FPS.SoftGrounded)
         {
-            StartedDashing?.Invoke();
+            StartedSLiding?.Invoke();
             canSlide = false;
             this.isSliding = true;
             FPS.RB.velocity = new Vector3(0,FPS.RB.velocity.y,0);
@@ -59,14 +71,41 @@ public class SlideCharacter : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        if (!isSliding)
-        {
-            capsColl.height = Mathf.Lerp(capsColl.height, originalHeight, 0.2f);
-        }
-        else
+        if(isSliding && NoWallAhead)
         {
             capsColl.height = Mathf.Lerp(capsColl.height, reduceHeight, 0.2f);
             FPS.RB.velocity = new Vector3(slideDir.x * slideSpeed,FPS.RB.velocity.y, slideDir.z * slideSpeed);
+            Collider[] thingsHit = Physics.OverlapSphere(transform.position + slideDir * DistanceFactor, CheckRadius, BreakableCheck.value);
+            foreach (Collider x in thingsHit)
+            {
+                HitEventFracture checkIfFracture = x.GetComponent<HitEventFracture>();
+                if (checkIfFracture != null)
+                {
+                    if (checkIfFracture.FractureType == FractureType.Slide)
+                    {
+                        // if the wall has the same fractureMask, then keep going
+
+
+                        HitInfo hitInfo = new HitInfo();
+                        hitInfo.FractureInfo.collisionPoint = this.transform.position;
+                        hitInfo.FractureInfo.FractureType = FractureType.Slide;
+                        checkIfFracture.OnHit(hitInfo);
+                        Debug.Log("WALL SLIDE!");
+
+                    }
+                    else // else stop sliding 
+                    {
+                        GoUp();
+                        Debug.Log("STOP SLIDING");
+
+                    }
+
+                }
+            }
+        }
+        else
+        {
+            capsColl.height = Mathf.Lerp(capsColl.height, originalHeight, 0.2f);
         }
     }
     private void GoUp()
@@ -77,10 +116,19 @@ public class SlideCharacter : MonoBehaviour
             FPS.ClampSpeed = true;
             SlidingTimer.StopTimer(false);
             this.isSliding = false;
-            StoppedDashing?.Invoke();
+            StoppedSliding?.Invoke();
             CDTimer.StartTimer();
         }
         
     }
 
+    private void OnDrawGizmos()
+    {
+        bool wall = NoWallAhead;
+        if (!wall) Gizmos.color = Color.red;
+        else Gizmos.color = Color.green;
+        Gizmos.DrawSphere(transform.position + slideDir*DistanceFactor,CheckRadius);
+        
+
+    }
 }

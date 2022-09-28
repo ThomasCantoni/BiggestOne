@@ -11,7 +11,8 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     
 
     NavMeshAgent Enemy;
-
+    public GameObject player;
+    public FirstPersonController FPS_Controller;
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;
@@ -21,11 +22,17 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
         get { return this; }
     }
     public event IKillable.OnDeathEvent OnEnemyDeath;
-    
+    public virtual void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     public void Start()
     {
         HP_Slider = GetComponentInChildren<Slider>(true);
         Enemy = GetComponentInParent<NavMeshAgent>();
+       
+        FPS_Controller = player.GetComponent<FirstPersonController>();
+        
     }
     public float HP_Value
     {
@@ -51,7 +58,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
         {
             HP_Value -= info.DamageStats.Damage;
             if (IsDead)
-                OnDeath();
+                OnDeath(info);
         }
     }
 
@@ -59,11 +66,30 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     {
         DetuctHealth(info);
     }
-
-    public void OnDeath()
+    public virtual void OnDeath()
     {
         OnEnemyDeath?.Invoke();
         Destroy(Enemy.gameObject);
+    }
+    public void OnDeath(HitInfo info)
+    {
+        if(info.SourceDamageInstance != null)
+        {
+
+            if(info.IsChainableAttack)
+            {
+                FirstPersonController tryget =(FirstPersonController) info.SourceDamageInstance.DamageSource.Mono;
+                tryget.PlayerKilledSomething?.Invoke(tryget, this);
+            }
+            else
+            {
+                GenericGun tryget = info.SourceDamageInstance.DamageSource.Mono.GetComponent<GenericGun>();
+                if (tryget != null)
+                    tryget.WeaponKilledSomething?.Invoke(tryget, this);
+
+            }
+        }
+        OnDeath();
     }
 }
 

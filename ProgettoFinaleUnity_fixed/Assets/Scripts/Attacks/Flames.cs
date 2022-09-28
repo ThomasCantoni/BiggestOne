@@ -14,9 +14,9 @@ public class Flames : ChainableAttack
         FlamesEnemyComponent fec = recepient.gameObject.AddComponent<FlamesEnemyComponent>();
         if (fec == null)
             return;
-        fec.flamesHitInfo = new HitInfo();
-        fec.flamesHitInfo.GameObjectHit = recepient.gameObject;
-        fec.flamesHitInfo.IsChainableAttack = true;
+        //fec.flamesHitInfo = new HitInfo();
+        //fec.flamesHitInfo.GameObjectHit = recepient.gameObject;
+        //fec.flamesHitInfo.IsChainableAttack = true;
         
         fec.Duration = FlamesBurnDuration;
         fec.InitialDamage = FlamesInitialDamage;

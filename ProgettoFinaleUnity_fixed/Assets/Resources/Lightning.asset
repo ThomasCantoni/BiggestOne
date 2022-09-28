@@ -15,7 +15,7 @@ MonoBehaviour:
   ChainAttackApplicationMode: 0
   EnemiesHit: []
   DamageStats:
-    Damage: 50
+    Damage: 100
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0

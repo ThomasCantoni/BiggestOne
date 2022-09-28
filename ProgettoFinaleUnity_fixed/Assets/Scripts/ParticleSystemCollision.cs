@@ -12,6 +12,13 @@ public class ParticleSystemCollision : MonoBehaviour, IDamager
         get { return damage; }
         set { damage = value; }
     }
+    public MonoBehaviour Mono
+    {
+        get
+        {
+            return this;
+        }
+    }
     private void OnParticleCollision(GameObject other)
     {
         Debug.Log("nagg crist");
