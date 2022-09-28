@@ -21,10 +21,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
 
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
-    private void Awake()
-    {
-        //player = GameObject.Find("Player 2.0").transform;
-    }
+  
 
     private void Update()
     {

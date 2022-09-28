@@ -64,7 +64,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
                 if (!alreadyAttacked)
                 {
                     alreadyAttacked = true;
-                    transform.LookAt(player.position);
+                    transform.LookAt(player.transform.position);
                     
                     Instantiate(ToInstantiate, offSet.position, Quaternion.LookRotation(dir, Vector3.up));
                     Invoke(nameof(ResetAttack), timeBetweenAttacks);
