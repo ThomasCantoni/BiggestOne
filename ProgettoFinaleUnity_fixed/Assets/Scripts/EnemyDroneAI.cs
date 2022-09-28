@@ -32,8 +32,8 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
         get
         {
             RaycastHit hit;
-            Vector3 dir = (player.position - offSet.position).normalized;
-            Ray enemyPosition = new Ray(offSet.position, dir);
+            Vector3 dir = (player.position - offSet2.position).normalized;
+            Ray enemyPosition = new Ray(offSet2.position, dir);
             if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
             {
                 return hit.transform.gameObject.layer == 3;
@@ -65,6 +65,8 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
     {
         distanceFromPlayer = Vector3.Distance(offSet2.position, player.position);
         Vector3 dir = (player.position - offSet.position).normalized;
+        transform.LookAt(player.position);
+
         //Ray enemyPosition = new Ray(offSet.position, dir);
         //RaycastHit info;
         if (distanceFromPlayer <= attackRange && distanceFromPlayer > runFromPlayerRange && PlayerIsVisible)
@@ -88,10 +90,10 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
             agent.isStopped = false;
             agent.speed = 2f;
         }
-        if (distanceFromPlayer <= attackRange && distanceFromPlayer <= runFromPlayerRange && !PlayerIsVisible)
-        {
-            agent.SetDestination(player.position);
-        }
+        //if (distanceFromPlayer <= attackRange && distanceFromPlayer <= runFromPlayerRange && !PlayerIsVisible)
+        //{
+        //    agent.SetDestination(player.position);
+        //}
 
         if (distanceFromPlayer <= runFromPlayerRange && RunFromPlayerRange && PlayerIsVisible)
         {

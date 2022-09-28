@@ -10,6 +10,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     //public Transform player;
     public LayerMask layer;
     public DamageStats damage;
+    public Animator anim;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -34,11 +35,22 @@ public class EnemyMeleeAI : EnemyClass, IDamager
 
     private void AttackPlayer()
     {
+
         agent.SetDestination(player.transform.position);
-        
+        float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+        agent.isStopped = distanceFromPlayer <= attackRange;
+        if (distanceFromPlayer <= attackRange)
+        {
+            anim.SetTrigger("Attack");
+            anim.SetBool("Run", false);
+        }
+        else
+        {
+            anim.SetBool("Run", true);
+        }
         if (!alreadyAttacked)
         {
-            float distanceFromPlayer = Vector3.Distance(this.transform.position, player.transform.position);
+
             if (distanceFromPlayer <= attackRange)
             {
                 HitInfo infoDamage = new HitInfo(this, player.GetComponent<HealthPlayer>());

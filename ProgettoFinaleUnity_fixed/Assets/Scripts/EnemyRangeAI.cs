@@ -15,7 +15,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
     public float distanceFromPlayer;
     public float walkPointRange;
     public Vector3 walkPoint;
-
+    public Animator anim;
     //Attacking
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -48,8 +48,11 @@ public class EnemyRangeAI : EnemyClass, IDamager
 
     private void AttackPlayer()
     {
+
         distanceFromPlayer = Vector3.Distance(this.transform.position, player.transform.position);
         Vector3 dir = (player.transform.position - offSet.position).normalized;
+        transform.LookAt(player.transform.position);
+
         //Ray enemyPosition = new Ray(offSet.position, dir);
         //RaycastHit info;
         if (distanceFromPlayer <= attackRange && distanceFromPlayer > runFromPlayerRange && PlayerIsVisible)
@@ -61,6 +64,8 @@ public class EnemyRangeAI : EnemyClass, IDamager
                 if (!alreadyAttacked)
                 {
                     alreadyAttacked = true;
+                    transform.LookAt(player.position);
+                    
                     Instantiate(ToInstantiate, offSet.position, Quaternion.LookRotation(dir, Vector3.up));
                     Invoke(nameof(ResetAttack), timeBetweenAttacks);
                 }
@@ -72,6 +77,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
             playerInAttackRange = false;
             agent.isStopped = false;
             agent.speed = 2f;
+
         }
 
         if (distanceFromPlayer <= runFromPlayerRange && RunFromPlayerRange && PlayerIsVisible)
@@ -102,6 +108,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
     private void SearchWalkPoint()
     {
         agent.isStopped = false;
+
         NavMeshPath newPath;
         Vector3[] directions = { Vector3.back, Vector3.left, Vector3.right, Vector3.forward };
         bool local = true;
