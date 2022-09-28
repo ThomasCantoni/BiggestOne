@@ -20,6 +20,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     public bool playerInAttackRange;
 
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
+
     private void Update()
     {
         //Check for sight and attack range

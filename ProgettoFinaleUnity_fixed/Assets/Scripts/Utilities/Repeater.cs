@@ -10,10 +10,11 @@ public class Repeater
     
     public float Frequency
     {
-        get { return 1000f / IntervalMilliseconds; }
+        get { return (float)1000f / IntervalMilliseconds; }
         set
         {
             IntervalMilliseconds = 1000f / value;
+            ChangeTime((int)IntervalMilliseconds);
         }
     }
     public float IntervalMilliseconds=1000;
@@ -29,6 +30,11 @@ public class Repeater
     private float activationTime;
     public Repeater() 
     {
+
+    }
+    public Repeater(float Frequency)
+    {
+        this.IntervalMilliseconds = 1000/ IntervalMilliseconds;
 
     }
     public Repeater(int IntervalMilliseconds)
@@ -82,7 +88,8 @@ public class Repeater
     }
     public void ChangeTime(int TimeInMilliseconds)
     {
-        t.Change(0,TimeInMilliseconds);
+        if(t != null)
+            t.Change(0,TimeInMilliseconds);
 
     }
     public void PauseRepeater()
