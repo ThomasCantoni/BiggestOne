@@ -21,13 +21,14 @@ public class EnemyMeleeAI : EnemyClass, IDamager
 
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
-  
-
     private void Update()
     {
         //Check for sight and attack range
-        AttackPlayer();
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
+        if (!IsDead)
+        {
+            AttackPlayer();
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
+        }
     }
 
     private void AttackPlayer()
@@ -61,10 +62,13 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     {
         alreadyAttacked = false;
     }
-    private void DestroyEnemy()
+    public override void OnDeath()
     {
+        OnEnemyDeath?.Invoke();
+        anim.SetBool("Run", false);
+        anim.SetTrigger("Death");
         agent.isStopped = true;
-        Destroy(this.gameObject, 4f);
+        Destroy(agent.transform.gameObject, 3f);
     }
     private void OnDrawGizmosSelected()
     {
