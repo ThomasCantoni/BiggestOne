@@ -107,6 +107,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grenade"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c82156a-b54c-4167-aa28-bf139217d91b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -252,6 +261,17 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""526775af-a9ea-40e3-b486-60c0a5acc3b2"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Grenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -286,6 +306,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Player_Sliding = m_Player.FindAction("Sliding", throwIfNotFound: true);
         m_Player_OpenShop = m_Player.FindAction("OpenShop", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
+        m_Player_Grenade = m_Player.FindAction("Grenade", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,6 +375,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Sliding;
     private readonly InputAction m_Player_OpenShop;
     private readonly InputAction m_Player_Reload;
+    private readonly InputAction m_Player_Grenade;
     public struct PlayerActions
     {
         private @Controls m_Wrapper;
@@ -367,6 +389,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Sliding => m_Wrapper.m_Player_Sliding;
         public InputAction @OpenShop => m_Wrapper.m_Player_OpenShop;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
+        public InputAction @Grenade => m_Wrapper.m_Player_Grenade;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -403,6 +426,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @Grenade.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrenade;
+                @Grenade.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrenade;
+                @Grenade.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrenade;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -434,6 +460,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @Grenade.started += instance.OnGrenade;
+                @Grenade.performed += instance.OnGrenade;
+                @Grenade.canceled += instance.OnGrenade;
             }
         }
     }
@@ -458,5 +487,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnSliding(InputAction.CallbackContext context);
         void OnOpenShop(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnGrenade(InputAction.CallbackContext context);
     }
 }

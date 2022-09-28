@@ -15,7 +15,13 @@ public class ProjectileBulletMonobehaviour : MonoBehaviour,IDamager
         get { return Source.DamageStats;    } 
         set { Source.DamageStats = value;   } 
     }
-
+    public MonoBehaviour Mono
+    {
+        get
+        {
+            return this;
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(!AlreadyHit.Contains(other.gameObject))

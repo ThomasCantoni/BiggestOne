@@ -42,7 +42,13 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
         }
     }
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
-
+    public MonoBehaviour Mono
+    {
+        get
+        {
+            return this;
+        }
+    }
     private void Awake()
     {
         player = GameObject.Find("Player 2.0").transform;

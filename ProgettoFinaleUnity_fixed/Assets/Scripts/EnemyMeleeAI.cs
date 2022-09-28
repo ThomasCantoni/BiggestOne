@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class EnemyMeleeAI : EnemyClass, IDamager
 {
     public NavMeshAgent agent;
-    public Transform player;
+    //public Transform player;
     public LayerMask layer;
     public DamageStats damage;
 
@@ -22,7 +22,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
 
     private void Awake()
     {
-        player = GameObject.Find("Player 2.0").transform;
+        //player = GameObject.Find("Player 2.0").transform;
     }
 
     private void Update()
@@ -34,11 +34,11 @@ public class EnemyMeleeAI : EnemyClass, IDamager
 
     private void AttackPlayer()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(player.transform.position);
         
         if (!alreadyAttacked)
         {
-            float distanceFromPlayer = Vector3.Distance(this.transform.position, player.position);
+            float distanceFromPlayer = Vector3.Distance(this.transform.position, player.transform.position);
             if (distanceFromPlayer <= attackRange)
             {
                 HitInfo infoDamage = new HitInfo(this, player.GetComponent<HealthPlayer>());

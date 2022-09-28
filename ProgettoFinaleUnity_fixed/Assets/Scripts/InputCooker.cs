@@ -78,7 +78,7 @@ public class InputCooker : MonoBehaviour
         Controls.Player.OpenShop.canceled += OnCloseShop;
         Controls.Player.Reload.started += OnReloadStart;
         Controls.Player.Reload.canceled += OnReloadStop;
-
+        Controls.Player.Grenade.started += OnGrenade;
         //Controls.Player.Sprint.canceled += OnSprintStop;
         Controls.Player.WeaponScroll.performed += (context) => ChangeWeapon(context.ReadValue<float>());
         VCameraBrain = MainCamera.GetComponent<CinemachineBrain>();
@@ -103,6 +103,10 @@ public class InputCooker : MonoBehaviour
         //Debug.Log("ABSOLUTE DIR: "+AbsoluteDirection);
         //Debug.Log("RELATIVE DIR: " + RelativeDirection +"  MAG "+RelativeDirection.magnitude );
 
+    }
+    public void OnGrenade(InputAction.CallbackContext ctx)
+    {
+        FPS_Ctrl.ThrowGrenade();
     }
     public void OnReloadStart(InputAction.CallbackContext obj)
     {

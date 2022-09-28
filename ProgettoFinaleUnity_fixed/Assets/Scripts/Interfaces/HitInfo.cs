@@ -6,13 +6,22 @@ using System;
 [Serializable]
 public class HitInfo
 {
-    [Tooltip("The DamageInstance from which this information comes from")]
+    //[Tooltip("The DamageInstance from which this information comes from")]
     public DamageInstance SourceDamageInstance;
     public bool HasHitEnemy
     {
         get { return EnemyHit != null; }
     }
-    public bool IsChainableAttack = false;
+    
+    public bool IsChainableAttack
+    {
+        get
+        {
+            // if the damageSource is the player itself, then it's a chainableattack
+            return SourceDamageInstance.DamageSource.Mono is FirstPersonController;
+        }
+    }
+
     public GameObject GameObjectHit;
     public EnemyClass EnemyHit;
     //public PlayerAttackEffects PlayerAttackEffects;
@@ -35,6 +44,7 @@ public class HitInfo
         //SourceDamageInstance = SourceGun;
         //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
         DamageStats = Source.DamageStats;
+       
     }
     public HitInfo(IDamager Source, IHittable Target)
     {

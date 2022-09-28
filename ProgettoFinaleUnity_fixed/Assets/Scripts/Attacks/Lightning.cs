@@ -23,6 +23,9 @@ public class Lightning : ChainableAttack
 
         if (enemiesToHit.Count < 2)
             return;
+
+        
+
         HitEnemies(enemiesToHit);
 
        
@@ -50,7 +53,7 @@ public class Lightning : ChainableAttack
     }
     public void HitEnemies(List<EnemyClass> enemiesToHit)
     {
-        multipliedDamageStats = DamageStats;
+        multipliedDamageStats = damageValues;
 
         for (int i = 0; i < enemiesToHit.Count; i++)
         {

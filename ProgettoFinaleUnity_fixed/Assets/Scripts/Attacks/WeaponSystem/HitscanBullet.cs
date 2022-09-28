@@ -55,8 +55,8 @@ public class HitscanBullet : GenericBullet
             {
                 HitInfo hitInfo = new HitInfo(Owner,thingHit);
                 hitInfo.SetRaycastPositions(hit);
-                
-                hitInfo.IsChainableAttack = false;
+                hitInfo.FractureInfo.Force = Owner.FractureInformation.Force;
+                //hitInfo.IsChainableAttack = false;
 
                 hitinfoList.Add(hitInfo);
                 Owner.HitInfoCreated?.Invoke(hitInfo);

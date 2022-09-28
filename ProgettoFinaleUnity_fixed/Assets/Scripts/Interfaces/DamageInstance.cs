@@ -6,6 +6,7 @@ public class DamageInstance
 {
     public IDamager DamageSource;
     public List<GenericBullet> BulletsHit;
+    public GameObject InstanceOwner;
     public PlayerAttackEffects PlayerAttackEffects;
     
     private List<HitInfo> hits;
@@ -37,10 +38,16 @@ public class DamageInstance
     }
 
 
+    public DamageInstance()
+    {
 
+        hits = new List<HitInfo>();
+        enemiesHit = new List<EnemyClass>();
+    }
     public DamageInstance(IDamager source)
     {
         DamageSource = source;
+        InstanceOwner = source.Mono.gameObject;
         hits = new List<HitInfo>();
         enemiesHit = new List<EnemyClass>();
     }

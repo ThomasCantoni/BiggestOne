@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class EnemyRangeAI : EnemyClass, IDamager
 {
     public NavMeshAgent agent;
-    public Transform player;
+    
     public Transform offSet;
     public GameObject ToInstantiate;
     public LayerMask layer;
@@ -26,7 +26,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
     public bool RunFromPlayerRange;
     public bool PlayerIsVisible { get {
             RaycastHit hit;
-            Vector3 dir = (player.position - offSet.position).normalized;
+            Vector3 dir = (player.transform.position - offSet.position).normalized;
             Ray enemyPosition = new Ray(offSet.position, dir);
             if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
             {
@@ -36,10 +36,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
         } }
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
-    private void Awake()
-    {
-        player = GameObject.Find("Player 2.0").transform;
-    }
+    
 
     private void Update()
     {
@@ -51,8 +48,8 @@ public class EnemyRangeAI : EnemyClass, IDamager
 
     private void AttackPlayer()
     {
-        distanceFromPlayer = Vector3.Distance(this.transform.position, player.position);
-        Vector3 dir = (player.position - offSet.position).normalized;
+        distanceFromPlayer = Vector3.Distance(this.transform.position, player.transform.position);
+        Vector3 dir = (player.transform.position - offSet.position).normalized;
         //Ray enemyPosition = new Ray(offSet.position, dir);
         //RaycastHit info;
         if (distanceFromPlayer <= attackRange && distanceFromPlayer > runFromPlayerRange && PlayerIsVisible)
@@ -71,7 +68,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
         }
         else if (distanceFromPlayer >= attackRange && !PlayerIsVisible)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.transform.position);
             playerInAttackRange = false;
             agent.isStopped = false;
             agent.speed = 2f;

@@ -55,14 +55,14 @@ public class ShopScript : MonoBehaviour
             RaycastHit hit = hits[i];
             if (hit.point != null)
             {
-                PressE.gameObject.SetActive(false);
+                PressE.text = "";
             }
         }
         foreach (RaycastResult result in results)
         {
             if (result.distance < 10)
             {
-                PressE.gameObject.SetActive(true);
+                PressE.text = "Press E";
             }
         }
     }
