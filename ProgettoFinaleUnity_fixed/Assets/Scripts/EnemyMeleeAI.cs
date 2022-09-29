@@ -6,18 +6,17 @@ using UnityEngine.AI;
 
 public class EnemyMeleeAI : EnemyClass, IDamager
 {
-    public NavMeshAgent agent;
+    //public NavMeshAgent agent;
     //public Transform player;
     public LayerMask layer;
     public DamageStats damage;
-    public Animator anim;
+    //public Animator anim;
 
     //Attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    //public float timeBetweenAttacks;
+    //bool alreadyAttacked;
     //States
-    public float attackRange;
-    public bool playerInAttackRange;
+    
 
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
     private void Update()
@@ -26,16 +25,16 @@ public class EnemyMeleeAI : EnemyClass, IDamager
         if (!IsDead)
         {
             AttackPlayer();
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
+            PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
         }
     }
 
     private void AttackPlayer()
     {
 
-        agent.SetDestination(player.transform.position);
+        NavMeshAgent.SetDestination(player.transform.position);
         float distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
-        agent.isStopped = distanceFromPlayer <= attackRange;
+        NavMeshAgent.isStopped = distanceFromPlayer <= attackRange;
         if (distanceFromPlayer <= attackRange)
         {
             anim.SetTrigger("Attack");
@@ -45,7 +44,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
         {
             anim.SetBool("Run", true);
         }
-        if (!alreadyAttacked)
+        if (!HasAlreadyAttack)
         {
 
             if (distanceFromPlayer <= attackRange)
@@ -53,21 +52,21 @@ public class EnemyMeleeAI : EnemyClass, IDamager
                 HitInfo infoDamage = new HitInfo(this, player.GetComponent<HealthPlayer>());
                 player.GetComponent<HealthPlayer>().OnHit(infoDamage);
             }
-            alreadyAttacked = true;
+            HasAlreadyAttack = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
     private void ResetAttack()
     {
-        alreadyAttacked = false;
+        HasAlreadyAttack = false;
     }
     public override void OnDeath()
     {
         OnEnemyDeath?.Invoke();
         anim.SetBool("Run", false);
         anim.SetTrigger("Death");
-        agent.isStopped = true;
-        Destroy(agent.transform.gameObject, 3f);
+        NavMeshAgent.isStopped = true;
+        Destroy(NavMeshAgent.transform.gameObject, 3f);
     }
     private void OnDrawGizmosSelected()
     {

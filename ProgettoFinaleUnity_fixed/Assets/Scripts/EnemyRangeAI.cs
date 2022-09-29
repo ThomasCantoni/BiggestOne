@@ -5,86 +5,98 @@ using UnityEngine.AI;
 
 public class EnemyRangeAI : EnemyClass, IDamager
 {
-    public NavMeshAgent agent;
-    
-    public Transform offSet;
+    //public NavMeshAgent NavAgent;
     public GameObject ToInstantiate;
     public LayerMask layer;
-    public LayerMask layerBullet;
+    //public LayerMask layerBullet;
     public DamageStats damage;
     public float distanceFromPlayer;
     public float walkPointRange;
     public Vector3 walkPoint;
-    public Animator anim;
+    //public Animator anim;
     //Attacking
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    //public float timeBetweenAttacks;
+    //public bool alreadyAttacked;
     //States
-    public float attackRange;
+    //public float attackRange;
     public float runFromPlayerRange;
-    public bool playerInAttackRange;
+    //public bool PlayerInAttackRange;
     public bool RunFromPlayerRange;
-    public bool PlayerIsVisible { get {
-            RaycastHit hit;
-            Vector3 dir = (player.transform.position - offSet.position).normalized;
-            Ray enemyPosition = new Ray(offSet.position, dir);
-            if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
-            {
-                return hit.transform.gameObject.layer == 3;
-            }
-            return false;
-        } }
+    //public bool PlayerIsVisible { get {
+    //        RaycastHit hit;
+    //        Vector3 dir = (player.transform.position - offSet.position).normalized;
+    //        Ray enemyPosition = new Ray(offSet.position, dir);
+    //        if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
+    //        {
+    //            return hit.transform.gameObject.layer == 3;
+    //        }
+    //        return false;
+    //    } }
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
-    
+    public override void Start()
+    {
+        base.Start();
+        agent = new AiAgent(this);
+        agent.initialState = AiStateId.ChasePlayer;
+        agent.Start();
+    }
 
     private void Update()
     {
+        agent.Update();
         //Check for sight and attack range
-        AttackPlayer();
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
-        RunFromPlayerRange = Physics.CheckSphere(transform.position, runFromPlayerRange, layer);
+        //AttackPlayer();
+        //PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
+        //RunFromPlayerRange = Physics.CheckSphere(transform.position, runFromPlayerRange, layer);
     }
 
     private void AttackPlayer()
     {
+        agent.stateMachine.ChangeState(AiStateId.Attack);
+        //distanceFromPlayer = Vector3.Distance(this.transform.position, player.transform.position);
+        //Vector3 dir = (player.transform.position - offSet.position).normalized;
+        //if (distanceFromPlayer <= attackRange && distanceFromPlayer > runFromPlayerRange && PlayerIsVisible)
+        //{
+        //    anim.SetTrigger("Attack");
+        //    anim.SetBool("Run", false);
+        //}
 
-        distanceFromPlayer = Vector3.Distance(this.transform.position, player.transform.position);
-        Vector3 dir = (player.transform.position - offSet.position).normalized;
-        transform.LookAt(player.transform.position);
+        //if (distanceFromPlayer <= attackRange && distanceFromPlayer > runFromPlayerRange && PlayerIsVisible)
+        //{
+        //    PlayerInAttackRange = true;
+        //    if (distanceFromPlayer <= attackRange)
+        //    {
+        //        Quaternion look = Quaternion.LookRotation(new Vector3(dir.x,0,dir.z), Vector3.up);
+        //        NavMeshAgent.transform.rotation = look;
+        //        NavMeshAgent.isStopped = true;
+        //        if (!alreadyAttacked)
+        //        {
+        //            alreadyAttacked = true;
+        //            //transform.LookAt(player.transform.position);
+        //            Instantiate(ToInstantiate, offSet.position, Quaternion.LookRotation(dir, Vector3.up));
+        //            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        //        }
+        //    }
+        //}
+        //else if (distanceFromPlayer >= attackRange && !PlayerIsVisible)
+        //{
+        //    NavMeshAgent.SetDestination(player.transform.position);
+        //    PlayerInAttackRange = false;
+        //    NavMeshAgent.isStopped = false;
+        //    NavMeshAgent.speed = 2f;
+        //    anim.SetBool("Run", true);
+        //    //Vector3 newPosition = agent.nextPosition - agent.transform.position;
+        //    //newPosition.y = 0;
+        //    //agent.transform.rotation = Quaternion.LookRotation(newPosition.normalized, Vector3.up);
+        //}
 
-        //Ray enemyPosition = new Ray(offSet.position, dir);
-        //RaycastHit info;
-        if (distanceFromPlayer <= attackRange && distanceFromPlayer > runFromPlayerRange && PlayerIsVisible)
-        {
-            playerInAttackRange = true;
-            if (playerInAttackRange)
-            {
-                agent.isStopped = true;
-                if (!alreadyAttacked)
-                {
-                    alreadyAttacked = true;
-                    transform.LookAt(player.transform.position);
-                    
-                    Instantiate(ToInstantiate, offSet.position, Quaternion.LookRotation(dir, Vector3.up));
-                    Invoke(nameof(ResetAttack), timeBetweenAttacks);
-                }
-            }
-        }
-        else if (distanceFromPlayer >= attackRange && !PlayerIsVisible)
-        {
-            agent.SetDestination(player.transform.position);
-            playerInAttackRange = false;
-            agent.isStopped = false;
-            agent.speed = 2f;
-
-        }
-
-        if (distanceFromPlayer <= runFromPlayerRange && RunFromPlayerRange && PlayerIsVisible)
-        {
-            SearchWalkPoint();
-            playerInAttackRange = false;
-        }
+        //if (distanceFromPlayer <= runFromPlayerRange && RunFromPlayerRange && PlayerIsVisible)
+        //{
+        //    SearchWalkPoint();
+        //    PlayerInAttackRange = false;
+        //    anim.SetBool("Run", true);
+        //}
     }
     public NavMeshPath TryGo(Vector3 dir,float multi,bool local = false)
     {
@@ -107,8 +119,8 @@ public class EnemyRangeAI : EnemyClass, IDamager
     }
     private void SearchWalkPoint()
     {
-        agent.isStopped = false;
-
+        NavMeshAgent.isStopped = false;
+        anim.SetBool("Run", true);
         NavMeshPath newPath;
         Vector3[] directions = { Vector3.back, Vector3.left, Vector3.right, Vector3.forward };
         bool local = true;
@@ -119,8 +131,8 @@ public class EnemyRangeAI : EnemyClass, IDamager
             newPath = TryGo(directions[j], 5f,local);
             if (newPath != null)
             {
-                agent.SetPath(newPath);
-                walkPoint = agent.destination;
+                NavMeshAgent.SetPath(newPath);
+                walkPoint = NavMeshAgent.destination;
                 break;
             }
             else if(i == 3)
@@ -131,7 +143,7 @@ public class EnemyRangeAI : EnemyClass, IDamager
             }
             j++;
         }
-        agent.speed = 4f;
+        NavMeshAgent.speed = 4f;
         //agent.SetDestination(walkPoint);
         //Vector3 fsmPosition = this.transform.position;
         //Vector3 fwd = transform.TransformDirection(Vector3.forward); // this
@@ -141,25 +153,25 @@ public class EnemyRangeAI : EnemyClass, IDamager
         //    agent.SetDestination(walkPoint);
         //    Debug.DrawRay(transform.position, fwd * 10, Color.red);
         //}
-        Debug.DrawLine(this.transform.position, agent.destination, Color.green, 3f);
+        Debug.DrawLine(this.transform.position, NavMeshAgent.destination, Color.green, 3f);
     }
 
 
 
-    private void ResetAttack()
+    public override void ResetAttack()
     {
-        alreadyAttacked = false;
+        HasAlreadyAttack = false;
     }
     private void DestroyEnemy()
     {
-        agent.isStopped = true;
+        NavMeshAgent.isStopped = true;
         Destroy(this.gameObject, 4f);
     }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, runFromPlayerRange);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, attackRange);
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawWireSphere(transform.position, runFromPlayerRange);
+    //}
 }

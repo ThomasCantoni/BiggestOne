@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletEnemy : EnemyClass, IDamager
+public class BulletEnemy : MonoBehaviour, IDamager
 {
     public static List<EnemyClass> AlreadyHit = new List<EnemyClass>();
     public float Speed = 1f;
@@ -13,6 +13,8 @@ public class BulletEnemy : EnemyClass, IDamager
         get { return damage; }
         set { damage = value; }
     }
+
+    public MonoBehaviour Mono => throw new System.NotImplementedException();
 
     private void OnTriggerEnter(Collider other)
     {
