@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiEscapeState : AiAgent, AiState
+public class AI_Ranged_EscapeState : AiAgent, AiState
 {
     public Transform player;
-    public AiEscapeState(EnemyClass Owner) : base(Owner)
+    public AI_Ranged_EscapeState(EnemyClass Owner) : base(Owner)
     {
 
     }

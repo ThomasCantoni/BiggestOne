@@ -17,7 +17,8 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     //bool alreadyAttacked;
     //States
     
-
+    public bool HasAlreadyAttack;
+    float timeBetweenAttacks;
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
     private void Update()
@@ -57,7 +58,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
-    private void ResetAttack()
+    public override void ResetAttack()
     {
         HasAlreadyAttack = false;
     }

@@ -3,25 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyRangeAI : EnemyClass, IDamager
+public class EnemyRanged : EnemyClass, IDamager
 {
-    //public NavMeshAgent NavAgent;
-    public GameObject ToInstantiate;
-    public LayerMask layer;
-    //public LayerMask layerBullet;
+
+
+    //public float maxDistance = 1.0f;
+    public AI_Ranged_StateAgent agent;
+    public LayerMask LayerOfPlayer;
     public DamageStats damage;
-    public float distanceFromPlayer;
-    public float walkPointRange;
+    //public LayerMask layerBullet;
     public Vector3 walkPoint;
-    //public Animator anim;
-    //Attacking
-    //public float timeBetweenAttacks;
-    //public bool alreadyAttacked;
-    //States
-    //public float attackRange;
-    public float runFromPlayerRange;
-    //public bool PlayerInAttackRange;
-    public bool RunFromPlayerRange;
+    public float walkPointRange;
+    public bool HasAlreadyAttack;
+    public GameObject bullet;
+    public LayerMask layerBullet;
+    public float RunFromPlayerRange;
     //public bool PlayerIsVisible { get {
     //        RaycastHit hit;
     //        Vector3 dir = (player.transform.position - offSet.position).normalized;
@@ -37,8 +33,8 @@ public class EnemyRangeAI : EnemyClass, IDamager
     public override void Start()
     {
         base.Start();
-        agent = new AiAgent(this);
-        agent.initialState = AiStateId.ChasePlayer;
+        agent = new AI_Ranged_StateAgent(this);
+       
         agent.Start();
     }
 

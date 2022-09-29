@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AiDeathState : AiAgent, AiState
+public class AI_Ranged_DeathState : AiAgent, AiState
 {
-    public AiDeathState(EnemyClass Owner) : base(Owner)
+    public AI_Ranged_DeathState(EnemyClass Owner) : base(Owner)
     {
 
     }
