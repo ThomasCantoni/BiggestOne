@@ -445,8 +445,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6299aa4a2fe8645900dd3292edd43a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseState: {fileID: 553461881}
-  canSeeThePlayer: 0
 --- !u!1 &111071283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,8 +1214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6016fc35bdcb04286c3e3ca5314ee7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackState: {fileID: 716991616}
-  isInAttackRange: 0
 --- !u!1 &602362945
 GameObject:
   m_ObjectHideFlags: 0
@@ -7588,30 +7584,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8334250676364403269, guid: 99182a1136fa6744dbaa063cfd1a8555, type: 3}
   m_PrefabInstance: {fileID: 2119121523}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2119121525 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8334250676364403265, guid: 99182a1136fa6744dbaa063cfd1a8555, type: 3}
-  m_PrefabInstance: {fileID: 2119121523}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2119121526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119121525}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cf6f3b5c8da0ca4daf39251a6b87022, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: {fileID: 81040884}
 --- !u!114 &2119121527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7977970993215598652, guid: 99182a1136fa6744dbaa063cfd1a8555, type: 3}
   m_PrefabInstance: {fileID: 2119121523}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119121525}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7efa375e4c1d3a49abbd0cf17014c9a, type: 3}
