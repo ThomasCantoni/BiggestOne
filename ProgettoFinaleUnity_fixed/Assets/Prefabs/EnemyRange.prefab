@@ -336,7 +336,6 @@ GameObject:
   - component: {fileID: 8334250676364403266}
   - component: {fileID: 8334250676364403267}
   - component: {fileID: 8334250676364403264}
-  - component: {fileID: 8334250676364403268}
   - component: {fileID: 8334250676364403271}
   - component: {fileID: 8334250675054518049}
   - component: {fileID: 7977970993215598652}
@@ -426,18 +425,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8334250676364403268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8334250676364403265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a28a5eeb2f50a2e4c895247300f134d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8334250676364403271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,8 +479,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7efa375e4c1d3a49abbd0cf17014c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 325058900345308922}
   player: {fileID: 0}
+  FPS_Controller: {fileID: 0}
+  agent: {fileID: 325058900345308922}
   offSet: {fileID: 686869494}
   ToInstantiate: {fileID: 4342492009047063302, guid: 9dae60215b1e906408b98849a71d4550, type: 3}
   layer:

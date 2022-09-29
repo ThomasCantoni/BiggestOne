@@ -8,14 +8,38 @@ using UnityEngine.AI;
 
 public abstract class EnemyClass : MonoBehaviour,IKillable
 {
-    
-
-    NavMeshAgent Enemy;
+    public NavMeshAgent NavMeshAgent;
+    public AiAgent agent;
     public GameObject player;
     public FirstPersonController FPS_Controller;
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;
+    public Transform offSet;
+    //public bool alreadyAttacked;
+    public float timeBetweenAttacks;
+    public GameObject bullet;
+    public float maxDistance = 1.0f;
+    public float attackRange;
+    public bool PlayerInAttackRange;
+    public LayerMask layerBullet;
+    public Animator anim;
+    public bool HasAlreadyAttack = false;
+
+    public bool PlayerIsVisible
+    {
+        get
+        {
+            RaycastHit hit;
+            Vector3 dir = (player.transform.position - offSet.position).normalized;
+            Ray enemyPosition = new Ray(offSet.position, dir);
+            if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
+            {
+                return hit.transform.gameObject.layer == 3;
+            }
+            return false;
+        }
+    }
 
     public MonoBehaviour Mono
     {
@@ -26,13 +50,11 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    public void Start()
+    public virtual void Start()
     {
         HP_Slider = GetComponentInChildren<Slider>(true);
-        Enemy = GetComponentInParent<NavMeshAgent>();
-       
+        NavMeshAgent = GetComponentInParent<NavMeshAgent>();
         FPS_Controller = player.GetComponent<FirstPersonController>();
-        
     }
     public float HP_Value
     {
@@ -58,8 +80,16 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
         {
             HP_Value -= info.DamageStats.Damage;
             if (IsDead)
+            {
                 OnDeath(info);
+                //AiDeathState deathState = agent.stateMachine.GetState(AiStateId.Death) as AiDeathState;
+                //agent.stateMachine.ChangeState(AiStateId.Death);
+            }
         }
+    }
+    public virtual void ResetAttack()
+    {
+        HasAlreadyAttack = false;
     }
 
     public virtual void OnHit(HitInfo info)
@@ -69,7 +99,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public virtual void OnDeath()
     {
         OnEnemyDeath?.Invoke();
-        Destroy(Enemy.gameObject);
+        Destroy(NavMeshAgent.gameObject);
     }
     public virtual void OnDeath(HitInfo info)
     {
