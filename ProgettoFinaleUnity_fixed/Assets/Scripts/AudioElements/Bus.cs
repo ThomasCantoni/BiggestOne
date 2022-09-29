@@ -9,7 +9,7 @@ public class Bus : MonoBehaviour
     private float Volume;
     void Start()
     {
-        bus = FMODUnity.RuntimeManager.GetBus("bus:/MusicBus");
+        bus = FMODUnity.RuntimeManager.GetBus("bus:/Music");
     }
     public float DecibelToLinear(float dB)
     {
