@@ -376,7 +376,8 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - BankTest
+  - Music
+  - SFX
   BanksToLoad:
   - Music
   - SFX
