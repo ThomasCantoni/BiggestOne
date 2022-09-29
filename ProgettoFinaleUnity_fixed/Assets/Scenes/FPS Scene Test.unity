@@ -6123,7 +6123,7 @@ MonoBehaviour:
       Data2: 1097500928
       Data3: 259278480
       Data4: 1325312081
-    Path: event:/Traccia2
+    Path: event:/Music/Traccia2
   Event: 
   PlayEvent: 1
   StopEvent: 0
@@ -6155,12 +6155,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151346533}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9a5bafd2e9800b4d9f4b77809379fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Volume: 0.1
+  Volume: 10
 --- !u!43 &1154892733
 Mesh:
   m_ObjectHideFlags: 0
@@ -9405,6 +9405,10 @@ PrefabInstance:
     - target: {fileID: 7520030754975973642, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: BreakableCheck.m_Bits
       value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795024, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: WS

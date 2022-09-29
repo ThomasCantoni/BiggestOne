@@ -1,13 +1,10 @@
 {
     "name": "FMODUnityEditor",
+    "rootNamespace": "",
     "references": [
         "FMODUnity",
         "Unity.Timeline.Editor",
-        "Unity.Timeline",
-        "Unity.VisualScripting.Core",
-        "Unity.VisualScripting.Core.Editor",
-        "Unity.VisualScripting.Flow.Editor",
-        "Unity.ScriptableBuildPipeline.Editor"
+        "Unity.Timeline"
     ],
     "includePlatforms": [
         "Editor"
