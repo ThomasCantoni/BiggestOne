@@ -19,17 +19,16 @@ public class GrenadeScript : MonoBehaviour,IDamager
 
     public void Start()
     {
-        StartCoroutine(Explode());
+        Destroy(this.gameObject,6f);
     }
-    public IEnumerator Explode()
+    private void OnTriggerEnter(Collider other)
     {
-        yield return new WaitForSeconds(Fuse);
         Collider[] insideExplosionRadius = Physics.OverlapSphere(this.transform.position, Radius, ThingsHittable);
-        
-        foreach(Collider x in insideExplosionRadius)
+
+        foreach (Collider x in insideExplosionRadius)
         {
             IHittable toHit = x.gameObject.GetComponent<IHittable>();
-            if(toHit != null)
+            if (toHit != null)
             {
                 HitInfo newHit = new HitInfo();
                 newHit.FractureInfo.collisionPoint = this.transform.position;
@@ -39,6 +38,6 @@ public class GrenadeScript : MonoBehaviour,IDamager
                 toHit.OnHit(newHit);
             }
         }
-        Destroy(gameObject);
+        Destroy(this.gameObject);
     }
 }

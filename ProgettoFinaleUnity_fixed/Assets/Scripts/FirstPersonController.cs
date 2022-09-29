@@ -171,8 +171,8 @@ public class FirstPersonController : MonoBehaviour
     }
     public void ThrowGrenade()
     {
-        GameObject grenade = Instantiate(GrenadePrefab, this.transform.position, this.transform.rotation);
-        grenade.GetComponent<Rigidbody>().AddRelativeForce((Vector3.forward * 3f + Vector3.up)*4f,ForceMode.VelocityChange);
+        GameObject grenade = Instantiate(GrenadePrefab, this.transform.position + Vector3.up, this.transform.rotation);
+        grenade.GetComponent<Rigidbody>().AddForce((this.transform.forward * 15f), ForceMode.Impulse);
     }
     void Update()
     {
