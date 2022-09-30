@@ -10,6 +10,8 @@ public class AI_Ranged_DeathState : AI_Ranged_BaseState, AiState
     }
     public override void Enter()
     {
+        Owner.GetComponent<CapsuleCollider>().enabled = false;
+        Owner.NavMeshAgent.isStopped = true;
         Owner.anim.SetBool("Run", false);
         Owner.anim.SetTrigger("Death");
     }

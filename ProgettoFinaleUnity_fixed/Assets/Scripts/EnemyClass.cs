@@ -15,6 +15,14 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;
+    public bool IsInSpawnQueue = false;
+    protected  SimpleTimer disableGO_Timer;
+    public float MaxHP { 
+        get
+        {
+            return maxHp;
+        }
+    }
     public Animator anim;
     public Transform Eyes;
     public float PlayerDetectDistance;
@@ -41,6 +49,8 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
         get { return this; }
     }
     public IKillable.OnDeathEvent OnEnemyDeath;
+    public IKillable.OnDeathEventParameter OnEnemyDeathParam;
+
     public virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -94,7 +104,15 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public virtual void OnDeath()
     {
         OnEnemyDeath?.Invoke();
-        Destroy(NavMeshAgent.gameObject);
+        OnEnemyDeathParam?.Invoke(this);
+        if (!IsInSpawnQueue)
+            Destroy(NavMeshAgent.gameObject);
+        else
+        {
+            disableGO_Timer = new SimpleTimer(3000);
+            disableGO_Timer.TimerCompleteEvent += () => NavMeshAgent.gameObject.SetActive(false);
+            disableGO_Timer.StartTimer();
+        }
     }
     public virtual void OnDeath(HitInfo info)
     {

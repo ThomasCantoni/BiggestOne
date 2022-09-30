@@ -56,7 +56,16 @@ public class EnemyRanged : EnemyClass, IDamager
     public override void OnDeath()
     {
         OnEnemyDeath?.Invoke();
-        Destroy(NavMeshAgent.gameObject, 3f);
+        OnEnemyDeathParam?.Invoke(this);
+
+        if (!IsInSpawnQueue)
+            Destroy(NavMeshAgent.gameObject, 3f);
+        else
+        {
+            disableGO_Timer = new SimpleTimer(3000);
+            disableGO_Timer.TimerCompleteEvent += () => NavMeshAgent.gameObject.SetActive(false);
+            disableGO_Timer.StartTimer();
+        }
     }
     private void DestroyEnemy()
     {

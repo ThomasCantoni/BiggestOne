@@ -37,7 +37,7 @@ public class ShopScript : MonoBehaviour
             {
                 onInteract = result.gameObject.GetComponent<Interactable>().onInteract;
                 Debug.Log("Hit " + result.gameObject.name);
-                PressE.enabled = true;
+                //PressE.enabled = true;
                 onInteract?.Invoke();
             }
         }

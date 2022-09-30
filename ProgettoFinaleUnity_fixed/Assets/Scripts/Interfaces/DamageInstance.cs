@@ -143,8 +143,11 @@ public class DamageInstance
             {
                 foreach (ChainableAttack x in PlayerAttackEffects.PerEnemyAttacks)
                 {
-                    if (EnemiesHit[i] != null)
-                        x.Apply(EnemiesHit[i]);
+                    float effectChance = UnityEngine.Random.Range(0,100);
+                    if(effectChance <= DamageSource.DamageStats.EffectChance && EnemiesHit[i] != null)
+                    {
+                            x.Apply(EnemiesHit[i]);
+                    }
                 }
             }
         }

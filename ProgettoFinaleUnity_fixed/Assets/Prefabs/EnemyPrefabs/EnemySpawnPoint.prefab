@@ -76,7 +76,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8333969264935610660
 Transform:
   m_ObjectHideFlags: 0
@@ -106,12 +106,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba3b0bae841e670418292a2c313517a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnList:
-  - EnemyToSpawn: {fileID: 7927355010851875655, guid: c3eac7ea88432d74f916a1df502dfdd9, type: 3}
-    NumberToSpawn: 5
-  SpawnRepeater:
-    IntervalMilliseconds: 2000
+  MaxEnemiesActive: 5
+  MaxFrequency: 4
+  FrequencyIncrease: 0.1
+  EscalationRepeater:
+    IntervalMilliseconds: 5000
     IsActive: 0
+  SpawnRepeater:
+    IntervalMilliseconds: 5000
+    IsActive: 0
+  OnSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+  SpawnList:
+  - {fileID: 7674494650977205663, guid: 99182a1136fa6744dbaa063cfd1a8555, type: 3}
 --- !u!1 &8333969266151582621
 GameObject:
   m_ObjectHideFlags: 0
