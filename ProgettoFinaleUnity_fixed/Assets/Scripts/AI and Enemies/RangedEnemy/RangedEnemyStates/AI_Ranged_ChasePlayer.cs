@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_Ranged_ChasePlayer : AI_Ranged_StateAgent, AiState
+public class AI_Ranged_ChasePlayer : AI_Ranged_BaseState
 {
    
     //public float attackRange;
@@ -11,11 +11,11 @@ public class AI_Ranged_ChasePlayer : AI_Ranged_StateAgent, AiState
     {
         
     }
-    public AiStateId GetId()
+    public override AiStateId GetId()
     {
         return AiStateId.ChasePlayer;
     }
-    public void Enter(AiAgent agent)
+    public override void Enter()
     {
         if (Player == null)
         {
@@ -24,13 +24,13 @@ public class AI_Ranged_ChasePlayer : AI_Ranged_StateAgent, AiState
         Owner.NavMeshAgent.isStopped = false;
         Owner.anim.SetBool("Run", true);
     }
-    public void Exit(AiAgent agent)
+    public override void Exit()
     {
     }
-    public void Update(AiAgent agent)
+    public override void Update()
     {
-        base.UpdateVariables();
-        agent.EC.NavMeshAgent.destination = Player.transform.position;
+        base.Update();
+        Owner.NavMeshAgent.destination = Player.transform.position;
         
         
         
@@ -43,10 +43,10 @@ public class AI_Ranged_ChasePlayer : AI_Ranged_StateAgent, AiState
     public void CheckForAttack()
     {
        
-        if (PlayerInAttackRange && EC.PlayerIsVisible)
+        if (PlayerInAttackRange && Owner.PlayerIsVisible)
         {
             
-            Owner.agent.stateMachine.ChangeState(AiStateId.Attack);
+            Owner.StateMachineManager.stateMachine.ChangeState(AiStateId.Attack);
         }
     }
 }

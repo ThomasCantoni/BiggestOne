@@ -13,9 +13,9 @@ public class EnemySpawnPointScript : MonoBehaviour
     public float FrequencyIncrease;
     [Tooltip("When this repeater fires, the spawner will start to increase the frequency of spawns depending on the value of FrequencyIncrease, " +
         "up to MaxFrequency")]
-    public Repeater EscalationRepeater;
+    public Repeater EscalationRepeater = new Repeater();
     [Tooltip("This repeater is responsible for spawning the enemies. Should only be modified to change the initial value of the frequency")]
-    public Repeater SpawnRepeater;
+    public Repeater SpawnRepeater = new Repeater();
     public UnityEvent<GameObject> OnSpawned;
     public List<GameObject> SpawnList = new List<GameObject>();
     private List<Transform> spawnPoints;
@@ -38,9 +38,10 @@ public class EnemySpawnPointScript : MonoBehaviour
             }
 
         }
-        EscalationRepeater = new Repeater();
+        //EscalationRepeater = new Repeater();
         EscalationRepeater.RepeaterTickEvent += increaseFreq;
-        SpawnRepeater = new Repeater();
+
+        //SpawnRepeater = new Repeater();
         SpawnRepeater.RepeaterTickEvent += SpawnEnemy;
         spawnPoints = new List<Transform>();
         for (int i = 0; i < transform.childCount; i++)

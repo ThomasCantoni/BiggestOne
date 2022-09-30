@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum AiStateId
 {
+    BaseState,
     ChasePlayer,
     Attack,
     Escape,
@@ -11,8 +12,8 @@ public enum AiStateId
 }
 public interface AiState
 {
-    AiStateId GetId();
-    void Enter(AiAgent agent);
-    void Update(AiAgent agent);
-    void Exit(AiAgent agent);
+    public abstract AiStateId GetId();
+    public abstract void Enter();
+    public abstract void Update();
+    public abstract void Exit();
 }

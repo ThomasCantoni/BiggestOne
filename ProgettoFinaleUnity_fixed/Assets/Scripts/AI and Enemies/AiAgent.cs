@@ -23,7 +23,7 @@ public class AiAgent
         this.EC = Owner;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         stateMachine.Update();
     }

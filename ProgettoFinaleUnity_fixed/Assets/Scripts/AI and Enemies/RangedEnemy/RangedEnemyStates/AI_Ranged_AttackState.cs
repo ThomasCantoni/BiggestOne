@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI_Ranged_AttackState : AI_Ranged_StateAgent, AiState
+public class AI_Ranged_AttackState : AI_Ranged_BaseState
 {
 
     // public bool AlreadyAttack { get { return EC.HasAlreadyAttack; } set { EC.HasAlreadyAttack = value; } }
@@ -10,7 +10,7 @@ public class AI_Ranged_AttackState : AI_Ranged_StateAgent, AiState
     {
         
     }
-    public void Enter(AiAgent agent)
+    public override void Enter()
     {
         if (Player == null)
         {
@@ -19,18 +19,18 @@ public class AI_Ranged_AttackState : AI_Ranged_StateAgent, AiState
         Owner.anim.SetBool("Run", false);
     }
 
-    public void Exit(AiAgent agent)
+    public override void Exit()
     {
     }
 
-    public AiStateId GetId()
+    public override AiStateId GetId()
     {
         return AiStateId.Attack;
     }
 
-    public void Update(AiAgent agent)
+    public override void Update()
     {
-        base.UpdateVariables();
+        base.Update();
 
         if (PlayerIsVisible && PlayerInAttackRange)
         {
@@ -41,14 +41,14 @@ public class AI_Ranged_AttackState : AI_Ranged_StateAgent, AiState
                 }
                 else
                 {
-                    //Owner.agent.stateMachine.ChangeState(AiStateId.Escape);
+                    OwnerStateManager.stateMachine.ChangeState(AiStateId.Escape);
                 }
 
             
         }
         else
         {
-            Owner.agent.stateMachine.ChangeState(AiStateId.ChasePlayer);
+            OwnerStateManager.stateMachine.ChangeState(AiStateId.ChasePlayer);
         }
     
         //PlayerInAttackRange = true;
@@ -71,14 +71,14 @@ public class AI_Ranged_AttackState : AI_Ranged_StateAgent, AiState
 
         if (PlayerIsVisible)
         {
-            EC.PlayerInAttackRange = true;
-            if (distanceFromPlayer <= EC.attackRange)
+            PlayerInAttackRange = true;
+            if (distanceFromPlayer <= Owner.attackRange)
             {
                 Quaternion look = Quaternion.LookRotation(TowardsPlayerXZ.normalized, Vector3.up);
-                EC.NavMeshAgent.transform.rotation = look;
-                EC.NavMeshAgent.isStopped = true;
+                Owner.NavMeshAgent.transform.rotation = look;
+                Owner.NavMeshAgent.isStopped = true;
                
-                    EC.anim.SetTrigger("Attack");
+                    Owner.anim.SetTrigger("Attack");
                    
                     //EC.Invoke(nameof(EC.ResetAttack), EC.timeBetweenAttacks);
                 

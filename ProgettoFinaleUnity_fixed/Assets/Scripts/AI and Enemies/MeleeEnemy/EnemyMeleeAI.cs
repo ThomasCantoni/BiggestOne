@@ -18,7 +18,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     //States
     
     public bool HasAlreadyAttack;
-    float timeBetweenAttacks;
+    public float timeBetweenAttacks;
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
     private void Update()
