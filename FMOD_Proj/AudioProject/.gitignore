@@ -2,3 +2,6 @@
 */.cache/
 */.unsaved/
 */.user/
+.cache/
+.unsaved/
+.user/
