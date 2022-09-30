@@ -27,11 +27,10 @@ public class Interactable : MonoBehaviour
         shopItems[1, 2] = 2;
         shopItems[1, 3] = 3;
 
-        shopItems[2, 1] = 0;
-        shopItems[2, 2] = 0;
-        shopItems[2, 3] = 0;
+        shopItems[2, 1] = 1;
+        shopItems[2, 2] = 5;
+        shopItems[2, 3] = 1;
 
-        
 
     }
     public void ChainableAtt()
