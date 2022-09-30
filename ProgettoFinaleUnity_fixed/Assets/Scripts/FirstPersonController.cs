@@ -13,6 +13,8 @@ public class FirstPersonController : MonoBehaviour
     public Rigidbody RB;
     public WeaponSwitching WS;
     public GameObject GrenadePrefab;
+    public bool CanJumpInTutorial;
+    public bool CanGrenadeInTutorial;
     [Header("General Movement Values")]
 
     [Tooltip("The speed of the Player")]
@@ -171,11 +173,16 @@ public class FirstPersonController : MonoBehaviour
     }
     public void ThrowGrenade()
     {
-        GameObject grenade = Instantiate(GrenadePrefab, this.transform.position + Vector3.up, this.transform.rotation);
-        grenade.GetComponent<Rigidbody>().AddForce((this.transform.forward * 15f), ForceMode.Impulse);
+        if (CanGrenadeInTutorial)
+        {
+            GameObject grenade = Instantiate(GrenadePrefab, this.transform.position + Vector3.up, this.transform.rotation);
+            grenade.GetComponent<Rigidbody>().AddForce((this.transform.forward * 15f), ForceMode.Impulse);
+        }
+        
     }
     void Update()
     {
+        
         JumpAndGravity();
         if (SoftGrounded && !wasGroundedBefore)
         {
@@ -363,7 +370,7 @@ public class FirstPersonController : MonoBehaviour
         //{
         //    _jumpTimeOut -= Time.deltaTime;
         //}
-        if (IC.isJump && jumpCooledDown)
+        if (IC.isJump && jumpCooledDown && CanJumpInTutorial)
         {
             GroundcheckRepeater.StopRepeater(200);
             SoftGrounded = false;
@@ -402,7 +409,7 @@ public class FirstPersonController : MonoBehaviour
         //SlideTimer.StopTimer();
 
 
-        if (IC.isJump && DoubleJumpPossible)
+        if (IC.isJump && DoubleJumpPossible && CanJumpInTutorial)
         {
             RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
             float jumpForce = Mathf.Sqrt(JumpHeight * -2 * Physics.gravity.y);
