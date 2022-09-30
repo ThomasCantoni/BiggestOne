@@ -25,12 +25,12 @@ public class AiStateMachine
     }
     public void Update()
     {
-        GetState(currentState)?.Update(agent);
+        GetState(currentState)?.Update();
     }
     public void ChangeState(AiStateId newState)
     {
-        GetState(currentState)?.Exit(agent);
+        GetState(currentState)?.Exit();
         currentState = newState;
-        GetState(currentState)?.Enter(agent);
+        GetState(currentState)?.Enter();
     }
 }

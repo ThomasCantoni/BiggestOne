@@ -9,31 +9,26 @@ using UnityEngine.AI;
 public abstract class EnemyClass : MonoBehaviour,IKillable
 {
     public NavMeshAgent NavMeshAgent;
-    public AiAgent agent;
+    //public AiAgent agent;
     public GameObject player;
     public FirstPersonController FPS_Controller;
     Slider HP_Slider;
     private float hp_Value = 100f;
     private float maxHp = 100f;
-    public Transform offSet;
-    //public bool alreadyAttacked;
-    public float timeBetweenAttacks;
-    public GameObject bullet;
-    public float maxDistance = 1.0f;
+    public Animator anim;
+    public Transform Eyes;
+    public float PlayerDetectDistance;
+    public LayerMask PlayerDetectMask;
     public float attackRange;
     public bool PlayerInAttackRange;
-    public LayerMask layerBullet;
-    public Animator anim;
-    public bool HasAlreadyAttack = false;
-
     public bool PlayerIsVisible
     {
         get
         {
             RaycastHit hit;
-            Vector3 dir = (player.transform.position - offSet.position).normalized;
-            Ray enemyPosition = new Ray(offSet.position, dir);
-            if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
+            Vector3 dir = (player.transform.position - Eyes.position).normalized;
+            Ray enemyPosition = new Ray(Eyes.position, dir);
+            if (Physics.SphereCast(enemyPosition, 0.2f, out hit, PlayerDetectDistance, PlayerDetectMask))
             {
                 return hit.transform.gameObject.layer == 3;
             }
@@ -89,7 +84,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     }
     public virtual void ResetAttack()
     {
-        HasAlreadyAttack = false;
+       
     }
 
     public virtual void OnHit(HitInfo info)

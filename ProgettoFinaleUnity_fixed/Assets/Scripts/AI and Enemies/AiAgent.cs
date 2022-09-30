@@ -10,14 +10,11 @@ public class AiAgent
     public NavMeshAgent navMeshAgent;
     public AiAgentConfig config;
     public EnemyClass EC;
-    public void Start()
+    public virtual void Start()
     {
         navMeshAgent = EC.NavMeshAgent;
         stateMachine = new AiStateMachine(this);
-        stateMachine.RegisterState(new AiChasePlayer(EC));
-        stateMachine.RegisterState(new AiAttackState(EC));
-        stateMachine.RegisterState(new AiEscapeState(EC));
-        stateMachine.RegisterState(new AiDeathState(EC));
+        
         stateMachine.ChangeState(initialState);
     }
 
@@ -26,7 +23,7 @@ public class AiAgent
         this.EC = Owner;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         stateMachine.Update();
     }
