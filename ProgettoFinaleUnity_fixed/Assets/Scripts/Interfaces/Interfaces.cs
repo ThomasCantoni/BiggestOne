@@ -36,6 +36,8 @@ public interface IKillable : IHittable
 {
     public abstract void OnDeath();
     public delegate void OnDeathEvent();
+    public delegate void OnDeathEventParameter(IKillable self);
+
     public OnDeathEvent deathEvent { get; set; }
 }
 public interface IStackableChainAttack

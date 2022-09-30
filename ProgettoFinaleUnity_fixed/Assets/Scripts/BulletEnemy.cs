@@ -22,7 +22,9 @@ public class BulletEnemy : MonoBehaviour, IDamager
         if (tryget != null)
         {
             HitInfo info = new HitInfo(this, tryget);
-            other.GetComponent<HealthPlayer>().OnHit(info);
+            HealthPlayer HP_Player = other.GetComponent<HealthPlayer>();
+            if(HP_Player != null)
+                HP_Player.OnHit(info);
         }
 
         Destroy(this.gameObject);

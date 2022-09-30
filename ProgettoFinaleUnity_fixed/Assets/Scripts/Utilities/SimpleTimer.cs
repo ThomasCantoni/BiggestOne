@@ -75,7 +75,8 @@ public class SimpleTimer
     }
     public void ChangeTime(int TimeInMilliseconds)
     {
-        t.Interval = TimeInMilliseconds;
+        if(t != null)
+            t.Interval = TimeInMilliseconds;
     }
     public void StopTimer(bool invoke = true)
     {

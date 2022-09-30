@@ -17,12 +17,13 @@ public class HitscanBullet : GenericBullet
 
     public override void Deploy()
     {
-       
+        Vector3 dir = Owner.GetShootingDirection();
         RaycastHit[] thingsHit = Physics.RaycastAll(Owner.InputCooker.MainCamera.transform.position, 
-            Owner.GetShootingDirection(), 
+            dir, 
             100f, 
             Owner.Mask.value);
-
+        Debug.DrawRay(Owner.InputCooker.MainCamera.transform.position, dir*100f, Color.red,2f);
+        Debug.Log("SHOOTING HITSCAN");
         if (thingsHit == null || thingsHit.Length == 0)
             return;
 
@@ -32,10 +33,7 @@ public class HitscanBullet : GenericBullet
         {
             for (int j = 0; j < thingsHit.Length; j++)
             {
-
-                float distance1 = Vector3.Distance(Owner.Player.transform.position, thingsHit[i].point);
-                float distance2 = Vector3.Distance(Owner.Player.transform.position, thingsHit[j].point);
-                if(distance1<distance2)
+                if(thingsHit[i].distance > thingsHit[j].distance)
                 {
                     RaycastHit swapper = thingsHit[i];
                     thingsHit[i] = thingsHit[j];

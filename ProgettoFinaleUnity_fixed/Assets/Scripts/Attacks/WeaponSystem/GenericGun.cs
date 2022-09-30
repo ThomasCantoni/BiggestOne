@@ -240,7 +240,7 @@ public class GenericGun : MonoBehaviour,IDamager
 
     public void StartReload()
     {
-        if(!IsReloading)
+        if(CanStartReload)
         {
             isReloading = true;
         
@@ -309,7 +309,7 @@ public class GenericGun : MonoBehaviour,IDamager
             newHitscanBullet.Deploy();
             
             if (!newHitscanBullet.HasHitSomething)
-                return null; 
+                continue; 
             //RaycastHit[] raycastInformation = Physics.RaycastAll(InputCooker.MainCamera.transform.position, GetShootingDirection(), 100f, Mask.value);
             foreach (HitInfo hit in newHitscanBullet.Hits)
             {
