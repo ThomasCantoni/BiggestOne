@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7213167898325412561
 Transform:
   m_ObjectHideFlags: 0
@@ -198,8 +198,8 @@ RectTransform:
   m_Father: {fileID: 8334250676919818691}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 18.4, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 8334250676364403271}
   - component: {fileID: 8334250676364403385}
   - component: {fileID: 8334250675054518049}
+  - component: {fileID: 1884441858}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -368,9 +369,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b7f6cdb6e61e3744aa81acb5bcacad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NavMeshAgent: {fileID: 0}
   player: {fileID: 0}
   FPS_Controller: {fileID: 0}
-  agent: {fileID: 325058900345308922}
+  anim: {fileID: 522103348}
+  Eyes: {fileID: 0}
+  PlayerDetectDistance: 0
+  PlayerDetectMask:
+    serializedVersion: 2
+    m_Bits: 0
+  attackRange: 1.2
+  PlayerInAttackRange: 0
   layer:
     serializedVersion: 2
     m_Bits: 8
@@ -379,10 +388,8 @@ MonoBehaviour:
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
-  anim: {fileID: 0}
-  timeBetweenAttacks: 2
-  attackRange: 1.2
-  playerInAttackRange: 0
+  HasAlreadyAttack: 0
+  timeBetweenAttacks: 1
 --- !u!114 &8334250675054518049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +417,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1884441858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8334250676364403265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019be1a6cdf8e7e4a97889171ad5434d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 8334250676364403265}
+  damage:
+    Damage: 0.4
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
 --- !u!1 &8334250676380730255
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +577,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -4.899994, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -822,10 +847,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: GeurillaDroid_Destructible
       objectReference: {fileID: 0}
+    - target: {fileID: 5746564759562468899, guid: 161a4d98b2b090049953115c13dbe073, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0005
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 161a4d98b2b090049953115c13dbe073, type: 3}
+--- !u!1 &3248605176031374832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 161a4d98b2b090049953115c13dbe073, type: 3}
+  m_PrefabInstance: {fileID: 2437631452051230881}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2764802933251389258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 161a4d98b2b090049953115c13dbe073, type: 3}
   m_PrefabInstance: {fileID: 2437631452051230881}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &522103348
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3248605176031374832}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 62ff71d5956986548b146cc147c8f39a, type: 3}
+  m_Controller: {fileID: 9100000, guid: d208b38622e308d4289e2aa2c192283a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
