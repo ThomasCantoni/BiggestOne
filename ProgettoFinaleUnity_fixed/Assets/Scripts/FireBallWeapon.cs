@@ -6,7 +6,7 @@ public class FireBallWeapon : GenericGun
 {
     public Transform spawnBullet;
     public ProjectileBulletMonobehaviour bullet2;
-    public GameObject bullet;
+    //public GameObject bullet;
     public float speed = 5f;
     //ProjectileBullet newProjectile;
     public override void Start()

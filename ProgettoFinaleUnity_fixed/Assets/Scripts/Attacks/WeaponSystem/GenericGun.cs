@@ -96,7 +96,7 @@ public class GenericGun : MonoBehaviour,IDamager
     public delegate void WeaponShootEvent(GenericGun gunOwner, DamageInstance aboutToDeploy);
     public WeaponKilledSomethingEvent WeaponKilledSomething;
     public event WeaponHitSomething WeaponHitSomethingEvent;
-    public event WeaponBeforeAndAfterShootEvent BeforeShoot, AfterShoot;
+    public WeaponBeforeAndAfterShootEvent BeforeShoot, AfterShoot;
     public event WeaponShootEvent OnWeaponShooting;
     public BulletCreatedEvent HitInfoCreated;
     public BulletEvent BulletCreated,BulletHitListPopulated;
@@ -238,7 +238,7 @@ public class GenericGun : MonoBehaviour,IDamager
         
     }
 
-    public void StartReload()
+    public virtual void StartReload()
     {
         if(CanStartReload)
         {
