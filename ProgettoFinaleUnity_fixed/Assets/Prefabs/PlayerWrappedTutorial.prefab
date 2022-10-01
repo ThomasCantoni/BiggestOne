@@ -274,7 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 117167277520124005}
   m_Layer: 0
-  m_Name: PlayerWrapped
+  m_Name: PlayerWrappedTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5417,7 +5417,7 @@ MonoBehaviour:
   UIM: {fileID: 444145919}
   currentGun: {fileID: 0}
   List:
-  - {fileID: 1989349436}
+  - {fileID: 2123742852}
 --- !u!95 &1534726897
 Animator:
   serializedVersion: 3

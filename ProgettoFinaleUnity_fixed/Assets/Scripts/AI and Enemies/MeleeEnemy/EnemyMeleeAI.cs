@@ -21,14 +21,17 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     public float timeBetweenAttacks;
     public DamageStats DamageStats { get { return damage; } set { damage = value; } }
 
+    
     private void Update()
     {
         //Check for sight and attack range
+        
         if (!IsDead)
         {
             AttackPlayer();
             PlayerInAttackRange = Physics.CheckSphere(transform.position, attackRange, layer);
         }
+        
     }
 
     private void AttackPlayer()
