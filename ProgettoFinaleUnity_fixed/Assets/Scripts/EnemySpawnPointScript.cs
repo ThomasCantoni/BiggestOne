@@ -69,7 +69,7 @@ public class EnemySpawnPointScript : MonoBehaviour
         newIntervalValue = Mathf.Clamp(newIntervalValue, MinInterval,1000000);
         SpawnTimer.ChangeTime((int)newIntervalValue);
         SpawnInterval = (int)newIntervalValue;
-        
+        SpawnTimer.StartTimer();
     }
     public void SpawnEnemy()
     {
@@ -80,7 +80,7 @@ public class EnemySpawnPointScript : MonoBehaviour
         int chosenIndex = UnityEngine.Random.Range(0, SpawnList.Count);
         if(enemiesAlive >= MaxEnemiesActive)
         {
-            SpawnTimer.StopTimer();
+            SpawnTimer.StopTimer(false);
             
             return;
         }
@@ -97,7 +97,7 @@ public class EnemySpawnPointScript : MonoBehaviour
                 ec.gameObject.SetActive(true);
                 enemiesAlive++;
             }
-            else if( enemiesActive.Count<MaxEnemiesActive)
+            else if( enemiesAlive <MaxEnemiesActive)
             {
                 GameObject newEnemy = Instantiate(selected, spawnPointSelected.position, spawnPointSelected.rotation);
                 OnSpawned?.Invoke(newEnemy);

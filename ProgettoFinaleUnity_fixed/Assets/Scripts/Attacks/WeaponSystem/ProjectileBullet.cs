@@ -23,9 +23,21 @@ public class ProjectileBullet : GenericBullet
         this.PositionRotation = PositionRotation;
        // ProjectileBulletGameObject.ProjectileBullet = this;
     }
+    public ProjectileBullet(GenericGun owner, GameObject GameObjectToInstantiate, Transform PositionRotation) : base(owner)
+    {
+        this.ProjectileBulletGameObject = GameObjectToInstantiate.GetComponent<ProjectileBulletMonobehaviour>();
+        if(ProjectileBulletGameObject == null)
+        {
+            Debug.LogError("GameObject doesn't contain ProjectileBulletMonobehaviour!");
+        }
+
+        this.PositionRotation = PositionRotation;
+        // ProjectileBulletGameObject.ProjectileBullet = this;
+    }
     public override void Deploy()
     {
         ProjectileBulletGameObject=   GameObject.Instantiate(ProjectileBulletGameObject, PositionRotation.position,PositionRotation.rotation);
+        ProjectileBulletGameObject.transform.forward = Owner.GetShootingDirection();
         ProjectileBulletGameObject.ProjectileBullet = this;
         ProjectileBulletGameObject.Source = this.Owner;
     }

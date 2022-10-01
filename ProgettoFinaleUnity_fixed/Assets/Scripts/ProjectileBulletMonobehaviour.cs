@@ -8,8 +8,9 @@ public class ProjectileBulletMonobehaviour : MonoBehaviour,IDamager
     public GenericGun Source;
     public static List<GameObject> AlreadyHit = new List<GameObject>();
     public float Speed=1f;
-    Rigidbody RB;
+    protected Rigidbody RB;
     public int timesHit;
+    public float destroyTime=10f;
     public DamageStats DamageStats
     { 
         get { return Source.DamageStats;    } 
@@ -22,7 +23,7 @@ public class ProjectileBulletMonobehaviour : MonoBehaviour,IDamager
             return this;
         }
     }
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if(!AlreadyHit.Contains(other.gameObject))
         {
@@ -43,17 +44,16 @@ public class ProjectileBulletMonobehaviour : MonoBehaviour,IDamager
             Destroy(this.gameObject);
     }
 
-    private void Start()
+    public virtual void Start()
     {
-        RB = GetComponent<Rigidbody>();
-        AlreadyHit = new List<GameObject>();
-        Destroy(this.gameObject, 10f);
+        
+        Destroy(this.gameObject, destroyTime);
     }
 
-    public void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         RB.MovePosition(this.transform.position + transform.forward * Speed *Time.fixedDeltaTime);
         
     }
-
+    
 }
