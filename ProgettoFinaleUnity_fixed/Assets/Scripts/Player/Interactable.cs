@@ -9,15 +9,17 @@ public class Interactable : MonoBehaviour
     public UnityEvent onInteract;
     public ChainableAttack chainableAttack;
     public PlayerAttackEffects attackEffects;
+    public FirstPersonController Fps;
     public InvetoryUI playerInvetory;
     public PlayerInvetory playerInvetor;
     public WeaponSwitching WS;
     public GameObject IDs;
     public float duration = 5f;
-    public int[,] shopItems = new int[4, 4];
+    public int[,] shopItems = new int[5, 5];
     public GenericGun currentGun;
-    public delegate void GenericGunEvent(GenericGun gun);
-    public event GenericGunEvent ReloadDelegateEvent, ChangeWeaponEvent;
+    
+    //public delegate void GenericGunEvent(GenericGun gun);
+    //public event GenericGunEvent ReloadDelegateEvent, ChangeWeaponEvent;
 
     void Start()
     {
@@ -26,12 +28,28 @@ public class Interactable : MonoBehaviour
         shopItems[1, 1] = 1;
         shopItems[1, 2] = 2;
         shopItems[1, 3] = 3;
+        shopItems[1, 4] = 3;
 
-        shopItems[2, 1] = 1;
-        shopItems[2, 2] = 5;
-        shopItems[2, 3] = 1;
+        shopItems[2, 1] = 40;
+        shopItems[2, 2] = 50;
+        shopItems[2, 3] = 15;
+        shopItems[2, 4] = 25;
 
 
+    }
+    public void GrenadeDrop()
+    {
+        if (playerInvetor.HasSpecialGrenade)
+        {
+            return;
+        }
+        if (playerInvetor.NumberOfCoins >= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID])
+        {
+            playerInvetor.NumberOfCoins -= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID];
+            playerInvetory.UpdateCoinText(playerInvetor);
+            Fps.CanGrenadeInTutorial = true;
+            playerInvetor.HasSpecialGrenade = true;
+        }
     }
     public void ChainableAtt()
     {
@@ -44,7 +62,6 @@ public class Interactable : MonoBehaviour
             playerInvetor.NumberOfCoins -= shopItems[2, IDs.GetComponent<ImageInfo>().ItemID];
             playerInvetory.UpdateCoinText(playerInvetor);
             attackEffects.Add(chainableAttack);
-            StartCoroutine(RemovePowerUps(attackEffects));
         }
 
     }
@@ -65,10 +82,5 @@ public class Interactable : MonoBehaviour
             }
             
         }
-    }
-    public IEnumerator RemovePowerUps(PlayerAttackEffects PAE)
-    {
-        yield return new WaitForSeconds(duration);
-        PAE.Remove(chainableAttack);
     }
 }

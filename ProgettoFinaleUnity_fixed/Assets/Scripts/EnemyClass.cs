@@ -17,6 +17,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     private float maxHp = 100f;
     public bool IsInSpawnQueue = false;
     protected  SimpleTimer disableGO_Timer;
+
     public float MaxHP { 
         get
         {

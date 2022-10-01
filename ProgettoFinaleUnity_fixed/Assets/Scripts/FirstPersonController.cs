@@ -12,6 +12,7 @@ public class FirstPersonController : MonoBehaviour
     public InputCooker IC;
     public Rigidbody RB;
     public WeaponSwitching WS;
+    public PlayerInvetory PI;
     public GameObject GrenadePrefab;
     public bool CanJumpInTutorial;
     public bool CanGrenadeInTutorial;
@@ -96,6 +97,7 @@ public class FirstPersonController : MonoBehaviour
     private float currentGroundY;
     private float SoftG_originalOffset, HardG_originalOffset;
     public Vector3 currentArtificialDrag;
+    public GameObject offset;
     public bool WantsToMove
     {
         get { return IC.AbsoluteDirection.magnitude >= 1f; }
@@ -130,6 +132,7 @@ public class FirstPersonController : MonoBehaviour
     public bool IsOnSlope = false;
     private void Start()
     {
+        PI = GetComponent<PlayerInvetory>();
         SC = GetComponent<SlideCharacter>();
         RB = GetComponent<Rigidbody>();
         IC = GetComponent<InputCooker>();
@@ -173,10 +176,13 @@ public class FirstPersonController : MonoBehaviour
     }
     public void ThrowGrenade()
     {
-        if (CanGrenadeInTutorial)
+        if (CanGrenadeInTutorial && PI.HasSpecialGrenade)
         {
-            GameObject grenade = Instantiate(GrenadePrefab, this.transform.position + Vector3.up, this.transform.rotation);
-            grenade.GetComponent<Rigidbody>().AddForce((this.transform.forward * 15f), ForceMode.Impulse);
+            GameObject grenade = Instantiate(GrenadePrefab, offset.transform.position, IC.VirtualCamera.transform.rotation);
+            //grenade.GetComponent<Rigidbody>().AddForce((offset.transform.forward * 10f), ForceMode.Impulse);
+            grenade.GetComponent<GrenadeScript>().targetVector = IC.VirtualCamera.transform.position + IC.VirtualCamera.transform.forward * 3f;
+            grenade.GetComponent<GrenadeScript>().targetForward = IC.VirtualCamera.transform.forward;
+            PI.HasSpecialGrenade = false;
         }
         
     }
