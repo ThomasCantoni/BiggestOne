@@ -240,28 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4db7b48108c9c4283017c1d9a3f997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &44377562 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1687120080, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 1777594539}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618333273}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e47c909e9f342488ec57c4719efec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &44377563 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 700996448, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 1777594539}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618333273}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8437938d6f6e7aa4196f0989d4e5662a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &49617859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,17 +1544,6 @@ MonoBehaviour:
   ItemID: 4
   PriceTxt: {fileID: 1012435517}
   shopMNG: {fileID: 366582484}
---- !u!114 &330472352 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5514112353309558289, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 327352673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &340515558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1877,10 +1844,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   chainableAttack: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
-  attackEffects: {fileID: 44377562}
+  attackEffects: {fileID: 0}
   Fps: {fileID: 44377561}
-  playerInvetory: {fileID: 1652001804}
-  playerInvetor: {fileID: 44377563}
+  playerInvetory: {fileID: 0}
+  playerInvetor: {fileID: 0}
   WS: {fileID: 0}
   IDs: {fileID: 328627989}
   duration: 5
@@ -2554,15 +2521,15 @@ PrefabInstance:
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: attackEffects
       value: 
-      objectReference: {fileID: 44377562}
+      objectReference: {fileID: 0}
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetor
       value: 
-      objectReference: {fileID: 44377563}
+      objectReference: {fileID: 0}
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetory
       value: 
-      objectReference: {fileID: 1652001804}
+      objectReference: {fileID: 0}
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChainableAtt
@@ -2586,15 +2553,15 @@ PrefabInstance:
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: attackEffects
       value: 
-      objectReference: {fileID: 44377562}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetor
       value: 
-      objectReference: {fileID: 44377563}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetory
       value: 
-      objectReference: {fileID: 1652001804}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChainableAtt
@@ -2694,11 +2661,11 @@ PrefabInstance:
     - target: {fileID: 5243495599100683229, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: PI
       value: 
-      objectReference: {fileID: 44377563}
+      objectReference: {fileID: 0}
     - target: {fileID: 5243495599100683229, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: PressE
       value: 
-      objectReference: {fileID: 1895638338}
+      objectReference: {fileID: 0}
     - target: {fileID: 5243495599100683229, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: TutorilTrigger
       value: 
@@ -2726,15 +2693,15 @@ PrefabInstance:
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: attackEffects
       value: 
-      objectReference: {fileID: 44377562}
+      objectReference: {fileID: 0}
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetor
       value: 
-      objectReference: {fileID: 44377563}
+      objectReference: {fileID: 0}
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetory
       value: 
-      objectReference: {fileID: 1652001804}
+      objectReference: {fileID: 0}
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChainableAtt
@@ -2947,6 +2914,86 @@ PrefabInstance:
     - target: {fileID: 7548798238243848060, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: Speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GravityMul
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: JumpHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: JumpCooldown
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GrenadePrefab
+      value: 
+      objectReference: {fileID: 7095784649458050780, guid: 66281790939fc0f4eb89ed69d7f0cb94, type: 3}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: HardGroundedOffset
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: HardGroundedRadius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: SoftGroundedOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: SoftGroundedRadius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: AirborneVelocityMul
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GroundLayers.m_Bits
+      value: 5121
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GroundedVelocityMul
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: AirborneDragVector.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: AirborneDragVector.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GroundcheckFrequency
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: MaximumAllowedVelocity
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GroundedStillDragVector.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GroundedStillDragVector.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GroundedMovementDragVector.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
+      propertyPath: GroundedMovementDragVector.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
@@ -7297,15 +7344,15 @@ PrefabInstance:
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: attackEffects
       value: 
-      objectReference: {fileID: 1745339673}
+      objectReference: {fileID: 0}
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetor
       value: 
-      objectReference: {fileID: 1745339674}
+      objectReference: {fileID: 0}
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetory
       value: 
-      objectReference: {fileID: 1741298980}
+      objectReference: {fileID: 0}
     - target: {fileID: 1635148955218129536, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChainableAtt
@@ -7325,15 +7372,15 @@ PrefabInstance:
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: attackEffects
       value: 
-      objectReference: {fileID: 1745339673}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetor
       value: 
-      objectReference: {fileID: 1745339674}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetory
       value: 
-      objectReference: {fileID: 1741298980}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChainableAtt
@@ -7429,11 +7476,11 @@ PrefabInstance:
     - target: {fileID: 5243495599100683229, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: PI
       value: 
-      objectReference: {fileID: 1745339674}
+      objectReference: {fileID: 0}
     - target: {fileID: 5243495599100683229, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: PressE
       value: 
-      objectReference: {fileID: 330472352}
+      objectReference: {fileID: 0}
     - target: {fileID: 5243495599100683229, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: TutorilTrigger
       value: 
@@ -7461,15 +7508,15 @@ PrefabInstance:
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: attackEffects
       value: 
-      objectReference: {fileID: 1745339673}
+      objectReference: {fileID: 0}
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetor
       value: 
-      objectReference: {fileID: 1745339674}
+      objectReference: {fileID: 0}
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: playerInvetory
       value: 
-      objectReference: {fileID: 1741298980}
+      objectReference: {fileID: 0}
     - target: {fileID: 6376734433610514987, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: onInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ChainableAtt
@@ -8632,17 +8679,6 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 522103348, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
   m_PrefabInstance: {fileID: 2045474123}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1652001804 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7895117161476086359, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 1777594539}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a8b4c3fb6b683459029f6cc8b45319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1654373300
 GameObject:
   m_ObjectHideFlags: 0
@@ -9085,17 +9121,6 @@ MonoBehaviour:
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: b3b4363aaf23ccb43b39bf3a7bb8ffb6, type: 2}
---- !u!114 &1741298980 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7895117161476086359, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 327352673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a8b4c3fb6b683459029f6cc8b45319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1745339671 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7578008436064795051, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
@@ -9105,28 +9130,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2da3f9b06118c7b43b3d1038285cce6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1745339673 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1687120080, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 327352673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880146976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97e47c909e9f342488ec57c4719efec8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1745339674 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 700996448, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 327352673}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880146976}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8437938d6f6e7aa4196f0989d4e5662a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1752449456
@@ -9678,17 +9681,6 @@ RectTransform:
   m_AnchoredPosition: {x: 282, y: -90.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1895638338 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5514112353309558289, guid: cfcb6f92eb0142443a5aef269fccc781, type: 3}
-  m_PrefabInstance: {fileID: 1777594539}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1904620984
 GameObject:
   m_ObjectHideFlags: 0
