@@ -105,6 +105,7 @@ MonoBehaviour:
         m_CallState: 2
   chainableAttack: {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
   attackEffects: {fileID: 0}
+  Fps: {fileID: 0}
   playerInvetory: {fileID: 0}
   playerInvetor: {fileID: 0}
   WS: {fileID: 0}
@@ -216,6 +217,7 @@ MonoBehaviour:
         m_CallState: 2
   chainableAttack: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
   attackEffects: {fileID: 0}
+  Fps: {fileID: 0}
   playerInvetory: {fileID: 0}
   playerInvetor: {fileID: 0}
   WS: {fileID: 0}
@@ -261,7 +263,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.46353453, y: 2.3}
+  m_AnchoredPosition: {x: -0.463562, y: 2.2999878}
   m_SizeDelta: {x: 955, y: 537}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3872772876444474513
@@ -307,7 +309,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8470006072373039761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +345,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
+  TutorilTrigger: {fileID: 0}
 --- !u!1 &1724920690389443498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1041,7 @@ MonoBehaviour:
         m_CallState: 2
   chainableAttack: {fileID: 11400000, guid: a3144fc53087eb148a480377d68415b6, type: 2}
   attackEffects: {fileID: 0}
+  Fps: {fileID: 0}
   playerInvetory: {fileID: 0}
   playerInvetor: {fileID: 0}
   WS: {fileID: 0}
