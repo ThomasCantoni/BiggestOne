@@ -5746,8 +5746,10 @@ MonoBehaviour:
   isReloading: 0
   canReload: 0
   Ps: {fileID: 7271945330198780431}
-  speed: 5
-  isShooting: 0
+  FlameDistanceReachTime: 0.5
+  FlameDistance: 10
+  BulletOffset: {fileID: 0}
+  BulletToInstantiate: {fileID: 0}
 --- !u!1001 &1256521199087383051
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5872,7 +5874,6 @@ MonoBehaviour:
   canReload: 0
   spawnBullet: {fileID: 366245025038781107}
   bullet2: {fileID: 0}
-  bullet: {fileID: 4342492009047063302, guid: 9eb43ca78c0a21e41ab3bf210c13cf41, type: 3}
   speed: 5
 --- !u!1001 &2008880051464647380
 PrefabInstance:
@@ -6003,9 +6004,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 117167277520124005}
     m_Modifications:
-    - target: {fileID: 6680484607788742402, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+    - target: {fileID: 1351446100, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 636846906294036697, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368768398660988413, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680484607788742402, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6680484607788742402, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6345,6 +6358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfCoins: 0
+  grenades: []
   OnCoinCollected:
     m_PersistentCalls:
       m_Calls:
@@ -6360,6 +6374,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HasSpecialGrenade: 0
 --- !u!114 &1687120080
 MonoBehaviour:
   m_ObjectHideFlags: 0
