@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tileable 1
+  m_Name: Tutorial walls
   m_Shader: {fileID: -6465566751694194690, guid: de2aa6be22eb8f6439ca6c6f6263bcd3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,11 +20,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_0d0f662635ad404595dc38aade5a5bdc:
-        m_Texture: {fileID: 2800000, guid: 975a3b354c6f1c5499269367586faf84, type: 3}
+        m_Texture: {fileID: 2800000, guid: de0f759a9bc963a4eaf029c3679fed99, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_69bc7216d3c446cfb6fb09887c1e61ac:
-        m_Texture: {fileID: 2800000, guid: 975a3b354c6f1c5499269367586faf84, type: 3}
+        m_Texture: {fileID: 2800000, guid: de0f759a9bc963a4eaf029c3679fed99, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_79d9e978955a401e9b7c4f3b8b6d0709: 0.1
+    - Vector1_79d9e978955a401e9b7c4f3b8b6d0709: 0.01
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -112,8 +112,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_a794fc3baac947f6b797f555d8c6bc66: {r: 0.27754536, g: 0.5943396, b: 0.37963456, a: 0}
-    - Color_e1194c2c8e1a463492c3e7673b2e7f73: {r: 0.27754536, g: 0.5943396, b: 0.37963456, a: 0}
+    - Color_a794fc3baac947f6b797f555d8c6bc66: {r: 0, g: 1, b: 0.8927181, a: 0}
+    - Color_e1194c2c8e1a463492c3e7673b2e7f73: {r: 0, g: 1, b: 0.8927181, a: 0}
     - Vector2_772eb1e3a5e348dc8c556ea48738faa7: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
