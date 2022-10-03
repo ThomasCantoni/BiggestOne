@@ -33,7 +33,7 @@ public class HitscanBullet : GenericBullet
         {
             for (int j = 0; j < thingsHit.Length; j++)
             {
-                if(thingsHit[i].distance > thingsHit[j].distance)
+                if(thingsHit[i].distance < thingsHit[j].distance)
                 {
                     RaycastHit swapper = thingsHit[i];
                     thingsHit[i] = thingsHit[j];

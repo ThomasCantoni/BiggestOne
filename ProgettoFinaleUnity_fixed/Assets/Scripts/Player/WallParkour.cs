@@ -164,6 +164,7 @@ public class WallParkour : MonoBehaviour
     {
         
         gainDragTimer.StartTimer();
+        fps.DoubleJumpPossible = true;
 
 
 
@@ -204,7 +205,6 @@ public class WallParkour : MonoBehaviour
     {
         checkWallCurrentCooldown = checkWallCooldown;
         IsWallRunning = false;
-        fps.DoubleJumpPossible = true;
         rb.useGravity = true;
         ic.PlayerStoppedJump -= JumpOffWall;
     }
