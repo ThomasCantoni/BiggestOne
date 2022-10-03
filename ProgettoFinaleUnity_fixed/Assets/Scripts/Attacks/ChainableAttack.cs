@@ -15,11 +15,13 @@ public abstract class ChainableAttack : ScriptableObject,IDamager
     public List<GameObject> EnemiesHit;
     [SerializeField]
     public DamageStats damageValues;
-    public DamageStats DamageStats
+    public DamageStats BaseStats
     {
         get { return damageValues; }
         set { damageValues = value; }
     }
+    public DamageStats OutputStats { get { return damageValues; } set { damageValues = value; } }
+
     public MonoBehaviour Mono
     {
         get { return FPS; }

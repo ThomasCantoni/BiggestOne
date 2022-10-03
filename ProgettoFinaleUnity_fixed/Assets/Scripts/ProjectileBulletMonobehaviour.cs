@@ -11,10 +11,15 @@ public class ProjectileBulletMonobehaviour : MonoBehaviour,IDamager
     protected Rigidbody RB;
     public int timesHit;
     public float destroyTime=10f;
-    public DamageStats DamageStats
+    public DamageStats BaseStats
     { 
-        get { return Source.DamageStats;    } 
-        set { Source.DamageStats = value;   } 
+        get { return Source.BaseStats;    } 
+        set { Source.BaseStats = value;   } 
+    }
+    public DamageStats OutputStats
+    {
+        get { return Source.OutputStats; }
+        set { Source.OutputStats = value; }
     }
     public MonoBehaviour Mono
     {

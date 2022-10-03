@@ -92,6 +92,7 @@ public class PlayerAttackEffects : MonoBehaviour
         //PerShotAttacks.Remove(toRemove);
         WeaponBuffsList.Remove(atk);
         WeaponBuffs.Remove(atk);
+        atk.OnGunStop(FPS.WS.currentGun);
     }
     public LinkedList<ChainableAttack> GetCorrectList(ChainableAttack atk)
     {

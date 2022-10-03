@@ -13,12 +13,25 @@ public class GenericGun : MonoBehaviour,IDamager
     public LayerMask Mask;
     public WeaponType WeaponType;
     public FractureInfo FractureInformation;
-    [SerializeField]
-    public DamageStats DamageContainer;
-    public DamageStats DamageStats 
+    [SerializeField][Tooltip("The base stats of the weapon, should only be modified to change the stats of the weapon alone")]
+    public DamageStats WeaponBaseStats;
+    [SerializeField][Tooltip("The final stats of the weapon after being modified by all equipped buffs and pickups")]
+    public DamageStats weaponOutputStats;
+    public DamageStats OutputStats 
+    {
+        get
+        {
+            return WeaponBaseStats + weaponOutputStats;
+        }
+        set
+        {
+            weaponOutputStats = value;
+        }
+    }
+    public DamageStats BaseStats 
     { 
-        get { return DamageContainer; }
-        set { DamageContainer = value; }
+        get { return WeaponBaseStats; }
+        set { WeaponBaseStats= value; }
     }
     public MonoBehaviour Mono
     {

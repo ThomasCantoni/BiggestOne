@@ -17,11 +17,11 @@ public class WB_FourLeafClover : WeaponBuff
     }
     public override void Apply(GenericGun toBuff)
     {
-        
-        toBuff.DamageContainer.EffectChance += 100f;
+        originalEffectChance = toBuff.WeaponBaseStats.EffectChance;
+        toBuff.weaponOutputStats.EffectChance = 100f;
     }
     public override void Remove(GenericGun toNerf)
     {
-        toNerf.DamageContainer.EffectChance -= 100;
+        toNerf.weaponOutputStats.EffectChance = originalEffectChance;
     }
 }

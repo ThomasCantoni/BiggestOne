@@ -7,7 +7,12 @@ public class ParticleSystemCollision : MonoBehaviour, IDamager
     public GameObject enemy;
 
     public DamageStats damage;
-    public DamageStats DamageStats
+    public DamageStats BaseStats
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
+    public DamageStats OutputStats
     {
         get { return damage; }
         set { damage = value; }

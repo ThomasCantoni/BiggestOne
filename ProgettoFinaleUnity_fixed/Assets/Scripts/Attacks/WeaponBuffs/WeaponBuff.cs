@@ -12,12 +12,12 @@ public class WeaponBuff : ScriptableObject
     public virtual void OnGunStart(GenericGun justEquipped)
     {
         hostGun = justEquipped;
-        Apply(ref justEquipped.DamageContainer);
+        Apply(ref justEquipped.WeaponBaseStats);
     }
     public virtual void OnGunStop(GenericGun justUnequipped)
     {
         
-        Remove(ref justUnequipped.DamageContainer);
+        Remove(ref justUnequipped.WeaponBaseStats);
     }
     public virtual void Apply(ref DamageStats toBuff)
     {
