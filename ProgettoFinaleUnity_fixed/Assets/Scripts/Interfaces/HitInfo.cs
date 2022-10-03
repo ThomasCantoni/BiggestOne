@@ -43,14 +43,14 @@ public class HitInfo
     {
         //SourceDamageInstance = SourceGun;
         //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
-        DamageStats = Source.DamageStats;
+        DamageStats = Source.BaseStats;
        
     }
     public HitInfo(IDamager Source, IHittable Target)
     {
         //SourceDamageInstance = SourceGun;
         //PlayerAttackEffects = SourceGun.Player.GetComponent<PlayerAttackEffects>();
-        DamageStats = Source.DamageStats;
+        DamageStats = Source.OutputStats;
         GameObjectHit = Target.Mono.gameObject;
         //EnemyHit = new List<EnemyClass>();
         EnemyHit = GameObjectHit.GetComponent<EnemyClass>();
@@ -64,6 +64,14 @@ public class HitInfo
 [Serializable]
 public struct DamageStats
 {
+    public static DamageStats Zero
+    {
+        get
+        {
+            return new DamageStats();
+
+        }
+    }
     public float Damage;
     public float CritChance;
     public float CritMultiplier;

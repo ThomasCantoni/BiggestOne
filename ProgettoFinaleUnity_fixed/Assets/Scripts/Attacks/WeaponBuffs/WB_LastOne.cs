@@ -38,13 +38,13 @@ public class WB_LastOne : WeaponBuff
     {
         if(toBuff.currentAmmo == 1)
         {
-            toAdd = toBuff.DamageContainer.Damage * (DamageMultiplier - 1);
-            toBuff.DamageContainer.Damage += toAdd;
+            toAdd = toBuff.WeaponBaseStats.Damage * (DamageMultiplier - 1);
+            toBuff.WeaponBaseStats.Damage += toAdd;
         }
     }
     public void ResetBigShot(GenericGun toNerf)
     {
-        toNerf.DamageContainer.Damage -= toAdd;
+        toNerf.WeaponBaseStats.Damage -= toAdd;
         toAdd = 0;
     }
 }

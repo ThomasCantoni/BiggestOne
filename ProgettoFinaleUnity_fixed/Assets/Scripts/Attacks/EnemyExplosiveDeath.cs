@@ -17,7 +17,7 @@ public class EnemyExplosiveDeath : ChainableAttack
             return;
         EDEC.LayersToHit = LayersToHit;
         EDEC.Radius = Radius;
-        EDEC.DamageStats = damageValues;
+        EDEC.BaseStats = damageValues;
        
     }
    

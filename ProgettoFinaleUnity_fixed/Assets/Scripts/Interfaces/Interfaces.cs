@@ -7,7 +7,12 @@ using System;
 
 public interface IDamager :IMono
 {
-    public abstract DamageStats DamageStats
+    public abstract DamageStats BaseStats
+    {
+        get;
+        set;
+    }
+    public abstract DamageStats OutputStats
     {
         get;
         set;

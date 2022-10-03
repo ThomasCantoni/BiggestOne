@@ -16,7 +16,9 @@ public class GrenadeScript : MonoBehaviour,IDamager
     public Vector3 targetForward;
     public float Speed = 10f;
     bool HasReachedDestination = false;
-    public DamageStats DamageStats { get { return DamageValues; } set => DamageValues = value; }
+    public DamageStats BaseStats { get { return DamageValues; } set => DamageValues = value; }
+    public DamageStats OutputStats { get { return DamageValues; } set => DamageValues = value; }
+
 
     public MonoBehaviour Mono
     {

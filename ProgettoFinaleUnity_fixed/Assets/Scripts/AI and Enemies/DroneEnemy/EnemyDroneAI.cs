@@ -41,7 +41,9 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
             return false;
         }
     }
-    public DamageStats DamageStats { get { return damage; } set { damage = value; } }
+    public DamageStats BaseStats { get { return damage; } set { damage = value; } }
+    public DamageStats OutputStats { get { return damage; } set { damage = value; } }
+
     public MonoBehaviour Mono
     {
         get

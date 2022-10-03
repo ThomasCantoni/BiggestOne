@@ -29,7 +29,7 @@ public class FlamesEnemyComponent : ChainableAttackComponent
 
         flamesHitInfo = new HitInfo(this, host);
         //apply initial damage
-        flamesHitInfo.DamageStats = DamageStats;
+        flamesHitInfo.DamageStats = BaseStats;
         flamesHitInfo.DamageStats.Damage = InitialDamage;
         dmgInstance.AddHitInfo(flamesHitInfo);
         dmgInstance.Deploy();

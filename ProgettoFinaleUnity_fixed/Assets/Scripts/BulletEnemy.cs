@@ -8,12 +8,16 @@ public class BulletEnemy : MonoBehaviour, IDamager
     public float Speed = 1f;
     public DamageStats damage;
     Rigidbody RB;
-    public DamageStats DamageStats
+    public DamageStats BaseStats
     {
         get { return damage; }
         set { damage = value; }
     }
-
+    public DamageStats OutputStats
+    {
+        get { return damage; }
+        set { damage = value; }
+    }
     public MonoBehaviour Mono => throw new System.NotImplementedException();
 
     private void OnTriggerEnter(Collider other)
