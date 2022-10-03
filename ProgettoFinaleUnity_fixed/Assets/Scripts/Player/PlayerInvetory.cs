@@ -19,4 +19,9 @@ public class PlayerInvetory : MonoBehaviour
         NumberOfCoins++;
         OnCoinCollected?.Invoke(this);
     }
+    public void CoinCollected(int number)
+    {
+        NumberOfCoins++;
+        OnCoinCollected?.Invoke(this);
+    }
 }
