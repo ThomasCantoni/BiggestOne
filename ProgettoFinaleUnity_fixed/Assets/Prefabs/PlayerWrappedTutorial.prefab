@@ -5843,6 +5843,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: Speed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: GravityMul
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: JumpHeight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: HardGroundedOffset
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546981, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: MainCamera
       value: 
@@ -5851,6 +5867,14 @@ PrefabInstance:
       propertyPath: VirtualCamera
       value: 
       objectReference: {fileID: 60439749082204246}
+    - target: {fileID: 8880502456667693375, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880502456667693375, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
 --- !u!4 &7578008436064795054 stripped
