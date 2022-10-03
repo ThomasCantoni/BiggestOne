@@ -7,6 +7,6 @@ public class TutorialRespawn : MonoBehaviour
     public Transform player;
     private void OnTriggerEnter(Collider other)
     {
-        player.position = new Vector3(0, 1, 0);
+        player.position = new Vector3(0, 14, -7);
     }
 }
