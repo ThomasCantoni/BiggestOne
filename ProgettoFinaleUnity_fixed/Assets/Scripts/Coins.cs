@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coins : MonoBehaviour
+public class Coins : GenericPickUp
 {
-    private void OnTriggerEnter(Collider other)
+    public int CoinAmount = 1;
+    public override void OnTriggerEnter(Collider other)
     {
         
         PlayerInvetory playerInvetory = other.GetComponent<PlayerInvetory>();
         if (playerInvetory != null)
         {
-            playerInvetory.CoinCollected();
+            playerInvetory.CoinCollected(CoinAmount);
             Destroy(this.gameObject);
         }
     }
