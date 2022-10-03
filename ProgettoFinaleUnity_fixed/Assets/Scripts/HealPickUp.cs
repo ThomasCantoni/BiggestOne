@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class HealPickUp : GenericPickUp
 {
-    private float UpdateHealth;
-    public HealthPlayer HP;
-    private void Start()
-    {
-        UpdateHealth = HP.HP_Value / 2f;
-    }
     public override void OnTriggerEnter(Collider other)
     {
-        HP = other.GetComponent<HealthPlayer>();
+        HealthPlayer HP = other.GetComponent<HealthPlayer>();
         if (HP.HP_Value <= 100)
         {
-            HP.HP_Value += UpdateHealth;
+            HP.HP_Value += HP.maxHp * 0.25f;
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
     }
 }
