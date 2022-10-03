@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tileable
+  m_Name: Lab walls
   m_Shader: {fileID: -6465566751694194690, guid: de2aa6be22eb8f6439ca6c6f6263bcd3, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -84,7 +84,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_79d9e978955a401e9b7c4f3b8b6d0709: 1
+    - Vector1_79d9e978955a401e9b7c4f3b8b6d0709: 0.1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -112,8 +112,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_a794fc3baac947f6b797f555d8c6bc66: {r: 0.7264151, g: 0, b: 0, a: 0}
-    - Color_e1194c2c8e1a463492c3e7673b2e7f73: {r: 1, g: 1, b: 1, a: 0}
+    - Color_a794fc3baac947f6b797f555d8c6bc66: {r: 0.27754536, g: 0.5943396, b: 0.37963456, a: 0}
+    - Color_e1194c2c8e1a463492c3e7673b2e7f73: {r: 0.27754536, g: 0.5943396, b: 0.37963456, a: 0}
     - Vector2_772eb1e3a5e348dc8c556ea48738faa7: {r: 1, g: 1, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
