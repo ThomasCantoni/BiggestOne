@@ -60,6 +60,21 @@ public class PlayerAttackEffects : MonoBehaviour
         ChainableAttackList.Add(atk);
         return newNode;
     }
+    public LinkedListNode<WeaponBuff> Add(WeaponBuff atk)
+    {
+        if (atk == null)
+        {
+            return null;
+        }
+        LinkedListNode<WeaponBuff> newNode = new LinkedListNode<WeaponBuff>(atk);
+
+        WeaponBuffs.AddLast(atk);
+        FPS.WS.GunEquippedEvent += (genericGun) => atk.OnGunStart(genericGun);
+
+        FPS.WS.GunUnequippedEvent += (genericGun) => atk.OnGunStop(genericGun);
+        atk.OnGunStart(FPS.WS.currentGun);
+        return newNode;
+    }
     public void Remove(ChainableAttack atk)
     {
         //LinkedListNode<ChainableAttack> toRemove = PerEnemyAttacks.Find(atk);
@@ -68,6 +83,15 @@ public class PlayerAttackEffects : MonoBehaviour
         //PerShotAttacks.Remove(toRemove);
         GetCorrectList(atk).Remove(atk);
         ChainableAttackList.Remove(atk);
+    }
+    public void Remove(WeaponBuff atk)
+    {
+        //LinkedListNode<ChainableAttack> toRemove = PerEnemyAttacks.Find(atk);
+
+        //PerEnemyAttacks.Remove(toRemove);
+        //PerShotAttacks.Remove(toRemove);
+        WeaponBuffsList.Remove(atk);
+        WeaponBuffs.Remove(atk);
     }
     public LinkedList<ChainableAttack> GetCorrectList(ChainableAttack atk)
     {

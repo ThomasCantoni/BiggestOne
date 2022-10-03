@@ -9,20 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10092d230f770fc4c866e7bd1673ea81, type: 3}
-  m_Name: Lightning
+  m_Script: {fileID: 11500000, guid: d9c1a2af14eed53419243c533dd35c7a, type: 3}
+  m_Name: FourLeafClover
   m_EditorClassIdentifier: 
-  FPS: {fileID: 0}
-  ChainAttackApplicationMode: 0
-  EnemiesHit: []
-  damageValues:
-    Damage: 20
+  StatsToAdd:
+    Damage: 0
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
-  Radius: 5
-  LayersToHit:
-    serializedVersion: 2
-    m_Bits: 128
-  MaxEnemiesHittable: 5
-  DamageScalePerEnemy: 0.6
+  hostGun: {fileID: 0}
