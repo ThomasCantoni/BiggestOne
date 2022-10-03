@@ -7,7 +7,7 @@ public class HealthPlayer : MonoBehaviour, IHittable
 {
     public Slider HP_Slider;
     private float hp_Value = 100f;
-    private readonly float maxHp = 100f;
+    public readonly float maxHp = 100f;
     public delegate void PlayerDeathEvent();
     public event PlayerDeathEvent OnPlayerDeath;
     public float HP_Value

@@ -7,6 +7,7 @@ public class PlayerInvetory : MonoBehaviour
 {
     public int NumberOfCoins;
     public List<GrenadeScript> grenades;
+    public float mulCoins;
     public UnityEvent<PlayerInvetory> OnCoinCollected;
     public bool HasSpecialGrenade;
     private void Start()
@@ -16,12 +17,11 @@ public class PlayerInvetory : MonoBehaviour
     }
     public void CoinCollected()
     {
-        NumberOfCoins++;
         OnCoinCollected?.Invoke(this);
     }
     public void CoinCollected(int number)
     {
-        NumberOfCoins++;
+        NumberOfCoins += number * (int)mulCoins;
         OnCoinCollected?.Invoke(this);
     }
 }
