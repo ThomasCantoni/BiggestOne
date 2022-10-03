@@ -5335,7 +5335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedWeapon: 0
   InputCooker: {fileID: 7578008436064795051}
-  UIM: {fileID: 0}
+  UIM: {fileID: 2033741994827779121}
   currentGun: {fileID: 0}
   List:
   - {fileID: 1989349436}
@@ -5640,7 +5640,7 @@ MonoBehaviour:
     Force: 0
     FractureType: 0
   WeaponBaseStats:
-    Damage: 0
+    Damage: 50
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -5770,7 +5770,7 @@ MonoBehaviour:
     Force: 0
     FractureType: 0
   WeaponBaseStats:
-    Damage: 0
+    Damage: 15
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -5991,6 +5991,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+      propertyPath: WS
+      value: 
+      objectReference: {fileID: 1592762245896260304}
+    - target: {fileID: 8436142690075546979, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
       propertyPath: Speed
       value: 30
       objectReference: {fileID: 0}
@@ -6140,6 +6144,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da3f9b06118c7b43b3d1038285cce6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2033741994827779121 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 444145919, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
+  m_PrefabInstance: {fileID: 2033741994936249550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00a7432ecbdccb3479de8f1720251390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2033741995732976283 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1351446101, guid: c02ac974dd945854892d208a2f5cebef, type: 3}
@@ -6287,7 +6302,7 @@ MonoBehaviour:
     Force: 0
     FractureType: 0
   WeaponBaseStats:
-    Damage: 0
+    Damage: 9
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -6379,6 +6394,10 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 1534726897}
+    - target: {fileID: 5889287880863885940, guid: 3367d79fabf25854982c3a04d8f65ccf, type: 3}
+      propertyPath: WeaponBaseStats.Damage
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3367d79fabf25854982c3a04d8f65ccf, type: 3}
 --- !u!4 &7147531861487042456 stripped
