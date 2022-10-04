@@ -31,9 +31,9 @@ public class AI_Ranged_ChasePlayer : AI_Ranged_BaseState
     {
         base.Update();
         Owner.NavMeshAgent.destination = Player.transform.position;
-        
-        
-        
+
+
+
         //if (agent.EC.NavMeshAgent.pathStatus != NavMeshPathStatus.PathPartial)
         //{
         //    agent.EC.NavMeshAgent.destination = player.transform.position;

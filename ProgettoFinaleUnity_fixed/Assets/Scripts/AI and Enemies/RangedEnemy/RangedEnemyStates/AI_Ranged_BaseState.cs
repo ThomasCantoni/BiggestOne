@@ -41,6 +41,11 @@ public class AI_Ranged_BaseState : AiState
 
     public virtual void Update()
     {
+        if (Owner.EMPActive)
+        {
+            Owner.anim.SetBool("EMP", true);
+            return;
+        }
         TowardsPlayer = (Player.transform.position - Owner.transform.position);
         TowardsPlayerXZ = TowardsPlayer;
         TowardsPlayerXZ.y = 0;

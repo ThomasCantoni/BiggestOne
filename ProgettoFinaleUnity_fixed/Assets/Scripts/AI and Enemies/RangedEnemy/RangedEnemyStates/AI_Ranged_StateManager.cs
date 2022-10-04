@@ -28,6 +28,7 @@ public class AI_Ranged_StateManager : AiAgent
         stateMachine.RegisterState(new AI_Ranged_AttackState(Owner));
         stateMachine.RegisterState(new AI_Ranged_EscapeState(Owner));
         stateMachine.RegisterState(new AI_Ranged_DeathState(Owner));
+        stateMachine.RegisterState(new AIStunState(Owner));
         
     }
 

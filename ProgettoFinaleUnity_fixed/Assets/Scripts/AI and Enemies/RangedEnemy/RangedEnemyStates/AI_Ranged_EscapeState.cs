@@ -14,9 +14,10 @@ public class AI_Ranged_EscapeState : AI_Ranged_BaseState
     public override void Enter()
     {
         base.Enter();
+
         
             SearchWalkPoint();
-        
+
     }
 
     public override void Exit()
@@ -44,9 +45,7 @@ public class AI_Ranged_EscapeState : AI_Ranged_BaseState
             {
                 OwnerStateManager.stateMachine.ChangeState(AiStateId.ChasePlayer);
             }
-
         }
-        
     }
     public NavMeshPath TryGo(Vector3 dir, float multi, bool local = false)
     {
@@ -94,7 +93,7 @@ public class AI_Ranged_EscapeState : AI_Ranged_BaseState
             j++;
         }
         Owner.NavMeshAgent.speed = 4f;
-        //agent.SetDestination(walkPoint);
+        //Owner.NavMeshAgent.SetDestination(walkPoint);
         //Vector3 fsmPosition = this.transform.position;
         //Vector3 fwd = transform.TransformDirection(Vector3.forward); // this
 

@@ -17,6 +17,9 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     private float maxHp = 100f;
     public bool IsInSpawnQueue = false;
     protected  SimpleTimer disableGO_Timer;
+    public UnityEvent<EnemyClass> OnEMPCollected;
+    public bool EMPActive;
+
 
     public float MaxHP { 
         get
@@ -91,6 +94,17 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
                 //AiDeathState deathState = agent.stateMachine.GetState(AiStateId.Death) as AiDeathState;
                 //agent.stateMachine.ChangeState(AiStateId.Death);
             }
+        }
+    }
+    public void Emp()
+    {
+        //EMPActive = true;
+        if (!EMPActive)
+        {
+            OnEMPCollected?.Invoke(this);
+            anim.SetBool("EMP", true);
+            NavMeshAgent.speed = 0;
+            EMPActive = true;
         }
     }
     public virtual void ResetAttack()
