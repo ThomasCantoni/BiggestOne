@@ -196,7 +196,7 @@ MonoBehaviour:
     TimeMs: 10000
     HasCompleted: 0
     UpdateTimer: 0
-  EC: {fileID: 0}
+  EC: {fileID: 7966955618791518255, guid: 09a3bf4ab6d018e47ba83b3fde43bc96, type: 3}
 --- !u!1 &8404274264504236118
 GameObject:
   m_ObjectHideFlags: 0

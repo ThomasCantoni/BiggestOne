@@ -6,8 +6,10 @@ public class EMP : GenericPickUp
 {
     public SimpleTimer St;
     public EnemyClass EC;
+    
     public override void OnTriggerEnter(Collider other)
     {
+        //EC = other.GetComponent<EnemyClass>();
         if (EC != null)
         {
             OnPickUpUnityEvent?.Invoke();
