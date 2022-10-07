@@ -321,6 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 0
   EC: {fileID: 1683396454}
+  multiplier: 2
 --- !u!114 &182022562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,9 +337,9 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1683396453}
-        m_TargetAssemblyTypeName: HitEvent, Scripts
-        m_MethodName: OnHit
+      - m_Target: {fileID: 182022561}
+        m_TargetAssemblyTypeName: TakeDamage, Scripts
+        m_MethodName: HIT
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -609,6 +610,10 @@ PrefabInstance:
     - target: {fileID: 253935805994219214, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 325058900345308922, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_Speed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 330119719488042657, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
       propertyPath: m_Layer
@@ -1491,6 +1496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terminal
       objectReference: {fileID: 0}
+    - target: {fileID: 4652295458192001986, guid: f4181213252447743a362fd74dfb8e2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4726504975572714585, guid: f4181213252447743a362fd74dfb8e2b, type: 3}
       propertyPath: WS
       value: 
@@ -1677,9 +1686,9 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1307624524}
-        m_TargetAssemblyTypeName: HitEvent, Scripts
-        m_MethodName: OnHit
+      - m_Target: {fileID: 499681720}
+        m_TargetAssemblyTypeName: TakeDamage, Scripts
+        m_MethodName: HIT
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1703,6 +1712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 0
   EC: {fileID: 1307624525}
+  multiplier: 2
 --- !u!1 &509292643 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9065339783988196015, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
@@ -2026,6 +2036,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5442969948414690146, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5818442265854749407, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_text
       value: 
@@ -2039,6 +2053,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6968395860162197526, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147531861487461304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -2141,6 +2159,10 @@ PrefabInstance:
     - target: {fileID: 253935805994219214, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 325058900345308922, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_Speed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 330119719488042657, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
       propertyPath: m_Layer
@@ -3064,17 +3086,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8334250676364403265, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
   m_PrefabInstance: {fileID: 1142628326}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1307624524 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8334250675054518049, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
-  m_PrefabInstance: {fileID: 1142628326}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307624523}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1307624525 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8334250676364403385, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
@@ -3100,6 +3111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 1
   EC: {fileID: 1307624525}
+  multiplier: 0
 --- !u!1 &1366631056 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3051928965768018776, guid: 7b846d8f536f007498c941069487ce81, type: 3}
@@ -3458,17 +3470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageType: 1
   EC: {fileID: 1683396454}
---- !u!114 &1683396453 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8334250675054518049, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
-  m_PrefabInstance: {fileID: 395867346}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683396450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38819a28c2ad5084ea7a5d7dc6089e91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  multiplier: 0
 --- !u!114 &1683396454 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8334250676364403385, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
