@@ -17,7 +17,7 @@ public class HitscanBullet : GenericBullet
 
     public override void Deploy()
     {
-        Owner.takeDmg = null;
+        //Owner.takeDmg = null;
         Vector3 dir = Owner.GetShootingDirection();
         RaycastHit[] thingsHit = Physics.RaycastAll(Owner.InputCooker.MainCamera.transform.position, 
             dir, 
@@ -69,34 +69,34 @@ public class HitscanBullet : GenericBullet
         Owner.BulletHitListPopulated?.Invoke(this);
         
     }
-    public void checkHIT(RaycastHit hit)
-    {
-        try
-        {
-            Owner.takeDmg = hit.transform.GetComponent<TakeDamage>();
-            HitInfo hitInfo = new HitInfo(Owner);
-            switch (Owner.takeDmg.damageType)
-            {
+    //public void checkHIT(RaycastHit hit)
+    //{
+    //    try
+    //    {
+    //        Owner.takeDmg = hit.transform.GetComponent<TakeDamage>();
+    //        HitInfo hitInfo = new HitInfo(Owner);
+    //        switch (Owner.takeDmg.damageType)
+    //        {
 
-                case TakeDamage.collisionType.head:
-                    //hitInfo.DamageStats.Damage = 30f;
-                    Owner.takeDmg.HIT(hitInfo);
-                    Debug.Log(" " + hitInfo.DamageStats.Damage);
-                    break;
-                case TakeDamage.collisionType.body:
-                    Owner.takeDmg.HIT(hitInfo);
-                    Debug.Log(" " + hitInfo.DamageStats.Damage);
-                    break;
-                default:
-                    break;
-            }
-        }
-        catch
-        {
+    //            case TakeDamage.collisionType.head:
+    //                hitInfo.DamageStats.Damage += hitInfo.DamageStats.Damage;
+    //                Owner.takeDmg.HIT(hitInfo);
+    //                Debug.Log("head" + hitInfo.DamageStats.Damage);
+    //                break;
+    //            case TakeDamage.collisionType.body:
+    //                Owner.takeDmg.HIT(hitInfo);
+    //                Debug.Log("body" + hitInfo.DamageStats.Damage);
+    //                break;
+    //            default:
+    //                break;
+    //        }
+    //    }
+    //    catch
+    //    {
 
 
-        }
-    }
+    //    }
+    //}
 
 
 }
