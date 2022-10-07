@@ -17,13 +17,14 @@ public class HitscanBullet : GenericBullet
 
     public override void Deploy()
     {
+        Owner.takeDmg = null;
         Vector3 dir = Owner.GetShootingDirection();
         RaycastHit[] thingsHit = Physics.RaycastAll(Owner.InputCooker.MainCamera.transform.position, 
             dir, 
             100f, 
             Owner.Mask.value);
-        Debug.DrawRay(Owner.InputCooker.MainCamera.transform.position, dir*100f, Color.red,2f);
-        Debug.Log("SHOOTING HITSCAN");
+        //Debug.DrawRay(Owner.InputCooker.MainCamera.transform.position, dir*100f, Color.red,2f);
+        //Debug.Log("SHOOTING HITSCAN");
         if (thingsHit == null || thingsHit.Length == 0)
             return;
 
@@ -47,10 +48,10 @@ public class HitscanBullet : GenericBullet
             if (hitinfoList.Count >= maxPenetrations+1)
                 break;
             RaycastHit hit = thingsHit[i];
-
             IHittable thingHit = hit.collider.GetComponent<IHittable>();
             if (thingHit != null)
             {
+                //checkHIT(hit);
                 HitInfo hitInfo = new HitInfo(Owner,thingHit);
                 hitInfo.SetRaycastPositions(hit);
                 hitInfo.FractureInfo.Force = Owner.FractureInformation.Force;
@@ -58,14 +59,44 @@ public class HitscanBullet : GenericBullet
 
                 hitinfoList.Add(hitInfo);
                 Owner.HitInfoCreated?.Invoke(hitInfo);
+                
+                
             }
+            
         }
 
         Hits = hitinfoList;
         Owner.BulletHitListPopulated?.Invoke(this);
         
     }
-    
+    public void checkHIT(RaycastHit hit)
+    {
+        try
+        {
+            Owner.takeDmg = hit.transform.GetComponent<TakeDamage>();
+            HitInfo hitInfo = new HitInfo(Owner);
+            switch (Owner.takeDmg.damageType)
+            {
 
-   
+                case TakeDamage.collisionType.head:
+                    //hitInfo.DamageStats.Damage = 30f;
+                    Owner.takeDmg.HIT(hitInfo);
+                    Debug.Log(" " + hitInfo.DamageStats.Damage);
+                    break;
+                case TakeDamage.collisionType.body:
+                    Owner.takeDmg.HIT(hitInfo);
+                    Debug.Log(" " + hitInfo.DamageStats.Damage);
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch
+        {
+
+
+        }
+    }
+
+
 }

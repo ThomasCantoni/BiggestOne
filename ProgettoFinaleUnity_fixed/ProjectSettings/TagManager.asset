@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - Shotgun
   - Event
+  - Head
   layers:
   - Default
   - TransparentFX
