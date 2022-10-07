@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{182ec099-18dc-4b4a-9a22-602a2f161cea}">
+		<property name="assetPath">
+			<value>Ranged_Foot/step (5).wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.51371882086167797</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f44f2e2a-6fc8-4352-83cf-381993474e54}</destination>
+		</relationship>
+	</object>
+</objects>

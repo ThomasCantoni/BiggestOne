@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d7690fa7-c328-48f6-932c-57bfda1f8fb0}">
+		<property name="assetPath">
+			<value>Charge/fucile carica_LOOP.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.9999773242630385</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f44f2e2a-6fc8-4352-83cf-381993474e54}</destination>
+		</relationship>
+	</object>
+</objects>
