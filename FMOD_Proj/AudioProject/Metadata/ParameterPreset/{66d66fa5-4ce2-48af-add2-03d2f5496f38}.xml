@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{66d66fa5-4ce2-48af-add2-03d2f5496f38}">
+		<property name="name">
+			<value>buzz</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0a7db04b-29b7-4d07-a730-3f518f69f1b4}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{27dd8792-55de-4cd0-9a23-6f2ba9d3d36c}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{27dd8792-55de-4cd0-9a23-6f2ba9d3d36c}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>11</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

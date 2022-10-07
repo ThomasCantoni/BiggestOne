@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{fe401929-129f-4ec3-856b-e780ac2be74c}">
 		<property name="assetPath">
-			<value>EV1/mitragliatrice pesanteFUTU_LOOP.wav</value>
+			<value>Machinegun/mitragliatrice pesanteFUTU_LOOP.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

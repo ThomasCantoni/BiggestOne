@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{d235e412-fede-4126-81bb-1b6e238271b8}">
+		<property name="assetPath">
+			<value>Bluster_Ranged/Bluster_Ranged.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.68873015873015875</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f44f2e2a-6fc8-4352-83cf-381993474e54}</destination>
+		</relationship>
+	</object>
+</objects>

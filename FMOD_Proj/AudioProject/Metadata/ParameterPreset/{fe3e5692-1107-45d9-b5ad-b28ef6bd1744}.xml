@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{fe3e5692-1107-45d9-b5ad-b28ef6bd1744}">
+		<property name="name">
+			<value>Drone_Bluster</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0a7db04b-29b7-4d07-a730-3f518f69f1b4}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{a31db7da-e746-4a8c-8d24-8f7aa3c05eb1}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{a31db7da-e746-4a8c-8d24-8f7aa3c05eb1}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="minimum">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>4</value>
+		</property>
+		<property name="initialValue">
+			<value>1</value>
+		</property>
+	</object>
+</objects>

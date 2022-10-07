@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{7a8ed9c1-3275-4cc9-b9b3-45cb638ef2fb}">
+		<property name="assetPath">
+			<value>Ranged_Foot/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{f44f2e2a-6fc8-4352-83cf-381993474e54}</destination>
+		</relationship>
+	</object>
+</objects>

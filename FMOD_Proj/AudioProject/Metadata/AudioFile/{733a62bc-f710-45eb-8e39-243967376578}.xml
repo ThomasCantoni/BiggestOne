@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{733a62bc-f710-45eb-8e39-243967376578}">
 		<property name="assetPath">
-			<value>EV2/FucileAssalto2-LOOP.wav</value>
+			<value>Autorifle/FucileAssalto2-LOOP.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

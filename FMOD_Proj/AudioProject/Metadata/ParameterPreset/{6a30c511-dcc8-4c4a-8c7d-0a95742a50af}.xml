@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{6a30c511-dcc8-4c4a-8c7d-0a95742a50af}">
+		<property name="name">
+			<value>Bluster_Ranged</value>
+		</property>
+		<relationship name="folder">
+			<destination>{0a7db04b-29b7-4d07-a730-3f518f69f1b4}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{876f318a-c762-4181-b36f-d08e8a1d68c6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{876f318a-c762-4181-b36f-d08e8a1d68c6}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>6</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
