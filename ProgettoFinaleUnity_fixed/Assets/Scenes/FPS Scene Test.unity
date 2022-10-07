@@ -7771,7 +7771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1449869803
 Transform:
   m_ObjectHideFlags: 0
@@ -8599,17 +8599,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1583035080}
   m_Mesh: {fileID: 374571052}
---- !u!114 &1593347459 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 399678220, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-  m_PrefabInstance: {fileID: 1687120077}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d8b3b0f9c49d34a809403f2ff956e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1602344071
 GameObject:
   m_ObjectHideFlags: 0
@@ -9845,7 +9834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: List.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: List.Array.data[0]
@@ -9854,11 +9843,11 @@ PrefabInstance:
     - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: List.Array.data[1]
       value: 
-      objectReference: {fileID: 1593347459}
+      objectReference: {fileID: 1000957839}
     - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: List.Array.data[2]
       value: 
-      objectReference: {fileID: 1687120080}
+      objectReference: {fileID: 1000957839}
     - target: {fileID: 1592762245896260304, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: List.Array.data[3]
       value: 
@@ -9900,13 +9889,21 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2033741995397563422, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: WeaponBuffsList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033741995397563422, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: WeaponBuffsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e58a05144268db94f89b05e645d3adbc, type: 2}
+    - target: {fileID: 2033741995397563422, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: ChainableAttackList.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2033741995397563422, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: ChainableAttackList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: ecafb57c0094fbe4ca2da48214d51e57, type: 2}
+      objectReference: {fileID: 11400000, guid: fd3a5ca199419c3499acdd5b91d6bc29, type: 2}
     - target: {fileID: 2033741995732976285, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -10180,6 +10177,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
+      propertyPath: SpeedChangeFactor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: HardGroundedOffset
       value: 0.9
       objectReference: {fileID: 0}
@@ -10241,15 +10242,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: GroundedStillDragVector.x
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: GroundedStillDragVector.y
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: GroundedStillDragVector.z
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7578008436064795053, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: GroundedMovementDragVector.x
@@ -11818,7 +11819,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8333969264935610662, guid: 95b2ca8104872d646805b0d04b2477c5, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b2ca8104872d646805b0d04b2477c5, type: 3}
@@ -13665,6 +13666,10 @@ PrefabInstance:
     - target: {fileID: 712531684302646029, guid: d4367898f8c0d17418b2b676f672a7ca, type: 3}
       propertyPath: m_Name
       value: FourLeafCloverPickUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 712531684302646029, guid: d4367898f8c0d17418b2b676f672a7ca, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4367898f8c0d17418b2b676f672a7ca, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PurePower", menuName = "ScriptableObjects/WeaponBuffs/PurePower")]
 public class WB_PurePower : WeaponBuff
 {
-    
+    public float Multiplier = 4f;
     public override void OnGunStart(GenericGun justEquipped)
     {
         hostGun = justEquipped;
@@ -17,14 +17,15 @@ public class WB_PurePower : WeaponBuff
     }
     public override void Apply(GenericGun toBuff)
     {
-
-        toBuff.WeaponBaseStats.EffectChance -= 300f;
-        toBuff.WeaponBaseStats.Damage *= 4;
+        
+        toBuff.weaponOutputStats.EffectChance -= 300f;
+        toBuff.weaponOutputStats.Damage += toBuff.weaponOutputStats.Damage*(Multiplier -1);
+        
     }
     public override void Remove(GenericGun toNerf)
     {
-        toNerf.WeaponBaseStats.EffectChance += 300;
-        toNerf.WeaponBaseStats.Damage *= 0.25f;
+        toNerf.weaponOutputStats.EffectChance += 300;
+        toNerf.weaponOutputStats.Damage -= toNerf.WeaponBaseStats.Damage * (Multiplier - 1);
 
     }
 

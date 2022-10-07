@@ -98,5 +98,5 @@ public struct DamageStats
         return result;
     }
 
-
+    
 }
