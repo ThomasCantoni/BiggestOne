@@ -53,6 +53,7 @@ public class GenericGun : MonoBehaviour,IDamager
     public PlayerAttackEffects PlayerAttackEffects;
     public FirstPersonController FPS;
     public InputCooker InputCooker;
+    public TakeDamage takeDmg;
     protected bool hasShotOnce, shooting;
     protected float currentShootCD = 0;
     public bool shotgun = false;
@@ -327,15 +328,13 @@ public class GenericGun : MonoBehaviour,IDamager
             foreach (HitInfo hit in newHitscanBullet.Hits)
             {
                 thingsHit.Add(hit);
-
             }
-
-          
 
         }
 
         return thingsHit;
     }
+    
     public Vector3 GetShootingDirection()
     {
         Vector3 targetPos = cam.position + cam.forward * range;
