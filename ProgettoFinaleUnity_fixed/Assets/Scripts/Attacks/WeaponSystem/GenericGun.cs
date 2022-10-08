@@ -21,7 +21,7 @@ public class GenericGun : MonoBehaviour,IDamager
     {
         get
         {
-            return WeaponBaseStats + weaponOutputStats;
+            return weaponOutputStats;
         }
         set
         {
@@ -147,7 +147,7 @@ public class GenericGun : MonoBehaviour,IDamager
     public virtual void Start()
     {
         currentAmmo = maxAmmo;
-        
+        weaponOutputStats = WeaponBaseStats;
     }
     protected virtual void Subscribe(bool subscribe)
     {

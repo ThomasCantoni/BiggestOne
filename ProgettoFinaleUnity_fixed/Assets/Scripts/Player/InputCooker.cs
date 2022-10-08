@@ -24,7 +24,7 @@ public class InputCooker : MonoBehaviour
    // public Vector3 RotatedMoveValue;
 
 
-    public Vector3 AbsoluteDirection, RelativeDirection;
+    public Vector3 AbsoluteDirection, RelativeDirection,RelativeDirectionNotZero=Vector3.zero;
     public Vector2 AbsoluteDirection2D;
     public float CameraTargetPitch,PlayerTargetY;
 
@@ -40,8 +40,9 @@ public class InputCooker : MonoBehaviour
     public delegate void PlayerMovementEvent();
     public delegate void PlayerInteractEvent();
     public delegate void PlayerReloadEvent();
+    public delegate void DirectionChangedEvent(Vector3 newDirection);
 
-
+    public DirectionChangedEvent DirectionChanged;
     public PlayerShootEvent PlayerPressedShoot, PlayerReleasedShoot;
     public ChangeWeaponEvent NextWeapon, PreviousWeapon;
     public PlayerRotatedCameraEvent PlayerRotatedCamera;
@@ -58,7 +59,7 @@ public class InputCooker : MonoBehaviour
 
     public Quaternion TargetCameraRotation, TargetPlayerRotation;
 
-
+    private Vector3 previousdir;
     void Awake()
     {
 
@@ -97,9 +98,19 @@ public class InputCooker : MonoBehaviour
     //// Update is called once per frame
     void Update()
     {
-        
-        RelativeDirection = transform.rotation * AbsoluteDirection;
+        if(previousdir != AbsoluteDirection)
+        {
+            DirectionChanged(RelativeDirection);
+
+        }
        
+        RelativeDirection = transform.rotation * AbsoluteDirection;
+        if(RelativeDirection != Vector3.zero)
+        {
+            RelativeDirectionNotZero = RelativeDirection;
+        }
+        previousdir = AbsoluteDirection;
+        
         //Debug.Log("ABSOLUTE DIR: "+AbsoluteDirection);
         //Debug.Log("RELATIVE DIR: " + RelativeDirection +"  MAG "+RelativeDirection.magnitude );
 
@@ -121,7 +132,8 @@ public class InputCooker : MonoBehaviour
     }
     public void UpdateCameras()
     {
-        GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0f, PlayerTargetY, 0f));
+        // GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0f, PlayerTargetY, 0f));
+        transform.rotation = Quaternion.Euler(0f, PlayerTargetY, 0f);
         VirtualCamera.transform.rotation = Quaternion.Euler(CameraTargetPitch, PlayerTargetY, 0.0f);
         VCameraBrain.ManualUpdate();
     }

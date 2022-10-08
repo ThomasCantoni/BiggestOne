@@ -32,7 +32,7 @@ public class WallParkour : MonoBehaviour
     public Transform PlayerTransform;
     private FirstPersonController fps;
     private InputCooker ic;
-    private Rigidbody rb;
+    private CharacterController rb;
     private Vector3 wallNormal, wallForward, towardsWallVector;
     private bool playerIsHoldingSpace;
     private bool pushingTowardsWall;
@@ -47,7 +47,7 @@ public class WallParkour : MonoBehaviour
     public float checkWallCooldown, checkWallCurrentCooldown;
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<CharacterController>();
         fps = GetComponent<FirstPersonController>();
         ic = GetComponent<InputCooker>();
         ic.PlayerStartedJump += () => playerIsHoldingSpace = true;
@@ -82,7 +82,7 @@ public class WallParkour : MonoBehaviour
         {
             Vector3 trimmedForward = ic.VirtualCamera.transform.forward;
             trimmedForward.y = 0;
-            rb.AddForce(trimmedForward * JumpOffForce, ForceMode.Acceleration);
+            rb.Move(trimmedForward * JumpOffForce*Time.fixedDeltaTime);
         }
 
         
@@ -172,8 +172,8 @@ public class WallParkour : MonoBehaviour
     }
     private void WallRunningMovement()
     {
-        rb.useGravity = false;
-        rb.velocity = new Vector3(0, 0, 0);
+        fps.ApplyGravity = false;
+        //rb.velocity = new Vector3(0, 0, 0);
         // wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
         //wallForward = Vector3.Cross(wallNormal, transform.up);
 
@@ -196,7 +196,7 @@ public class WallParkour : MonoBehaviour
 
         //push towards wall 
         if (playerIsHoldingSpace)
-            rb.AddForce(-wallNormal * 100, ForceMode.Force);
+            rb.Move(-wallNormal * 100*Time.fixedDeltaTime);
 
 
     }
@@ -205,7 +205,7 @@ public class WallParkour : MonoBehaviour
     {
         checkWallCurrentCooldown = checkWallCooldown;
         IsWallRunning = false;
-        rb.useGravity = true;
+        fps.ApplyGravity = true;
         ic.PlayerStoppedJump -= JumpOffWall;
     }
 }

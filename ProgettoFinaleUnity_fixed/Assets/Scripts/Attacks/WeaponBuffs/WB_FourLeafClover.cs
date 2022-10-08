@@ -9,11 +9,11 @@ public class WB_FourLeafClover : WeaponBuff
     public override void OnGunStart(GenericGun justEquipped)
     {
         hostGun = justEquipped;
-        justEquipped.BeforeShoot += Apply;
+        Apply(justEquipped);
     }
     public override void OnGunStop(GenericGun justUnequipped)
     {
-        justUnequipped.BeforeShoot -= Apply;
+        Remove(justUnequipped);
     }
     public override void Apply(GenericGun toBuff)
     {

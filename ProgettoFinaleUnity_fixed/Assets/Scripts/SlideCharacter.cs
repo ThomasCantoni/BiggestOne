@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using Cinemachine;
 public class SlideCharacter : MonoBehaviour
 {
     [Header("Slide")]
@@ -16,7 +16,8 @@ public class SlideCharacter : MonoBehaviour
     public float CheckRadius;
     public LayerMask CollisionCheck;
     public LayerMask BreakableCheck;
-
+    public Transform SlidingCameraHolder,VCamFollow;
+    public Vector3 VCamOriginalFollowPosition ;
     bool canSlide = true;
     float originalHeight;
     private float _SlideCD;
@@ -38,12 +39,14 @@ public class SlideCharacter : MonoBehaviour
     }
     private void Start()
     {
-        capsColl = GetComponent<CapsuleCollider>();
+        //capsColl = GetComponent<CapsuleCollider>();
         IC = GetComponent<InputCooker>();
         FPS = GetComponent<FirstPersonController>();
-        originalHeight = capsColl.height;
+        originalHeight = FPS.RB.height;
         _SlideCD = SlideCooldown;
-
+        
+        VCamFollow = IC.VirtualCamera.Follow;
+        VCamOriginalFollowPosition = VCamFollow.localPosition;
         IC.PlayerStartSliding += () => StartCoroutine(StartSliding());
         IC.PlayerStopSliding += () => StopCoroutine(StartSliding());
 
@@ -58,14 +61,14 @@ public class SlideCharacter : MonoBehaviour
     {
         slideDir = IC.RelativeDirection;
         yield return new WaitForSeconds(SlideInitialTime);
-        if (canSlide && FPS.RB.velocity.magnitude > 1 && FPS.SoftGrounded)
+        if (canSlide && FPS.WantsToMove && FPS.SoftGrounded)
         {
             StartedSLiding?.Invoke();
             canSlide = false;
             this.isSliding = true;
-            FPS.RB.velocity = new Vector3(0,FPS.RB.velocity.y,0);
+            //FPS.RB.velocity = new Vector3(0,FPS.RB.velocity.y,0);
             FPS.ApplyDrag = false;
-            FPS.ClampSpeed = false;
+            //FPS.ClampSpeed = false;
             SlidingTimer.StartTimer();
         }
     }
@@ -73,8 +76,14 @@ public class SlideCharacter : MonoBehaviour
     {
         if(isSliding && NoWallAhead)
         {
-            capsColl.height = Mathf.Lerp(capsColl.height, reduceHeight, 0.2f);
-            FPS.RB.velocity = new Vector3(slideDir.x * slideSpeed,FPS.RB.velocity.y, slideDir.z * slideSpeed);
+            float progress = SlidingTimer.Progress;
+            FPS.RB.height = Mathf.Lerp(FPS.RB.height, reduceHeight, progress);
+            FPS.RB.center = Vector3.Lerp(FPS.RB.center,new Vector3(0, -reduceHeight*0.5f, 0),progress);
+
+            VCamFollow.localPosition = Vector3.Lerp(VCamFollow.localPosition, SlidingCameraHolder.localPosition, progress);
+            Debug.Log(SlidingTimer.Progress);
+
+            FPS.RB.Move(new Vector3(slideDir.x * slideSpeed,0, slideDir.z * slideSpeed)*Time.fixedDeltaTime);
             Collider[] thingsHit = Physics.OverlapSphere(transform.position + slideDir * DistanceFactor, CheckRadius, BreakableCheck.value);
             foreach (Collider x in thingsHit)
             {
@@ -105,7 +114,9 @@ public class SlideCharacter : MonoBehaviour
         }
         else
         {
-            capsColl.height = Mathf.Lerp(capsColl.height, originalHeight, 0.2f);
+            FPS.RB.height = Mathf.Lerp(FPS.RB.height, originalHeight, 0.2f);
+            FPS.RB.center = Vector3.Lerp(FPS.RB.center, new Vector3(0, 0, 0),0.2f);
+            VCamFollow.localPosition = Vector3.Lerp(VCamFollow.localPosition, VCamOriginalFollowPosition, 0.2f);
         }
     }
     private void GoUp()
@@ -113,7 +124,7 @@ public class SlideCharacter : MonoBehaviour
         if (isSliding)
         {
             FPS.ApplyDrag = true;
-            FPS.ClampSpeed = true;
+            //FPS.ClampSpeed = true;
             SlidingTimer.StopTimer(false);
             this.isSliding = false;
             StoppedSliding?.Invoke();

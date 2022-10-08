@@ -6,7 +6,7 @@ using Unity.Jobs;
 public class Dash : MonoBehaviour
 {
     InputCooker IC;
-    Rigidbody RB;
+    CharacterController RB;
     FirstPersonController FPS;
     public LayerMask CollisionCheck;
     public LayerMask BreakableCheck;
@@ -46,7 +46,7 @@ public class Dash : MonoBehaviour
     {
         IC = GetComponent<InputCooker>();
         IC.PlayerPressedShift += StartDashing;
-        RB = GetComponent<Rigidbody>();
+        RB = GetComponent<CharacterController>();
 
         FPS = GetComponent<FirstPersonController>();
         FPS.PlayerStartedGrounded += () => canRechargeGrounded  = true;
@@ -73,11 +73,11 @@ public class Dash : MonoBehaviour
         if (updateDash && NoWallAhead)
         {
             FPS.ApplyDrag = false;
-            
+            FPS.ApplyGravity = false;
             //RB.useGravity = false;
-            RB.velocity = direction * DashForce;
+            RB.Move(direction * DashForce*Time.fixedDeltaTime);
             //RB.AddForce(Vector3.up, ForceMode.VelocityChange);
-            RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
+            //RB.velocity = new Vector3(RB.velocity.x, 0, RB.velocity.z);
             
             Collider[] thingsHit = Physics.OverlapSphere(transform.position + direction * DistanceFactor, CheckRadius, BreakableCheck.value);
             foreach (Collider x in thingsHit)
@@ -146,7 +146,7 @@ public class Dash : MonoBehaviour
         FPS.ClampSpeed = true;
         direction = Vector3.zero;
         updateDash = false;
-        RB.useGravity = true;
+        FPS.ApplyGravity= true;
     }
     public void StopDashingImmediately()
     {
@@ -154,6 +154,6 @@ public class Dash : MonoBehaviour
         FPS.ClampSpeed = true;
         direction = Vector3.zero;
         updateDash = false;
-        RB.useGravity = true;
+        FPS.ApplyGravity = true;
     }
 }
