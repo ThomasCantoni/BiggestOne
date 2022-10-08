@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Events;
 
 public class PlayerInvetory : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerInvetory : MonoBehaviour
     public float mulCoins;
     public UnityEvent<PlayerInvetory> OnCoinCollected;
     public bool HasSpecialGrenade;
+    public TextMeshProUGUI UI_PurchaseCanvas;
+    public InvetoryUI CoinNumber;
     private void Start()
     {
         HasSpecialGrenade = false;

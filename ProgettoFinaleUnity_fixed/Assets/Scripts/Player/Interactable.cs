@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Interactable : MonoBehaviour
 {
+    public ShopScript Parent;
     public UnityEvent onInteract;
     public ChainableAttack chainableAttack;
     public PlayerAttackEffects attackEffects;
@@ -23,6 +24,11 @@ public class Interactable : MonoBehaviour
 
     void Start()
     {
+        Parent = GetComponentInParent<ShopScript>();
+        attackEffects = Parent.PI.GetComponent<PlayerAttackEffects>();
+        Fps = Parent.PI.GetComponent<FirstPersonController>();
+        playerInvetor = Fps.GetComponent<PlayerInvetory>();
+        playerInvetory = playerInvetor.CoinNumber;
         playerInvetory.UpdateCoinText(playerInvetor);
 
         shopItems[1, 1] = 1;
