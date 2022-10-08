@@ -19,16 +19,44 @@ public class WeaponSwitching : MonoBehaviour
     void Start()
     {
         SelectWeapon();
-        //InputCooker = GetComponentInParent<InputCooker>();
+        InputCooker.NextWeapon += SelectWeaponIndex;
+        InputCooker.PreviousWeapon += SelectWeaponIndex;
     }
 
-    // Update is called once per frame
-    void Update()
+   
+    //void Update()
+    //{
+    //    Switch();
+    //}
+    public void SelectWeaponIndex(int additiveIndex)
     {
-        Switch();
+        if (selectedWeapon + additiveIndex >= List.Count)
+            return;
+        if(additiveIndex <0)
+        {
+            if (selectedWeapon <= 0)
+                selectedWeapon = List.Count - 1;
+            else
+                selectedWeapon--;
+        }
+        else
+        {
+            if (selectedWeapon >= List.Count - 1)
+                selectedWeapon = 0;
+            else
+                selectedWeapon++;
+        }
+        SelectWeapon();
+
+    }
+    public void SelectWeaponClass(GenericGun selected)
+    {
+        selectedWeapon = List.IndexOf(selected);
+        SelectWeapon();
     }
     void SelectWeapon()
     {
+        
         int i = 0;
         foreach (GenericGun weapon in List)
         {
@@ -49,6 +77,77 @@ public class WeaponSwitching : MonoBehaviour
     {
         ReloadEvent?.Invoke();
         ReloadDelegateEvent?.Invoke(currentGun);
+    }
+    public void AddGun(GenericGun gunToAdd,bool switchImmediately=false)
+    {
+        if (!List.Contains(gunToAdd))
+        {
+            List.Add(gunToAdd);
+            if (switchImmediately || List.Count == 1)
+            {
+                SelectWeaponClass(gunToAdd);
+
+            }
+        }
+    }
+    public void RemoveGun(GenericGun gunToRemove)
+    {
+        if (List.Contains(gunToRemove))
+        {
+            int currentGunIndex = List.IndexOf(gunToRemove);
+            List.Remove(gunToRemove);
+
+            List<GenericGun> newList = new List<GenericGun>();
+            for (int i = 0; i < List.Count; i++)
+            {
+                if(List[i] != null)
+                {
+                    newList.Add(List[i]);
+                }
+            }
+            newList.TrimExcess();
+            List = newList;
+            if(currentGunIndex == selectedWeapon)
+            {
+                if(List.Count > 0)
+                {
+                    if(selectedWeapon-1 >= 0)
+                    {
+                        selectedWeapon--;
+                        
+                    }
+                    else if(selectedWeapon +1 < List.Count-1)
+                    {
+                        selectedWeapon++;
+                    }
+                }
+                else
+                {
+                    RemoveAllGuns();
+                    return;
+                }
+            }
+                SelectWeapon();
+            
+            
+                
+
+           
+        }
+    }
+    public void RemoveAllGuns()
+    {
+        List.Clear();
+        selectedWeapon = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            GameObject g = transform.GetChild(i).gameObject;
+            g.SetActive(false);
+        }
+    }
+    public void SwitchToGun(GenericGun GunInsideList)
+    {
+
     }
     void Switch()
     {

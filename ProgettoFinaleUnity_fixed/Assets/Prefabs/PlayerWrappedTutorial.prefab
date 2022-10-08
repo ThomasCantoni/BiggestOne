@@ -5407,7 +5407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3269159491707626908
 Transform:
   m_ObjectHideFlags: 0
@@ -5507,8 +5507,13 @@ MonoBehaviour:
     Radius: 0
     Force: 0
     FractureType: 0
-  DamageContainer:
-    Damage: 15
+  WeaponBaseStats:
+    Damage: 0
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
+  weaponOutputStats:
+    Damage: 0
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -5527,6 +5532,7 @@ MonoBehaviour:
   PlayerAttackEffects: {fileID: 0}
   FPS: {fileID: 0}
   InputCooker: {fileID: 0}
+  takeDmg: {fileID: 0}
   shotgun: 0
   range: 10
   inaccuracyDistance: 1
@@ -5634,8 +5640,13 @@ MonoBehaviour:
     Radius: 0
     Force: 0
     FractureType: 0
-  DamageContainer:
-    Damage: 50
+  WeaponBaseStats:
+    Damage: 0
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
+  weaponOutputStats:
+    Damage: 0
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -5654,6 +5665,7 @@ MonoBehaviour:
   PlayerAttackEffects: {fileID: 0}
   FPS: {fileID: 0}
   InputCooker: {fileID: 0}
+  takeDmg: {fileID: 0}
   shotgun: 0
   range: 1
   inaccuracyDistance: 0
@@ -5759,8 +5771,13 @@ MonoBehaviour:
     Radius: 0
     Force: 0
     FractureType: 0
-  DamageContainer:
-    Damage: 15
+  WeaponBaseStats:
+    Damage: 0
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
+  weaponOutputStats:
+    Damage: 0
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -5779,6 +5796,7 @@ MonoBehaviour:
   PlayerAttackEffects: {fileID: 0}
   FPS: {fileID: 0}
   InputCooker: {fileID: 0}
+  takeDmg: {fileID: 0}
   shotgun: 0
   range: 50
   inaccuracyDistance: 0
@@ -6021,8 +6039,13 @@ MonoBehaviour:
     Radius: 0
     Force: 0
     FractureType: 0
-  DamageContainer:
-    Damage: 9
+  WeaponBaseStats:
+    Damage: 0
+    CritChance: 0
+    CritMultiplier: 0
+    EffectChance: 0
+  weaponOutputStats:
+    Damage: 0
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -6041,6 +6064,7 @@ MonoBehaviour:
   PlayerAttackEffects: {fileID: 0}
   FPS: {fileID: 0}
   InputCooker: {fileID: 0}
+  takeDmg: {fileID: 0}
   shotgun: 0
   range: 50
   inaccuracyDistance: 5

@@ -205,6 +205,15 @@ public class FirstPersonController : MonoBehaviour
         }
         
     }
+    public void Teleport(Transform destination)
+    {
+        RB.enabled = false;
+        transform.position = destination.position;
+        transform.rotation = destination.rotation;
+        RB.enabled = true;
+       
+
+    }
     void Update()
     {
         //if (SoftGrounded)

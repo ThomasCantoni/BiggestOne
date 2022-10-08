@@ -11,7 +11,7 @@ public class WeaponManager : MonoBehaviour
     public void Start()
     {
         InputCooker = GetComponentInParent<InputCooker>();
-        InputCooker.NextWeapon += () =>
+        InputCooker.NextWeapon += (integer) =>
         {
             if (CurrentIndex + 1 >= List.Count)
             {
@@ -27,7 +27,7 @@ public class WeaponManager : MonoBehaviour
         };
 
 
-        InputCooker.PreviousWeapon += () =>
+        InputCooker.PreviousWeapon += (integer) =>
         {
             if (CurrentIndex - 1 < 0)
             {

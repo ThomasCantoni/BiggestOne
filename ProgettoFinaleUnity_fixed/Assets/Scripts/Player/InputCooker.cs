@@ -35,7 +35,7 @@ public class InputCooker : MonoBehaviour
     public bool isSliding = false;
     public bool isReloading = false;
     public delegate void PlayerShootEvent();
-    public delegate void ChangeWeaponEvent();
+    public delegate void ChangeWeaponEvent(int scrollDir);
     public delegate void PlayerRotatedCameraEvent();
     public delegate void PlayerMovementEvent();
     public delegate void PlayerInteractEvent();
@@ -253,12 +253,12 @@ public class InputCooker : MonoBehaviour
         {
             //Debug.Log("Next Weapon " + value);
             if (NextWeapon != null)
-                NextWeapon.Invoke();
+                NextWeapon.Invoke((int)value);
         }
         if (value > 0)
         {
            // Debug.Log("Prev Weapon " + value);
-            PreviousWeapon?.Invoke();
+            PreviousWeapon?.Invoke((int)value);
         }
     }
 

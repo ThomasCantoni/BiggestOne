@@ -13,10 +13,11 @@ public class ShopScript : MonoBehaviour
     public TextMeshProUGUI PressE;
     public PlayerInvetory PI;
     public LayerMask mask;
-    public TriggerTutorialScript TutorilTrigger;
+    public UnityEvent OnShopInteract;
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
+
     UnityEvent onInteract;
 
     private void Start()
@@ -36,16 +37,15 @@ public class ShopScript : MonoBehaviour
         
         foreach (RaycastResult result in results)
         {
-            if (result.distance < 10 && result.gameObject.GetComponent<Interactable>() != false || TutorilTrigger.TutorialShop)
+            if (result.distance < 10 && result.gameObject.GetComponent<Interactable>() != false )
             {
+               
                 onInteract = result.gameObject.GetComponent<Interactable>().onInteract;
-                if (TutorilTrigger.TutorialShop)
-                {
-                    TutorilTrigger.Trigger.SetActive(true);
-                }
+                
                 Debug.Log("Hit " + result.gameObject.name);
                 //PressE.enabled = true;
                 onInteract?.Invoke();
+                OnShopInteract?.Invoke();
             }
         }
     }

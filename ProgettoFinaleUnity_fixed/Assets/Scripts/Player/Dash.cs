@@ -21,6 +21,7 @@ public class Dash : MonoBehaviour
     public int CurrentDashCharges = 1;
     private bool updateDash = false;
     public bool canRechargeTimer=true, canRechargeGrounded;
+    public bool DashEnabled = true;
     public bool IsDashing
     {
         get { return updateDash; }
@@ -69,7 +70,12 @@ public class Dash : MonoBehaviour
         }
     }
     private void FixedUpdate()
-    {  
+    {
+        if (!DashEnabled)
+        {
+            StopDashingImmediately();
+            return;
+        }
         if (updateDash && NoWallAhead)
         {
             FPS.ApplyDrag = false;

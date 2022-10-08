@@ -13,9 +13,11 @@ public class EnemySpawnPointScript : MonoBehaviour
     [Tooltip("The amount of frequency added to the SpawnRepeater everytime an Enemy is spawned.")]
     public float IntervalDecreaseMs;
     public int SpawnInterval;
-    [Tooltip("This repeater is responsible for spawning the enemies. Should only be modified to change the initial value of the frequency")]
+    [HideInInspector]
     public SimpleTimer SpawnTimer;
     public UnityEvent<GameObject> OnSpawned;
+    public UnityEvent<EnemyClass> OnEnemyDead;
+
     public List<GameObject> SpawnList = new List<GameObject>();
     private List<Transform> spawnPoints;
     
@@ -74,7 +76,11 @@ public class EnemySpawnPointScript : MonoBehaviour
     public void SpawnEnemy()
     {
         Debug.Log(SpawnTimer.TimeMs);
-        
+        if(!this.enabled)
+        {
+            SpawnTimer.StopTimer(false);
+            return;
+        }
 
         Transform spawnPointSelected = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)];
         int chosenIndex = UnityEngine.Random.Range(0, SpawnList.Count);
@@ -125,11 +131,17 @@ public class EnemySpawnPointScript : MonoBehaviour
     public void EnemyDiedCallback(IKillable justDied)
     {
         enemiesAlive--;
-        Type key = ((EnemyClass)justDied.Mono).GetType();
+        EnemyClass enemyDied = ((EnemyClass)justDied.Mono);
+        Type key = enemyDied.GetType();
+        OnEnemyDead?.Invoke(enemyDied);
         Queue<EnemyClass> correctQueue = Graveyard[key];
         correctQueue.Enqueue((EnemyClass)justDied.Mono);
         SpawnTimer.StartTimer();
         
     }
-
+    private void OnDisable()
+    {
+       SpawnTimer.StopTimer(false);
+    }
+    
 }
