@@ -156,7 +156,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
+  m_Speed: 5.45
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 400
@@ -514,6 +514,12 @@ MonoBehaviour:
   FPS_Controller: {fileID: 0}
   IsInSpawnQueue: 0
   OnEMPCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
   EMPActive: 0

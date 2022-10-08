@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
+[RequireComponent(typeof(Fracture2))]
+[ExecuteInEditMode]
 public class HitEventFracture : MonoBehaviour, IHittable
 {
     public FractureType FractureType;
@@ -13,7 +14,12 @@ public class HitEventFracture : MonoBehaviour, IHittable
     {
         get { return this; }
     }
-
+    public void Start()
+    {
+        
+        Rigidbody RB = GetComponent<Rigidbody>();
+        RB.constraints = RigidbodyConstraints.FreezeAll;
+    }
     public void OnHit(HitInfo hitInfo)
     {
         if(FractureType == hitInfo.FractureInfo.FractureType)
