@@ -4,9 +4,9 @@ using UnityEngine;
 
 public enum TriggerType 
 {
+    ByScript,
     Collision,
-    Trigger,
-    ByScript
+    Trigger
 }
 
 [Serializable]

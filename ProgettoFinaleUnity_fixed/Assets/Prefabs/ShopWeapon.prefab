@@ -345,7 +345,9 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
-  TutorilTrigger: {fileID: 0}
+  OnShopInteract:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1724920690389443498
 GameObject:
   m_ObjectHideFlags: 0
