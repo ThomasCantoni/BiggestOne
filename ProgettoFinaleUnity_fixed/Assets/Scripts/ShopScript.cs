@@ -17,15 +17,18 @@ public class ShopScript : MonoBehaviour
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
-
+    GameObject Player;
     UnityEvent onInteract;
 
-    private void Start()
+    private void Awake()
     {
         m_Raycaster = GetComponent<GraphicRaycaster>();
         m_EventSystem = GetComponent<EventSystem>();
+        Player = GameObject.FindGameObjectWithTag("Player");
+        IC = Player.GetComponent<InputCooker>();
         IC.playerInteract += interactCanvas;
-        
+        PI = Player.GetComponent<PlayerInvetory>();
+        PressE = PI.UI_PurchaseCanvas;
     }
     private void interactCanvas()
     {
