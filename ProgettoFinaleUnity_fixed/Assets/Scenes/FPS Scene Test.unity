@@ -444,6 +444,12 @@ MonoBehaviour:
   OnEMPCollected:
     m_PersistentCalls:
       m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
   EMPActive: 0
   anim: {fileID: 0}
   Eyes: {fileID: 0}
@@ -2745,6 +2751,12 @@ MonoBehaviour:
   OnEMPCollected:
     m_PersistentCalls:
       m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
   EMPActive: 0
   anim: {fileID: 0}
   Eyes: {fileID: 0}
@@ -3298,7 +3310,7 @@ Transform:
   m_LocalScale: {x: 1.9339, y: 1.9339, z: 1.9339}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &615424997
 GameObject:
@@ -3346,7 +3358,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &656841152
 GameObject:
@@ -6027,7 +6039,7 @@ Transform:
   m_LocalScale: {x: 1.9339, y: 1.9339, z: 1.9339}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1104535992 stripped
 Transform:
@@ -6268,7 +6280,7 @@ MonoBehaviour:
       Data4: 1325312081
     Path: event:/Music/Traccia2
   Event: 
-  PlayEvent: 0
+  PlayEvent: 1
   StopEvent: 0
   AllowFadeout: 1
   TriggerOnce: 0
@@ -7683,7 +7695,7 @@ Transform:
   - {fileID: 953400278}
   - {fileID: 2057485452}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456313715
 GameObject:
@@ -7837,6 +7849,12 @@ MonoBehaviour:
   FPS_Controller: {fileID: 0}
   IsInSpawnQueue: 0
   OnEMPCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
   EMPActive: 0
@@ -8475,6 +8493,12 @@ MonoBehaviour:
   OnEMPCollected:
     m_PersistentCalls:
       m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
   EMPActive: 0
   anim: {fileID: 0}
   Eyes: {fileID: 0}
@@ -8710,6 +8734,12 @@ MonoBehaviour:
   FPS_Controller: {fileID: 0}
   IsInSpawnQueue: 0
   OnEMPCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
   EMPActive: 0
@@ -9374,7 +9404,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 117167277520124005, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9420,37 +9450,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerWrapped
       objectReference: {fileID: 0}
-    - target: {fileID: 117167277520124026, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117167278172925937, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.00000074505806
-      objectReference: {fileID: 0}
     - target: {fileID: 7423247748353314289, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7423247748353314289, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
@@ -9463,17 +9469,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05a8b4c3fb6b683459029f6cc8b45319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1687120080 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2123742852, guid: 15c81a1a663f0ab4a8f97b971f23ccb7, type: 3}
-  m_PrefabInstance: {fileID: 1687120077}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c31b10d581b456142836926a13a2ecf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!20 &1687120081 stripped
@@ -9930,7 +9925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8345070699079395522, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10040,6 +10035,12 @@ MonoBehaviour:
   FPS_Controller: {fileID: 0}
   IsInSpawnQueue: 0
   OnEMPCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
   EMPActive: 0
@@ -10616,6 +10617,12 @@ MonoBehaviour:
   FPS_Controller: {fileID: 0}
   IsInSpawnQueue: 0
   OnEMPCollected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeathUnityEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAttackUnityEvent:
     m_PersistentCalls:
       m_Calls: []
   EMPActive: 0
@@ -11697,6 +11704,83 @@ Transform:
   m_Father: {fileID: 316101259}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 101.597, z: 0}
+--- !u!1001 &2129887784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.392786
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.696958
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213167898325412561, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674494650977205663, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_Name
+      value: EnemyMelee
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334250676227938835, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334250676227938835, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334250676227938835, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334250676778715558, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334250676778715558, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c2fcfcea80aee9a45bfd7b204080a52f, type: 3}
 --- !u!23 &4768885918658121
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12055,7 +12139,7 @@ Transform:
   - {fileID: 60439749612105584}
   - {fileID: 7578008435571334795}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &117167277996531551
 GameObject:
@@ -12311,7 +12395,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2103043698759763, guid: 9056a9e224a22294c8bc50453ce995d7, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2103043698759763, guid: 9056a9e224a22294c8bc50453ce995d7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12550,11 +12634,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3054540935875259900, guid: 77d0dfad0933fdb4894cce0a208c4b6d, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3054540935875259900, guid: 77d0dfad0933fdb4894cce0a208c4b6d, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5532399153181120616, guid: 77d0dfad0933fdb4894cce0a208c4b6d, type: 3}
       propertyPath: m_RootOrder
@@ -12603,6 +12687,10 @@ PrefabInstance:
     - target: {fileID: 5532399153181120631, guid: 77d0dfad0933fdb4894cce0a208c4b6d, type: 3}
       propertyPath: m_Name
       value: PW Tutorial 2.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5532399153181120631, guid: 77d0dfad0933fdb4894cce0a208c4b6d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77d0dfad0933fdb4894cce0a208c4b6d, type: 3}
@@ -12679,7 +12767,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 712531684302646022, guid: d4367898f8c0d17418b2b676f672a7ca, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 712531684302646022, guid: d4367898f8c0d17418b2b676f672a7ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12885,7 +12973,7 @@ PrefabInstance:
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: currentGun
       value: 
-      objectReference: {fileID: 1687120080}
+      objectReference: {fileID: 0}
     - target: {fileID: 4516385669397531024, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: attackEffects
       value: 
@@ -20018,6 +20106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2080e7730457df946b3238be3521e58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundEmitter: {fileID: 0}
   CollisionCheck:
     serializedVersion: 2
     m_Bits: 1
@@ -20037,6 +20126,7 @@ MonoBehaviour:
   CurrentDashCharges: 1
   canRechargeTimer: 0
   canRechargeGrounded: 0
+  DashEnabled: 1
 --- !u!114 &7520030753594716896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20164,7 +20254,7 @@ PrefabInstance:
     - target: {fileID: 6231113491384591148, guid: b34e718e9d693654a83b44ed6757d39c, type: 3}
       propertyPath: currentGun
       value: 
-      objectReference: {fileID: 1687120080}
+      objectReference: {fileID: 0}
     - target: {fileID: 6231113491384591148, guid: b34e718e9d693654a83b44ed6757d39c, type: 3}
       propertyPath: attackEffects
       value: 
@@ -20385,6 +20475,7 @@ MonoBehaviour:
   RB: {fileID: 0}
   WS: {fileID: 0}
   PI: {fileID: 0}
+  FootstepSoundEmitter: {fileID: 0}
   GrenadePrefab: {fileID: 0}
   CanJumpInTutorial: 0
   CanGrenadeInTutorial: 0
@@ -21051,7 +21142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8068820338008796420, guid: e7890224324c8b549af66b615cdf7dfb, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8068820338008796420, guid: e7890224324c8b549af66b615cdf7dfb, type: 3}
       propertyPath: m_LocalPosition.x

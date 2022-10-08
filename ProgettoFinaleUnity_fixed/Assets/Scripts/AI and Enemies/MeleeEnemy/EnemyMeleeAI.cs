@@ -16,7 +16,7 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     //public float timeBetweenAttacks;
     //bool alreadyAttacked;
     //States
-    
+     
     public bool HasAlreadyAttack;
     public float timeBetweenAttacks;
     public DamageStats BaseStats { get { return damage; } set { damage = value; } }

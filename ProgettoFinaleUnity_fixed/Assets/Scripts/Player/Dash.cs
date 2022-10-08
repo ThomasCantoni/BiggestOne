@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Jobs;
-
+using FMODUnity;
 public class Dash : MonoBehaviour
 {
     InputCooker IC;
     CharacterController RB;
     FirstPersonController FPS;
+    public StudioEventEmitter SoundEmitter;
     public LayerMask CollisionCheck;
     public LayerMask BreakableCheck;
     public float CheckRadius=1f,DistanceFactor=2f,DashForce;
@@ -141,6 +142,7 @@ public class Dash : MonoBehaviour
                 direction = this.transform.forward;
             StartCoroutine(StopDashing());
             CurrentDashCharges--;
+            SoundEmitter.Play();
             if (!DashRechargeTimer.IsActive)
                 DashRechargeTimer.StartTimer();
         }

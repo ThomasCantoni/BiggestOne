@@ -18,7 +18,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public bool IsInSpawnQueue = false;
     protected  SimpleTimer disableGO_Timer;
     public UnityEvent<EnemyClass> OnEMPCollected;
-    public UnityEvent OnDeathUnityEvent;
+    public UnityEvent OnDeathUnityEvent,OnAttackUnityEvent;
     public bool EMPActive;
 
 
