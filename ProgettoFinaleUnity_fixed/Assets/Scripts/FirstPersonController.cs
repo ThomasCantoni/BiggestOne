@@ -15,6 +15,9 @@ public class FirstPersonController : MonoBehaviour
 
     public WeaponSwitching WS;
     public PlayerInvetory PI;
+    public FMODUnity.StudioEventEmitter FootstepSoundEmitter;
+    [HideInInspector]
+    public Repeater FootstepRepeater;
     public GameObject GrenadePrefab;
     public bool CanJumpInTutorial;
     public bool CanGrenadeInTutorial;
@@ -147,7 +150,10 @@ public class FirstPersonController : MonoBehaviour
         DashScript = GetComponent<Dash>();
         _fallTimeOut = FallTimeOutMilliseconds;
         _jumpCD = JumpCooldown;
-        
+
+        FootstepRepeater = new Repeater();
+        FootstepRepeater.Frequency = 2.5f;
+        FootstepRepeater.RepeaterTickEvent += FootstepSoundEmitter.Play;
 
         GroundcheckRepeater = new Repeater();
         GroundcheckRepeater.Frequency = GroundcheckFrequency;
@@ -341,10 +347,25 @@ public class FirstPersonController : MonoBehaviour
 
         if (WantsToMove)
         {
+            if(!FootstepRepeater.IsActive)
+            {
+                if(SoftGrounded || HardGrounded)
+                    FootstepRepeater.StartRepeater();
+            }
+            else
+            {
+                if (!SoftGrounded && !HardGrounded)
+                    FootstepRepeater.StopRepeater();
+
+            }
             if (ClampSpeed)
                 target = Vector3.ClampMagnitude(target, MaximumAllowedVelocity);
 
             targetToAdd = target;
+        }
+        else
+        {
+            FootstepRepeater.StopRepeater();
         }
         
             

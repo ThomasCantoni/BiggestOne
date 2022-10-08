@@ -6,6 +6,7 @@ using Cinemachine;
 public class SlideCharacter : MonoBehaviour
 {
     [Header("Slide")]
+    public FMODUnity.StudioEventEmitter SoundEmitter;
     [Tooltip("Time before the Player can slide again.")]
     public float SlideInitialTime = 0.15f;
     public float SlideCooldown = 200f;
@@ -116,10 +117,12 @@ public class SlideCharacter : MonoBehaviour
     public IEnumerator StartSliding()
     {
         slideDir = IC.RelativeDirection;
+        
         yield return new WaitForSeconds(SlideInitialTime);
         if (canSlide && FPS.WantsToMove && FPS.SoftGrounded)
         {
             StartedSLiding?.Invoke();
+            SoundEmitter.Play();
             canSlide = false;
             this.isSliding = true;
             //FPS.RB.velocity = new Vector3(0,FPS.RB.velocity.y,0);

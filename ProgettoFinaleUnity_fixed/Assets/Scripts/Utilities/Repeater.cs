@@ -130,7 +130,8 @@ public class Repeater
         RepeaterStopEvent?.Invoke();
         IsActive = false;
         //t.AutoReset = false;
-        t.Dispose();
+        if(t!=null)
+            t.Dispose();
          
     }
     
