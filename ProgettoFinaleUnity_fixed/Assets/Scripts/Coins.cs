@@ -13,6 +13,7 @@ public class Coins : GenericPickUp
         if (playerInvetory != null)
         {
             playerInvetory.CoinCollected(CoinAmount);
+            OnPickUpUnityEvent?.Invoke();
             Destroy(this.gameObject);
         }
     }

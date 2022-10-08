@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class RotationScript : MonoBehaviour
 {
-    public float DegreesPerSecond = 90f;
-
+    //public float DegreesPerSecond = 90f;
+    public Vector3 RotationVector;
 
 
     void Update()
     {
-        this.transform.Rotate(DegreesPerSecond * Time.deltaTime,0,0);
+        Vector3 vec = RotationVector *Time.deltaTime;
+        this.transform.Rotate(vec.x,vec.y,vec.z);
     }
 }

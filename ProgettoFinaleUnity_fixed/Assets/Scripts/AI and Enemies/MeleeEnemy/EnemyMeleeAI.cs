@@ -70,6 +70,8 @@ public class EnemyMeleeAI : EnemyClass, IDamager
     public override void OnDeath()
     {
         OnEnemyDeath?.Invoke();
+        OnEnemyDeathParam?.Invoke(this);
+        OnDeathUnityEvent?.Invoke();
         anim.SetBool("Run", false);
         anim.SetTrigger("Death");
         NavMeshAgent.isStopped = true;

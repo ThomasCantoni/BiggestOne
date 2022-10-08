@@ -7,7 +7,7 @@ public class TriggerSimpleScript : MonoBehaviour
 {
     public UnityEvent Events;
 
-    public void OnTriggerEnter(Collider other)
+    public virtual void OnTriggerEnter(Collider other)
     {
         Events?.Invoke();
     }

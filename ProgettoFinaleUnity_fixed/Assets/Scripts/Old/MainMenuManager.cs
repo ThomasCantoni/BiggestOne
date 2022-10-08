@@ -17,6 +17,6 @@ public class MainMenuManager : MonoBehaviour
     }
     public void StartNewGame()
     {
-        LevelManager.Instance.LoadScene("Scenes/FPS Scene Test");
+        LevelManager.Instance.LoadScene("Scenes/Tutorial");
     }
 }

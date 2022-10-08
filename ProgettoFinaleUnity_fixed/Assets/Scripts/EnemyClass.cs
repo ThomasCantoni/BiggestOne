@@ -18,6 +18,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public bool IsInSpawnQueue = false;
     protected  SimpleTimer disableGO_Timer;
     public UnityEvent<EnemyClass> OnEMPCollected;
+    public UnityEvent OnDeathUnityEvent;
     public bool EMPActive;
 
 
@@ -119,6 +120,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public virtual void OnDeath()
     {
         OnEnemyDeath?.Invoke();
+        OnDeathUnityEvent?.Invoke();
         OnEnemyDeathParam?.Invoke(this);
         if (!IsInSpawnQueue)
             Destroy(NavMeshAgent.gameObject);

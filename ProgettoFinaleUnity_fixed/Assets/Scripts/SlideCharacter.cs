@@ -20,7 +20,7 @@ public class SlideCharacter : MonoBehaviour
     public Vector3 VCamOriginalFollowPosition ;
     bool canSlide = true;
     float originalHeight;
-    private float _SlideCD;
+   // private float _SlideCD;
     CapsuleCollider capsColl;
     protected SimpleTimer SlidingTimer;
     protected SimpleTimer CDTimer;
@@ -30,6 +30,7 @@ public class SlideCharacter : MonoBehaviour
     Vector3 slideDir;
     public delegate void SlideEvents();
     public event SlideEvents StartedSLiding, StoppedSliding;
+    private bool hasSubscribed=false;
     public bool NoWallAhead
     {
         get
@@ -37,25 +38,80 @@ public class SlideCharacter : MonoBehaviour
             return !Physics.CheckSphere(transform.position + slideDir * DistanceFactor, CheckRadius, CollisionCheck.value);
         }
     }
+    private void OnEnable()
+    {
+        Subscribe();
+    }
+   
     private void Start()
     {
         //capsColl = GetComponent<CapsuleCollider>();
         IC = GetComponent<InputCooker>();
         FPS = GetComponent<FirstPersonController>();
         originalHeight = FPS.RB.height;
-        _SlideCD = SlideCooldown;
+        //_SlideCD = SlideCooldown;
         
         VCamFollow = IC.VirtualCamera.Follow;
         VCamOriginalFollowPosition = VCamFollow.localPosition;
-        IC.PlayerStartSliding += () => StartCoroutine(StartSliding());
-        IC.PlayerStopSliding += () => StopCoroutine(StartSliding());
+        if(!hasSubscribed)
+        {
+            Subscribe();
+        }
+    }
+    public void Subscribe(bool unsubscribe=false)
+    {
+        if(!unsubscribe)
+        {
+            if (hasSubscribed)
+                return;
+            if(IC == null)
+            {
+                IC = GetComponent<InputCooker>();
+            }
+            IC.PlayerStartSliding += StartCoroutineSlide;
+            IC.PlayerStopSliding += StopCoroutineSlide;
 
-        //set the actions of timers 
-        SlidingTimer = new SimpleTimer(slideDuration);
-        SlidingTimer.TimerCompleteEvent += GoUp;
+            //set the actions of timers 
+            SlidingTimer = new SimpleTimer(slideDuration);
+            SlidingTimer.TimerCompleteEvent += GoUp;
 
-        CDTimer = new SimpleTimer(_SlideCD);
-        CDTimer.TimerCompleteEvent += () => canSlide = true;
+            CDTimer = new SimpleTimer(SlideCooldown);
+            CDTimer.TimerCompleteEvent += SetCanSlideTrue;
+            hasSubscribed = true;
+        }
+        else
+        {
+            IC.PlayerStartSliding -= StartCoroutineSlide;
+            IC.PlayerStopSliding -= StopCoroutineSlide;
+
+            //set the actions of timers 
+            if(SlidingTimer != null)
+                SlidingTimer.TimerCompleteEvent -= GoUp;
+            if(CDTimer != null)
+            CDTimer.TimerCompleteEvent -= SetCanSlideTrue;
+            
+            hasSubscribed = false;
+        }
+    }
+    private void SetCanSlideTrue()
+    {
+        canSlide = true;
+    }
+    private void SetCanSlideFalse()
+    {
+        canSlide = false;
+    }
+    private void StartCoroutineSlide()
+    {
+        StartCoroutine(StartSliding());
+    }
+    private void StopCoroutineSlide()
+    {
+        StopCoroutine(StartSliding());
+    }
+    private void OnDisable()
+    {
+        Subscribe(true);
     }
     public IEnumerator StartSliding()
     {
