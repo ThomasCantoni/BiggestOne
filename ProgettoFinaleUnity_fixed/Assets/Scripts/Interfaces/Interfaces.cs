@@ -35,6 +35,7 @@ public interface IHittable:IMono
 public interface IInteractable
 {
     public UnityEvent InteractUnityEvent { get; set; }
+    public string InteractMessage { get; set; }
     public abstract void OnInteract();
 }
 public interface IKillable : IHittable

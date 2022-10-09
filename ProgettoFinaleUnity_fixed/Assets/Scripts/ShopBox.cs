@@ -8,6 +8,7 @@ using TMPro;
 
 public class ShopBox : MonoBehaviour,IInteractable
 {
+    public string InteractMessage { get; set; }
     public InputCooker IC;
     public PlayerInvetory PI;
     public ChainableAttack chainableAttack;

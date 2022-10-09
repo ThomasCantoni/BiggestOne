@@ -12,7 +12,11 @@ public class ShopCanvas : MonoBehaviour,IInteractable
     GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
+
     public UnityEvent InteractUnityEvent { get { return onInteract; } set => throw new System.NotImplementedException(); }
+
+    public string InteractMessage { get; set; }
+
     public void OnInteract()
     {
         
