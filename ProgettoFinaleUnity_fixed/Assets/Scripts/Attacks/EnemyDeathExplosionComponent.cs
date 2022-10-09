@@ -23,14 +23,12 @@ public class EnemyDeathExplosionComponent : ChainableAttackComponent
         List<IHittable> thingsActuallyHittable = FilterArray.FilterOverlapArrayIntoList<IHittable,Collider>(thingsHit);
         thingsActuallyHittable.Remove(this.GetComponent<IHittable>());
 
-        DamageInstance newDamage = new DamageInstance(this);
+       
         for (int i = 0; i < thingsActuallyHittable.Count; i++)
         {
                 IHittable x = thingsActuallyHittable[i];
             if(!thingsHitByExplosions.Contains(x))
             {
-                HitInfo hit = new HitInfo(this,x);
-                newDamage.AddHitInfo(hit);
                 thingsHitByExplosions.Add(x);
             }
             else
@@ -39,8 +37,13 @@ public class EnemyDeathExplosionComponent : ChainableAttackComponent
             }
 
         }
-        thingsHitByExplosions.Clear();
-        newDamage.Deploy();
+        thingsHitByExplosions.TrimExcess();
+        foreach(IHittable x in thingsActuallyHittable)
+        {
+                HitInfo hit = new HitInfo(this,x);
+                x.OnHit(hit);
+        }
+
         EC.OnEnemyDeath -= OnEnemyDeath;
         Destroy(this);
     }
