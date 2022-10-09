@@ -801,6 +801,7 @@ MonoBehaviour:
   RB: {fileID: 2354166965385500974}
   WS: {fileID: 0}
   PI: {fileID: 0}
+  FootstepSoundEmitter: {fileID: 0}
   GrenadePrefab: {fileID: 7095784649458050780, guid: 66281790939fc0f4eb89ed69d7f0cb94, type: 3}
   CanJumpInTutorial: 1
   CanGrenadeInTutorial: 1
@@ -911,6 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2080e7730457df946b3238be3521e58b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundEmitter: {fileID: 0}
   CollisionCheck:
     serializedVersion: 2
     m_Bits: 1
@@ -919,17 +921,18 @@ MonoBehaviour:
     m_Bits: 1024
   CheckRadius: 0.5
   DistanceFactor: 0.6
-  DashForce: 30
+  DashForce: 23
   DashDurationMs: 200
-  DashRechargeTimeMs: 1500
+  DashRechargeTimeMs: 3000
   DashRechargeTimer:
     TimeMs: 1000
     HasCompleted: 0
     UpdateTimer: 0
-  DashMaxCharges: 2
-  CurrentDashCharges: 2
+  DashMaxCharges: 1
+  CurrentDashCharges: 1
   canRechargeTimer: 1
   canRechargeGrounded: 0
+  DashEnabled: 1
 --- !u!114 &8429601131401204658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cecebf4e68d484e82c5df26954c4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundEmitter: {fileID: 0}
   SlideInitialTime: 0.15
   SlideCooldown: 500
   slideDuration: 1000
