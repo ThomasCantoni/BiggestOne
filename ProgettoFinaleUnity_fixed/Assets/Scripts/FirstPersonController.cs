@@ -632,6 +632,11 @@ public class FirstPersonController : MonoBehaviour
 
 
     }
+    private void OnDestroy()
+    {
+        FootstepRepeater.StartRepeater();
+        FootstepSoundEmitter.Stop();
+    }
     //private void OnApplicationQuit()
     //{
     //    JumpTimer.StopTimer();
