@@ -16,7 +16,7 @@ public class Interactable : MonoBehaviour
     public WeaponSwitching WS;
     public GameObject IDs;
     public float duration = 5f;
-    public int[,] shopItems = new int[5, 5];
+    public int[,] shopItems = new int[8, 8];
     public GenericGun currentGun;
     
     //public delegate void GenericGunEvent(GenericGun gun);
@@ -28,6 +28,7 @@ public class Interactable : MonoBehaviour
         attackEffects = Parent.PI.GetComponent<PlayerAttackEffects>();
         Fps = Parent.PI.GetComponent<FirstPersonController>();
         playerInvetor = Fps.GetComponent<PlayerInvetory>();
+        WS = Fps.WS;
         playerInvetory = playerInvetor.CoinNumber;
         playerInvetory.UpdateCoinText(playerInvetor);
 
@@ -40,7 +41,9 @@ public class Interactable : MonoBehaviour
         shopItems[2, 2] = 50;
         shopItems[2, 3] = 15;
         shopItems[2, 4] = 25;
-
+        shopItems[2, 5] = 100;
+        shopItems[2, 6] = 150;
+        shopItems[2, 7] = 50;
 
     }
     public void GrenadeDrop()

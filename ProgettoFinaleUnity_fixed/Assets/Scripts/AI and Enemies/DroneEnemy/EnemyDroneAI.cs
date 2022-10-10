@@ -5,10 +5,10 @@ using UnityEngine.AI;
 using System.Linq;
 
 
-public class EnemyDroneAI : MonoBehaviour, IDamager
+public class EnemyDroneAI : EnemyClass, IDamager
 {
     public NavMeshAgent agent;
-    public Transform player;
+    //public Transform player;
     public Transform offSet;
     public Transform offSet2;
     public GameObject ToInstantiate;
@@ -23,16 +23,16 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     //States
-    public float attackRange;
+    //public float attackRange;
     public float runFromPlayerRange;
     public bool playerInAttackRange;
     public bool RunFromPlayerRange;
-    public bool PlayerIsVisible
+    public override bool PlayerIsVisible
     {
         get
         {
             RaycastHit hit;
-            Vector3 dir = (player.position - offSet2.position).normalized;
+            Vector3 dir = (player.transform.position - offSet2.position).normalized;
             Ray enemyPosition = new Ray(offSet2.position, dir);
             if (Physics.SphereCast(enemyPosition, 0.2f, out hit, attackRange, layerBullet.value))
             {
@@ -44,18 +44,18 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
     public DamageStats BaseStats { get { return damage; } set { damage = value; } }
     public DamageStats OutputStats { get { return damage; } set { damage = value; } }
 
-    public MonoBehaviour Mono
+    
+    public override void Awake()
     {
-        get
-        {
-            return this;
-        }
-    }
-    private void Awake()
-    {
-        player = GameObject.Find("Player 2.0").transform;
+        base.Awake();
+        OnEnemyDeath += DestroyEnemy;
     }
 
+    public void DestroyEnemy()
+    {
+        agent.isStopped = true;
+        Destroy(this.gameObject);
+    }
     private void Update()
     {
         AttackPlayer();
@@ -65,9 +65,9 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
 
     private void AttackPlayer()
     {
-        distanceFromPlayer = Vector3.Distance(offSet2.position, player.position);
-        Vector3 dir = (player.position - offSet.position).normalized;
-        transform.LookAt(player.position);
+        distanceFromPlayer = Vector3.Distance(offSet2.position, player.transform.position);
+        Vector3 dir = (player.transform.position - offSet.position).normalized;
+        transform.LookAt(player.transform.position);
 
         //Ray enemyPosition = new Ray(offSet.position, dir);
         //RaycastHit info;
@@ -87,7 +87,7 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
         }
         else if (distanceFromPlayer >= attackRange && !PlayerIsVisible)
         {
-            agent.SetDestination(player.position);
+            agent.SetDestination(player.transform.position);
             playerInAttackRange = false;
             agent.isStopped = false;
             agent.speed = 2f;
@@ -150,15 +150,11 @@ public class EnemyDroneAI : MonoBehaviour, IDamager
         agent.speed = 4f;
         Debug.DrawLine(this.transform.position, agent.destination, Color.green, 3f);
     }
-    private void ResetAttack()
+    public override void ResetAttack()
     {
         alreadyAttacked = false;
     }
-    private void DestroyEnemy()
-    {
-        agent.isStopped = true;
-        Destroy(this.gameObject, 4f);
-    }
+    
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

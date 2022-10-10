@@ -34,7 +34,7 @@ public abstract class EnemyClass : MonoBehaviour,IKillable
     public LayerMask PlayerDetectMask;
     public float attackRange;
     public bool PlayerInAttackRange;
-    public bool PlayerIsVisible
+    public virtual bool PlayerIsVisible
     {
         get
         {
