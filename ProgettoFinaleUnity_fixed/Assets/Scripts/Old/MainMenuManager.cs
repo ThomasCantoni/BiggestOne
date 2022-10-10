@@ -13,10 +13,11 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        //Cursor.visible = false;
+        Cursor.visible = true;
     }
     public void StartNewGame()
     {
-        LevelManager.Instance.LoadScene("Scenes/Tutorial");
+        LevelManager.Instance.LoadScene("Scenes/Zona 1");
+        Cursor.visible = false;
     }
 }
