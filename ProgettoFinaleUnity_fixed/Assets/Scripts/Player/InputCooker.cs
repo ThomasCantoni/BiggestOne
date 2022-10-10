@@ -261,7 +261,10 @@ public class InputCooker : MonoBehaviour
             PreviousWeapon?.Invoke((int)value);
         }
     }
-
+    private void OnDestroy()
+    {
+        Controls.Disable();
+    }
     private void OnApplicationFocus(bool hasFocus)
     {
         SetCursorState(cursorLocked);

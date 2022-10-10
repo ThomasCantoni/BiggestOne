@@ -144,6 +144,7 @@ public class FirstPersonController : MonoBehaviour
     public bool IsOnSlope = false;
     private void Start()
     {
+        Cursor.visible = false;
         PI = GetComponent<PlayerInvetory>();
         SC = GetComponent<SlideCharacter>();
         RB = GetComponent<CharacterController>();
@@ -634,8 +635,9 @@ public class FirstPersonController : MonoBehaviour
     }
     private void OnDestroy()
     {
-        FootstepRepeater.StartRepeater();
+        FootstepRepeater.StopRepeater();
         FootstepSoundEmitter.Stop();
+        GroundcheckRepeater.StopRepeater();
     }
     //private void OnApplicationQuit()
     //{
