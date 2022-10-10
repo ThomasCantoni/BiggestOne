@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{11033841-480a-4070-8801-6acec58368dc}</destination>
+			<destination>{72d7dff4-a8b2-4703-b3a6-b73745b929ee}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{26858bc4-33e0-434a-912f-eb1b62571ac2}</destination>
@@ -34,6 +34,9 @@
 		</relationship>
 		<relationship name="parameters">
 			<destination>{9e97055e-0f0d-4e9c-a4fa-d442637bc9d5}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{65e8ba6b-482a-4496-aca3-b8d9fa93fc4c}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{26858bc4-33e0-434a-912f-eb1b62571ac2}">
@@ -140,10 +143,10 @@
 	</object>
 	<object class="LoopRegion" id="{01e7c74e-17f1-4fdb-95ff-35fee5949fba}">
 		<property name="position">
-			<value>0.5</value>
+			<value>0</value>
 		</property>
 		<property name="length">
-			<value>5.5</value>
+			<value>6.3000000000000007</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{44477645-b700-4776-9863-da4a67eec79d}</destination>
@@ -154,7 +157,7 @@
 	</object>
 	<object class="NamedMarker" id="{2589ffa9-1894-490a-9172-53c338333cb3}">
 		<property name="position">
-			<value>6</value>
+			<value>6.3000000000000007</value>
 		</property>
 		<property name="name">
 			<value>Marker A</value>
@@ -168,10 +171,10 @@
 	</object>
 	<object class="TransitionRegion" id="{cd93f9e9-e676-4db9-be7d-32e344efd99c}">
 		<property name="position">
-			<value>0.5</value>
+			<value>0</value>
 		</property>
 		<property name="length">
-			<value>5.5</value>
+			<value>6.3000000000000007</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{44477645-b700-4776-9863-da4a67eec79d}</destination>

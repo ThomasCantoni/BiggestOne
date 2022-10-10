@@ -91,7 +91,8 @@ public class FirstPersonController : MonoBehaviour
     private float _jumpCD;
     private float _fallTimeOut;
     private float slopeAngle = 0f;
-    private float velocityMultiplier = 1;
+    [HideInInspector]
+    public float velocityMultiplier = 1;
     [HideInInspector]
     public Vector3 SlopeCounterVector, SlopeCounterVectorNORMALIZED;
     public delegate void PlayerGroundedEvent();

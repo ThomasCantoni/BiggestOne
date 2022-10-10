@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInteractableRaycast : MonoBehaviour
@@ -9,6 +8,7 @@ public class PlayerInteractableRaycast : MonoBehaviour
     public InputCooker IC;
     public FirstPersonController FPS;
     public IInteractable objectDetected;
+    public TextMeshProUGUI MessageText;
 
     private void Start()
     {
@@ -17,14 +17,25 @@ public class PlayerInteractableRaycast : MonoBehaviour
     private void Update()
     {
         Ray r = new Ray(this.transform.position,this.transform.forward);
-        RaycastHit[] info = Physics.RaycastAll(this.transform.position, this.transform.forward, range, mask);
-        foreach (RaycastHit i in info)
+        RaycastHit info;
+        if (Physics.Raycast(this.transform.position, this.transform.forward,out info, range, mask))
         {
-            objectDetected = i.transform.gameObject.GetComponent<IInteractable>();
+            objectDetected = info.collider.transform.gameObject.GetComponent<IInteractable>();
             if (objectDetected != null)
             {
+                MessageText.text = objectDetected.InteractMessage;
                 return;
             }
+            else
+            {
+                MessageText.text = "";
+                objectDetected = null;
+            }
+        }
+        else
+        {
+            MessageText.text = "";
+            objectDetected = null;
         }
     }
         

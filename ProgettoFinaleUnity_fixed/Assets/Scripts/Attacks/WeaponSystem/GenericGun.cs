@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 public enum WeaponType
 {
     Rifle,Shotgun,Launcher
@@ -37,6 +38,8 @@ public class GenericGun : MonoBehaviour,IDamager
     {
         get { return this; }
     }
+
+    public UnityEvent OnFireStartEvent,OnFireShotEvent, OnFireStopEvent;
     public bool IsAutomatic;
     public float FireRate;
     public int Multishot=1;
@@ -102,7 +105,7 @@ public class GenericGun : MonoBehaviour,IDamager
 
     public delegate void WeaponHitSomething(DamageInstance instance);
     public delegate void WeaponKilledSomethingEvent(GenericGun weapon,IHittable victim);
-
+    public delegate void WeaponStartStopShooting();
     public delegate void BulletCreatedEvent(HitInfo justCreated);
     public delegate void BulletEvent(GenericBullet justCreated);
     public delegate void ProjectileBulletCreated();
@@ -111,10 +114,13 @@ public class GenericGun : MonoBehaviour,IDamager
     public WeaponKilledSomethingEvent WeaponKilledSomething;
     public event WeaponHitSomething WeaponHitSomethingEvent;
     public WeaponBeforeAndAfterShootEvent BeforeShoot, AfterShoot;
-    public event WeaponShootEvent OnWeaponShooting;
+    public WeaponShootEvent OnWeaponShooting;
+    public WeaponStartStopShooting WeaponStartShooting, WeaponStopShooting;
     public BulletCreatedEvent HitInfoCreated;
     public BulletEvent BulletCreated,BulletHitListPopulated;
 
+    private bool isShooting = false;
+    
     private void OnEnable()
     {
         Initialize();
@@ -154,6 +160,7 @@ public class GenericGun : MonoBehaviour,IDamager
         if(subscribe)
         {
             InputCooker.PlayerPressedShoot += Shoot;
+            
             InputCooker.PlayerPressedReload += StartReload;
             //InputCooker.PlayerStoppedReload += StartReload;
 
@@ -161,7 +168,9 @@ public class GenericGun : MonoBehaviour,IDamager
             // Debug.Log("Subbed " +gameObject.name);
 
             WeaponKilledSomething += NotifyPlayerOfKill;
-           
+            WeaponStartShooting += AudioStartShooting;
+            WeaponStopShooting += AudioStopShooting;
+
         }
         else
         {
@@ -171,8 +180,21 @@ public class GenericGun : MonoBehaviour,IDamager
 
             WS.ReloadEvent -= EndReload;
             WeaponKilledSomething -= NotifyPlayerOfKill;
-
+            WeaponStartShooting -= AudioStartShooting;
+            WeaponStopShooting -= AudioStopShooting;
         }
+    }
+    public virtual void AudioStartShooting()
+    {
+        OnFireStartEvent?.Invoke();
+
+        Debug.LogError("AO START SHOOTING");
+
+    }
+    public virtual void AudioStopShooting()
+    {
+        OnFireStopEvent?.Invoke();
+        Debug.LogError("AO STOP SHOOTING");
     }
     public virtual void NotifyPlayerOfKill(GenericGun gun, IHittable victim )
     {
@@ -186,9 +208,10 @@ public class GenericGun : MonoBehaviour,IDamager
         if (CanShoot)
         {
             BeforeShoot?.Invoke(this);
+            
             DamageInstance newDamageInstance = new DamageInstance(this);
             newDamageInstance.PlayerAttackEffects = this.PlayerAttackEffects;
-
+            OnFireShotEvent?.Invoke();
             OnWeaponShooting?.Invoke(this,newDamageInstance);
             newDamageInstance.Hits = ShootBullets();
 
@@ -233,11 +256,23 @@ public class GenericGun : MonoBehaviour,IDamager
             {
                 if (currentShootCD <= 0f)
                 {
+                    if(!isShooting)
+                    {
+                        isShooting = true;
+                        WeaponStartShooting?.Invoke();
+                        
+                    }
                     Shoot();
                 }
             }
             else
             {
+                if(isShooting)
+                {
+                    isShooting = false;
+                    WeaponStopShooting?.Invoke();
+
+                }
                 if (IsReloading != false)
                 {
                     anim.SetTrigger("Shooting");

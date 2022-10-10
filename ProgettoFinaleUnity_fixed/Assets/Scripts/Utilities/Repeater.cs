@@ -46,7 +46,7 @@ public class Repeater
     public void StartRepeater()
     {
         activationTime = Time.realtimeSinceStartup;
-        t = new Timer(Tick,null,0,(int)IntervalMilliseconds);
+        t = new Timer(Tick,null, (int)IntervalMilliseconds, (int)IntervalMilliseconds);
         IsActive = true;
         //t.Elapsed += new ElapsedEventHandler(Tick);
         //t.AutoReset = true;
