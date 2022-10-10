@@ -179,7 +179,7 @@ public class WallParkour : MonoBehaviour
     private void WallRunningMovement()
     {
         fps.ApplyGravity = false;
-        fps.velocityMultiplier = 0;
+              fps.velocityMultiplier = 0;
         //rb.velocity = new Vector3(0, 0, 0);
         // wallNormal = playerPushesAgainstWall ? pushHit.normal : pushHit.normal;
         //wallForward = Vector3.Cross(wallNormal, transform.up);

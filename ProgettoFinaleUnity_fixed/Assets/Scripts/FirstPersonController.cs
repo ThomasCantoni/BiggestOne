@@ -11,7 +11,7 @@ public class FirstPersonController : MonoBehaviour
     public Dash DashScript;
     public InputCooker IC;
     public CharacterController RB;
-    
+    public WallParkour WP;
 
     public WeaponSwitching WS;
     public PlayerInvetory PI;
@@ -148,6 +148,7 @@ public class FirstPersonController : MonoBehaviour
         SC = GetComponent<SlideCharacter>();
         RB = GetComponent<CharacterController>();
         IC = GetComponent<InputCooker>();
+        WP = GetComponent<WallParkour>();
         DashScript = GetComponent<Dash>();
         _fallTimeOut = FallTimeOutMilliseconds;
         _jumpCD = JumpCooldown;
@@ -338,13 +339,13 @@ public class FirstPersonController : MonoBehaviour
             currentGravity.y = Mathf.Sqrt(-2f * JumpHeight * PlayerGravity.y);
             verticalForce = currentGravity;
         }
-        Debug.Log("Vertical " + verticalForce);
+        //Debug.Log("Vertical " + verticalForce);
         RB.Move(verticalForce*Time.fixedDeltaTime);
     }
     private void ApplyForce()
     {
         Vector3 target = IC.RelativeDirectionNotZero.normalized * Speed * velocityMultiplier;
-
+        Debug.Log(velocityMultiplier);
 
         if (WantsToMove)
         {
@@ -531,6 +532,7 @@ public class FirstPersonController : MonoBehaviour
 
                 //RB.drag = GroundedStillDrag;
             }
+           if(!WP.IsWallRunning)
             velocityMultiplier = GroundedVelocityMul;
         }
         else
@@ -588,7 +590,8 @@ public class FirstPersonController : MonoBehaviour
         {
             currentArtificialDrag = AirborneDragVector;
         }
-        velocityMultiplier = AirborneVelocityMul;
+        if (!WP.IsWallRunning)
+            velocityMultiplier = AirborneVelocityMul;
 
         //canSlide = false;
         //SlideTimer.StopTimer();
