@@ -28,7 +28,7 @@ public class WallParkour : MonoBehaviour
     private bool towardsWall;
     private bool upwardsRunning;
     private bool downwardsRunning;
-
+    private int wallStickCount = 0;
     public Transform PlayerTransform;
     private FirstPersonController fps;
     private InputCooker ic;
@@ -61,6 +61,8 @@ public class WallParkour : MonoBehaviour
 
 
         fps.PlayerStartedGrounded += gainDragTimer.StopTimer;
+        fps.PlayerStartedGrounded += () => wallStickCount = 0;
+
     }
     private void Update()
     {
@@ -164,7 +166,11 @@ public class WallParkour : MonoBehaviour
     {
         
         gainDragTimer.StartTimer();
-        fps.DoubleJumpPossible = true;
+        if(wallStickCount <1)
+        {
+            fps.DoubleJumpPossible = true;
+            wallStickCount++;
+        }
 
 
 

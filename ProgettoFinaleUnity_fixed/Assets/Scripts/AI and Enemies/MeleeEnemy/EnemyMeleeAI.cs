@@ -58,6 +58,8 @@ public class EnemyMeleeAI : EnemyClass, IDamager
             {
                 HitInfo infoDamage = new HitInfo(this, player.GetComponent<HealthPlayer>());
                 player.GetComponent<HealthPlayer>().OnHit(infoDamage);
+
+                
             }
             HasAlreadyAttack = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

@@ -25,6 +25,7 @@ public class FlameThrower : GenericGun
     
     public override void Start()
     {
+        base.Start();
         InputCooker.PlayerPressedShoot += () =>
         {
             if (CanActivatePS)
