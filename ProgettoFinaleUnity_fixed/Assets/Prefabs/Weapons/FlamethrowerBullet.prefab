@@ -61,9 +61,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Source: {fileID: 0}
-  Speed: 10
+  Speed: 20
   timesHit: 0
-  destroyTime: 1
+  destroyTime: 0.5
 --- !u!54 &-2914508733940520430
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5230805900978788349}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
