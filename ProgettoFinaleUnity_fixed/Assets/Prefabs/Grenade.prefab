@@ -139,4 +139,4 @@ MonoBehaviour:
   targetVector: {x: 0, y: 0, z: 0}
   RB: {fileID: 0}
   targetForward: {x: 0, y: 0, z: 0}
-  Speed: 20
+  Speed: 50
