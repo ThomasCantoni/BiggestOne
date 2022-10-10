@@ -23,13 +23,14 @@ public class PanelManager : MonoBehaviour {
 			return;
 
 		OpenPanel(initiallyOpen);
+		Cursor.visible = false;
+
 	}
 
 	public void OpenPanel (Animator anim)
 	{
 		if (m_Open == anim)
 			return;
-
 		anim.gameObject.SetActive(true);
 		var newPreviouslySelected = EventSystem.current.currentSelectedGameObject;
 
