@@ -18,6 +18,5 @@ public class MainMenuManager : MonoBehaviour
     public void StartNewGame()
     {
         LevelManager.Instance.LoadScene("Scenes/Zona 1");
-        Cursor.visible = false;
     }
 }

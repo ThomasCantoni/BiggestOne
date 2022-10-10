@@ -92,6 +92,6 @@ public class TutorialPlayerManager : MonoBehaviour
     }
     public void TutorialFinished()
     {
-        SceneManager.LoadScene("Scenes/Menu 3D");
+        SceneManager.LoadScene("Scenes/Zona 1");
     }
 }
