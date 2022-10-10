@@ -102,6 +102,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{a133b308-5ca3-43b6-a04e-986a205e5dcd}">
+		<property name="volume">
+			<value>-17</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{03acde48-e403-42d9-a24c-2bf15a33853d}</destination>
 		</relationship>
@@ -212,7 +215,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{dc80051e-c366-4a7f-9688-da4e071f39b0}">
 		<property name="volume">
-			<value>-10.5</value>
+			<value>-13</value>
 		</property>
 		<property name="name">
 			<value>Gravel</value>
