@@ -90,7 +90,7 @@ public class EnemyDroneAI : EnemyClass, IDamager
             agent.SetDestination(player.transform.position);
             playerInAttackRange = false;
             agent.isStopped = false;
-            agent.speed = 2f;
+            agent.speed = 5f;
         }
         //if (distanceFromPlayer <= attackRange && distanceFromPlayer <= runFromPlayerRange && !PlayerIsVisible)
         //{
@@ -147,7 +147,7 @@ public class EnemyDroneAI : EnemyClass, IDamager
             }
             j++;
         }
-        agent.speed = 4f;
+        agent.speed = 5f;
         Debug.DrawLine(this.transform.position, agent.destination, Color.green, 3f);
     }
     public override void ResetAttack()

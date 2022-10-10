@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5324614950750761887}
   - component: {fileID: 7669839745751405560}
   - component: {fileID: 6236480247798668219}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: PickUpTextObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6236480247798668219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2561282749505199262}
   - component: {fileID: 1350388585231335020}
   - component: {fileID: 326523259264717839}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: PickUpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

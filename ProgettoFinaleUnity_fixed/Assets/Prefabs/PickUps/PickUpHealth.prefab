@@ -112,7 +112,19 @@ MonoBehaviour:
   TextCanvas: {fileID: 0}
   OnPickUpUnityEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 922625297945313938}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &3672572622793990895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3ab32911597ee44cae4476ba6adb911, type: 3}
+--- !u!1 &922625297945313938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4483979419402379389, guid: f3ab32911597ee44cae4476ba6adb911, type: 3}
+  m_PrefabInstance: {fileID: 3672572622793990895}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &178731011798675129 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3498562158163053654, guid: f3ab32911597ee44cae4476ba6adb911, type: 3}

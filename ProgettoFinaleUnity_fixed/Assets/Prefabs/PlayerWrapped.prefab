@@ -483,6 +483,7 @@ MonoBehaviour:
     m_Bits: 1
   IC: {fileID: 7578008436064795051}
   FPS: {fileID: 7578008436064795053}
+  MessageText: {fileID: 0}
 --- !u!1 &89837480642926869
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,8 +626,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 117167278172925948}
-  m_LocalRotation: {x: -0, y: 0.7115205, z: -0, w: 0.7026654}
-  m_LocalPosition: {x: 0.38300002, y: 1.6258241, z: -3.5175}
+  m_LocalRotation: {x: -0, y: -0.000000749014, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 117167277520124005}
@@ -855,7 +856,7 @@ MonoBehaviour:
     Force: 0
     FractureType: 0
   WeaponBaseStats:
-    Damage: 0
+    Damage: 30
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
@@ -864,6 +865,15 @@ MonoBehaviour:
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
+  OnFireStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFireShotEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFireStopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   IsAutomatic: 1
   FireRate: 10
   Multishot: 1
@@ -8210,12 +8220,21 @@ MonoBehaviour:
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
+  OnFireStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFireShotEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFireStopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   IsAutomatic: 0
   FireRate: 2
-  Multishot: 6
+  Multishot: 12
   MaxPenetrations: 1
-  maxAmmo: 2
-  currentAmmo: 2
+  maxAmmo: 6
+  currentAmmo: 6
   reloadTime: 2
   cam: {fileID: 0}
   anim: {fileID: 1534726897}
@@ -8915,6 +8934,15 @@ MonoBehaviour:
     CritChance: 0
     CritMultiplier: 0
     EffectChance: 0
+  OnFireStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFireShotEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFireStopEvent:
+    m_PersistentCalls:
+      m_Calls: []
   IsAutomatic: 1
   FireRate: 8
   Multishot: 1

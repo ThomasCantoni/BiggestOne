@@ -301,7 +301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3921947969350592659, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: m_text
-      value: AK-47
+      value: Assault
       objectReference: {fileID: 0}
     - target: {fileID: 4154174175082845624, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: m_Layer
@@ -401,7 +401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5082869375117069730, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.11
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5082869375117069730, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -421,11 +421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5082869375117069730, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.040000916
+      value: 49.97
       objectReference: {fileID: 0}
     - target: {fileID: 5082869375117069730, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.369999
+      value: 54.4
       objectReference: {fileID: 0}
     - target: {fileID: 5082869375117069730, guid: 1103a88e6506dc5438ad4f97e36222f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
