@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parent: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parent: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:
@@ -309,7 +311,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8470006072373039761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1026,6 +1028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 232bcd80eefae864aad181903bab98c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Parent: {fileID: 0}
   onInteract:
     m_PersistentCalls:
       m_Calls:

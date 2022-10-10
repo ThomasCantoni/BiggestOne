@@ -337,7 +337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6908035258921440983}
   m_Layer: 0
-  m_Name: Terminal
+  m_Name: Terminal Buffs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
