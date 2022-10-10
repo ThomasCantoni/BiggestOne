@@ -14,9 +14,11 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
     public void StartNewGame()
     {
         LevelManager.Instance.LoadScene("Scenes/Zona 1");
+
     }
 }
